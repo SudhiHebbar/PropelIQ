@@ -26,7 +26,7 @@ As a **Senior Software Architect and Reverse Engineering Specialist**, perform c
 - Generate comprehensive documentation suitable for all stakeholders
 - Include both technical deep-dive and executive summary
 - Perform security and performance assessments
-- Output findings to `Context/existingrequirements.md` for future reference
+- Output findings using `Templates/analyze_code_base.md` template structure to `Context/code-analysis.md`
 
 ## Analysis Strategy
 
@@ -105,13 +105,25 @@ semgrep --config=auto || true
 ```
 
 **Security Assessment Areas**
-- OWASP Top 10 compliance
-- Authentication/Authorization implementation
-- Input validation patterns
-- Encryption usage
-- CORS/CSP configuration
-- SQL injection risks
-- XSS/CSRF protections
+- **OWASP Top 10 Detailed Compliance**:
+  - A01:2021 - Broken Access Control
+  - A02:2021 - Cryptographic Failures
+  - A03:2021 - Injection
+  - A04:2021 - Insecure Design
+  - A05:2021 - Security Misconfiguration
+  - A06:2021 - Vulnerable and Outdated Components
+  - A07:2021 - Identification and Authentication Failures
+  - A08:2021 - Software and Data Integrity Failures
+  - A09:2021 - Security Logging and Monitoring Failures
+  - A10:2021 - Server-Side Request Forgery (SSRF)
+- Authentication/Authorization implementation review
+- Input validation patterns and sanitization
+- Encryption usage (at rest and in transit)
+- CORS/CSP/Security headers configuration
+- SQL injection and NoSQL injection risks
+- XSS/CSRF/SSRF protections
+- Secrets management and key rotation
+- API security and rate limiting
 
 ### Phase 5: Performance Profiling
 **Database Analysis**
@@ -159,6 +171,132 @@ npx vitest --coverage || true
 pytest --cov=. --cov-report=json --cov-report=term || true
 ```
 
+### Phase 7: Critical Business Logic Documentation
+**Core Business Logic Discovery**
+- **Business Logic Classes**: Identify core classes/modules solving business problems
+- **Method Analysis**: Document key methods and their business purpose
+- **Business Rules**: Extract and document enforced business rules
+- **Dependencies Mapping**: Track critical dependencies for business logic
+- **Plain English Documentation**: Translate technical implementation to business language
+
+**Business Process Flow Mapping**
+- **Entry Points**: Identify where business processes start
+- **Flow Documentation**: Step-by-step business flow in plain English
+- **Decision Points**: Document critical business logic branches
+- **Error Handling**: How business failures are handled
+- **Transaction Boundaries**: Identify transactional scopes
+
+**Business Rule Validation Analysis**
+- **Rule Categories**: Pricing, Compliance, Authorization, Validation
+- **Implementation Locations**: Map rules to code locations
+- **Validation Logic**: Document how rules are checked
+- **Failure Impact**: What happens when rules are violated
+- **Business Constraints**: Document enforced business constraints
+
+### Phase 8: User Journey & Use Case Analysis
+**Actor Discovery from Code**
+- **Authentication Analysis**: Extract user roles from auth middleware
+- **Route Analysis**: Map routes to user types
+- **Permission Mapping**: Document access levels from code
+- **API Consumer Identification**: Find external system integrations
+- **Background Job Analysis**: Identify system actors
+
+**Use Case Reverse Engineering**
+```bash
+# Extract routes and endpoints
+grep -r "@route\|@app.route\|router." --include="*.py" --include="*.js" --include="*.ts"
+grep -r "\[Route\|\[HttpGet\|\[HttpPost" --include="*.cs"
+
+# Find authentication decorators/attributes
+grep -r "@auth\|@requires\|\[Authorize" --include="*.py" --include="*.cs" --include="*.ts"
+
+# Identify API consumers
+grep -r "api_key\|client_id\|webhook" --include="*.json" --include="*.yml"
+```
+
+**Critical User Flow Tracing**
+- **Entry Point Mapping**: UI routes to backend endpoints
+- **Code Path Analysis**: Controller → Service → Repository flow
+- **Database Operations**: Track CRUD operations
+- **External Calls**: API integrations and webhooks
+- **Response Handling**: Success and error scenarios
+
+**Sequence Diagram Generation**
+- **Authentication Flows**: Login, logout, token refresh
+- **Transaction Flows**: Payment, order, booking processes
+- **Data Processing**: ETL, batch processing, reports
+- **Integration Flows**: Third-party API interactions
+- **Event-Driven Flows**: Message queue, event handlers
+
+**Actor-Feature Interaction Analysis**
+- **Visual Mapping**: Create interaction matrix between actors and features
+- **Access Patterns**: Document how different actors use system features
+- **Permission Boundaries**: Map actor permissions to feature access
+- **Usage Frequency**: Identify high-traffic actor-feature combinations
+- **Dependency Analysis**: Track feature dependencies per actor type
+
+### Phase 9: Risk Register & Impact Analysis
+**Risk Identification**
+- **Security Risks**: Vulnerabilities, authentication weaknesses, data exposure
+- **Performance Risks**: Scalability issues, bottlenecks, resource constraints
+- **Technical Debt Risks**: Code quality, outdated dependencies, maintenance burden
+- **Operational Risks**: Deployment complexity, monitoring gaps, recovery procedures
+- **Compliance Risks**: Regulatory requirements, data privacy, audit trails
+
+**Risk Assessment Matrix**
+- **Severity Levels**: Critical, High, Medium, Low
+- **Likelihood Assessment**: High, Medium, Low probability
+- **Impact Analysis**: Business impact, user impact, technical impact
+- **Risk Score Calculation**: Severity × Likelihood
+- **Mitigation Strategies**: Preventive and corrective actions
+
+### Phase 10: Modernization Roadmap Development
+**Quick Wins Analysis (< 2 weeks)**
+- Dependency updates and security patches
+- Performance optimizations
+- Code quality improvements
+- Documentation updates
+- Configuration fixes
+
+**Medium-Term Improvements (2-8 weeks)**
+- Architecture refactoring
+- Test coverage expansion
+- API modernization
+- Database optimizations
+- Monitoring implementation
+
+**Strategic Initiatives (> 8 weeks)**
+- Platform migrations
+- Microservices transformation
+- Cloud-native adoption
+- Complete rewrites
+- Major integrations
+
+### Phase 11: Comprehensive Dependency Analysis
+**Dependency Health Assessment**
+```bash
+# Check for outdated dependencies
+npm outdated --json || true
+dotnet list package --outdated --include-transitive || true
+pip list --outdated || true
+
+# Analyze dependency tree
+npm ls --depth=3 --json || true
+dotnet list package --include-transitive || true
+pipdeptree --json || true
+
+# License compliance check
+license-checker --json || true
+dotnet-project-licenses || true
+```
+
+**Dependency Risk Matrix**
+- **Version Status**: Latest, Outdated, Deprecated, EOL
+- **Security Status**: Vulnerable, Patched, Secure
+- **Maintenance Status**: Active, Inactive, Abandoned
+- **License Compatibility**: Permissive, Copyleft, Proprietary
+- **Alternative Options**: Drop-in replacements available
+
 ## Essential Project Intelligence Integration
 
 ### Reference Materials Analysis
@@ -169,6 +307,31 @@ pytest --cov=. --cov-report=json --cov-report=term || true
 - **Security Standards**: Review security best practices and compliance requirements
 
 *** Comprehensive pattern recognition and anti-pattern detection is mandatory ***
+
+### C4 Architecture Diagram Requirements
+**Context Diagram (Level 1)**
+- System boundaries and scope
+- External actors (users, systems)
+- High-level interactions
+- Key data flows
+
+**Container Diagram (Level 2)**
+- Major application components
+- Databases and data stores
+- Message queues and caches
+- Technology choices per container
+
+**Component Diagram (Level 3)**
+- Internal structure of containers
+- Key components and their responsibilities
+- Component interactions
+- Important interfaces
+
+**Deployment Diagram**
+- Infrastructure topology
+- Deployment environments
+- Network boundaries
+- Scaling strategy
 
 ## Analysis Output Framework
 
@@ -212,14 +375,8 @@ find . -type d -name "node_modules" -prune -o -type d -name ".git" -prune -o -ty
 - Scheduled jobs and triggers
 - Webhook receivers
 
-### Technology Stack Matrix
-| Category | Technology | Version | Usage | Health Status |
-|----------|------------|---------|-------|---------------|
-| Language | TypeScript | 5.x | Frontend/Backend | Active |
-| Framework | React | 18.x | UI Components | Active |
-| Database | PostgreSQL | 14.x | Primary Store | Active |
-| Cache | Redis | 7.x | Session/Cache | Active |
-| Queue | RabbitMQ | 3.x | Async Processing | Active |
+### Technology Stack Data Collection
+*Data gathered here will populate the Technology Stack Inventory section in the template*
 
 ## Quality Assurance Framework
 
@@ -274,40 +431,28 @@ find . -type d -name "node_modules" -prune -o -type d -name ".git" -prune -o -ty
 
 ## Analysis Report Generation
 
-### Template Foundation
-Base all codebase analysis reports on `Templates/analyze_code_base.md` for consistency and completeness.
+### Output Requirements
+**Base all analysis reports on `Templates/analyze_code_base.md` template for consistency and completeness.**
 
-### Critical Deliverables to Include
-Using the template structure, ensure comprehensive coverage of:
-- **Executive Summary**: Business context, risks, and strategic recommendations
-- **Technical Architecture**: C4 diagrams, patterns, and system topology
-- **Technology Stack**: Complete inventory with version and health status
-- **Code Quality**: Metrics, technical debt, and improvement priorities
-- **Security Assessment**: Vulnerabilities, OWASP compliance, and remediation
-- **Performance Analysis**: Bottlenecks, optimizations, and metrics
-- **Development Guide**: Setup, build, deployment, and operations
-- **Risk Register**: Categorized risks with mitigation strategies
-- **Modernization Roadmap**: Prioritized initiatives with effort estimates
+The template defines the comprehensive structure and content requirements. This command focuses on the **methodology** for gathering the data needed to populate all template sections effectively.
 
-### Customization Guidelines
-- Adapt template sections based on discovered technology stack
-- Include framework-specific analysis (React, .NET, Python, etc.)
+### Analysis Execution Guidelines
+- Adapt analysis depth based on discovered technology stack
+- Include framework-specific methodology (React, .NET, Python, etc.)
 - Generate architecture diagrams using specified `diagram_type`
-- Focus analysis on `priority_areas` when specified
-- Scale documentation detail based on `analysis_depth` parameter
+- Focus data gathering on `priority_areas` when specified
+- Scale analysis effort based on `analysis_depth` parameter
 - Reference `References/Gotchas` for technology-specific guidance
+- Document all assumptions and unresolved questions during analysis
 
-## Completion Criteria
+## Analysis Completion Criteria
 
-- [ ] All analysis phases completed systematically
-- [ ] Output saved to `Context/code-analysis.md`
-- [ ] Executive summary under 200 words
-- [ ] At least 3 architecture diagrams generated
-- [ ] Security vulnerabilities mapped to CVE/CWE
-- [ ] Performance bottlenecks identified with metrics
-- [ ] 10+ actionable recommendations provided
+- [ ] All 11 analysis phases completed systematically
+- [ ] All data collected to populate template sections
+- [ ] Output formatted using `Templates/analyze_code_base.md` structure
+- [ ] Results saved to `Context/code-analysis.md`
 - [ ] Quality assessment scoring completed
-- [ ] Documentation suitable for all stakeholders
+- [ ] All assumptions and limitations documented
 
 ## Usage Examples
 
