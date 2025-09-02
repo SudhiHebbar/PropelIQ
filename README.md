@@ -214,7 +214,17 @@ git clone <repository-url>
 cd "Codegen Framework"
 ```
 
-### 2. Explore Custom Commands
+### 2. Install Playwright MCP Server
+The Playwright MCP server enables enhanced browser automation capabilities for Claude Code:
+
+```bash
+# Install Playwright MCP server using Claude Code command
+claude mcp add playwright npx @playwright/mcp@latest
+```
+
+This command will automatically configure the Playwright MCP server in your `.claude/mcp.json` file. After installation, restart Claude Code or reload the configuration to activate the Playwright MCP server.
+
+### 3. Explore Custom Commands
 The framework includes specialized Claude Code commands organized by category:
 
 #### 🔍 Discovery & Analysis
