@@ -27,19 +27,35 @@ The **Codegen Framework** is a structured approach to code generation that combi
 ```
 📁 Codegen Framework/
 ├── 📂 .claude/commands/          # Custom Claude Code commands
-│   ├── 🔍 discovery/            # Codebase analysis & requirements
-│   ├── ⚙️ task/                 # Task execution & management  
-│   ├── 🎨 design/               # System design & architecture
-│   ├── 🧪 test/                 # Advanced Playwright automation & validation
-│   ├── 🔄 gitops/               # Git operations & PR reviews
-│   └── 💻 ux/                   # User experience & interface
-├── 📂 Context/                   # Project requirements & specifications
-├── 📂 References/               # Best practices & configuration templates
-│   ├── 🏗️ Build/               # Technology stack configurations
-│   ├── ⚠️ Gotchas/             # Best practices & anti-patterns
-│   └── 🎨 Figma/               # Design system references
-├── 📂 Templates/                # Base templates for analysis & automation
-└── 📂 test-automation/         # Playwright test frameworks & automation utilities
+│   ├── 🔍 discovery/            # analyze-codebase, generate-requirements
+│   ├── ⚙️ task/                 # execute-task, generate-task
+│   ├── 🎨 design/               # generate-design  
+│   ├── 🧪 test/                 # generate-automation-test, generate-playwright-scripts
+│   ├── 🔄 gitops/               # review-pr, resolve-review-comment
+│   └── 💻 ux/                   # review-user-interface
+├── 📂 Context/                   # Generated project analysis & specifications
+│   ├── 📄 code-analysis.md      # Output from /analyze-codebase
+│   ├── 📄 requirements.md       # Output from /generate-requirements
+│   └── 📂 Test/                 # Test workflows from /generate-automation-test
+├── 📂 References/               # Best practices & configuration libraries
+│   ├── 🏗️ Build/               # Technology configurations (react_config.yaml, dotnet_config.yaml)
+│   └── ⚠️ Gotchas/             # Comprehensive best practices documentation
+│       ├── 📄 automation_testing_gotchas.md    # Critical Playwright patterns
+│       ├── 📄 validation_commands.md           # Quality validation commands
+│       ├── 📄 architecture_patterns.md         # Design patterns guide
+│       └── 📄 [technology]_gotchas.md         # Tech-specific guidelines
+├── 📂 Templates/                # Base templates for command outputs
+│   ├── 📄 analyze_code_base.md  # Template for codebase analysis
+│   ├── 📄 automation_test_base.md # Template for test workflows
+│   ├── 📄 design_base.md        # Template for system design
+│   ├── 📄 requirement_base.md   # Template for requirements
+│   └── 📄 task_base.md          # Template for task execution
+└── 📂 test-automation/         # Generated Playwright test suites
+    ├── 📂 tests/               # Executable test specifications
+    ├── 📂 pages/               # Page Object Model classes
+    ├── 📂 data/                # Test data management
+    ├── 📂 utils/               # Test utilities and helpers
+    └── 📄 playwright.config.ts # Test execution configuration
 ```
 
 ## 🛠️ Supported Technology Stacks
@@ -199,23 +215,54 @@ cd "Codegen Framework"
 ```
 
 ### 2. Explore Custom Commands
-The framework includes specialized Claude Code commands:
+The framework includes specialized Claude Code commands organized by category:
 
+#### 🔍 Discovery & Analysis
 ```bash
-# Analyze existing codebases
-/analyze-codebase
-
-# Execute tasks systematically  
-/execute-task <task-file>
+# Analyze existing codebases with comprehensive reverse engineering
+/analyze-codebase [repo_url] [analysis_depth] [priority_areas]
 
 # Generate requirements from specifications
-/generate-requirements
+/generate-requirements [requirements-source]
+```
 
-# Create system designs and architecture
-/generate-design
+#### ⚙️ Task Management 
+```bash
+# Execute tasks systematically with TodoWrite integration
+/execute-task [task-file-path]
 
-# Generate comprehensive test automation
-/generate-automation-test
+# Generate structured task plans
+/generate-task [task-description]
+```
+
+#### 🎨 Design & Architecture
+```bash
+# Create system designs and architecture diagrams
+/generate-design [design-specification]
+```
+
+#### 🧪 Test Automation
+```bash
+# Generate comprehensive test workflows from requirements
+/generate-automation-test [requirements-file|use-case|user-story]
+
+# Convert test workflows into executable Playwright scripts
+/generate-playwright-scripts [workflow-file-path] # Auto-detects from Context/Test/ if empty
+```
+
+#### 🔄 GitOps & Code Review
+```bash
+# Review pull requests with comprehensive analysis
+/review-pr [pr-url|pr-number]
+
+# Resolve specific review comments
+/resolve-review-comment [comment-reference]
+```
+
+#### 💻 User Experience
+```bash
+# Review and analyze user interfaces
+/review-user-interface [ui-specification|screenshot-path]
 ```
 
 ### 3. Use Technology Templates
@@ -277,71 +324,213 @@ Reference the comprehensive guides in `References/Gotchas/`:
    dotnet build                    # Compilation check
    ```
 
-## 📋 Example: Creating Complete Test Automation
+## 📋 Example: Complete Test Automation Pipeline
 
-1. **Generate Test Workflows from Requirements**:
-   ```bash
-   /generate-automation-test Context/requirements.md
-   ```
+### 1. Generate Test Workflows from Requirements
+```bash
+# Create comprehensive test workflows from requirements
+/generate-automation-test Context/requirements.md
 
-2. **Generate Executable Playwright Scripts**:
-   ```bash
-   /generate-playwright-scripts
-   ```
+# Or generate workflows for specific features
+/generate-automation-test "User Authentication Flow"
+```
+**Output**: Detailed workflow specifications in `Context/Test/test_workflow_*.md`
 
-3. **Run Generated Tests**:
-   ```bash
-   cd test-automation
-   npm install
-   npm test                        # Run all tests
-   npm run test:headed            # Run with browser UI
-   npm run test:debug             # Debug mode
-   ```
+### 2. Generate Executable Playwright Scripts  
+```bash
+# Auto-discover and process all workflow files
+/generate-playwright-scripts
 
-4. **Test Suite Output**:
-   - **Complete test coverage** from user stories to executable scripts
-   - **Cross-browser compatibility** testing
-   - **Stable selectors** using role-based locators
-   - **Comprehensive reporting** with screenshots and traces
+# Or process specific workflow
+/generate-playwright-scripts Context/Test/test_workflow_login_20241201.md
+```
+**Output**: Complete automation suite in `test-automation/` directory
+
+### 3. Execute Generated Test Suite
+```bash
+cd test-automation
+npm install                     # Install Playwright dependencies
+
+# Run tests with different modes
+npm test                        # Run all tests headlessly
+npm run test:headed            # Run with browser UI visible
+npm run test:debug             # Interactive debugging mode
+npm run test:report            # Generate and show HTML report
+```
+
+### 4. Generated Test Suite Features
+- **Requirements Traceability**: Tests mapped to user stories and acceptance criteria
+- **Stable Test Architecture**: Role-based selectors following `automation_testing_gotchas.md`
+- **Cross-Browser Testing**: Chrome, Firefox, Safari compatibility
+- **Page Object Model**: Clean separation of test logic and page interactions
+- **Comprehensive Reporting**: Screenshots, videos, and detailed test traces
+- **Error Resilience**: Built-in retry strategies and proper wait conditions
+- **Test Isolation**: Independent test execution with proper setup/cleanup
+
+### 5. Real-World Output Structure
+```
+test-automation/
+├── tests/
+│   ├── user-authentication.spec.ts    # Login/logout workflows
+│   ├── dashboard-navigation.spec.ts   # Navigation and menu tests  
+│   └── form-submission.spec.ts        # Data entry and validation
+├── pages/
+│   ├── login.page.ts                  # Login page interactions
+│   ├── dashboard.page.ts              # Dashboard page methods
+│   └── base.page.ts                   # Shared page functionality
+├── data/
+│   ├── test-users.json               # User account test data
+│   └── form-data.json                # Form input test data
+├── utils/
+│   ├── test-setup.ts                 # Common test configuration
+│   └── helpers.ts                    # Utility functions
+├── playwright.config.ts              # Browser and execution settings
+└── package.json                      # Dependencies and test scripts
+```
 
 ## 🎯 Custom Claude Commands
 
-### `/analyze-codebase`
-Comprehensive codebase analysis with:
-- Architecture discovery and documentation
-- Security vulnerability assessment  
-- Performance bottleneck identification
-- Code quality metrics and recommendations
+### 🔍 Discovery Commands
 
-### `/execute-task`  
-Systematic task execution featuring:
-- TodoWrite integration for progress tracking
-- Quality validation at each step
-- Technology-specific validation patterns
-- Comprehensive error handling and rollback
+#### `/analyze-codebase`
+**Purpose:** Unified codebase analyzer and reverse engineering specialist
 
-### `/generate-requirements`
-Requirements analysis and documentation:
+**Parameters:**
+- `repo_url`: Repository URL or current directory (default: ".")
+- `primary_stack`: Auto-detected or specified technology stack
+- `analysis_depth`: "comprehensive" | "standard" | "quick" (default: "comprehensive")
+- `priority_areas`: "architecture, security, performance, data model, integrations" (default)
+- `time_budget_minutes`: Analysis time limit (default: 60)
+
+**Capabilities:**
+- **11-Phase Analysis Process**: From repository intelligence to modernization roadmap
+- **C4 Architecture Diagrams**: Context, Container, Component, and Deployment views
+- **Security Assessment**: OWASP Top 10 compliance and vulnerability scanning
+- **Business Logic Documentation**: Reverse-engineered use cases and actor analysis
+- **Risk Register**: Prioritized risks with mitigation strategies
+- **Output**: Comprehensive analysis report in `Context/code-analysis.md`
+
+#### `/generate-requirements`
+**Purpose:** Requirements analysis and documentation from various sources
+
+**Capabilities:**
 - User story generation with acceptance criteria
 - Use case analysis with Mermaid diagrams
 - Actor identification and system boundaries
 - Business rule extraction and validation
+- **Output**: Structured requirements in `Context/requirements.md`
 
-### `/generate-automation-test`
-Advanced test automation workflow generation:
-- Requirements-driven test scenario creation
-- Complete user workflow mapping with validation points
-- Edge case and error scenario coverage
-- Test data planning and management strategies
-- Integration with `/generate-playwright-scripts` for full automation pipeline
+### ⚙️ Task Management Commands
 
-### `/generate-playwright-scripts`
-Production-ready Playwright automation generation:
-- Executable TypeScript test scripts with proper wait strategies
-- Page Object Model implementation with stable selectors
-- Cross-browser test configuration and parallel execution
-- Comprehensive error handling and retry strategies
-- Built-in best practices and anti-pattern prevention
+#### `/execute-task`
+**Purpose:** Systematic task execution with comprehensive tracking
+
+**Features:**
+- **TodoWrite Integration**: Real-time progress tracking
+- **Quality Validation**: Technology-specific validation at each step
+- **Error Handling**: Comprehensive rollback and recovery strategies
+- **Template-Based**: Uses `Templates/task_base.md` structure
+
+#### `/generate-task`
+**Purpose:** Generate structured task plans from descriptions
+
+**Features:**
+- Break down complex tasks into manageable steps
+- Include validation checkpoints
+- Estimate effort and dependencies
+
+### 🎨 Design Commands
+
+#### `/generate-design`
+**Purpose:** Create system designs and architecture documentation
+
+**Features:**
+- C4 model architecture diagrams
+- System design patterns and anti-patterns
+- Technology stack recommendations
+- **Output**: Design documentation using `Templates/design_base.md`
+
+### 🧪 Advanced Test Automation Pipeline
+
+#### `/generate-automation-test`
+**Purpose:** Generate comprehensive test workflows from requirements
+
+**Input Types:**
+- **Requirements File**: `Context/requirements.md` (primary source)
+- **Specific Use Case**: Targeted workflow for specific scenario
+- **User Story Reference**: Story-driven test workflow
+- **Feature Specification**: Complete feature validation workflow
+
+**Capabilities:**
+- **Process Workflow Design**: Step-by-step user journey automation
+- **Playwright Integration Planning**: Selector strategies and page object design
+- **Scenario Coverage**: Happy path, edge cases, and error handling
+- **Best Practice Compliance**: Follows `References/Gotchas/automation_testing_gotchas.md`
+- **Output**: Workflow specifications in `Context/Test/test_workflow_*.md`
+
+#### `/generate-playwright-scripts`
+**Purpose:** Convert test workflows into executable Playwright automation
+
+**Integration Pattern:**
+```bash
+# Complete automation pipeline
+/generate-automation-test Context/requirements.md  # → Creates workflows
+/generate-playwright-scripts                       # → Auto-detects & processes workflows
+```
+
+**Input Modes:**
+- **Auto-Discovery** (Default): Scans `Context/Test/` for workflow files
+- **Specific File**: Process individual workflow file
+- **Directory Scan**: Process all workflows in specified directory
+- **Name Pattern**: Find workflows by feature name
+
+**Generated Output Structure:**
+```
+test-automation/
+├── tests/                    # Executable Playwright test files
+├── pages/                    # Page Object Model classes
+├── data/                     # Test data management
+├── utils/                    # Helper functions and setup
+├── playwright.config.ts      # Browser and execution configuration
+└── package.json             # Dependencies and test scripts
+```
+
+**Quality Standards:**
+- **Stable Selectors**: Role-based locators and test-ids
+- **Proper Wait Strategies**: Web-first assertions, no hard-coded timeouts
+- **Test Isolation**: Independent test execution with cleanup
+- **Cross-Browser Support**: Chrome, Firefox, Safari testing
+- **Anti-Pattern Prevention**: Built-in gotchas compliance
+
+### 🔄 GitOps Commands
+
+#### `/review-pr`
+**Purpose:** Comprehensive pull request analysis and review
+
+**Features:**
+- Code quality assessment
+- Security vulnerability detection
+- Architecture impact analysis
+- Test coverage evaluation
+
+#### `/resolve-review-comment`
+**Purpose:** Address specific pull request review comments
+
+**Features:**
+- Targeted code fixes
+- Explanation of changes
+- Verification of resolution
+
+### 💻 User Experience Commands
+
+#### `/review-user-interface`
+**Purpose:** Analyze and improve user interface designs
+
+**Features:**
+- Accessibility compliance checking
+- UX best practices validation
+- Design system consistency
+- Usability recommendations
 
 ## 📚 Key Features
 
@@ -393,21 +582,31 @@ dotnet format && dotnet test && dotnet build     # .NET
 ## 📖 Documentation
 
 ### Core Documentation
-- **[CLAUDE.md](CLAUDE.md)** - Claude Code integration guide
-- **[Context/requirements.md](Context/requirements.md)** - Project requirements specification
-- **[References/Gotchas/](References/Gotchas/)** - Comprehensive best practices library
+- **[Context/code-analysis.md](Context/code-analysis.md)** - Generated codebase analysis reports
+- **[Context/requirements.md](Context/requirements.md)** - Generated project requirements  
+- **[Context/Test/](Context/Test/)** - Generated test workflow specifications
 
-### Technology-Specific Guides
-- **[Frontend Best Practices](References/Gotchas/frontend_best_practices.md)**
-- **[Backend Best Practices](References/Gotchas/backend_best_practices.md)**
-- **[Database Best Practices](References/Gotchas/database_best_practices.md)**
-- **[DevOps Best Practices](References/Gotchas/devops_best_practices.md)**
-- **[Automation Testing Gotchas](References/Gotchas/automation_testing_gotchas.md)** - Critical Playwright patterns and anti-patterns
+### Command Templates
+- **[Templates/analyze_code_base.md](Templates/analyze_code_base.md)** - Codebase analysis template
+- **[Templates/automation_test_base.md](Templates/automation_test_base.md)** - Test workflow template
+- **[Templates/design_base.md](Templates/design_base.md)** - System design template
+- **[Templates/requirement_base.md](Templates/requirement_base.md)** - Requirements template
+- **[Templates/task_base.md](Templates/task_base.md)** - Task execution template
 
-### Architecture & Design
-- **[Architecture Patterns](References/Gotchas/architecture_patterns.md)**
-- **[Design Principles](References/Gotchas/design-principles.md)**  
-- **[Anti-Patterns](References/Gotchas/anti_patterns.md)**
+### Best Practices Library
+- **[References/Gotchas/automation_testing_gotchas.md](References/Gotchas/automation_testing_gotchas.md)** - Critical Playwright patterns and anti-patterns
+- **[References/Gotchas/validation_commands.md](References/Gotchas/validation_commands.md)** - Quality validation commands for all stacks
+- **[References/Gotchas/architecture_patterns.md](References/Gotchas/architecture_patterns.md)** - System design patterns guide
+- **[References/Gotchas/design-principles.md](References/Gotchas/design-principles.md)** - Software design principles
+- **[References/Gotchas/anti_patterns.md](References/Gotchas/anti_patterns.md)** - Common anti-patterns to avoid
+- **[References/Gotchas/frontend_best_practices.md](References/Gotchas/frontend_best_practices.md)** - Frontend development standards
+- **[References/Gotchas/backend_best_practices.md](References/Gotchas/backend_best_practices.md)** - Backend development patterns
+- **[References/Gotchas/database_best_practices.md](References/Gotchas/database_best_practices.md)** - Database design and optimization
+- **[References/Gotchas/devops_best_practices.md](References/Gotchas/devops_best_practices.md)** - CI/CD and deployment patterns
+
+### Technology Configuration
+- **[References/Build/react_config.yaml](References/Build/react_config.yaml)** - React + TypeScript + Vite setup
+- **[References/Build/dotnet_config.yaml](References/Build/dotnet_config.yaml)** - .NET Core + Clean Architecture setup
 
 ## 🔧 Advanced Usage
 
@@ -437,26 +636,61 @@ dotnet format && dotnet test && dotnet build     # .NET
 - Reference technology-specific documentation in **[References/Gotchas/](References/Gotchas/)**
 
 ### Key Commands Reference
+
+#### Claude Code Commands
 ```bash
-# Code Quality Validation
-npm run lint                    # Frontend linting
-dotnet format                   # .NET formatting  
-rg "pattern" --type typescript  # Use ripgrep instead of grep
+# Discovery & Analysis
+/analyze-codebase                                    # Comprehensive codebase analysis
+/generate-requirements Context/specifications.md    # Requirements extraction
 
-# Testing
-npm test                        # Frontend testing
-dotnet test                     # .NET testing
-pytest --cov=app              # Python testing
+# Task Management
+/execute-task Context/tasks/feature-implementation.md  # Systematic task execution
+/generate-task "Implement user authentication"         # Task planning
 
-# Build & Deploy
-npm run build                   # Frontend build
-dotnet publish -c Release       # .NET production build
+# Design & Architecture  
+/generate-design Context/system-requirements.md       # System design generation
 
-# Test Automation
-/generate-automation-test       # Create test workflows from requirements
-/generate-playwright-scripts    # Generate executable Playwright scripts
-npm test                        # Run Playwright tests
-npm run test:headed            # Run tests with browser UI
+# Test Automation Pipeline
+/generate-automation-test Context/requirements.md     # Create test workflows
+/generate-playwright-scripts                          # Generate executable scripts
+
+# Code Review & GitOps
+/review-pr https://github.com/org/repo/pull/123      # PR analysis
+/resolve-review-comment "Fix null reference issue"   # Address review feedback
+
+# User Experience
+/review-user-interface Context/designs/mockup.png   # UI/UX analysis
+```
+
+#### Code Quality Validation
+```bash
+# Universal Quality Commands (from References/Gotchas/validation_commands.md)
+rg "pattern" --type typescript    # Use ripgrep for searching
+find . -name "*.ts" | xargs wc -l | awk '$1 > 500 {print "VIOLATION: " $2}'
+
+# Technology-Specific Validation
+npm run lint && npm test && npm run build     # React/Node.js
+dotnet format && dotnet test && dotnet build  # .NET
+ruff check . && mypy . && pytest --cov=app   # Python FastAPI
+```
+
+#### Test Automation Execution
+```bash
+# After running /generate-playwright-scripts
+cd test-automation
+npm install                     # Install dependencies
+npm test                        # Run all Playwright tests
+npm run test:headed            # Run with browser UI
+npm run test:debug             # Debug mode with breakpoints
+npm run test:report            # Generate HTML report
+```
+
+#### Build & Deploy
+```bash
+npm run build                   # Frontend production build
+dotnet publish -c Release       # .NET production build  
+python -m build                 # Python package build
+docker build -t myapp .         # Container build
 ```
 
 ---
