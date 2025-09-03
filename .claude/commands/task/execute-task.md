@@ -90,6 +90,7 @@ Optimize for implementation success and code quality over execution speed. Use s
 
 ### Phase 3: Systematic Implementation
 **Code Implementation**
+- Use Playwright MCP to implement the pixel perfect user interface
 - Execute implementation following TodoWrite plan systematically
 - Implement all required code following existing project patterns
 - Mark each completed todo task as [X] in the task file progressively
@@ -100,6 +101,8 @@ Optimize for implementation success and code quality over execution speed. Use s
 - Run validation commands after each significant implementation step
 - Fix any failures immediately before proceeding
 - Re-run validations until all pass successfully
+- Use Playwright MCP to review the implemented user interface
+- Use Context7 MCP for the review of implemented code against the design principles and coding guidelines
 - Update todo progress in real-time
 
 ### Phase 4: Comprehensive Validation
