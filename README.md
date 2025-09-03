@@ -4,7 +4,7 @@ A comprehensive, enterprise-grade framework for generating high-quality applicat
 
 ## 🎯 What This Project Does
 
-The **Codegen Framework** is a structured approach to code generation that combines:
+The **Codegen Framework** is a structured approach to generating code, artefacts, and performing code analysis, combining:
 
 - **Multi-stack Templates** for React, .NET, Python, and more
 - **Advanced Test Automation** with comprehensive Playwright automation and best practices
@@ -33,29 +33,32 @@ The **Codegen Framework** is a structured approach to code generation that combi
 │   ├── 🧪 test/                 # generate-automation-test, generate-playwright-scripts
 │   ├── 🔄 gitops/               # review-pr, resolve-review-comment
 │   └── 💻 ux/                   # review-user-interface
+│   └── settings.local.json      # Local Claude Code settings (never committed)
 ├── 📂 Context/                   # Generated project analysis & specifications
 │   ├── 📄 code-analysis.md      # Output from /analyze-codebase
 │   ├── 📄 requirements.md       # Output from /generate-requirements
 │   └── 📂 Test/                 # Test workflows from /generate-automation-test
 ├── 📂 References/               # Best practices & configuration libraries
 │   ├── 🏗️ Build/               # Technology configurations (react_config.yaml, dotnet_config.yaml)
-│   └── ⚠️ Gotchas/             # Comprehensive best practices documentation
-│       ├── 📄 automation_testing_gotchas.md    # Critical Playwright patterns
-│       ├── 📄 validation_commands.md           # Quality validation commands
-│       ├── 📄 architecture_patterns.md         # Design patterns guide
-│       └── 📄 [technology]_gotchas.md         # Tech-specific guidelines
+│   ├── ⚠️ Gotchas/             # Comprehensive best practices documentation
+│   └── � Figma/               # Figma design artefacts (optional)
 ├── 📂 Templates/                # Base templates for command outputs
 │   ├── 📄 analyze_code_base.md  # Template for codebase analysis
 │   ├── 📄 automation_test_base.md # Template for test workflows
 │   ├── 📄 design_base.md        # Template for system design
 │   ├── 📄 requirement_base.md   # Template for requirements
 │   └── 📄 task_base.md          # Template for task execution
-└── 📂 test-automation/         # Generated Playwright test suites
-    ├── 📂 tests/               # Executable test specifications
-    ├── 📂 pages/               # Page Object Model classes
-    ├── 📂 data/                # Test data management
-    ├── 📂 utils/               # Test utilities and helpers
-    └── 📄 playwright.config.ts # Test execution configuration
+├── 📂 test-automation/         # Generated Playwright test suites
+│   ├── 📂 tests/               # Executable test specifications
+│   ├── 📂 pages/               # Page Object Model classes
+│   ├── 📂 data/                # Test data management
+│   ├── 📂 utils/               # Test utilities and helpers
+│   └── 📄 playwright.config.ts # Test execution configuration
+│   └── 📄 package.json         # Test dependencies and scripts (add as needed)
+├── 📄 .env                     # API keys and secrets (never committed)
+├── 📄 .mcp.json                # MCP server configuration
+├── 📄 .gitignore               # Git ignore rules
+└── 📄 README.md                # Project documentation
 ```
 
 ## 🛠️ Supported Technology Stacks
@@ -78,133 +81,41 @@ The **Codegen Framework** is a structured approach to code generation that combi
 - **Angular** with Angular CLI
 - **Vue 3** with Composition API
 
-## 🧪 Advanced Test Automation
+## 🌟 Why Choose Codegen Framework?
 
-### Complete Test Automation Pipeline
-The framework provides end-to-end test automation generation from requirements to executable Playwright scripts:
+The Codegen Framework isn't just another template collection—it's a comprehensive system designed for professional software development:
 
-1. **Requirements Analysis** → Test workflow specifications
-2. **Workflow Generation** → Comprehensive test scenarios with validation points
-3. **Script Generation** → Production-ready Playwright automation scripts
-4. **Best Practices Integration** → Built-in anti-patterns prevention and quality standards
+- **🎯 Proven Patterns** - Architecture patterns tested in production environments
+- **🚀 AI-Enhanced** - Custom Claude commands for intelligent development assistance  
+- **📊 Quality-Focused** - Built-in validation and testing ensure professional standards
+- **🔧 Multi-Stack** - Support for modern technology stacks and frameworks
+- **📚 Knowledge Base** - Extensive documentation covering best practices and gotchas
+- **⚡ Rapid Development** - Reduce setup time while maintaining quality and consistency
 
-### Test Automation Commands
+Start building better applications faster with the Codegen Framework! 🚀
 
-#### `/generate-automation-test`
-**Generate comprehensive test workflows from requirements:**
-```bash
-# Create test workflows from requirements
-/generate-automation-test Context/requirements.md
+## 🛠️ How Codegen Works
 
-# Generate workflows for specific features
-/generate-automation-test "User Authentication Flow"
-```
-**Output**: Detailed test workflow specifications in `Context/Test/`
+Codegen Framework orchestrates intelligent generation of code, artefacts, and code analysis through a combination of:
 
-#### `/generate-playwright-scripts`  
-**Convert test workflows into executable Playwright scripts:**
-```bash
-# Auto-discover and process all workflows
-/generate-playwright-scripts
+- **Command-Driven Workflow:** All actions are initiated via custom Claude Code commands (see `.claude/commands/`). These commands automate code analysis, requirements, design, testing, and artefact generation (such as documentation, test plans, and more).
+- **Best Practices & Standards:** Every command leverages the standards, principles, and anti-patterns documented in the `References/` folder. This ensures generated code is robust, maintainable, and enterprise-grade.
+- **MCP Server Integration:** Commands can invoke one or more MCP servers (configured in `.mcp.json`) for advanced context, code analysis, or automation. For example, Playwright MCP for browser automation, Context7 for requirements and analysis, etc.
+- **Template-Driven Outcomes:** Structural outputs (requirements, designs, tests, etc.) are generated using templates from the `Templates/` folder. This guarantees consistency and clarity in all deliverables.
+- **Context-Aware Generation:** Commands use project context, standards, and MCP server responses to produce outcomes tailored to your technology stack and business needs.
 
-# Process specific workflow file
-/generate-playwright-scripts Context/Test/test_workflow_login.md
-```
-**Output**: Complete test automation suite in `test-automation/`
+**Workflow Example:**
+1. A user runs a command (e.g., `/generate-automation-test Context/requirements.md`).
+2. The command references best practices from `References/Gotchas/automation_testing_gotchas.md` and validation rules.
+3. If needed, the command queries MCP servers for additional analysis or codegen.
+4. The output is structured using a template from `Templates/automation_test_base.md` and saved in the appropriate folder.
+5. All generated artifacts follow the standards and patterns defined in the repository.
 
-### Test Automation Features
-
-#### 🎯 **Smart Test Generation**
-- **Requirements-Driven**: Generate tests directly from user stories and acceptance criteria
-- **Use Case Analysis**: Automatic extraction and conversion of use cases to test scenarios
-- **Edge Case Coverage**: Comprehensive error scenarios and boundary testing
-- **Cross-Browser Support**: Multi-browser test execution strategies
-
-#### ⚡ **Playwright Best Practices Integration**
-- **Stable Selectors**: Role-based locators and test-id strategies
-- **Proper Wait Strategies**: Web-first assertions, no hard-coded timeouts
-- **Test Isolation**: Independent test execution with proper cleanup
-- **Page Object Model**: Clean separation of test logic and page interactions
-
-#### 📊 **Quality Standards**
-- **Anti-Pattern Prevention**: Built-in gotchas from `References/Gotchas/automation_testing_gotchas.md`
-- **Performance Optimization**: Parallel execution and efficient test organization  
-- **Error Resilience**: Comprehensive error handling and retry strategies
-- **Network Mocking**: Mock external APIs instead of relying on live services
-
-### Generated Test Suite Structure
-```
-test-automation/
-├── tests/                          # Test specification files
-│   ├── authentication.spec.ts      # User authentication tests
-│   ├── dashboard.spec.ts           # Dashboard functionality tests
-│   └── user-management.spec.ts     # User management workflows
-├── pages/                          # Page Object Models
-│   ├── login.page.ts              # Login page interactions
-│   ├── dashboard.page.ts          # Dashboard page interactions
-│   └── base.page.ts               # Common page functionality
-├── data/                           # Test data management
-│   ├── test-users.json            # User test data
-│   └── api-responses.json         # Mock API responses
-├── utils/                          # Test utilities
-│   ├── test-setup.ts              # Common test setup
-│   └── helpers.ts                 # Utility functions
-├── playwright.config.ts           # Playwright configuration
-└── package.json                   # Dependencies and scripts
-```
-
-### Test Automation Best Practices
-
-#### ✅ **Selector Strategy Hierarchy**
-```typescript
-// 1. Role-based locators (Preferred)
-page.getByRole('button', { name: 'Submit' })
-page.getByRole('textbox', { name: 'Email' })
-
-// 2. Test ID attributes
-page.getByTestId('user-menu')
-
-// 3. Semantic locators
-page.getByLabel('Email address')
-page.getByPlaceholder('Enter your email')
-```
-
-#### ✅ **Proper Wait Conditions**
-```typescript
-// Web-first assertions with automatic waiting
-await expect(page.getByText('Success')).toBeVisible({ timeout: 10000 });
-
-// Wait for network requests
-await page.waitForResponse(response => response.url().includes('/api/data'));
-
-// Never use arbitrary timeouts
-// ❌ await page.waitForTimeout(5000);
-```
-
-#### ✅ **Test Isolation**
-```typescript
-test.beforeEach(async ({ page }) => {
-  await page.goto('/login');
-  // Fresh state for each test
-});
-
-test('should complete user workflow', async ({ page }) => {
-  // Each test handles its own setup and validation
-  await loginUser(page);
-  await navigateToDashboard(page);
-  await expect(page.getByRole('heading', { name: 'Dashboard' })).toBeVisible();
-});
-```
-
-### Key Anti-Patterns Prevention
-
-The framework automatically prevents common automation mistakes:
-
-❌ **Hard-coded waits and timeouts**  
-❌ **Fragile CSS selectors and dynamic IDs**  
-❌ **Test dependencies and shared state**  
-❌ **Testing implementation details vs user behavior**  
-❌ **Poor error handling and debugging**
+This approach ensures every generated outcome is:
+- Standards-compliant
+- Context-aware
+- Consistent in structure
+- Ready for enterprise use
 
 ## 🚀 Quick Start
 
@@ -214,15 +125,18 @@ git clone <repository-url>
 cd "Codegen Framework"
 ```
 
-### 2. Install Playwright MCP Server
-The Playwright MCP server enables enhanced browser automation capabilities for Claude Code:
+### 2. Install MCP Servers
+Install both Playwright and Context7 MCP servers for full functionality:
 
 ```bash
-# Install Playwright MCP server using Claude Code command
+# Install Playwright MCP server
 claude mcp add playwright npx @playwright/mcp@latest
+
+# Install Context7 MCP server
+claude mcp add context7 https://mcp.context7.com/mcp
 ```
 
-This command will automatically configure the Playwright MCP server in your `.claude/mcp.json` file. After installation, restart Claude Code or reload the configuration to activate the Playwright MCP server.
+After installation, restart Claude Code or reload the configuration to activate the MCP servers.
 
 ### 3. Explore Custom Commands
 The framework includes specialized Claude Code commands organized by category:
@@ -231,61 +145,100 @@ The framework includes specialized Claude Code commands organized by category:
 ```bash
 # Analyze existing codebases with comprehensive reverse engineering
 /analyze-codebase [repo_url] [analysis_depth] [priority_areas]
+# Output: Context/code-analysis.md
 
 # Generate requirements from specifications
 /generate-requirements [requirements-source]
+# Output: Context/requirements.md
+```
+#### 🎨 Design & Architecture
+```bash
+# Create system designs and architecture diagrams
+/generate-design [design-specification]
+# Output: Context/design.md
 ```
 
 #### ⚙️ Task Management 
 ```bash
 # Execute tasks systematically with TodoWrite integration
-/execute-task [task-file-path]
-
 # Generate structured task plans
-/generate-task [task-description]
-```
+/generate-task [user-story | task-description]
+# Output: Context/task_<name>.md (example)
 
-#### 🎨 Design & Architecture
-```bash
-# Create system designs and architecture diagrams
-/generate-design [design-specification]
+/execute-task [task-file-path]
+# Output: Context/task-execution.md (example)
+
 ```
 
 #### 🧪 Test Automation
 ```bash
 # Generate comprehensive test workflows from requirements
 /generate-automation-test [requirements-file|use-case|user-story]
+# Output: Context/Test/test_workflow_*.md
 
 # Convert test workflows into executable Playwright scripts
 /generate-playwright-scripts [workflow-file-path] # Auto-detects from Context/Test/ if empty
+# Output: test-automation/tests/, test-automation/pages/, test-automation/data/, test-automation/utils/
 ```
 
 #### 🔄 GitOps & Code Review
 ```bash
 # Review pull requests with comprehensive analysis
 /review-pr [pr-url|pr-number]
+# Output: Context/review-pr.md
 
 # Resolve specific review comments
 /resolve-review-comment [comment-reference]
+# Output: Context/review-comment-resolution.md
 ```
 
 #### 💻 User Experience
 ```bash
 # Review and analyze user interfaces
 /review-user-interface [ui-specification|screenshot-path]
+# Output: Context/ui-review.md
 ```
 
-### 3. Use Technology Templates
-Choose from pre-configured templates in `References/Build/`:
+## 📘 How to use Codegen
 
-- `react_config.yaml` - Modern React setup with TypeScript
-- `dotnet_config.yaml` - .NET Core with Clean Architecture
+Follow these steps to use the Codegen Framework in your project:
 
-### 4. Follow Best Practices
- 
- ## ⚡ MCP Server Configuration
- 
- MCP servers are configured project-wide in the root `.mcp.json` file. API keys and secrets must be stored in a `.env` file (which is ignored by git).
+1. **Clone the framework to the root folder of your project**
+   ```bash
+   git clone <repository-url> <your-project-root>
+   ```
+2. **Launch Claude Code**
+   - Use the Claude Code terminal, or integrate Claude Code into VS Code or Cursor.
+3. **Install the necessary MCP Servers for Claude Code**
+   - Use the provided commands (see MCP Server Configuration section) to add and configure MCP servers.
+4. **Execute commands in the Claude Code terminal or write panel**
+   - Use the documented commands (e.g., `/generate-requirements`, `/analyze-codebase`, `/generate-automation-test`, etc.).
+5. **Artefacts and code outcomes**
+   - Artefacts (requirements, analysis, workflows) are stored in the `Context` folder.
+   - Code-related outcomes (tests, pages, utils, etc.) are stored in the appropriate project folders.
+
+### Recommended Workflows
+
+#### Green-field Development
+- `/generate-requirements` → `/generate-design` (optional) → `/generate-task` → `/execute-task`
+
+#### Brown-field Development
+- `/analyze-codebase` → `/generate-requirements` (for new features, optional) → `/generate-task` (using user stories if previous step is skipped) → `/execute-task`
+
+#### Bug-fixing
+- `/generate-task` (using bug description) → `/execute-task`
+
+#### Code Review (GitHub only)
+- `/review-pr`
+- `/review-user-interface` (pixel-perfect design review using Playwright MCP)
+- `/resolve-review-comment` (resolve specific review comment)
+
+#### Test Flow
+- `/generate-automation-test` → `/generate-playwright-scripts`
+
+## ⚡ MCP Server Configuration
+
+MCP servers are configured project-wide in the root `.mcp.json` file. API keys and secrets must be stored in a `.env` file (which is ignored by git).
  
  **Example `.mcp.json`:**
  ```json
@@ -325,115 +278,6 @@ Choose from pre-configured templates in `References/Build/`:
 - Technology-specific best practices
 - Anti-patterns and common pitfalls
 - Validation commands and quality gates
-
-## 📋 Example: Creating a New React Application
-
-1. **Use the React Template**:
-   ```bash
-   # Reference: References/Build/react_config.yaml
-   npm create vite@latest my-app -- --template react-ts
-   ```
-
-2. **Apply Quality Standards**:
-   ```bash
-   # Validation commands from References/Gotchas/validation_commands.md
-   npm run lint                    # ESLint
-   npm run format                  # Prettier  
-   npm test                        # Jest + RTL
-   npm run build                   # Production build
-   ```
-
-3. **Follow Architecture Patterns**:
-   - Feature-slice architecture (VSA)
-   - CSS Modules for styling
-   - Path aliases for clean imports
-   - Comprehensive testing strategy
-
-## 📋 Example: Creating a .NET Application
-
-1. **Use the .NET Template**:
-   ```bash
-   # Reference: References/Build/dotnet_config.yaml
-   dotnet new sln -n MyProject
-   dotnet new webapi -n MyProject.Api
-   ```
-
-2. **Apply Clean Architecture**:
-   - Presentation Layer (Web API)
-   - Application Layer (Business Logic)
-   - Domain Layer (Core Entities)
-   - Infrastructure Layer (Data Access)
-
-3. **Validate Quality**:
-   ```bash
-   dotnet format                   # Code formatting
-   dotnet test                     # Run all tests
-   dotnet build                    # Compilation check
-   ```
-
-## 📋 Example: Complete Test Automation Pipeline
-
-### 1. Generate Test Workflows from Requirements
-```bash
-# Create comprehensive test workflows from requirements
-/generate-automation-test Context/requirements.md
-
-# Or generate workflows for specific features
-/generate-automation-test "User Authentication Flow"
-```
-**Output**: Detailed workflow specifications in `Context/Test/test_workflow_*.md`
-
-### 2. Generate Executable Playwright Scripts  
-```bash
-# Auto-discover and process all workflow files
-/generate-playwright-scripts
-
-# Or process specific workflow
-/generate-playwright-scripts Context/Test/test_workflow_login_20241201.md
-```
-**Output**: Complete automation suite in `test-automation/` directory
-
-### 3. Execute Generated Test Suite
-```bash
-cd test-automation
-npm install                     # Install Playwright dependencies
-
-# Run tests with different modes
-npm test                        # Run all tests headlessly
-npm run test:headed            # Run with browser UI visible
-npm run test:debug             # Interactive debugging mode
-npm run test:report            # Generate and show HTML report
-```
-
-### 4. Generated Test Suite Features
-- **Requirements Traceability**: Tests mapped to user stories and acceptance criteria
-- **Stable Test Architecture**: Role-based selectors following `automation_testing_gotchas.md`
-- **Cross-Browser Testing**: Chrome, Firefox, Safari compatibility
-- **Page Object Model**: Clean separation of test logic and page interactions
-- **Comprehensive Reporting**: Screenshots, videos, and detailed test traces
-- **Error Resilience**: Built-in retry strategies and proper wait conditions
-- **Test Isolation**: Independent test execution with proper setup/cleanup
-
-### 5. Real-World Output Structure
-```
-test-automation/
-├── tests/
-│   ├── user-authentication.spec.ts    # Login/logout workflows
-│   ├── dashboard-navigation.spec.ts   # Navigation and menu tests  
-│   └── form-submission.spec.ts        # Data entry and validation
-├── pages/
-│   ├── login.page.ts                  # Login page interactions
-│   ├── dashboard.page.ts              # Dashboard page methods
-│   └── base.page.ts                   # Shared page functionality
-├── data/
-│   ├── test-users.json               # User account test data
-│   └── form-data.json                # Form input test data
-├── utils/
-│   ├── test-setup.ts                 # Common test configuration
-│   └── helpers.ts                    # Utility functions
-├── playwright.config.ts              # Browser and execution settings
-└── package.json                      # Dependencies and test scripts
-```
 
 ## 🎯 Custom Claude Commands
 
@@ -674,83 +518,3 @@ dotnet format && dotnet test && dotnet build     # .NET
 2. Use templates for consistent project structure
 3. Reference gotchas documentation for knowledge sharing
 4. Implement quality gates in CI/CD pipelines
-
-## 📞 Support & Resources
-
-### Getting Help
-- Review **[CLAUDE.md](CLAUDE.md)** for Claude Code specific guidance
-- Check **[References/Gotchas/troubleshooting_guide.md](References/Gotchas/troubleshooting_guide.md)** for common issues
-- Reference technology-specific documentation in **[References/Gotchas/](References/Gotchas/)**
-
-### Key Commands Reference
-
-#### Claude Code Commands
-```bash
-# Discovery & Analysis
-/analyze-codebase                                    # Comprehensive codebase analysis
-/generate-requirements Context/specifications.md    # Requirements extraction
-
-# Task Management
-/execute-task Context/tasks/feature-implementation.md  # Systematic task execution
-/generate-task "Implement user authentication"         # Task planning
-
-# Design & Architecture  
-/generate-design Context/system-requirements.md       # System design generation
-
-# Test Automation Pipeline
-/generate-automation-test Context/requirements.md     # Create test workflows
-/generate-playwright-scripts                          # Generate executable scripts
-
-# Code Review & GitOps
-/review-pr https://github.com/org/repo/pull/123      # PR analysis
-/resolve-review-comment "Fix null reference issue"   # Address review feedback
-
-# User Experience
-/review-user-interface Context/designs/mockup.png   # UI/UX analysis
-```
-
-#### Code Quality Validation
-```bash
-# Universal Quality Commands (from References/Gotchas/validation_commands.md)
-rg "pattern" --type typescript    # Use ripgrep for searching
-find . -name "*.ts" | xargs wc -l | awk '$1 > 500 {print "VIOLATION: " $2}'
-
-# Technology-Specific Validation
-npm run lint && npm test && npm run build     # React/Node.js
-dotnet format && dotnet test && dotnet build  # .NET
-ruff check . && mypy . && pytest --cov=app   # Python FastAPI
-```
-
-#### Test Automation Execution
-```bash
-# After running /generate-playwright-scripts
-cd test-automation
-npm install                     # Install dependencies
-npm test                        # Run all Playwright tests
-npm run test:headed            # Run with browser UI
-npm run test:debug             # Debug mode with breakpoints
-npm run test:report            # Generate HTML report
-```
-
-#### Build & Deploy
-```bash
-npm run build                   # Frontend production build
-dotnet publish -c Release       # .NET production build  
-python -m build                 # Python package build
-docker build -t myapp .         # Container build
-```
-
----
-
-## 🌟 Why Choose Codegen Framework?
-
-The Codegen Framework isn't just another template collection—it's a comprehensive system designed for professional software development:
-
-- **🎯 Proven Patterns** - Architecture patterns tested in production environments
-- **🚀 AI-Enhanced** - Custom Claude commands for intelligent development assistance  
-- **📊 Quality-Focused** - Built-in validation and testing ensure professional standards
-- **🔧 Multi-Stack** - Support for modern technology stacks and frameworks
-- **📚 Knowledge Base** - Extensive documentation covering best practices and gotchas
-- **⚡ Rapid Development** - Reduce setup time while maintaining quality and consistency
-
-Start building better applications faster with the Codegen Framework! 🚀
