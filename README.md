@@ -76,10 +76,13 @@ The **Codegen Framework** is a structured approach to generating code, artefacts
   - xUnit + Moq + TestContainers
 
 ### Additional Stacks
-- **Python FastAPI** with modern async patterns
-- **Node.js Express** with TypeScript
-- **Angular** with Angular CLI
-- **Vue 3** with Composition API
+ - **Python FastAPI** with modern async patterns
+ - **Python Django** for robust web applications
+ - **Node.js Express** with TypeScript
+ - **Angular** with Angular CLI
+ - **Vue 3** with Composition API
+ - **GoLang** with Gin or Echo frameworks
+ - **Java** with Spring Boot or Quarkus
 
 ## 🌟 Why Choose Codegen Framework?
 
