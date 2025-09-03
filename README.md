@@ -16,7 +16,7 @@ The **Codegen Framework** is a structured approach to generating code, artefacts
 ### Key Benefits
 
 ✅ **Accelerated Development** - Pre-configured templates and patterns reduce setup time  
-✅ **Advanced Test Automation** - Complete Playwright test generation from requirements to executable scripts /n
+✅ **Advanced Test Automation** - Complete Playwright test generation from requirements to executable scripts \n
 ✅ **Consistent Quality** - Built-in validation ensures code standards compliance  
 ✅ **Enterprise Ready** - Architecture patterns proven in production environments  
 ✅ **Multi-Technology** - Support for modern tech stacks and frameworks  
