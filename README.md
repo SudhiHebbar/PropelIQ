@@ -1,6 +1,6 @@
 # Codegen Framework 🚀
 
-A comprehensive, enterprise-grade framework for generating high-quality applications across multiple technology stacks. This repository provides structured templates, best practices, custom Claude Code commands, and quality validation patterns to accelerate development while maintaining professional standards.
+A comprehensive, enterprise-grade framework for generating high-quality applications across multiple technology stacks using Claude Code (https://www.anthropic.com/claude-code). This repository provides structured templates, best practices, custom Claude Code commands, and quality validation patterns to accelerate development while maintaining professional standards.
 
 ## 🎯 What This Project Does
 
