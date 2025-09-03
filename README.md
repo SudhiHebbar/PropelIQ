@@ -36,7 +36,9 @@ The **Codegen Framework** is a structured approach to generating code, artefacts
 │   └── settings.local.json      # Local Claude Code settings (never committed)
 ├── 📂 Context/                   # Generated project analysis & specifications
 │   ├── 📄 code-analysis.md      # Output from /analyze-codebase
+│   ├── 📄 design.md             # Output from /generate-design
 │   ├── 📄 requirements.md       # Output from /generate-requirements
+│   ├── 📂 Tasks/                # Task plans and logs (output from /generate-task)
 │   └── 📂 Test/                 # Test workflows from /generate-automation-test
 ├── 📂 References/               # Best practices & configuration libraries
 │   ├── 🏗️ Build/               # Technology configurations (react_config.yaml, dotnet_config.yaml)
@@ -166,10 +168,10 @@ The framework includes specialized Claude Code commands organized by category:
 # Execute tasks systematically with TodoWrite integration
 # Generate structured task plans
 /generate-task [user-story | task-description]
-# Output: Context/task_<name>.md (example)
+# Output: Context/Tasks/task_<name>.md (example)
 
 /execute-task [task-file-path]
-# Output: Context/task-execution.md (example)
+# Output: technology-specific project file (example)
 
 ```
 
