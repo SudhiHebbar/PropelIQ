@@ -17,7 +17,6 @@ The **Codegen Framework** is a structured approach to generating code, artefacts
 
 ✅ **Accelerated Development** - Pre-configured templates and patterns reduce setup time  
 ✅ **Advanced Test Automation** - Complete Playwright test generation from requirements to executable scripts
-
 ✅ **Consistent Quality** - Built-in validation ensures code standards compliance  
 ✅ **Enterprise Ready** - Architecture patterns proven in production environments  
 ✅ **Multi-Technology** - Support for modern tech stacks and frameworks  
