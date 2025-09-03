@@ -69,8 +69,9 @@ Optimize for implementation success and code quality over execution speed. Use s
 - Update task understanding based on current codebase state
 
 **Context Gathering**
-- Review requirements.md and design.md for comprehensive understanding
+- Review requirements.md, code-analysis.md and design.md for comprehensive understanding
 - Analyze existing codebase for patterns and integration points
+- Use `mcp__context7__get-library-docs` for technology-specific, version-specific documentation, code examples, design principles and coding standards
 - Perform additional web research if task context requires updates
 - Document any gaps or additional research findings
 
