@@ -1,5 +1,9 @@
 # Unified Task Generator
 
+---
+allowed-tools: Grep, LS, Read, Edit, MultiEdit, Write, WebFetch, TodoWrite, WebSearch, BashOutput, KillBash, ListMcpResourcesTool, ReadMcpResourceTool, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, Bash, Glob
+---
+
 ## Input: $ARGUMENTS (Mandatory)
 **Accepts:** Feature requirements | User story file | Bug report | URL | Functional specification
 
@@ -36,6 +40,7 @@ Optimize for success probability over execution speed. Spawn multiple agents and
 
 ### 2. External Knowledge Acquisition
 - **Implementation Research**: Search for similar features/patterns in open-source projects
+- **Sample Code**: Use `mcp__context7__get-library-docs` for technology-specific, version-specific documentation, code examples, design principles and coding standards
 - **Style Guidelines**: Research project-specific or framework coding standards
 - **Documentation Deep-Dive**: Library documentation with specific section URLs
 - **Example Collection**: GitHub repositories, StackOverflow solutions, technical blog implementations

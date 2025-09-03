@@ -1,4 +1,8 @@
-# Unified Codebase Analyzer & Reverse Engineering
+# Unified Codebase Analyzer
+
+---
+allowed-tools: Grep, LS, Read, Edit, MultiEdit, Write, WebFetch, TodoWrite, WebSearch, BashOutput, KillBash, ListMcpResourcesTool, ReadMcpResourceTool, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, Bash, Glob
+---
 
 ## Input Parameters: $ARGUMENTS (Optional)
 **Accepts:** Repository URL | Root path | Technology stack | Business domain | Priority areas
@@ -54,6 +58,7 @@ Combine internal code analysis with external research to explain undocumented de
 - **Design Patterns**: Singleton, Factory, Observer, Strategy, Repository, Unit of Work
 - **Anti-Patterns Detection**: God objects, circular dependencies, tight coupling
 - **References Check**: Review `References/Gotchas/architecture_patterns.md` and `anti_patterns.md`
+- **External Reference**: Use `mcp__context7__get-library-docs` for technology-specific, version-specific documentation, code examples, design principles and coding standards
 
 **System Topology Mapping**
 - **Entry Points**: Web apps, APIs, CLI tools, functions, workers, scheduled jobs

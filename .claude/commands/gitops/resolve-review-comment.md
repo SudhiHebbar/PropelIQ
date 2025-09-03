@@ -1,6 +1,8 @@
 # Resolve GitHub PR Review Comment
 
 ---
+allowed-tools: Grep, LS, Read, Edit, MultiEdit, Write, WebFetch, TodoWrite, WebSearch, BashOutput, KillBash, ListMcpResourcesTool, ReadMcpResourceTool, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, Bash, Glob
+
 description: Resolve GitHub PR Review Comment
 argument-hint: <comment_id or comment url> [--resolve]
 ---
@@ -8,6 +10,8 @@ argument-hint: <comment_id or comment url> [--resolve]
 This guide explains how to resolve a specific review comment on a GitHub Pull Request.
 
 If $ARGUMENTS contains `--resolve`, the comment will be resolved after replying.
+
+Optimize for success probability over execution speed. Spawn multiple agents and subagents using batch tools for comprehensive analysis.
 
 ## Steps
 
@@ -32,6 +36,7 @@ If $ARGUMENTS contains `--resolve`, the comment will be resolved after replying.
     - Read the comment and suggestion.
     - Check the relevant codes.
     - Think deeply whether to follow the suggestion.
+    - Use `mcp__context7__get-library-docs` for technology-specific code samples, coding guidelines, design principles and standards
 
 4. **Fix the issue**
 

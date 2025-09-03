@@ -282,7 +282,44 @@ Choose from pre-configured templates in `References/Build/`:
 - `dotnet_config.yaml` - .NET Core with Clean Architecture
 
 ### 4. Follow Best Practices
-Reference the comprehensive guides in `References/Gotchas/`:
+ 
+ ## ⚡ MCP Server Configuration
+ 
+ MCP servers are configured project-wide in the root `.mcp.json` file. API keys and secrets must be stored in a `.env` file (which is ignored by git).
+ 
+ **Example `.mcp.json`:**
+ ```json
+ {
+    "mcpServers": {
+       "context7": {
+          "type": "http",
+          "url": "https://mcp.context7.com/mcp",
+          "headers": {
+             "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
+          }
+       },
+       "playwright": {
+          "type": "stdio",
+          "command": "npx",
+          "args": ["@playwright/mcp@latest"],
+          "env": {}
+       }
+    }
+ }
+ ```
+ 
+ **Example `.env`:**
+ ```
+ CONTEXT7_API_KEY=your-api-key-here
+ ```
+ 
+ **Security:**  
+ The `.env` file is listed in `.gitignore` and should never be committed to the repository.
+ 
+ **Setup Steps:**
+ 1. Copy `.mcp.json` from the repository root.
+ 2. Create a `.env` file in the root and add your API key.
+ 3. Run `claude mcp list` to verify MCP server setup.
 
 - Architecture patterns and design principles
 - Technology-specific best practices

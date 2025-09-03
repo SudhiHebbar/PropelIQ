@@ -1,5 +1,7 @@
 # Comprehensive Pull Request Code Review
 ---
+allowed-tools: Grep, LS, Read, Edit, MultiEdit, Write, WebFetch, TodoWrite, WebSearch, BashOutput, KillBash, ListMcpResourcesTool, ReadMcpResourceTool, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, Bash, Glob
+
 description: Perform enterprise-grade comprehensive code review for Pull Requests with security, architecture, business logic, and technology-specific analysis.
 argument-hint: <pull_request_number_or_url>
 ---
@@ -8,10 +10,14 @@ As a **Senior Software Architect and Security Expert**, perform comprehensive pu
 
 ## Core Review Principles
 
+Optimize for review completeness and success over speed. Spawn multiple agents and subagents using batch tools for comprehensive review.
+
 *** MANDATORY VALIDATIONS ***
 - Retrieve complete PR context including files, commits, reviews, and metadata
+- Use `mcp__context7__get-library-docs` to perform technology-specific reviews using coding guidelines, design principles and standards
 - Apply technology-specific gotchas from `References/Gotchas/` directory
 - Perform automated validation using `References/Gotchas/validation_commands.md`
+- Assess logic errors and potential impact
 - Assess business logic impact and potential side effects
 - Validate architecture compliance with established patterns
 - Generate risk-based recommendations with priority levels

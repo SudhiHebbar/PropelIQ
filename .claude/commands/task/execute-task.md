@@ -1,5 +1,9 @@
 # Unified Task Executor
 
+---
+allowed-tools: Grep, LS, Read, Edit, MultiEdit, Write, WebFetch, TodoWrite, WebSearch, BashOutput, KillBash, ListMcpResourcesTool, ReadMcpResourceTool, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, Bash, Glob
+---
+
 ## Task File: $ARGUMENTS (Mandatory)
 
 Implement features, fix bugs, or complete development tasks using comprehensive task files. This command ensures systematic, high-quality implementation with thorough validation and quality control.
