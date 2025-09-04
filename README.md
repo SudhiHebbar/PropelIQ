@@ -244,41 +244,52 @@ Follow these steps to use the Codegen Framework in your project:
 
 ## ⚡ MCP Server Configuration
 
-MCP servers are configured project-wide in the root `.mcp.json` file. API keys and secrets must be stored in a `.env` file (which is ignored by git).
- 
- **Example `.mcp.json`:**
- ```json
- {
-    "mcpServers": {
-       "context7": {
-          "type": "http",
-          "url": "https://mcp.context7.com/mcp",
-          "headers": {
-             "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
-          }
-       },
-       "playwright": {
-          "type": "stdio",
-          "command": "npx",
-          "args": ["@playwright/mcp@latest"],
-          "env": {}
-       }
-    }
- }
- ```
- 
- **Example `.env`:**
- ```
- CONTEXT7_API_KEY=your-api-key-here
- ```
- 
- **Security:**  
- The `.env` file is listed in `.gitignore` and should never be committed to the repository.
- 
- **Setup Steps:**
- 1. Copy `.mcp.json` from the repository root.
- 2. Create a `.env` file in the root and add your API key.
- 3. Run `claude mcp list` to verify MCP server setup.
+MCP servers are configured project-wide in the root `.mcp.json` file. For sequential-thinking workflows, ensure your MCP configuration supports chaining commands and context propagation between phases.
+
+**Example `.mcp.json` (matches project configuration):**
+```json
+{
+   "mcpServers": {
+      "context7": {
+         "type": "http",
+         "url": "https://mcp.context7.com/mcp",
+         "headers": {
+            "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
+         }
+      },
+      "playwright": {
+         "type": "stdio",
+         "command": "npx",
+         "args": [
+            "@playwright/mcp@latest"
+         ],
+         "env": {}
+      },
+      "sequential-thinking": {
+         "type": "stdio",
+         "command": "npx",
+         "args": [
+            "@modelcontextprotocol/server-sequential-thinking"
+         ],
+         "env": {}
+      }
+   }
+}
+```
+
+**Example `.env`:**
+```
+SEQUENTIAL_THINKING_API_KEY=your-api-key-here
+CONTEXT7_API_KEY=your-api-key-here
+```
+
+**Security:**  
+The `.env` file is listed in `.gitignore` and should never be committed to the repository.
+
+**Setup Steps:**
+1. Copy `.mcp.json` from the repository root.
+2. Create a `.env` file in the root and add your API keys.
+3. Run `claude mcp list` or `/mcp` to verify MCP server setup.
 
 - Architecture patterns and design principles
 - Technology-specific best practices
