@@ -36,7 +36,7 @@ DIFF CONTENT:
 
 Review the complete diff above. This contains all code changes in the PR.
 
-## Visual Comparison & Pixel-Perfect Analysis
+## Visual Comparison & Pixel-Perfect Analysis (Sequential Thinking)
 
 {% if figma_design %}
 **Design Reference Provided:** `{{ figma_design }}`

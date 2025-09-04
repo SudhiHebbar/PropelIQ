@@ -31,7 +31,7 @@ The AI agent receives only your research findings and training data. Since agent
 
 Optimize for success probability over execution speed. Spawn multiple agents and subagents using batch tools for comprehensive analysis.
 
-### 1. Codebase Intelligence Gathering
+### 1. Codebase Intelligence Gathering (Sequential Thinking)
 - **Pattern Discovery**: Search for similar features/implementations in existing codebase
 - **Impact Analysis**: Identify existing features requiring modification to maintain functionality  
 - **Reference Mapping**: Document files and patterns to reference in task design

@@ -22,7 +22,7 @@ As an expert Business Analyst and Product Manager with deep technical understand
 
 The AI agent receives your research findings and domain knowledge. Since agents have codebase access and equivalent knowledge cutoff, embed comprehensive business context and technical constraints in the PRD. Agents have web search capabilities — provide specific documentation URLs, industry standards, and best practice references.
 
-## Deep Requirements Analysis Methodology
+## Deep Requirements Analysis Methodology (Sequential Thinking)
 
 Optimize for requirements completeness and implementation success over speed. Spawn multiple agents and subagents using batch tools for comprehensive analysis.
 

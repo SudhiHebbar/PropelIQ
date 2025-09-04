@@ -23,6 +23,7 @@ As a **Senior Software Architect and Reverse Engineering Specialist**, perform c
 
 *** MANDATORY VALIDATIONS ***
 - Clone or access repository before starting analysis
+- Analyze every folder
 - Detect technology stacks and frameworks automatically
 - Validate build systems and dependency managers
 - ULTRATHINK the architecture — comprehensively analyze design patterns and decisions
@@ -36,7 +37,7 @@ As a **Senior Software Architect and Reverse Engineering Specialist**, perform c
 
 Combine internal code analysis with external research to explain undocumented dependencies, frameworks, cloud resources, and integrations. Optimize for accuracy and completeness over speed. Spawn multiple agents and subagents using batch tools for thorough analysis.
 
-## Comprehensive Analysis Methodology
+## Comprehensive Analysis Methodology (Sequential Thinking)
 
 ### Phase 1: Repository Intelligence Gathering
 **Technology Stack Detection**
@@ -234,7 +235,7 @@ grep -r "api_key\|client_id\|webhook" --include="*.json" --include="*.yml"
 - **Event-Driven Flows**: Message queue, event handlers
 
 **Actor-Feature Interaction Analysis**
-- **Visual Mapping**: Create interaction matrix between actors and features
+- **Visual Mapping**: Use PlantUML and create Use Case diagram for each Application Actor interaction with features 
 - **Access Patterns**: Document how different actors use system features
 - **Permission Boundaries**: Map actor permissions to feature access
 - **Usage Frequency**: Identify high-traffic actor-feature combinations
@@ -393,6 +394,7 @@ find . -type d -name "node_modules" -prune -o -type d -name ".git" -prune -o -ty
 - [ ] **Performance Analysis**: Bottlenecks and optimizations identified
 - [ ] **Test Coverage**: Current coverage measured and gaps identified
 - [ ] **Documentation Review**: Existing docs evaluated for completeness
+- [ ] **Visual Representation**: Creation of sequence diagrams and use case diagrams
 - [ ] **Dependency Analysis**: All dependencies catalogued with versions
 - [ ] **Build Verification**: Build processes tested and documented
 - [ ] **Deployment Understanding**: Deployment pipeline comprehended

@@ -16,7 +16,7 @@ As a Senior QA Engineer expert in Test Automation and Process Design, generate c
 - Ensure all test steps are automatable and include proper validation points
 - Map test workflows to specific user stories and acceptance criteria
 
-## Test Workflow Design Strategy
+## Test Workflow Design Strategy (Sequential Thinking)
 
 The generated automation test workflows will be consumed by the `generate` command to create executable Playwright scripts. Focus on creating comprehensive process flows that can be directly translated to automation code.
 
