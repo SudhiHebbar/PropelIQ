@@ -29,6 +29,9 @@ Aligns with your existing /generate and /execute flows to close the loop with a 
 - Compare intended error handling, logging, and security notes with actual code paths.
 - The analyzer mirrors the structure & discipline established by your Unified Task Generator and Unified Task Executor to ensure consistent QA.
 
+### Template Foundation
+Base analysis on `Templates/analyze_task_base.md` structure for consistency.
+
 ## Analysis Methodology
 
 ### Phase 1 — Inputs & Context
@@ -64,3 +67,24 @@ Run a three-tool loop with Sequential Thinking MCP:
 
 - Scored rubric (1–100%) across Requirements Fulfillment, to do task, Code Quality, Testing Coverage, Integration, Error Handling, Performance, Docs, Pattern Consistency.
 - Pass/Fail with prioritized fix list and test additions.
+
+## Output Specifications
+
+**File Naming Convention**: `Context/Analysis/<task_file_name>.md`
+
+## Comprehensive Evaluation Protocol
+
+Evaluate completed implementation using detailed metrics (1-100% scale):
+
+### Implementation Quality Assessment
+
+| **Evaluation Dimension** | **Assessment Criteria** |
+|---------------------------|-------------------------|
+| **Requirements Fulfillment** | Complete adherence to task specifications and acceptance criteria |
+| **Code Quality** | Clean, maintainable code following project patterns and standards |
+| **Testing Coverage** | Comprehensive unit tests with appropriate edge case coverage |
+| **Integration Success** | Seamless integration without breaking existing functionality |
+| **Error Handling** | Robust error scenarios coverage with appropriate responses |
+| **Performance Impact** | Optimal performance with consideration for system resources |
+| **Documentation Quality** | Clear, comprehensive documentation and code comments |
+| **Pattern Consistency** | Adherence to existing architectural and coding patterns |

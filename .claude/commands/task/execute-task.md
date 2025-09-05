@@ -71,6 +71,7 @@ Optimize for implementation success and code quality over execution speed. Use s
 **Context Gathering**
 - Review requirements.md, code-analysis.md and design.md for comprehensive understanding
 - Analyze existing codebase for patterns and integration points
+- Use `mcp__context7__resolve-library-id` to lock framework/library versions present in the task and codebase before fetching guidance
 - Use `mcp__context7__get-library-docs` for technology-specific, version-specific documentation, code examples, design principles and coding standards
 - Perform additional web research if task context requires updates
 - Document any gaps or additional research findings
@@ -96,6 +97,11 @@ Optimize for implementation success and code quality over execution speed. Use s
 - Mark each completed todo task as [X] in the task file progressively
 - Maintain precise targeting using line numbers and function references
 - Preserve existing functionality while adding new features
+
+**MCP Validation Loop (pre-commit)**
+- **Plan**: Run `mcp__sequential_thinking__plan` to materialize a verification checklist from the task’s acceptance criteria and NFRs.
+- **Critique**: Run `mcp__sequential_thinking__critique` mapping real repo evidence (files/endpoints/tests) to each checklist item; capture Pass/Gap/Fail with pointers.
+- **Reflect**: Run `mcp__sequential_thinking__reflect` to summarize risks and generate the minimal fix list and missing tests to address before proceeding.
 
 **Continuous Validation**
 - Run validation commands after each significant implementation step
@@ -136,6 +142,8 @@ Optimize for implementation success and code quality over execution speed. Use s
 ## Completion and Validation Framework
 
 ### Completion Criteria
+- [ ] **MCP Critique Resolved**: All critical Gaps from `mcp__sequential_thinking__critique`/`reflect` are fixed or explicitly waived with rationale
+- [ ] **Context7 Alignment**: At least one validation pass confirms implemented patterns align with versioned guidance fetched via Context7
 - [ ] **Task Implementation**: All todo items in task file marked as completed [X]
 - [ ] **Code Quality**: Implementation follows existing project patterns and standards
 - [ ] **Testing**: Unit tests created/updated and all tests passing

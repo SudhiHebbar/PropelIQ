@@ -41,6 +41,7 @@ Optimize for success probability over execution speed. Spawn multiple agents and
 ### 2. External Knowledge Acquisition
 - **Implementation Research**: Search for similar features/patterns in open-source projects
 - **Sample Code**: Use `mcp__context7__get-library-docs` for technology-specific, version-specific documentation, code examples, design principles and coding standards
+- **Version Pinning**: Use `mcp__context7__resolve-library-id` to pin exact framework/library versions referenced in the task (e.g., .NET 8, EF Core 8, React 19, Python) so subsequent docs/examples are version-accurate.
 - **Style Guidelines**: Research project-specific or framework coding standards
 - **Documentation Deep-Dive**: Library documentation with specific section URLs
 - **Example Collection**: GitHub repositories, StackOverflow solutions, technical blog implementations
@@ -63,7 +64,7 @@ Optimize for success probability over execution speed. Spawn multiple agents and
 ## Task Design Framework
 
 ### Template Foundation
-Base all tasks on `Templates/base_task.md` structure for consistency.
+Base all tasks on `Templates/task_base.md` structure for consistency.
 
 ### Critical Context Integration
 Package comprehensive context for AI agent success:
@@ -105,10 +106,18 @@ Package comprehensive context for AI agent success:
 - Document rollback procedures for destructive operations
 - Plan validation checkpoints throughout implementation
 
+**Version Pinning** 
+- Use `mcp__context7__resolve-library-id` to pin exact framework/library versions referenced in the task (e.g., .NET 8, EF Core 8, React 19, Python, Java) so subsequent docs/examples are version-accurate.
+
+
 **Sequential Task Breakdown**
 - List implementation tasks in logical dependency order
 - Include mandatory unit test creation/updates for each component
 - Define clear completion criteria and validation gates
+
+**Versioned Doc Excerpts** 
+- Include excerpts/links retrieved via `mcp__context7__get-library-docs` (tied to IDs from `resolve-library-id`) for patterns the task expects (validation, transactions, async I/O, HTTP semantics).
+
 
 ## Context Documentation Requirements
 
@@ -130,6 +139,8 @@ Package comprehensive context for AI agent success:
 ## Quality Assurance Framework
 
 ### Pre-Delivery Checklist
+- [ ] **Context7 References**: Version-pinned docs (IDs + links) are included for all critical patterns the task requires.
+- [ ] **Sequential Plan Checklist**: A traceability-friendly checklist derived via `mcp__sequential_thinking__plan` is embedded for execution/analysis.
 - [ ] **Context Completeness**: All necessary implementation context included and accessible
 - [ ] **Task Scope Validation**: Tasks are under 6 hours and properly split by technology stack when applicable
 - [ ] **Technology Stack Separation**: Frontend, backend, database, and infrastructure tasks are independently manageable
