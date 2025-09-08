@@ -1,8 +1,6 @@
 # CLAUDE.md
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-[To be generated as per the /init command]
-
 ## Visual Development & Testing
 Design System
 The project follows S-Tier SaaS design standards inspired by Stripe, Airbnb, and Linear. All UI development must adhere to:
@@ -92,4 +90,5 @@ Test file modifications
 Non-visual utility functions
 
 ## Additional Context
-- Refer './References/Gotchas/*' for design principles, best practices and guide.
+- Gotchas: /Gotchas/*
+- Figma: /Figma/*
