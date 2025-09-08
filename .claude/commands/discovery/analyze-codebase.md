@@ -53,10 +53,26 @@ Entry point for comprehensive codebase analysis. Validates input and delegates c
 
 ## Integration Notes
 
-- This command acts as the user-facing entry point
+- This command acts as the **guided user-facing entry point**
 - All complex analysis, research, and codebase traversal are handled by the **code-analyzer** agent
 - The agent leverages both Context7 and sequential-thinking MCP servers for optimal performance
 - Results are aggregated and presented in both summary and detailed formats
+
+## Alternative: Direct Agent Access
+
+**For power users:** You can also invoke the analysis agent directly for full parameter control:
+
+```bash
+# Direct agent invocation with advanced parameters
+@code-analyzer repo-path --depth=comprehensive --parallel-tasks=8 --time-budget=120
+
+# Direct invocation with minimal parameters (uses smart defaults)  
+@code-analyzer . --depth=quick --focus="security,performance"
+```
+
+**Choose your approach:**
+- **`/analyze-codebase`** - Guided experience with validation and user-friendly interface
+- **`@code-analyzer`** - Direct access with full parameter control for experts
 
 ---
 

@@ -8,6 +8,32 @@ allowed-tools: Grep, Read, Edit, MultiEdit, Write, WebFetch, TodoWrite, WebSearc
 
 This agent performs comprehensive, hybrid codebase analysis by orchestrating both parallel and sequential tasks. It leverages Context7 for high-throughput, parallelizable research and sequential-thinking MCP for deep, stepwise reasoning to deliver complete architectural analysis and actionable recommendations.
 
+## Dual Invocation Support
+
+This agent supports two invocation methods:
+
+### **1. Guided Experience (via slash command)**
+- Invoked by `/analyze-codebase` slash command after parameter validation
+- Receives pre-validated parameters with defaults applied
+- Optimized for user-friendly, guided analysis workflow
+
+### **2. Direct Power-User Access (via @ call)**
+- Direct invocation: `@code-analyzer [parameters]`
+- Full parameter control with advanced options
+- Optimized for expert users requiring fine-tuned analysis control
+
+**Usage Examples:**
+```bash
+# Direct agent invocation with advanced parameters
+@code-analyzer repo-path --depth=comprehensive --parallel-tasks=8 --time-budget=120 --focus="security,performance"
+
+# Direct invocation with minimal parameters (uses smart defaults)
+@code-analyzer . --depth=quick
+
+# Guided experience (via slash command)
+/analyze-codebase repo-path --depth=standard
+```
+
 ## Hybrid Execution Strategy
 
 ### Phase 1: Parallel Research Execution (Context7)
@@ -148,18 +174,54 @@ pytest --cov=. --cov-report=json --cov-report=term || true
 - Actionable recommendations with clear next steps
 - Resource requirements and timeline estimates
 
+## Parameter Handling & Smart Defaults
+
+### **Direct Invocation Parameters (@code-analyzer)**
+```
+@code-analyzer [repo_path] [options]
+
+Required:
+  repo_path                 Repository path or URL (default: current directory)
+
+Optional:
+  --depth=LEVEL            Analysis depth: quick|standard|comprehensive (default: standard)
+  --primary-stack=STACK    Technology stack override (default: auto-detected)
+  --business-domain=DESC   Business context description (default: "General application")
+  --time-budget=MINUTES    Analysis time limit in minutes (default: 60)
+  --parallel-tasks=NUM     Number of parallel research tasks (default: 4)
+  --focus=AREAS           Priority areas: architecture,security,performance,testing (default: all)
+  --output-format=FORMAT   Report format: markdown|json (default: markdown)
+  --mcp-timeout=SECONDS    MCP server timeout (default: 30)
+```
+
+### **Invocation Method Detection**
+The agent automatically detects invocation method and adjusts behavior:
+
+**Delegated Mode** (from slash command):
+- Parameters pre-validated and formatted by slash command
+- Optimized for guided user experience
+- Standard error handling and user-friendly messaging
+
+**Direct Mode** (@ invocation):
+- Raw parameter parsing and validation
+- Advanced parameter support
+- Technical error messages and detailed logging
+
 ## Execution Flow
 
-1. **Input Validation**: Receive and validate parameters from slash command
-2. **Initial Context Gathering**: 
+1. **Invocation Detection**: Determine if called directly (@) or via delegation (/)
+2. **Parameter Processing**: 
+   - **Direct Mode**: Parse and validate raw parameters, apply smart defaults
+   - **Delegated Mode**: Receive pre-validated parameters from slash command
+3. **Initial Context Gathering**: 
    - Basic technology stack detection (package.json, requirements.txt, etc.)
    - Repository size and structure overview
    - Build system identification
-3. **Parallel Execution**: Launch Context7-based research tasks concurrently
-4. **Sequential Analysis**: Execute reasoning-heavy tasks using sequential-thinking MCP
-5. **Integration**: Merge, deduplicate, and cross-reference all findings
-6. **Synthesis**: Generate comprehensive quality assessment and recommendations
-7. **Output**: Save structured report and return summary to user
+4. **Parallel Execution**: Launch Context7-based research tasks concurrently
+5. **Sequential Analysis**: Execute reasoning-heavy tasks using sequential-thinking MCP
+6. **Integration**: Merge, deduplicate, and cross-reference all findings
+7. **Synthesis**: Generate comprehensive quality assessment and recommendations
+8. **Output**: Save structured report and return appropriate response based on invocation method
 
 ---
 

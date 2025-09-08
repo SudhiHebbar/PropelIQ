@@ -1,90 +1,87 @@
-# Unified Task Analyzer
+# Task Analysis Command
 
 ---
-allowed-tools: Grep, LS, Read, WebSearch, WebFetch, TodoWrite, Bash, BashOutput, KillBash, ListMcpResourcesTool, ReadMcpResourceTool, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, mcp__sequential_thinking__plan, mcp__sequential_thinking__critique, mcp__sequential_thinking__reflect
+allowed-tools: Bash, Read, Glob, Task
 ---
 
 ## Purpose
+Entry point for post-implementation task analysis. Reviews completed code changes against task requirements to verify scope alignment, identify gaps, and provide quality assessment with actionable recommendations.
 
-Review an implemented code change against its intended task file to verify scope alignment, uncover logical errors, and flag gaps in tests, patterns, and standards. Accepts a single task file path (e.g., Context/Tasks/task_001_signin.md) and produces a structured analysis report with a pass/fail verdict and actionable diffs/checklists.
-Aligns with your existing /generate and /execute flows to close the loop with a post-implementation QA gate.
+## Input Parameters: $ARGUMENTS (Required)
+**Accepts:** Task file path
 
-## Arguments
+**Required Parameters:**
+- `task_file_path`: Path to the task file that defines requirements, acceptance criteria, and validation gates (e.g., `Context/Tasks/task_001_signin.md`)
 
-- **task_file_path** (required): Path to the task file that defines requirements, acceptance criteria, and validation gates (e.g., Context/Tasks/task_001_signin.md).
+**Optional Parameters:**
+- `analysis_depth`: "quick" | "standard" | "comprehensive" (default: "standard")
+- `focus_areas`: Specific areas to emphasize (e.g., "security,testing,performance")
 
-## Behavioral Notes
+## Execution Flow
 
-- Uses Context7 MCP to fetch authoritative library/docs snippets referenced by the task (framework versions, patterns).
-- Uses Sequential Thinking MCP to produce a stepwise plan, critique, and reflection loop for the review.
-- Non-destructive: reads repository; does not modify code.
+### 1. Parameter Validation
+- Validate task file path and accessibility
+- Parse basic task file structure to ensure it's processable
+- Verify repository context and related code accessibility
 
-## Mandatory Validations
+### 2. Agent Delegation
+- Invoke **task-analyzer** agent with validated parameters
+- Pass structured context including:
+  - Task file path and parsed metadata
+  - Analysis depth and focus area preferences
+  - Repository context and permissions
 
-- Load & parse the task file entirely; extract requirements, to do task, and validation commands (no strict heading order)
-- Discover related code by traversing references in the task and repo (paths, modules, services, tests).
-- Confirm whether the intended task scope is fully implemented; if already compliant, return “Aligned — No action.”
-- Enforce split-of-concerns and pattern consistency (controller/service/repository; UI/data/domain).
-- Verify tests exist and pass locally (where runnable), or show why not applicable.
-- Compare intended error handling, logging, and security notes with actual code paths.
-- The analyzer mirrors the structure & discipline established by your Unified Task Generator and Unified Task Executor to ensure consistent QA.
+### 3. Summary Presentation
+- Present executive summary of analysis findings
+- Highlight critical gaps, risks, and recommendations
+- Provide pass/fail verdict with prioritized action items
+- Link to detailed analysis report in `Context/Analysis/<task_file_name>.md`
 
-### Template Foundation
-Base analysis on `Templates/analyze_task_base.md` structure for consistency.
+## Usage Examples
 
-## Analysis Methodology
+```bash
+# Analyze completed task implementation
+/analyze-task Context/Tasks/task_001_signin.md
 
-### Phase 1 — Inputs & Context
+# Quick analysis with security focus
+/analyze-task Context/Tasks/task_002_api.md --depth=quick --focus="security,testing"
 
-- **Load Task File**: parse sections (scope, to do task, validation gates, todos).
-- **Context7 MCP Calls**
-	- `mcp__context7__resolve-library-id` for framework/library versions mentioned.
-	- `mcp__context7__get-library-docs` to fetch targeted API/guide excerpts for the versions in use.
-- **Repo Scan**
-	- Grep for features/endpoints/components referenced by the task.
-	- Map controller → service → repository (backend) and view → state → API client (frontend).
-	- Identify migrations/SQL and configuration changes, if relevant.
+# Comprehensive analysis of complex feature
+/analyze-task Context/Tasks/task_003_payment.md --depth=comprehensive
+```
 
-### Phase 2 — Sequential Thinking Review
+## Integration Notes
 
-Run a three-tool loop with Sequential Thinking MCP:
+- Designed to work with `/generate` and `/execute` workflow as QA gate
+- Non-destructive: reads repository without making changes
+- Complements task generator and executor for complete development lifecycle
+- All complex analysis, MCP integration, and report generation handled by **task-analyzer** agent
+- Results follow `Templates/analyze_task_base.md` structure for consistency
 
-- **Plan**: `mcp__sequential_thinking__plan`
-	- Derive a checklist from acceptance criteria + non-functional constraints (security, performance, error handling).
-- **Critique**: `mcp__sequential_thinking__critique`
-	- For each checklist item, point to concrete files/functions/lines and judge alignment vs. intent.
-- **Reflect**: `mcp__sequential_thinking__reflect`
-	- Summarize risk areas, propose concrete fixes and missing tests.
+## Alternative: Direct Agent Access
 
-### Phase 3 — Evidence & Validation
+**For power users:** You can also invoke the task analysis agent directly for advanced control:
 
-- **Traceability Table**: requirement ↔ file/function/test.
-- **Runtime/Static Checks**: run validation commands from the task (when available).
-- **Diff Hotspots**: highlight risky edits (business rules, null-paths, auth/role checks, transaction boundaries).
-- **Logical/Business error**: highlight logical or business-logic errors based on the context or scope of the implementation.
+```bash
+# Direct agent invocation with comprehensive analysis
+@task-analyzer Context/Tasks/task_001_signin.md --depth=comprehensive --focus="security,testing" --parallel-research=6
 
-### Phase 4 — Results & Verdict
+# Direct invocation with custom validation mode
+@task-analyzer Context/Tasks/task_002_api.md --validation-mode=strict --evidence-level=exhaustive
 
-- Scored rubric (1–100%) across Requirements Fulfillment, to do task, Code Quality, Testing Coverage, Integration, Error Handling, Performance, Docs, Pattern Consistency.
-- Pass/Fail with prioritized fix list and test additions.
+# Quick direct analysis with smart defaults
+@task-analyzer Context/Tasks/task_003_feature.md --depth=quick
+```
+
+**Choose your approach:**
+- **`/analyze-task`** - Guided experience with validation and user-friendly workflow
+- **`@task-analyzer`** - Direct access with full parameter control for detailed analysis
 
 ## Output Specifications
 
-**File Naming Convention**: `Context/Analysis/<task_file_name>.md`
+**File Naming Convention**: `Context/Analysis/<task_file_name>_analysis.md`
+**Content**: Executive summary, detailed findings, scoring rubric, actionable recommendations
 
-## Comprehensive Evaluation Protocol
+---
 
-Evaluate completed implementation using detailed metrics (1-100% scale):
-
-### Implementation Quality Assessment
-
-| **Evaluation Dimension** | **Assessment Criteria** |
-|---------------------------|-------------------------|
-| **Requirements Fulfillment** | Complete adherence to task specifications and acceptance criteria |
-| **Code Quality** | Clean, maintainable code following project patterns and standards |
-| **Testing Coverage** | Comprehensive unit tests with appropriate edge case coverage |
-| **Integration Success** | Seamless integration without breaking existing functionality |
-| **Error Handling** | Robust error scenarios coverage with appropriate responses |
-| **Performance Impact** | Optimal performance with consideration for system resources |
-| **Documentation Quality** | Clear, comprehensive documentation and code comments |
-| **Pattern Consistency** | Adherence to existing architectural and coding patterns |
+*Optimized for efficient task validation and quality assurance through agent delegation.*
