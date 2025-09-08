@@ -22,6 +22,17 @@
         "@modelcontextprotocol/server-sequential-thinking"
       ],
       "env": {}
+    },
+    "azure-devops": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@azure-devops/mcp",
+        "SudhiHebbar"
+      ],
+      "env": {},
+      "_note": "Third parameter 'SudhiHebbar' is the Azure DevOps organization name"
     }
   }
 }
