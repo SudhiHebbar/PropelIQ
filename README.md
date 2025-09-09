@@ -22,19 +22,40 @@ The **Codegen Framework** is a structured approach to generating code, artefacts
 ✅ **Multi-Technology** - Support for modern tech stacks and frameworks  
 ✅ **AI-Enhanced** - Custom Claude Code commands for intelligent assistance
 
+## 📋 Prerequisites
+
+### Required Tools
+- **Claude Code**: Latest version (https://www.anthropic.com/claude-code)
+- **Git**: Version 2.25 or higher
+
+### Technology-Specific Requirements
+- **Node.js**: Version 18.x or higher 
+
+### Optional Tools
+- **Azure CLI**: For Azure DevOps integration (if using azops commands)
+- **GitHub CLI**: For GitHub integration (if using gitops commands)
+- **VS Code or Cursor**: Optional IDEs for integration with Claude Code
 
 ## 🏗️ Repository Architecture
 
 ```
 📁 Codegen Framework/
-├── 📂 .claude/commands/          # Custom Claude Code commands
-│   ├── 🔍 discovery/            # analyze-codebase, generate-requirements
-│   ├── ⚙️ task/                 # execute-task, generate-task
-│   ├── 🎨 design/               # generate-design  
-│   ├── 🧪 test/                 # generate-automation-test, generate-playwright-scripts
-│   ├── 🔄 gitops/               # review-pr, resolve-review-comment
-│   └── 💻 ux/                   # review-user-interface
-│   └── settings.local.json      # Local Claude Code settings (never committed)
+├── 📂 .claude/                   # Claude Code configuration and extensions
+│   ├── 📂 agents/               # Specialized agent configurations
+│   │   ├── 🔍 code-analyzer.md  # Deep codebase analysis agent
+│   │   ├── 👀 code-reviewer.md  # Comprehensive code review agent
+│   │   ├── 🎨 design-analyzer.md # Design pattern analysis agent
+│   │   ├── 🚀 prototype-builder-agent.md # Rapid prototype generation agent
+│   │   └── ⚙️ task-analyzer.md  # Task breakdown and planning agent
+│   ├── 📂 commands/             # Custom Claude Code commands
+│   │   ├── 🔍 discovery/        # analyze-codebase, generate-requirements
+│   │   ├── ⚙️ task/             # execute-task, generate-task
+│   │   ├── 🎨 design/           # generate-design  
+│   │   ├── 🧪 test/             # generate-automation-test, generate-playwright-scripts
+│   │   ├── 🔄 gitops/           # review-pr, resolve-review-comment
+│   │   └── 💻 ux/               # review-user-interface
+│   ├── 📄 CLAUDE.md             # Additional context for command development
+│   └── 📄 settings.local.json   # Local Claude Code settings (never committed)
 ├── 📂 Context/                   # Generated project analysis & specifications
 │   ├── 📄 code-analysis.md      # Output from /analyze-codebase
 │   ├── 📄 design.md             # Output from /generate-design
@@ -71,12 +92,14 @@ The **Codegen Framework** is a structured approach to generating code, artefacts
   - CSS Modules, SCSS, Path aliases
   - Jest + React Testing Library
   - ESLint + Prettier integration
+  - **Reference**: [React Gotchas](References/Gotchas/react_gotchas.md) for best practices
 
 ### Backend  
 - **.NET 8** + ASP.NET Core
   - Clean Architecture with layered separation
   - Entity Framework Core + AutoMapper
   - xUnit + Moq + TestContainers
+  - **Reference**: [.NET Gotchas](References/Gotchas/dotnet_gotchas.md) for optimization patterns
 
 ### Additional Stacks
  - **Python FastAPI** with modern async patterns
@@ -86,6 +109,12 @@ The **Codegen Framework** is a structured approach to generating code, artefacts
  - **Vue 3** with Composition API
  - **GoLang** with Gin or Echo frameworks
  - **Java** with Spring Boot or Quarkus
+
+**Comprehensive Guidance**: All technology stacks benefit from the extensive documentation in `References/Gotchas/`, covering:
+- [Frontend Best Practices](References/Gotchas/frontend_best_practices.md)
+- [Backend Best Practices](References/Gotchas/backend_best_practices.md) 
+- [Database Best Practices](References/Gotchas/database_best_practices.md)
+- [General Coding Standards](References/Gotchas/general_coding_standards.md)
 
 ## 🌟 Why Choose Codegen Framework?
 
@@ -100,11 +129,42 @@ The Codegen Framework isn't just another template collection—it's a comprehens
 
 Start building better applications faster with the Codegen Framework! 🚀
 
+## 🤖 Specialized Agents
+
+The Codegen Framework includes a collection of specialized AI agents designed for specific aspects of software development. These agents leverage advanced reasoning and domain expertise to provide targeted assistance:
+
+### 🔍 **Code Analyzer Agent**
+- **Purpose**: Deep codebase analysis and reverse engineering
+- **Capabilities**: Architecture assessment, dependency mapping, security analysis
+- **Best For**: Understanding legacy codebases, technical debt analysis
+
+### 👀 **Code Reviewer Agent** 
+- **Purpose**: Comprehensive code review with enterprise standards
+- **Capabilities**: SOLID principles validation, security vulnerability detection, performance analysis
+- **Best For**: Pull request reviews, code quality assurance, compliance checking
+
+### 🎨 **Design Analyzer Agent**
+- **Purpose**: System design and architecture pattern analysis
+- **Capabilities**: C4 model diagrams, design pattern recommendations, scalability assessment
+- **Best For**: Architecture reviews, design decisions, system modernization
+
+### 🚀 **Prototype Builder Agent**
+- **Purpose**: Rapid prototype generation and MVP development
+- **Capabilities**: Multi-stack code generation, template-based scaffolding, best practice integration
+- **Best For**: Proof of concepts, rapid development, technology exploration
+
+### ⚙️ **Task Analyzer Agent**
+- **Purpose**: Task breakdown and project planning
+- **Capabilities**: User story decomposition, dependency mapping, effort estimation
+- **Best For**: Sprint planning, requirement analysis, project management
+
+**Agent Integration**: All agents work seamlessly with the command system and can be invoked directly through Claude Code commands or integrated into existing workflows for enhanced development productivity.
+
 ## 🛠️ How Codegen Works
 
 Codegen Framework orchestrates intelligent generation of code, artefacts, and code analysis through a combination of:
 
-- **Command-Driven Workflow:** All actions are initiated via custom Claude Code commands (see `.claude/commands/`). These commands automate code analysis, requirements, design, testing, and artefact generation (such as documentation, test plans, and more).
+- **Command-Driven Workflow:** All actions are initiated via custom Claude Code commands (see `.claude/commands/`). These commands are defined as Markdown files and automate code analysis, requirements, design, testing, and artefact generation (such as documentation, test plans, and more).
 - **Best Practices & Standards:** Every command leverages the standards, principles, and anti-patterns documented in the `References/` folder. This ensures generated code is robust, maintainable, and enterprise-grade.
 - **MCP Server Integration:** Commands can invoke one or more MCP servers (configured in `.mcp.json`) for advanced context, code analysis, or automation. For example, Playwright MCP for browser automation, Context7 for requirements and analysis, etc.
 - **Template-Driven Outcomes:** Structural outputs (requirements, designs, tests, etc.) are generated using templates from the `Templates/` folder. This guarantees consistency and clarity in all deliverables.
@@ -144,8 +204,21 @@ claude mcp add context7 https://mcp.context7.com/mcp
 
 After installation, restart Claude Code or reload the configuration to activate the MCP servers.
 
-### 3. Explore Custom Commands
-The framework includes specialized Claude Code commands organized by category:
+### 3. Initialize Agents and Explore Commands
+The framework includes specialized agents and Claude Code commands organized by category:
+
+**Available Agents:**
+The framework includes 5 specialized AI agents for targeted development assistance:
+
+- **🔍 Code Analyzer Agent** (`code-analyzer.md`) - Deep codebase analysis, architecture assessment, dependency mapping, and security analysis
+- **👀 Code Reviewer Agent** (`code-reviewer.md`) - Comprehensive code review with enterprise standards, SOLID principles validation, and performance analysis  
+- **🎨 Design Analyzer Agent** (`design-analyzer.md`) - System design and architecture pattern analysis, C4 model diagrams, and scalability assessment
+- **🚀 Prototype Builder Agent** (`prototype-builder-agent.md`) - Rapid prototype generation, multi-stack code generation, and MVP development
+- **⚙️ Task Analyzer Agent** (`task-analyzer.md`) - Task breakdown and project planning, user story decomposition, and effort estimation
+
+Each agent can be invoked directly through Claude Code or integrated into command workflows for enhanced development productivity.
+
+**Command Categories:**
 
 #### 🔍 Discovery & Analysis
 ```bash
@@ -166,13 +239,17 @@ The framework includes specialized Claude Code commands organized by category:
 
 #### ⚙️ Task Management 
 ```bash
-# Execute tasks systematically with TodoWrite integration
-# Generate structured task plans
+# Generate structured task plans from user stories or descriptions
 /generate-task [user-story | task-description]
-# Output: Context/Tasks/task_<name>.md (example)
+# Output: Context/Tasks/task_<name>.md
 
+# Execute tasks systematically with TodoWrite integration
 /execute-task [task-file-path]
-# Output: technology-specific project file (example)
+# Output: technology-specific project files
+
+# Review and analyze completed tasks against requirements
+/analyze-task [task-file-path] [--analysis-depth=standard] [--focus-areas=security,testing,performance]
+# Output: Post-implementation analysis with quality assessment and recommendations
 
 ```
 
@@ -196,6 +273,13 @@ The framework includes specialized Claude Code commands organized by category:
 # Resolve specific review comments
 /resolve-review-comment [comment-reference]
 # Output: Context/review-comment-resolution.md
+```
+
+#### ☁️ Azure DevOps Operations
+```bash
+# Review Azure DevOps pull requests with comprehensive analysis
+/azops/review-pr [pr-id] [--project=PROJECT] [--repository=REPO] [--depth=comprehensive]
+# Output: Context/review-pr.md + Azure DevOps PR comments
 ```
 
 #### 💻 User Experience
@@ -226,13 +310,13 @@ Follow these steps to use the Codegen Framework in your project:
 ### Recommended Workflows
 
 #### Green-field Development
-- `/generate-requirements` → `/generate-design` (optional) → `/generate-task` → `/execute-task`
+- `/generate-requirements` → `/generate-design` (optional) → `/generate-task` → `/execute-task` → `/analyze-task` (optional quality review)
 
 #### Brown-field Development
-- `/analyze-codebase` → `/generate-requirements` (for new features, optional) → `/generate-task` (using user stories if previous step is skipped) → `/execute-task`
+- `/analyze-codebase` → `/generate-requirements` (for new features, optional) → `/generate-task` (using user stories if previous step is skipped) → `/execute-task` → `/analyze-task` (optional quality review)
 
 #### Bug-fixing
-- `/generate-task` (using bug description) → `/execute-task`
+- `/generate-task` (using bug description) → `/execute-task` → `/analyze-task` (verify fix completeness)
 
 #### Code Review (GitHub only)
 - `/review-pr`
@@ -290,6 +374,7 @@ The `.env` file is listed in `.gitignore` and should never be committed to the r
 1. Copy `.mcp.json` from the repository root.
 2. Create a `.env` file in the root and add your API keys.
 3. Run `claude mcp list` or `/mcp` to verify MCP server setup.
+4. Ensure agent configurations in `.claude/agents/` are accessible for specialized workflows.
 
 - Architecture patterns and design principles
 - Technology-specific best practices
@@ -346,6 +431,16 @@ The `.env` file is listed in `.gitignore` and should never be committed to the r
 - Break down complex tasks into manageable steps
 - Include validation checkpoints
 - Estimate effort and dependencies
+
+#### `/analyze-task`
+**Purpose:** Post-implementation task analysis and quality review
+
+**Features:**
+- **Requirement Verification**: Validates completed code against task requirements
+- **Quality Assessment**: Reviews implementation for adherence to standards
+- **Gap Analysis**: Identifies missing functionality or incomplete requirements  
+- **Actionable Recommendations**: Provides specific improvement suggestions
+- **Agent Integration**: Leverages task-analyzer agent for comprehensive analysis
 
 ### 🎨 Design Commands
 
@@ -467,6 +562,29 @@ dotnet format && dotnet test && dotnet build     # .NET
 - **Database optimization** and query analysis
 - **DevOps best practices** and CI/CD patterns
 
+## ❓ Frequently Asked Questions
+
+**Q: Can I use this framework without Claude Code?**  
+A: No, the framework is specifically designed for Claude Code integration and requires Claude Code to function.
+
+**Q: How do I update the framework to the latest version?**  
+A: Pull the latest changes from the repository using `git pull origin main` and review any breaking changes in the documentation.
+
+**Q: Can I add custom commands to the framework?**  
+A: Yes, you can add custom commands by following the patterns in `.claude/commands/`. See the Contributing section for detailed guidelines.
+
+**Q: Which technology stacks are fully supported vs. partially supported?**  
+A: React and .NET have comprehensive configurations and gotchas documentation. Other stacks listed have basic support and can be extended using the patterns in `References/Build/` and `References/Gotchas/`.
+
+**Q: How do I know which MCP servers I need for my project?**  
+A: The basic setup requires Context7 and sequential-thinking. Add Playwright for test automation, and Azure DevOps MCP if using Azure DevOps features.
+
+**Q: Can I use this framework for existing projects (brown-field development)?**  
+A: Yes, the framework includes specific workflows for brown-field development. Start with `/analyze-codebase` to understand your existing codebase structure.
+
+**Q: I see an empty `commands/` directory at the root level. What is it for?**  
+A: This directory is reserved for future command extensions and is currently unused. All active commands are located in `.claude/commands/`.
+
 ## 🤝 Contributing
 
 ### Development Workflow
@@ -483,9 +601,16 @@ dotnet format && dotnet test && dotnet build     # .NET
 
 ### Custom Command Development
 1. Follow patterns in `.claude/commands/`
-2. Include comprehensive documentation
-3. Provide usage examples
+2. Commands are defined as Markdown files with specific structure
+3. Include comprehensive documentation and usage examples
 4. Ensure quality validation integration
+
+### Agent Development
+1. Create agent configurations in `.claude/agents/` following existing patterns
+2. Define agent purpose, capabilities, and integration points
+3. Include clear usage guidelines and examples
+4. Ensure agents work seamlessly with command workflows
+5. Test agent functionality across different scenarios
 
 ## 📖 Documentation
 
@@ -494,8 +619,16 @@ dotnet format && dotnet test && dotnet build     # .NET
 - **[Context/requirements.md](Context/requirements.md)** - Generated project requirements  
 - **[Context/Test/](Context/Test/)** - Generated test workflow specifications
 
+### Agent Documentation
+- **[.claude/agents/code-analyzer.md](.claude/agents/code-analyzer.md)** - Deep codebase analysis agent configuration
+- **[.claude/agents/code-reviewer.md](.claude/agents/code-reviewer.md)** - Comprehensive code review agent setup
+- **[.claude/agents/design-analyzer.md](.claude/agents/design-analyzer.md)** - Design pattern analysis agent
+- **[.claude/agents/prototype-builder-agent.md](.claude/agents/prototype-builder-agent.md)** - Rapid prototype generation agent
+- **[.claude/agents/task-analyzer.md](.claude/agents/task-analyzer.md)** - Task breakdown and planning agent
+
 ### Command Templates
 - **[Templates/analyze_code_base.md](Templates/analyze_code_base.md)** - Codebase analysis template
+- **[Templates/analyze_task_base.md](Templates/analyze_task_base.md)** - Task analysis template
 - **[Templates/automation_test_base.md](Templates/automation_test_base.md)** - Test workflow template
 - **[Templates/design_base.md](Templates/design_base.md)** - System design template
 - **[Templates/requirement_base.md](Templates/requirement_base.md)** - Requirements template
@@ -507,10 +640,13 @@ dotnet format && dotnet test && dotnet build     # .NET
 - **[References/Gotchas/architecture_patterns.md](References/Gotchas/architecture_patterns.md)** - System design patterns guide
 - **[References/Gotchas/design-principles.md](References/Gotchas/design-principles.md)** - Software design principles
 - **[References/Gotchas/anti_patterns.md](References/Gotchas/anti_patterns.md)** - Common anti-patterns to avoid
+- **[References/Gotchas/anti_redundancy_rules.md](References/Gotchas/anti_redundancy_rules.md)** - Code redundancy prevention patterns
 - **[References/Gotchas/frontend_best_practices.md](References/Gotchas/frontend_best_practices.md)** - Frontend development standards
 - **[References/Gotchas/backend_best_practices.md](References/Gotchas/backend_best_practices.md)** - Backend development patterns
 - **[References/Gotchas/database_best_practices.md](References/Gotchas/database_best_practices.md)** - Database design and optimization
 - **[References/Gotchas/devops_best_practices.md](References/Gotchas/devops_best_practices.md)** - CI/CD and deployment patterns
+- **[References/Gotchas/general_coding_standards.md](References/Gotchas/general_coding_standards.md)** - Universal coding standards
+- **[References/Gotchas/testing_workflow_patterns.md](References/Gotchas/testing_workflow_patterns.md)** - Test workflow best practices
 
 ### Technology Configuration
 - **[References/Build/react_config.yaml](References/Build/react_config.yaml)** - React + TypeScript + Vite setup
@@ -535,3 +671,9 @@ dotnet format && dotnet test && dotnet build     # .NET
 2. Use templates for consistent project structure
 3. Reference gotchas documentation for knowledge sharing
 4. Implement quality gates in CI/CD pipelines
+
+## 🔧 Troubleshooting
+
+For common issues and solutions, refer to the comprehensive troubleshooting guide:
+- **[References/Gotchas/troubleshooting_guide.md](References/Gotchas/troubleshooting_guide.md)** - Common setup issues, configuration problems, and solutions
+- **[References/Gotchas/framework_methodology.md](References/Gotchas/framework_methodology.md)** - Framework usage patterns and best practices
