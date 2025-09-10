@@ -9,24 +9,30 @@
     },
     "playwright": {
       "type": "stdio",
-      "command": "npx",
+      "command": "cmd",
       "args": [
+        "/c",
+        "npx",
         "@playwright/mcp@latest"
       ],
       "env": {}
     },
     "sequential-thinking": {
       "type": "stdio",
-      "command": "npx",
+      "command": "cmd",
       "args": [
+        "/c",
+        "npx",
         "@modelcontextprotocol/server-sequential-thinking"
       ],
       "env": {}
     },
     "azure-devops": {
       "type": "stdio",
-      "command": "npx",
+      "command": "cmd",
       "args": [
+        "/c",
+        "npx",
         "-y",
         "@azure-devops/mcp",
         "SudhiHebbar"
@@ -35,8 +41,10 @@
     },
     "shadcn": {
       "type": "stdio",
-      "command": "npx",
+      "command": "cmd",
       "args": [
+        "/c",
+        "npx",
         "shadcn@latest",
         "mcp"
       ],
@@ -44,8 +52,10 @@
     },
     "github": {
       "type": "stdio",
-      "command": "npx",
+      "command": "cmd",
       "args": [
+        "/c",
+        "npx",
         "-y",
         "@modelcontextprotocol/server-github@latest",
         "--env",
