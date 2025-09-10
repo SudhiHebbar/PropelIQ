@@ -31,8 +31,7 @@
         "@azure-devops/mcp",
         "SudhiHebbar"
       ],
-      "env": {},
-      "_note": "Third parameter 'SudhiHebbar' is the Azure DevOps organization name"
+      "env": {}
     },
     "shadcn": {
       "type": "stdio",
@@ -40,6 +39,17 @@
       "args": [
         "shadcn@latest",
         "mcp"
+      ],
+      "env": {}
+    },
+    "github": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github@latest",
+        "--env",
+        "GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PAT}"
       ],
       "env": {}
     }

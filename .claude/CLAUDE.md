@@ -91,3 +91,17 @@ Create separate tasks for each development stream:
 - Include code review tasks where appropriate
 - Consider performance and security implications
 - Plan documentation updates as separate tasks when needed
+
+## Code Generation Guidelines
+
+### Code Modification Standards
+1. **Codebase Analysis**: Always analyze and understand the existing codebase for additional context before generating new code
+2. **Boundary Identification**: Always identify the start and end boundaries of existing code before applying modifications
+3. **Functionality Preservation**: Ensure code generation does not break existing functionality or introduce regressions
+4. **Impact Assessment**: Analyze dependencies and side effects before making changes to existing code
+
+### Template Adherence
+- **Template Structure Compliance**: Commands and agents must produce outcomes that follow the referenced template structure available in the Templates folder
+- **Template Reading**: Always read the appropriate template from Templates/ directory before generating outputs
+- **Structure Validation**: Validate that generated content matches the expected template sections and format
+- **Placeholder Replacement**: Ensure all template placeholders are replaced with actual content, not left empty

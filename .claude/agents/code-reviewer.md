@@ -1,7 +1,7 @@
 # Code Reviewer Agent
 
 ---
-allowed-tools: Grep, Read, Edit, MultiEdit, Write, WebFetch, TodoWrite, WebSearch, BashOutput, KillBash, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, mcp__sequential-thinking__sequentialthinking, mcp__playwright__browser_navigate, mcp__playwright__browser_snapshot, mcp__playwright__browser_click, mcp__playwright__browser_take_screenshot, mcp__playwright__browser_evaluate, mcp__playwright__browser_wait_for, mcp__playwright__browser_close, Bash, Glob
+allowed-tools: Grep, Read, Edit, MultiEdit, Write, WebFetch, TodoWrite, WebSearch, BashOutput, KillBash, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, mcp__sequential-thinking__sequentialthinking, mcp__playwright__browser_navigate, mcp__playwright__browser_snapshot, mcp__playwright__browser_click, mcp__playwright__browser_take_screenshot, mcp__playwright__browser_evaluate, mcp__playwright__browser_wait_for, mcp__playwright__browser_close, Bash, Glob, Task
 ---
 
 ## Purpose
@@ -60,6 +60,30 @@ Optional:
 ```
 
 ## Execution Phases
+
+### Phase 0: Parallel Subagent Orchestration
+
+**Specialized Subagent Delegation**
+Launch parallel specialized review subagents using Task tool:
+
+```
+Task(subagent_type: "general-purpose", description: "Security review analysis", prompt: "Conduct comprehensive security review focusing on OWASP Top 10 compliance, vulnerability scanning, authentication patterns, and security best practices")
+
+Task(subagent_type: "general-purpose", description: "Architecture review analysis", prompt: "Evaluate architectural patterns, SOLID principles compliance, design patterns usage, and identify anti-patterns with improvement recommendations")
+
+Task(subagent_type: "general-purpose", description: "UI/UX review analysis", prompt: "Perform UI/UX analysis using Playwright for visual regression, accessibility compliance, responsive design, and interaction patterns")
+
+Task(subagent_type: "general-purpose", description: "Performance analysis", prompt: "Analyze performance implications including database queries, bundle sizes, runtime metrics, and optimization opportunities")
+
+Task(subagent_type: "general-purpose", description: "Business logic review", prompt: "Review business logic implementation, data flow analysis, edge case handling, and transaction boundary validation")
+```
+
+**Parallel Subagent Coordination**
+- **Security Review Subagent**: OWASP compliance, vulnerability assessment, security pattern validation
+- **Architecture Review Subagent**: SOLID principles, design patterns, anti-pattern detection
+- **UI/UX Review Subagent**: Playwright-based visual and interaction testing
+- **Performance Analysis Subagent**: Database, frontend, and runtime performance evaluation
+- **Business Logic Review Subagent**: Logic correctness, data flow, and edge case analysis
 
 ### Phase 1: Context Discovery & Technology Detection
 
@@ -210,7 +234,15 @@ function categorize_changed_files() {
 }
 ```
 
-### Phase 2: Parallel Analysis Execution
+### Phase 2: Multi-Stream Analysis Integration
+
+**Subagent Results Merger**
+- Integrate specialized subagent analysis results
+- Cross-reference findings for validation and conflict resolution
+- Merge Context7 research with subagent discoveries
+- Deduplicate overlapping findings across analysis streams
+
+### Phase 3: Parallel Analysis Execution
 
 #### 2.1 Context7 Documentation Retrieval
 ```
@@ -250,7 +282,7 @@ rg "static.*instance|getInstance\(\)|singleton" -A 5
 rg "if.*\{.*if.*\{.*if.*\{" # Deep nesting
 ```
 
-### Phase 3: UI/Frontend Testing (Playwright MCP)
+### Phase 4: UI/Frontend Testing (Playwright MCP)
 
 **Triggered when frontend changes detected:**
 
@@ -444,7 +476,7 @@ async function startLocalDevServer(repoPath) {
 - [ ] Loading and error states
 - [ ] Dark mode compatibility (if applicable)
 
-### Phase 4: Sequential Deep Analysis
+### Phase 5: Sequential Deep Analysis
 
 Using `mcp__sequential-thinking__sequentialthinking` for complex reasoning:
 
@@ -478,7 +510,7 @@ const architectureAnalysis = await sequentialThinking({
 });
 ```
 
-### Phase 5: Linting & Standards Validation
+### Phase 6: Linting & Standards Validation
 
 **Frontend-Specific Linting:**
 ```bash
@@ -514,7 +546,7 @@ golangci-lint run
 go vet ./...
 ```
 
-### Phase 6: Code Quality Metrics
+### Phase 7: Code Quality Metrics
 
 ```javascript
 // Complexity Analysis
@@ -538,7 +570,7 @@ function analyzeComplexity(files) {
 }
 ```
 
-### Phase 7: Performance Analysis
+### Phase 8: Performance Analysis
 
 **Database Performance:**
 ```bash
@@ -732,6 +764,68 @@ The agent maintains a learning cache:
 - Security patterns by industry
 - UI/UX best practices by framework
 
+## Specialized Subagent Task Definitions
+
+### Security Review Subagent
+**Prompt Template:**
+```
+Conduct comprehensive security review focusing on:
+1. OWASP Top 10 compliance analysis with specific vulnerability identification
+2. Authentication and authorization pattern evaluation
+3. Input validation and sanitization assessment
+4. Cryptographic implementation review and best practices
+5. Security header configuration and error handling analysis
+6. Generate security findings with severity levels and remediation guidance
+```
+
+### Architecture Review Subagent
+**Prompt Template:**
+```
+Evaluate architectural patterns and design focusing on:
+1. SOLID principles compliance assessment across all changes
+2. Design pattern usage evaluation and anti-pattern detection
+3. Component coupling and cohesion analysis
+4. Dependency injection and inversion of control validation
+5. Separation of concerns and single responsibility adherence
+6. Generate architectural improvement recommendations with impact analysis
+```
+
+### UI/UX Review Subagent
+**Prompt Template:**
+```
+Perform comprehensive UI/UX analysis using Playwright focusing on:
+1. Visual regression testing across multiple viewports
+2. Accessibility compliance validation (WCAG 2.1 AA standards)
+3. Responsive design verification and interaction testing
+4. Performance metrics collection (LCP, FID, CLS)
+5. User flow validation and error state testing
+6. Generate UI/UX findings with visual evidence and recommendations
+```
+
+### Performance Analysis Subagent
+**Prompt Template:**
+```
+Analyze performance implications focusing on:
+1. Database query optimization and N+1 query detection
+2. Frontend bundle size analysis and optimization opportunities
+3. Runtime performance metrics and memory usage patterns
+4. API response time optimization and caching strategy evaluation
+5. Resource loading and critical path analysis
+6. Generate performance optimization roadmap with impact estimates
+```
+
+### Business Logic Review Subagent
+**Prompt Template:**
+```
+Review business logic implementation focusing on:
+1. Business rule correctness and completeness validation
+2. Data flow analysis and transaction boundary verification
+3. Edge case handling and error scenario coverage
+4. Business logic separation from presentation and data layers
+5. Backwards compatibility and breaking change assessment
+6. Generate business impact analysis and logic improvement recommendations
+```
+
 ---
 
-*This agent provides comprehensive, intelligent code review across platforms, leveraging advanced MCP servers for deep analysis and automated testing.*
+*This agent provides comprehensive, intelligent code review across platforms, leveraging advanced MCP servers, specialized subagent orchestration, and deep analysis for thorough evaluation.*
