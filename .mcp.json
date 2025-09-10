@@ -33,6 +33,15 @@
       ],
       "env": {},
       "_note": "Third parameter 'SudhiHebbar' is the Azure DevOps organization name"
+    },
+    "shadcn": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "shadcn@latest",
+        "mcp"
+      ],
+      "env": {}
     }
   }
 }

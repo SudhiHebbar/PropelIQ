@@ -11,6 +11,7 @@ This agent follows a **Discovery → Plan → Implement** approach to rapidly cr
 ## Required Tools
 - **context7**: For programming language documentation and best practices
 - **sequential-thinking**: For requirement analysis and architectural reasoning
+- **shadcn**: For modern UI component design and system architecture patterns
 - **Standard development tools**: Read, Write, Edit, Bash, etc.
 
 ## Three-Phase Approach
@@ -37,7 +38,17 @@ This agent follows a **Discovery → Plan → Implement** approach to rapidly cr
    - Assess performance and scalability needs
    - Define browser/device compatibility requirements
 
-4. **Constraint Analysis**
+4. **Best Practices Review**
+   - Review @References/Gotchas/anti_patterns.md for common pitfalls to avoid
+   - Consult @References/Gotchas/anti_redundancy_rules.md for DRY principles
+   - Apply @References/Gotchas/architecture_patterns.md for architectural guidance
+   - Follow @References/Gotchas/backend_best_practices.md for server-side standards
+   - Implement @References/Gotchas/frontend_best_practices.md for client-side quality
+   - Adhere to @References/Gotchas/framework_methodology.md for development approach
+   - Apply @References/Gotchas/general_coding_standards.md for code quality
+   - Follow @References/Gotchas/design-principles.md for system design
+
+5. **Constraint Analysis**
    - Timeline and resource constraints
    - Technical limitations or preferences
    - Security and compliance considerations
@@ -47,6 +58,7 @@ This agent follows a **Discovery → Plan → Implement** approach to rapidly cr
 - `prototype/requirements-analysis.md`
 - `prototype/user-journeys.md`
 - `prototype/technical-constraints.md`
+- `prototype/best-practices-review.md`
 
 ### Phase 2: Planning
 **Objective**: Design a minimal but effective architecture and implementation strategy
@@ -71,10 +83,10 @@ This agent follows a **Discovery → Plan → Implement** approach to rapidly cr
    - Create development timeline
 
 4. **Design System Planning**
-   - Select UI framework and component library
+   - Select UI framework and component library (leverage shadcn/ui for modern components)
    - Define basic styling and branding approach
    - Plan responsive design strategy
-   - Consider accessibility requirements
+   - Consider accessibility requirements and ARIA compliance
 
 **Deliverables**:
 - `prototype/architecture.md`
@@ -125,6 +137,7 @@ prototype/
 ├── requirements-analysis.md  # Business requirements and objectives
 ├── user-journeys.md         # User workflows and use cases
 ├── technical-constraints.md # Technical requirements and limitations
+├── best-practices-review.md # Best practices analysis and gotchas to avoid
 ├── architecture.md          # System architecture and design
 ├── tech-stack.md           # Technology choices and justifications
 ├── implementation-plan.md   # Development approach and timeline
@@ -177,6 +190,7 @@ prototype/
 
 ### Styling Approaches
 - **Tailwind CSS**: For rapid UI development
+- **shadcn/ui**: For modern, accessible component library with Tailwind CSS
 - **Material-UI/Chakra**: For consistent component library
 - **Bootstrap**: For familiar and quick styling
 - **CSS Modules**: For component-scoped styling
@@ -235,10 +249,12 @@ prototype/
 
 1. **Always start with sequential-thinking** to analyze the requirements
 2. **Use context7** to research appropriate technologies and patterns
-3. **Create all outputs in the prototype/ folder**
-4. **Follow the three-phase approach strictly**
-5. **Focus on demonstration value over completeness**
-6. **Provide clear next steps for production development**
-7. **Include recommendations for scaling and enhancement**
+3. **Use shadcn** to identify and implement modern UI components and design patterns
+4. **Create all outputs in the prototype/ folder**
+5. **Follow the three-phase approach strictly**
+6. **Mandatory best practices review**: During Discovery Phase, thoroughly review all specified gotcha files to ensure the prototype follows established patterns and avoids common pitfalls
+7. **Focus on demonstration value over completeness**
+8. **Provide clear next steps for production development**
+9. **Include recommendations for scaling and enhancement**
 
 This agent should enable rapid validation of business requirements through functional prototypes that stakeholders can interact with and provide feedback on.
