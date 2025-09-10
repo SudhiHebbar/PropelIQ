@@ -1,588 +1,708 @@
-# Comprehensive Pull Request Code Review
+# GitHub Pull Request Review
+
 ---
-allowed-tools: Grep, LS, Read, Edit, MultiEdit, Write, WebFetch, TodoWrite, WebSearch, BashOutput, KillBash, ListMcpResourcesTool, ReadMcpResourceTool, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, Bash, Glob
-
-description: Perform enterprise-grade comprehensive code review for Pull Requests with security, architecture, business logic, and technology-specific analysis.
-argument-hint: <pull_request_number_or_url>
+allowed-tools: Task, mcp__github__get_pull_request, mcp__github__get_pull_request_comments, mcp__github__list_commits, mcp__github__get_pull_request_files, mcp__github__get_pull_request_status, Bash, Grep, Read, TodoWrite
+description: Perform comprehensive code review for GitHub Pull Requests using generic code-reviewer agent with Context7, sequential-thinking, and Playwright integration. Includes fallback strategies for MCP server failures.
+argument-hint: <pr_id> [--owner=OWNER] [--repo=REPO] [--depth=comprehensive] [--ui-testing=auto]
 ---
 
-As a **Senior Software Architect and Security Expert**, perform comprehensive pull request analysis for $ARGUMENTS covering all critical aspects of enterprise software development.
+As a **Senior Software Architect**, orchestrate comprehensive pull request analysis for GitHub PRs by leveraging the generic code-reviewer agent with advanced MCP integrations.
 
-## Core Review Principles
+## Command Parameters
 
-Optimize for review completeness and success over speed. Spawn multiple agents and subagents using batch tools for comprehensive review.
+```
+/gitops/review-pr [pr_id] [options]
 
-*** MANDATORY VALIDATIONS ***
-- Retrieve complete PR context including files, commits, reviews, and metadata
-- Use `mcp__context7__get-library-docs` to perform technology-specific reviews using coding guidelines, design principles and standards
-- Apply technology-specific gotchas from `References/Gotchas/` directory
-- Perform automated validation using `References/Gotchas/validation_commands.md`
-- Assess logic errors and potential impact
-- Assess business logic impact and potential side effects
-- Validate architecture compliance with established patterns
-- Generate risk-based recommendations with priority levels
-- **CRITICAL**: Reference framework standards and anti-patterns throughout review
+Optional:
+  pr_id                   GitHub Pull Request number (if omitted, reviews local changes against main branch)
 
-## Comprehensive Review Framework
-
-### Phase 1: Context Discovery & Risk Assessment
-
-#### PR Metadata Analysis
-```bash
-# Retrieve comprehensive PR information
-gh pr view $ARGUMENTS --json files,commits,reviews,body,title,author,createdAt,mergeable
-gh pr diff $ARGUMENTS --name-only
-gh pr checks $ARGUMENTS
+Options:
+  --owner=NAME           Repository owner (default: auto-detect from git remote)
+  --repo=NAME            Repository name (default: auto-detect from git remote)
+  --base-branch=BRANCH   Base branch for comparison (default: main|master)
+  --depth=LEVEL          Analysis depth: quick|standard|comprehensive (default: comprehensive)
+  --ui-testing=MODE      UI testing: auto|enabled|disabled (default: auto)
+  --focus=AREAS          Comma-separated focus areas (default: all)
+                         Options: security,architecture,ui,performance,testing,business-logic
+  --local-only           Force local analysis mode (default: auto-detect)
 ```
 
-#### Technology Stack Detection
+## Execution Flow
+
+### Phase 1: Authentication & Mode Detection
+
 ```bash
-# Auto-detect technology stack from changed files
-rg --files-with-matches "\.(js|jsx|ts|tsx)$" | head -5  # Frontend
-rg --files-with-matches "\.(cs|csproj|sln)$" | head -5  # .NET
-rg --files-with-matches "\.(py|requirements\.txt)$" | head -5  # Python
-rg --files-with-matches "\.(java|gradle|pom\.xml)$" | head -5  # Java
-rg --files-with-matches "package\.json|yarn\.lock" | head -5   # Node.js
+# Check GitHub authentication status
+function check_github_auth() {
+  echo "🔐 Checking GitHub authentication..."
+  
+  # Test authentication by checking user status
+  if ! gh auth status >/dev/null 2>&1; then
+    echo "❌ GitHub CLI not authenticated"
+    echo "Please run: gh auth login"
+    return 1
+  fi
+  
+  echo "✅ GitHub authentication verified"
+  return 0
+}
+
+# Determine review mode: PR vs Local
+REVIEW_MODE="local"
+if [ -n "$ARGUMENTS_PR_ID" ] && [ "$ARGUMENTS_LOCAL_ONLY" != "true" ]; then
+  REVIEW_MODE="pr"
+  
+  # For PR mode, ensure GitHub authentication
+  if ! check_github_auth; then
+    echo "❌ GitHub authentication required for PR review mode"
+    echo "Switching to local review mode..."
+    REVIEW_MODE="local"
+  fi
+fi
+
+# Auto-detect base branch if not specified
+BASE_BRANCH="${ARGUMENTS_BASE_BRANCH:-main}"
+if ! git show-ref --verify --quiet refs/heads/$BASE_BRANCH; then
+  BASE_BRANCH="master"
+  if ! git show-ref --verify --quiet refs/heads/$BASE_BRANCH; then
+    # Find default branch from remote
+    BASE_BRANCH=$(git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@')
+  fi
+fi
+
+echo "Review Mode: $REVIEW_MODE"
+echo "Base Branch: $BASE_BRANCH"
 ```
 
-#### Risk Classification
-**High Risk Indicators**:
-- Database schema changes
-- Authentication/authorization modifications
-- API contract changes
-- Security-related code
-- Performance-critical paths
-- External integrations
+### Phase 2: Context Retrieval (PR Mode)
 
-**Medium Risk Indicators**:
-- Business logic changes
-- New feature implementations
-- Configuration updates
-- Dependency changes
+```javascript
+let reviewContext = {};
 
-**Low Risk Indicators**:
-- Documentation updates
-- Code styling/formatting
-- Comment additions
-- Test additions
+if (reviewMode === "pr") {
+  try {
+    // Auto-detect owner and repo from git remote if not provided
+    const autoDetectOwner = async () => {
+      if ($ARGUMENTS.owner) return $ARGUMENTS.owner;
+      
+      const remoteUrl = await Bash({ 
+        command: "git config --get remote.origin.url",
+        description: "Get git remote URL"
+      });
+      
+      if (remoteUrl.includes("github.com")) {
+        const match = remoteUrl.match(/github\.com[:/]([^/]+)/);
+        return match ? match[1] : null;
+      }
+      return null;
+    };
 
-### Phase 2: Security Assessment (OWASP Top 10 Focused)
+    const autoDetectRepo = async () => {
+      if ($ARGUMENTS.repo) return $ARGUMENTS.repo;
+      
+      const remoteUrl = await Bash({ 
+        command: "git config --get remote.origin.url",
+        description: "Get git remote URL"
+      });
+      
+      if (remoteUrl.includes("github.com")) {
+        const match = remoteUrl.match(/github\.com[:/][^/]+\/([^/.]+)/);
+        return match ? match[1] : null;
+      }
+      return null;
+    };
 
-#### A01: Broken Access Control
-```bash
-# Check for authorization bypasses
-rg "bypass|skip.*auth|admin.*true|role.*=.*admin" --type typescript --type python --type cs
-rg "@PreAuthorize|@Authorized|@RequiresRoles" -A 3 -B 3
-rg "if.*user.*admin|if.*role.*==" -A 5 -B 2
+    const owner = await autoDetectOwner();
+    const repo = await autoDetectRepo();
+    
+    if (!owner || !repo) {
+      throw new Error("Could not auto-detect repository owner/name from git remote");
+    }
+
+    // 1. Primary: Fetch PR details from GitHub MCP
+    console.log("📋 Fetching PR details from GitHub...");
+    const prDetails = await mcp__github__get_pull_request({
+      owner: owner,
+      repo: repo,
+      pull_number: $ARGUMENTS.pr_id
+    });
+
+    reviewContext = {
+      mode: "pr",
+      prId: $ARGUMENTS.pr_id,
+      title: prDetails.title,
+      description: prDetails.body || "",
+      sourceRef: prDetails.head.ref,
+      targetRef: prDetails.base.ref,
+      author: prDetails.user,
+      state: prDetails.state,
+      isDraft: prDetails.draft,
+      repository: repo,
+      owner: owner
+    };
+
+    // Get additional PR context
+    reviewContext.existingComments = await mcp__github__get_pull_request_comments({
+      owner: owner, repo: repo, pull_number: $ARGUMENTS.pr_id
+    });
+    
+    reviewContext.changedFiles = await mcp__github__get_pull_request_files({
+      owner: owner, repo: repo, pull_number: $ARGUMENTS.pr_id
+    });
+    
+    reviewContext.commits = await mcp__github__list_commits({
+      owner: owner,
+      repo: repo,
+      sha: prDetails.head.sha
+    });
+
+    // 6. Get CI/CD status
+    console.log("🔄 Checking CI/CD status...");
+    reviewContext.checks = await mcp__github__get_pull_request_status({
+      owner: owner,
+      repo: repo,
+      pull_number: $ARGUMENTS.pr_id
+    });
+
+    console.log("✅ GitHub context retrieved successfully");
+
+  } catch (error) {
+    console.error("❌ GitHub MCP failed:", error.message);
+    
+    // Fallback: Use local git commands for PR analysis  
+    console.log("⚠️  Falling back to local git analysis...");
+    
+    reviewContext = {
+      mode: "fallback-local",
+      prId: $ARGUMENTS.pr_id,
+      title: "PR Review (Fallback Mode)",
+      description: "GitHub integration unavailable - using local git analysis",
+      sourceRef: await Bash("git rev-parse --abbrev-ref HEAD"),
+      targetRef: $ARGUMENTS.base_branch || "main",
+      author: await Bash("git config user.name"),
+      repository: repo || await Bash("basename $(git rev-parse --show-toplevel)"),
+      owner: owner || "local",
+      warning: "Limited functionality - GitHub MCP integration unavailable",
+      
+      // Use git commands for file analysis
+      changedFiles: await Bash(`git diff --name-only HEAD~1`).then(files => 
+        files.split('\n').filter(f => f.trim()).map(file => ({
+          filename: file,
+          status: 'modified',
+          patch: null // Will analyze files directly
+        }))
+      ),
+      
+      commits: await Bash(`git log --oneline -5`).then(logs =>
+        logs.split('\n').filter(l => l.trim()).map(line => ({
+          sha: line.split(' ')[0],
+          message: line.substring(8)
+        }))
+      )
+    };
+  }
+} else {
+  // Local mode setup
+  console.log("🏠 Setting up local repository analysis...");
+  reviewContext = await setupLocalReviewContext();
+}
 ```
 
-#### A02: Cryptographic Failures
+### Phase 3: Local Review Context Setup
+
 ```bash
-# Check for weak cryptography
-rg "md5|sha1|DES|RC4|ECB" --ignore-case
-rg "password.*plain|token.*clear|secret.*unencrypted"
-rg "Math\.random|Random\(\)|new Random" # Weak random number generation
+function setupLocalReviewContext() {
+  # Get current branch and repository info
+  CURRENT_BRANCH=$(git branch --show-current)
+  REPO_ROOT=$(git rev-parse --show-toplevel)
+  REPO_NAME=$(basename "$REPO_ROOT")
+  
+  # Auto-detect GitHub repo from remote
+  REMOTE_URL=$(git config --get remote.origin.url)
+  OWNER=""
+  REPO=""
+  if [[ "$REMOTE_URL" =~ github.com[:/]([^/]+)/([^/.]+) ]]; then
+    OWNER="${BASH_REMATCH[1]}"
+    REPO="${BASH_REMATCH[2]}"
+  fi
+  
+  # Get uncommitted and committed changes
+  UNCOMMITTED_CHANGES=$(git status --porcelain)
+  COMMITTED_CHANGES=$(git diff --name-only $BASE_BRANCH..HEAD)
+  
+  # Combine all changes
+  ALL_CHANGED_FILES=$(echo -e "$UNCOMMITTED_CHANGES\n$COMMITTED_CHANGES" | \
+    awk '{print $NF}' | sort -u | grep -v '^$')
+  
+  cat << EOF
+{
+  "mode": "local",
+  "currentBranch": "$CURRENT_BRANCH",
+  "baseBranch": "$BASE_BRANCH",
+  "repository": "$REPO_NAME",
+  "owner": "$OWNER",
+  "repo": "$REPO",
+  "repoRoot": "$REPO_ROOT",
+  "changedFiles": $(echo "$ALL_CHANGED_FILES" | jq -R . | jq -s .),
+  "uncommittedChanges": $(echo "$UNCOMMITTED_CHANGES" | jq -R . | jq -s .),
+  "committedChanges": $(echo "$COMMITTED_CHANGES" | jq -R . | jq -s .),
+  "author": "$(git config user.name)",
+  "email": "$(git config user.email)",
+  "lastCommit": "$(git log -1 --pretty=format:'%H|%s|%an|%ad' --date=iso)"
+}
+EOF
+}
 ```
 
-#### A03: Injection Vulnerabilities
+### Phase 4: File Change Analysis & Git Diff Generation
+
 ```bash
-# SQL Injection patterns
-rg "SELECT.*\+|INSERT.*\+|UPDATE.*\+|DELETE.*\+" --type cs --type java
-rg "query.*\+|sql.*\+|execute.*\+" -A 3 -B 3
-rg "String\.Format.*SELECT|String\.format.*SELECT"
+function analyzeFileChanges() {
+  if [ "$REVIEW_MODE" = "pr" ]; then
+    # PR Mode: Use files from GitHub API
+    echo "Analyzing PR files..."
+    
+    # Extract file names from PR files (assuming they're stored in a temp file)
+    CHANGED_FILES=$(echo "$PR_CHANGED_FILES" | jq -r '.[].filename' 2>/dev/null || echo "")
+    
+    # Generate detailed diff for analysis
+    gh pr diff $PR_ID > /tmp/pr-diff-$$.patch || {
+      echo "Warning: Could not generate PR diff via gh CLI"
+      touch /tmp/pr-diff-$$.patch
+    }
+    
+  else
+    # Local Mode: Use current working directory
+    cd "$REPO_ROOT"
+    
+    # Get all changes (staged + unstaged + committed)
+    STAGED_FILES=$(git diff --cached --name-only || true)
+    UNSTAGED_FILES=$(git diff --name-only || true)
+    COMMITTED_FILES=$(git diff --name-only $BASE_BRANCH..HEAD || true)
+    
+    # Combine all changed files
+    CHANGED_FILES=$(echo -e "$STAGED_FILES\n$UNSTAGED_FILES\n$COMMITTED_FILES" | \
+      sort -u | grep -v '^$' || true)
+    
+    # Generate comprehensive diff
+    {
+      echo "=== STAGED CHANGES ==="
+      git diff --cached || true
+      echo -e "\n=== UNSTAGED CHANGES ==="
+      git diff || true
+      echo -e "\n=== COMMITTED CHANGES ==="
+      git diff $BASE_BRANCH..HEAD || true
+    } > /tmp/local-diff-$$.patch
+  fi
+  
+  # Categorize changes
+  FRONTEND_CHANGES=$(echo "$CHANGED_FILES" | grep -E "\.(tsx?|jsx?|css|scss|vue|svelte)$" || true)
+  BACKEND_CHANGES=$(echo "$CHANGED_FILES" | grep -E "\.(cs|py|java|go|rb)$" || true)
+  CONFIG_CHANGES=$(echo "$CHANGED_FILES" | grep -E "\.(json|yaml|yml|xml|toml)$" || true)
+  SQL_CHANGES=$(echo "$CHANGED_FILES" | grep -E "\.(sql|migration)$" || true)
+  TEST_CHANGES=$(echo "$CHANGED_FILES" | grep -E "\.(test|spec)\.(tsx?|jsx?|cs|py|java|go|rb)$" || true)
+  
+  # Output analysis summary
+  echo "Changed Files Analysis:"
+  echo "- Total files changed: $(echo "$CHANGED_FILES" | wc -l)"
+  echo "- Frontend files: $(echo "$FRONTEND_CHANGES" | wc -l)"
+  echo "- Backend files: $(echo "$BACKEND_CHANGES" | wc -l)"
+  echo "- Config files: $(echo "$CONFIG_CHANGES" | wc -l)"
+  echo "- SQL/Migration files: $(echo "$SQL_CHANGES" | wc -l)"
+  echo "- Test files: $(echo "$TEST_CHANGES" | wc -l)"
+}
 
-# Command Injection
-rg "exec\(|system\(|shell_exec|passthru|eval\(" --type python --type javascript
-rg "Runtime\.getRuntime|ProcessBuilder|Process\.start" --type java
-
-# NoSQL Injection
-rg "\$where|\$regex|\$ne.*\$|find\(.*\{" --type javascript
+# Execute analysis
+analyzeFileChanges
 ```
 
-#### A04: Insecure Design
+### Phase 5: Technology Stack Detection
+
 ```bash
-# Check for design flaws
-rg "TODO.*security|FIXME.*auth|HACK.*permission"
-rg "if.*production.*false|if.*debug.*true" # Debug code in production
-rg "localhost|127\.0\.0\.1|0\.0\.0\.0" --type config --type yaml --type json
+# Auto-detect technology stack
+TECH_STACK=""
+
+# Frontend detection
+[ -f "package.json" ] && TECH_STACK="$TECH_STACK,Node.js"
+grep -q "\"react\"" package.json 2>/dev/null && TECH_STACK="$TECH_STACK,React"
+grep -q "\"@angular/core\"" package.json 2>/dev/null && TECH_STACK="$TECH_STACK,Angular"
+grep -q "\"vue\"" package.json 2>/dev/null && TECH_STACK="$TECH_STACK,Vue"
+
+# Backend detection
+ls *.csproj >/dev/null 2>&1 && TECH_STACK="$TECH_STACK,.NET"
+[ -f "requirements.txt" ] || [ -f "pyproject.toml" ] && TECH_STACK="$TECH_STACK,Python"
+[ -f "pom.xml" ] || [ -f "build.gradle" ] && TECH_STACK="$TECH_STACK,Java"
+[ -f "go.mod" ] && TECH_STACK="$TECH_STACK,Go"
+
+# Determine if UI testing is needed
+UI_TESTING_NEEDED="false"
+if [ -n "$FRONTEND_CHANGES" ] && [ "$UI_TESTING" != "disabled" ]; then
+  UI_TESTING_NEEDED="true"
+fi
+
+echo "Technology Stack Detected: ${TECH_STACK#,}"
+echo "UI Testing Needed: $UI_TESTING_NEEDED"
 ```
 
-#### A05: Security Misconfiguration
-```bash
-# Configuration security issues
-rg "AllowAnyOrigin|allowCredentials.*true|cors.*\*"
-rg "debug.*=.*true|development.*=.*true" --type config
-rg "password.*=|secret.*=|key.*=" --type config --type env
+### Phase 6: Invoke Code-Reviewer Agent
+
+```javascript
+// Prepare comprehensive context for the code-reviewer agent
+let agentContext = {
+  source: reviewContext.mode === "pr" ? "github" : "local",
+  changedFiles: changedFilesList,
+  techStack: detectedTechStack,
+  analysisConfig: {
+    depth: $ARGUMENTS.depth || "comprehensive",
+    focus: $ARGUMENTS.focus || "all",
+    uiTesting: uiTestingNeeded,
+    context7Lookups: 10,
+    sequentialDepth: 15,
+    timeBudget: 30
+  }
+};
+
+if (reviewContext.mode === "pr") {
+  // PR Mode context
+  agentContext = {
+    ...agentContext,
+    prId: $ARGUMENTS.pr_id,
+    repository: reviewContext.repository,
+    owner: reviewContext.owner,
+    prContext: {
+      title: reviewContext.title,
+      description: reviewContext.description,
+      author: reviewContext.author.login,
+      sourceRef: reviewContext.sourceRef,
+      targetRef: reviewContext.targetRef,
+      state: reviewContext.state,
+      isDraft: reviewContext.isDraft,
+      checks: reviewContext.checks
+    },
+    localRepoPath: repoRoot,
+    diffFile: `/tmp/pr-diff-$$.patch`
+  };
+} else {
+  // Local Mode context
+  agentContext = {
+    ...agentContext,
+    repository: reviewContext.repository,
+    owner: reviewContext.owner,
+    localContext: {
+      currentBranch: reviewContext.currentBranch,
+      baseBranch: reviewContext.baseBranch,
+      author: reviewContext.author,
+      email: reviewContext.email,
+      lastCommit: reviewContext.lastCommit,
+      uncommittedChanges: reviewContext.uncommittedChanges,
+      committedChanges: reviewContext.committedChanges
+    },
+    localRepoPath: reviewContext.repoRoot,
+    diffFile: `/tmp/local-diff-$$.patch`
+  };
+}
+
+// Invoke the specialized pr-code-reviewer agent
+console.log("🔍 Invoking pr-code-reviewer agent for comprehensive analysis...");
+const reviewResults = await Task({
+  description: reviewContext.mode === "pr" ? "Deep GitHub PR analysis" : "Local changes analysis",
+  prompt: `
+    Perform comprehensive code review for ${reviewContext.mode === "pr" ? 'GitHub PR #' + prId : 'local changes against ' + reviewContext.baseBranch}.
+    
+    Context:
+    ${JSON.stringify(agentContext, null, 2)}
+    
+    Requirements:
+    1. Use Context7 to fetch best practices for detected technologies
+    2. Use sequential-thinking for complex architectural analysis
+    3. ${uiTestingNeeded ? 'Perform UI testing using Playwright MCP for frontend changes' : 'Skip UI testing'}
+    4. Focus on: ${$ARGUMENTS.focus || 'security, architecture, UI/UX, performance, testing, business logic'}
+    5. ${reviewContext.mode === "local" ? 'Analyze both committed changes against base branch AND uncommitted/staged changes' : ''}
+    6. Apply validation commands from References/Gotchas/validation_commands.md
+    7. Check against gotchas in References/Gotchas/ for detected technologies
+    8. Return structured results in the defined format
+    
+    ${reviewContext.mode === "local" ? 
+      'For local analysis, provide actionable feedback on work-in-progress changes before they are committed or pushed.' : 
+      'The review should be thorough and actionable, with clear recommendations for the PR.'}
+  `,
+  subagent_type: "pr-code-reviewer"
+});
+
+console.log("✅ PR-code-reviewer agent analysis completed");
 ```
 
-#### A06: Vulnerable and Outdated Components
-```bash
-# Check for known vulnerable dependencies
-rg "jquery.*[12]\.|lodash.*[1-3]\.|bootstrap.*[1-3]\." --type json
-rg "<PackageReference.*Version.*[\"'][01]\." --type xml # .NET old packages
-rg "python.*[12]\.|django.*[12]\.|flask.*[01]\." --type txt
+### Phase 7: Output Results (Local Only - No PR Posting)
+
+```javascript
+// Structure review results for local output
+async function outputReviewResults(results) {
+  const reportPath = "github-pr-review-report.md";
+  
+  console.log(`\n🔍 ${reviewContext.mode === "pr" ? "GitHub PR" : "Local"} Code Review Completed`);
+  console.log(`📊 Analysis Summary:`);
+  console.log(`   - Risk Level: ${results.riskLevel}`);
+  console.log(`   - Total Issues: ${results.findings.length}`);
+  console.log(`   - Critical: ${results.findings.filter(f => f.severity === 'critical').length}`);
+  console.log(`   - High: ${results.findings.filter(f => f.severity === 'high').length}`);
+  console.log(`   - Medium: ${results.findings.filter(f => f.severity === 'medium').length}`);
+  console.log(`   - Low: ${results.findings.filter(f => f.severity === 'low').length}`);
+  
+  if (results.playwrightTests) {
+    console.log(`🎨 UI Testing:`);
+    console.log(`   - Screenshots: ${results.playwrightTests.screenshots.length}`);
+    console.log(`   - Accessibility Issues: ${results.playwrightTests.a11yIssues.length}`);
+    console.log(`   - Performance Issues: ${results.playwrightTests.performanceIssues.length}`);
+  }
+  
+  if (reviewContext.mode === "pr" && reviewContext.checks) {
+    console.log(`🔄 CI/CD Status:`);
+    console.log(`   - Status: ${reviewContext.checks.state}`);
+    console.log(`   - Checks: ${reviewContext.checks.statuses?.length || 0} total`);
+  }
+  
+  console.log(`\n📄 Detailed report saved to: ${reportPath}`);
+  
+  // Generate detailed markdown report
+  const report = generateDetailedReport(results, reviewContext);
+  
+  // Save detailed report
+  await Write({
+    file_path: reportPath,
+    content: report
+  });
+  
+  // Show top priority items in console
+  const criticalIssues = results.findings.filter(f => f.severity === 'critical');
+  if (criticalIssues.length > 0) {
+    console.log(`\n⚠️  Critical Issues to Address:`);
+    criticalIssues.forEach((issue, idx) => {
+      console.log(`   ${idx + 1}. ${issue.title} (${issue.file}:${issue.line})`);
+    });
+  }
+  
+  const highIssues = results.findings.filter(f => f.severity === 'high').slice(0, 3);
+  if (highIssues.length > 0) {
+    console.log(`\n🔥 Top High Priority Issues:`);
+    highIssues.forEach((issue, idx) => {
+      console.log(`   ${idx + 1}. ${issue.title} (${issue.file}:${issue.line})`);
+    });
+  }
+
+  console.log(`\n💡 Next Steps:`);
+  if (reviewContext.mode === "pr") {
+    console.log(`   - Review findings in ${reportPath}`);
+    console.log(`   - Address critical and high priority issues`);
+    console.log(`   - Consider the PR recommendation: ${results.recommendation}`);
+  } else {
+    console.log(`   - Address findings before committing changes`);
+    console.log(`   - Run tests and build after fixes`);
+    console.log(`   - Consider creating a PR when ready`);
+  }
+}
+
+function generateDetailedReport(results, context) {
+  const reportDate = new Date().toISOString().split('T')[0];
+  
+  return `# GitHub ${context.mode === "pr" ? "PR" : "Local"} Review Report
+
+Generated: ${reportDate}
+
+## ${context.mode === "pr" ? "Pull Request" : "Local Changes"}: ${context.mode === "pr" ? context.title : context.currentBranch}
+${context.mode === "pr" ? `- **PR ID**: #${context.prId}
+- **Author**: ${context.author.login}
+- **Source**: ${context.sourceRef}
+- **Target**: ${context.targetRef}
+- **State**: ${context.state}` : `- **Branch**: ${context.currentBranch}
+- **Base**: ${context.baseBranch}
+- **Author**: ${context.author}
+- **Repository**: ${context.repository}`}
+
+## Executive Summary
+${results.executiveSummary}
+
+## Risk Assessment
+- **Overall Risk**: ${results.riskLevel}
+- **Recommendation**: ${results.recommendation}
+- **Estimated Fix Time**: ${results.estimatedFixTime}
+
+## Detailed Findings
+
+### 🔒 Security (${results.security?.length || 0} issues)
+${formatSecurityFindings(results.security)}
+
+### 🏗 Architecture & Design (${results.architecture?.length || 0} issues)
+${formatArchitectureFindings(results.architecture)}
+
+### 🎨 UI/Frontend (${results.ui?.length || 0} issues)
+${formatUIFindings(results.ui)}
+${results.playwrightTests ? formatPlaywrightResults(results.playwrightTests) : ''}
+
+### ⚡ Performance (${results.performance?.length || 0} issues)
+${formatPerformanceFindings(results.performance)}
+
+### ✅ Testing Requirements
+${formatTestingRequirements(results.testing)}
+
+### 💼 Business Logic
+${formatBusinessLogicAnalysis(results.businessLogic)}
+
+## Context7 Insights
+${formatContext7Recommendations(results.context7Insights)}
+
+## Sequential Analysis
+${formatSequentialThinkingInsights(results.sequentialAnalysis)}
+
+## Action Items
+${formatActionItems(results.actionItems)}
+
+${context.mode === "pr" && context.checks ? `## CI/CD Status
+${formatCIStatus(context.checks)}` : ''}
+
+---
+*Review completed using GitHub MCP integration with Context7, Sequential-thinking, and Playwright MCP capabilities*
+`;
+}
+
+// Execute the review output
+await outputReviewResults(reviewResults);
 ```
 
-#### A07: Authentication Failures
-```bash
-# Weak authentication patterns
-rg "password.*length.*[1-7]|password.*min.*[1-7]"
-rg "session.*timeout.*[0-9]{4,}|expires.*365" # Long sessions
-rg "remember.*true|persistent.*true" -A 3 -B 3 # Persistent logins
+### Phase 8: Error Handling & Cleanup
+
+```javascript
+try {
+  // Main execution flow
+  await executeReviewFlow();
+} catch (error) {
+  console.error(`❌ Review failed: ${error.message}`);
+  
+  if (error.type === 'AGENT_TIMEOUT') {
+    console.log("⏱️  Analysis timed out. Attempting quick analysis...");
+    await performQuickAnalysis();
+  } else if (error.type === 'MCP_CONNECTION_ERROR') {
+    console.log("🔌 MCP connection failed. Falling back to local analysis...");
+    await performLocalAnalysis();
+  } else if (error.type === 'GITHUB_API_ERROR') {
+    console.log("🐙 GitHub API error. Retrying...");
+    await retryWithBackoff();
+  }
+  
+  // Always provide some feedback
+  await outputErrorSummary(error);
+} finally {
+  // Cleanup temporary files
+  await Bash({
+    command: "rm -f /tmp/pr-diff-$$.patch /tmp/local-diff-$$.patch",
+    description: "Clean up temporary diff files"
+  });
+}
+
+async function performQuickAnalysis() {
+  // Fallback to basic linting and quick checks
+  console.log("🚀 Performing quick analysis...");
+  
+  try {
+    await Bash({
+      command: "npm run lint",
+      description: "Run linting checks"
+    });
+  } catch (e) {
+    console.log("⚠️  Linting issues found");
+  }
+  
+  try {
+    await Bash({
+      command: "npm test",
+      description: "Run tests"
+    });
+  } catch (e) {
+    console.log("⚠️  Test failures found");
+  }
+}
+
+async function outputErrorSummary(error) {
+  const errorReport = `# Review Error Report
+
+Error: ${error.message}
+Time: ${new Date().toISOString()}
+Mode: ${reviewContext.mode}
+
+Please check:
+- GitHub authentication: \`gh auth status\`
+- Repository permissions
+- Network connectivity
+- MCP server status
+
+Try running with --local-only for offline analysis.
+`;
+
+  await Write({
+    file_path: "review-error-report.md",
+    content: errorReport
+  });
+  
+  console.log("📄 Error details saved to review-error-report.md");
+}
 ```
 
-#### A08: Software and Data Integrity Failures
-```bash
-# Check for integrity issues
-rg "deserialize|pickle\.load|yaml\.load" --type python
-rg "JSON\.parse.*user|eval\(.*user" --type javascript
-rg "XmlSerializer|BinaryFormatter" --type cs # Unsafe .NET serialization
+## Advanced Features
+
+### 1. Smart Focus Detection
+Automatically adjusts review focus based on:
+- File changes pattern (frontend vs backend)
+- Commit message patterns
+- PR title and description keywords
+- Previous review feedback patterns
+
+### 2. Incremental Review
+For updated PRs:
+- Compare with previous review results
+- Focus on newly changed files since last review
+- Track resolved vs new issues
+
+### 3. Integration Points
+
+#### GitHub Actions Integration
+```yaml
+# .github/workflows/ai-review.yml
+name: AI Code Review
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  ai-review:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run AI Review
+      run: |
+        claude-cli /gitops/review-pr ${{ github.event.pull_request.number }} \
+          --owner=${{ github.repository_owner }} \
+          --repo=${{ github.event.repository.name }} \
+          --depth=comprehensive
 ```
 
-#### A09: Logging and Monitoring Failures
-```bash
-# Check for sensitive data in logs
-rg "log.*password|logger.*token|console.*secret"
-rg "System\.out\.print.*password|Console\.WriteLine.*token"
-rg "print\(.*password|logging.*secret" --type python
-```
+### 4. Performance Optimization
 
-#### A10: Server-Side Request Forgery (SSRF)
-```bash
-# SSRF vulnerability patterns
-rg "http.*\+.*user|url.*\+.*request|fetch\(.*user"
-rg "HttpClient.*user|WebRequest.*input|curl.*\$" 
-```
+1. **Parallel Execution**: Run Context7 lookups concurrently with file analysis
+2. **Caching**: Store technology detection results between runs
+3. **Incremental Analysis**: Only analyze changed files
+4. **Time Boxing**: Enforce time limits per analysis phase
+5. **Resource Management**: Clean up temporary files and close connections
 
-#### Additional Security Checks
-```bash
-# Hardcoded secrets scanning
-rg "(?i)(password|passwd|pwd|secret|key|token|api[_-]?key)\s*[:=]\s*['\"][^'\"\s]{8,}" --type typescript --type python --type cs
-rg "-----BEGIN.*PRIVATE.*KEY-----" # Private keys in code
+## Error Handling
 
-# Insecure HTTP usage
-rg "http://(?!localhost|127\.0\.0\.1)" --type config --type yaml
-rg "ssl.*false|tls.*false|verify.*false" --type config
-```
+The command includes comprehensive error handling for:
+- GitHub API rate limits and permissions
+- Authentication failures
+- Network connectivity issues
+- Large repository timeouts
+- MCP server connection failures
 
-### Phase 3: Architecture & Design Review
+All errors are logged with actionable remediation steps, and the system gracefully falls back to local analysis when possible.
 
-#### SOLID Principles Validation
-```bash
-# Single Responsibility Principle violations
-rg "class.*Manager|class.*Helper|class.*Utility" # Generic class names
-find . -name "*.ts" -o -name "*.cs" -o -name "*.py" | xargs wc -l | awk '$1 > 200 {print "SRP VIOLATION - Large class: " $2}'
+---
 
-# Open/Closed Principle - Check for proper abstractions
-rg "interface.*I[A-Z]|abstract.*class|protocol.*class" --type typescript --type cs --type python
-
-# Dependency Inversion - Check for tight coupling
-rg "new [A-Z][a-zA-Z]*\(|new [A-Z][a-zA-Z]*Service\(" --type typescript --type cs
-rg "import.*\.\.\/\.\.\/\.\." # Deep import chains indicating tight coupling
-```
-
-#### Design Pattern Analysis
-```bash
-# God Object detection
-rg "class.*\{" -A 300 . | rg -c "public.*method|def |function " | awk '$1 > 20 {print "GOD OBJECT: Too many methods in " FILENAME}'
-
-# Singleton misuse
-rg "static.*instance|getInstance\(\)|singleton" -A 5 -B 5
-
-# Factory pattern validation
-rg "create[A-Z]|make[A-Z]|build[A-Z]" -A 3 -B 3
-
-# Observer pattern implementation
-rg "addEventListener|subscribe|notify|emit" -A 3 -B 3
-```
-
-#### Anti-Pattern Detection
-```bash
-# Deep nesting (Pyramid of Doom)
-rg "if.*\{[\s]*if.*\{[\s]*if.*\{" --multiline
-
-# Long parameter lists
-rg "function.*\([^)]{100,}\)|def.*\([^)]{100,}\)|public.*\([^)]{100,}\)"
-
-# Magic numbers and strings
-rg "\b[0-9]{2,}\b(?![\.0-9])" --type typescript --type python | grep -v test | head -10
-rg "\"[A-Z_]{10,}\"" | grep -v test | head -10
-
-# Circular dependencies
-rg "import.*from.*\.\./.*\.\." --type typescript
-rg "using.*Project.*\..*Project\." --type cs
-```
-
-### Phase 4: Business Logic & Context Analysis
-
-#### Business Logic Impact Assessment
-```bash
-# Critical business logic changes
-rg "calculate.*price|compute.*total|process.*payment|validate.*transaction"
-rg "discount|refund|billing|invoice|subscription|order"
-rg "user.*role|permission|access.*control|authorization"
-
-# Data validation logic
-rg "validate|sanitize|filter|transform" -A 5 -B 2
-rg "min.*length|max.*length|pattern|regex" -A 3 -B 3
-
-# State management changes
-rg "setState|state.*=|dispatch|reducer|action" --type typescript --type javascript
-rg "transaction|commit|rollback|savepoint" --type cs --type java --type python
-```
-
-#### Potential Business Logic Vulnerabilities
-```bash
-# Race conditions in business logic
-rg "async.*async|await.*await|Promise.*Promise" --type typescript
-rg "Thread|Task\.Run|Parallel\." --type cs
-rg "threading|asyncio|concurrent" --type python
-
-# Integer overflow/underflow risks
-rg "int.*\+.*int|long.*\*.*long|\+\+.*\+\+|--.*--"
-rg "Math\.max|Math\.min|Integer\.MAX|Long\.MAX" -A 3 -B 3
-
-# Business rule bypasses
-rg "bypass|skip.*validation|force.*true|override.*check"
-rg "if.*debug|if.*test|if.*development" # Environment-specific bypasses
-```
-
-#### Financial Logic Specific Checks
-```bash
-# Currency and precision handling
-rg "float.*money|double.*price|decimal(?!.*money|.*price)" --type cs --type java
-rg "parseFloat.*price|parseInt.*amount|Number\(.*money" --type typescript --type javascript
-
-# Rounding and calculation errors
-rg "Math\.round|Math\.floor|Math\.ceil" -A 3 -B 3
-rg "toFixed|toPrecision|parseFloat" -A 2 -B 2
-```
-
-### Phase 5: Technology-Specific Gotchas Application
-
-#### Auto-Apply Technology-Specific Standards
-Based on detected technology stack, apply relevant gotchas:
-
-**React/Frontend (`References/Gotchas/react_gotchas.md` + `frontend_best_practices.md`)**:
-```bash
-# React-specific anti-patterns
-rg "useEffect\(\[\]\)" # Missing dependencies
-rg "useState.*object|useState.*array" # Complex state objects
-rg "key=\{.*index\}" # Using array index as key
-rg "dangerouslySetInnerHTML" # XSS risks
-rg "document\.getElementById|document\.querySelector" # Direct DOM manipulation
-
-# Performance issues
-rg "\.map\(.*\.map\(.*\.map\(" # Nested maps
-rg "useEffect.*\[\].*useEffect.*\[\]" # Multiple effects without dependencies
-rg "React\.Component.*render.*\{" -A 50 | rg "new.*Date|Math\.random" # Side effects in render
-```
-
-**.NET Specific (`References/Gotchas/dotnet_gotchas.md` + `backend_best_practices.md`)**:
-```bash
-# .NET anti-patterns
-rg "catch.*Exception.*\{.*\}" # Catching all exceptions
-rg "async.*void|Task\.Result|\.GetAwaiter\.GetResult" # Async anti-patterns
-rg "string.*\+.*string.*\+" # String concatenation performance
-rg "new.*Dictionary.*foreach|new.*List.*foreach" # Collection performance
-
-# Entity Framework issues
-rg "\.ToList\(\)\.Where\(|\.ToList\(\)\.First\(" # N+1 queries
-rg "context\.[A-Z].*\.Where\(.*\=\=.*\$\{" # SQL injection via EF
-rg "Include\(.*Include\(.*Include\(" # Over-eager loading
-```
-
-**Python Specific (`References/Gotchas/` - if exists)**:
-```bash
-# Python anti-patterns
-rg "except:|except Exception:" # Broad exception catching
-rg "global |globals\(\)" # Global variable usage
-rg "eval\(|exec\(" # Code injection risks
-rg "import \*" # Namespace pollution
-
-# Performance issues
-rg "list\(.*for.*in.*for.*in" # Nested list comprehensions
-rg "\+.*string.*\+" # String concatenation performance in loops
-```
-
-**Database/SQL Patterns (`References/Gotchas/database_best_practices.md`)**:
-```bash
-# Database anti-patterns
-rg "SELECT \*|select \*" --type sql
-rg "WHERE.*LIKE.*%.*%" --type sql # Leading wildcard searches
-rg "OR.*OR.*OR" --type sql # Complex OR conditions
-rg "CURSOR|cursor" --type sql # Cursor usage
-
-# Migration risks
-rg "DROP.*TABLE|ALTER.*TABLE.*DROP|DELETE.*FROM" --type sql
-rg "ADD.*COLUMN.*NOT.*NULL" --type sql # Non-nullable columns without defaults
-```
-
-### Phase 6: Code Quality & Standards Validation
-
-#### Universal Quality Checks (`References/Gotchas/validation_commands.md`)
-```bash
-# File size validation
-find . -name "*.js" -o -name "*.ts" -o -name "*.py" -o -name "*.cs" | xargs wc -l | awk '$1 > 500 {print "VIOLATION: Large file - " $2 " (" $1 " lines)"}'
-
-# Function size validation
-rg "function.*\{[\s\S]{3000,}|def .*:[\s\S]{2500,}|public.*\{[\s\S]{3000,}" --multiline
-rg "^\s*(function|def|public|private).*\{.*\n.*\{" -A 100 | wc -l # Nested functions
-
-# Code complexity indicators
-rg "if.*\{.*if.*\{.*if.*\{" # Deep nesting
-rg "case.*case.*case.*case.*case" # Large switch statements
-rg "else.*if.*else.*if.*else.*if" # Long if-else chains
-```
-
-#### Documentation Standards
-```bash
-# Missing documentation for public APIs
-rg "export.*function|export.*class|public.*class|public.*method" --type typescript --type cs | rg -v "/\*\*|///"
-rg "def [^_].*:" --type python | rg -v '"""'
-rg "public.*\{" --type cs | rg -v "///"
-
-# TODO/FIXME/HACK markers
-rg "TODO|FIXME|HACK|XXX|BUG" --type-not=markdown --type-not=txt
-rg "console\.log|print\(|System\.out\.print|Console\.WriteLine" # Debug statements
-```
-
-#### Naming Convention Validation
-```bash
-# Poor naming patterns
-rg "\b(usr|cfg|ctx|ptr|str|num|arr|obj|doc|win|btn|txt|mgr|hlpr)\b" --type typescript --type cs --type python
-rg "function [a-z]+[0-9]|class [a-z]+[0-9]|var [a-z]+[0-9]" # Numbers in names
-rg "data|info|item|thing|stuff|obj" # Generic names
-
-# Boolean naming issues
-rg "boolean [a-zA-Z]+(?!is|has|can|should|will)" --type typescript --type cs
-rg "flag[A-Z]|Flag[A-Z]" # Generic flag names
-```
-
-### Phase 7: Performance Analysis
-
-#### Database Performance
-```bash
-# N+1 Query patterns
-rg "foreach.*\{.*context\.|for.*in.*session\.|\.map.*\{.*query" 
-rg "\.Where\(.*\)\.ToList\(\)\.Where\(|\.filter\(.*\)\.map\(.*\)\.filter\("
-
-# Inefficient queries
-rg "SELECT.*COUNT\(\*\).*FROM.*WHERE|SELECT.*\*.*ORDER.*BY" --type sql
-rg "JOIN.*JOIN.*JOIN.*JOIN" --type sql # Too many joins
-rg "\.Include\(.*\)\.Include\(.*\)\.Include\(" # EF over-eager loading
-```
-
-#### Frontend Performance
-```bash
-# Inefficient React patterns
-rg "useEffect\(\(\)" # Effects without dependencies that run every render
-rg "\.map\(.*return.*<" -A 10 | rg "onClick=\{.*\}" # Inline handlers in lists
-rg "new Date\(\)|Math\.random\(\)" # Side effects in render
-rg "props\..*\..*\." # Deep prop drilling
-
-# Bundle size issues
-rg "import.*from.*'[^']*'" --type typescript | wc -l # Import count
-rg "import.*\*.*from" --type typescript # Barrel imports
-rg "require\(.*\)" --type javascript # Synchronous requires
-```
-
-#### Memory Management
-```bash
-# Memory leaks patterns
-rg "setInterval|setTimeout" -A 3 -B 3 | rg -v "clear"
-rg "addEventListener" -A 3 -B 3 | rg -v "removeEventListener"
-rg "new.*Array\([0-9]{4,}\)|new.*Buffer\([0-9]{4,}\)" # Large allocations
-
-# Resource disposal
-rg "using.*\{|IDisposable" --type cs | rg -v "Dispose"
-rg "try.*finally|with.*as" --type python | rg -v "close"
-```
-
-### Phase 8: Testing & Quality Assurance
-
-#### Test Coverage Analysis
-```bash
-# Missing tests for new functionality
-rg "export.*function|export.*class|public.*class" --files-with-matches | while read file; do
-  testfile=$(echo $file | sed 's/src/test/' | sed 's/\.\([jt]s\|py\|cs\)$/.test.\1/')
-  [ ! -f "$testfile" ] && echo "MISSING TEST: $testfile for $file"
-done
-
-# Test quality issues
-rg "it\('.*'\)|test\('.*'\)|Test.*\(\)" -A 10 | rg "expect\(.*true\)|assert.*True" # Weak assertions
-rg "\.only\(|\.skip\(|@Ignore" # Skipped or focused tests
-rg "setTimeout.*done\(\)|sleep\(|Thread\.Sleep" # Timing-dependent tests
-```
-
-#### Integration Points Validation
-```bash
-# API contract changes
-rg "@RequestMapping|@GetMapping|@PostMapping|app\.get|app\.post" -A 3 -B 3
-rg "ApiController|Controller.*public" -A 5 --type cs
-rg "router\.|Route\.|endpoint\(" -A 3 --type typescript --type python
-
-# Database schema impacts
-rg "Migration|migration|ALTER.*TABLE|CREATE.*TABLE" --type cs --type python --type sql
-rg "Column\(|ForeignKey\(|Index\(" -A 2 --type cs --type python
-```
-
-### Phase 9: Styling & Code Standards
-
-#### Technology-Specific Style Issues
-```bash
-# JavaScript/TypeScript style issues
-rg "var |==|\!\=|console\.log" --type typescript --type javascript
-rg "function\(" --type typescript # Should use arrow functions in modern code
-rg "\.innerHTML.*\+|\.innerHTML.*\$\{" # XSS risks
-
-# Python style issues (PEP 8)
-rg "import.*,.*,.*," --type python # Multiple imports per line
-rg "^[a-z].*=[a-z].*=" --type python | rg -v "__" # Multiple assignments
-rg "except.*:" --type python | rg -v "Exception" # Bare except clauses
-
-# .NET style issues
-rg "public.*[a-z]|private.*[a-z]" --type cs # Naming conventions
-rg "catch.*\{.*\}" --type cs # Empty catch blocks
-rg "string.*\+.*string.*\+" --type cs # String concatenation
-```
-
-#### Formatting and Structure
-```bash
-# Line length violations
-rg ".{120,}" --type typescript --type cs --type python | head -20
-
-# Inconsistent indentation
-rg "^\t.*    |^    .*\t" --type typescript --type python --type cs
-
-# Missing or excessive whitespace
-rg "\{[A-Za-z]|[A-Za-z]\}|\)[A-Za-z]|[A-Za-z]\(" --type typescript --type cs
-```
-
-### Phase 10: Integration & Dependencies
-
-#### Dependency Analysis
-```bash
-# Potentially problematic dependencies
-rg "lodash|moment\.js|jquery" --type json # Heavy or deprecated libraries
-rg "version.*[\"\'][01]\.|version.*[\"\'].*beta|version.*[\"\'].*alpha" --type json # Old or unstable versions
-
-# Circular dependencies
-rg "import.*\.\..*import" --type typescript
-rg "using.*Project.*using.*Project" --type cs
-
-# Missing error handling for external calls
-rg "fetch\(|axios\.|http\.|HttpClient\." -A 5 | rg -v "catch\(|\.catch|try.*{" | head -10
-```
-
-## Review Execution Strategy
-
-### 1. Automated Analysis Phase
-```bash
-# Execute all automated checks
-npm run lint 2>&1 || echo "LINTING ISSUES FOUND"
-npm test -- --coverage 2>&1 || echo "TEST FAILURES OR LOW COVERAGE"
-npm run build 2>&1 || echo "BUILD FAILURES"
-
-# Security scanning
-npm audit --audit-level=moderate 2>&1 || echo "SECURITY VULNERABILITIES"
-```
-
-### 2. Risk-Based Review Depth
-
-**High Risk Changes** (Apply all phases):
-- Complete security assessment
-- Full architecture review
-- Business logic deep-dive
-- Performance impact analysis
-- Integration testing requirements
-
-**Medium Risk Changes** (Focus on Phases 1-6):
-- Security spot checks
-- Architecture pattern compliance
-- Code quality validation
-- Technology-specific gotchas
-
-**Low Risk Changes** (Phases 1, 6, 9):
-- Basic security scan
-- Style and formatting
-- Documentation updates
-
-### 3. Comprehensive Output Structure
-
-## PR Review Report: [PR Title]
-
-### 📋 Executive Summary
-- **Risk Level**: [High/Medium/Low]
-- **Recommendation**: [Approve/Request Changes/Needs Discussion]
-- **Key Findings**: [Top 3-5 critical issues]
-- **Estimated Review Effort**: [Hours/Days if significant changes needed]
-
-### 🔒 Security Assessment
-**OWASP Top 10 Analysis**:
-- [Detailed findings for each applicable category]
-
-**Critical Security Issues**:
-- [List with severity and remediation steps]
-
-### 🏗 Architecture & Design Review
-**SOLID Principles Compliance**: [✅/⚠️/❌]
-**Design Pattern Usage**: [Analysis of patterns used/misused]
-**Anti-Patterns Detected**: [List with locations and fixes]
-
-### 💼 Business Logic Analysis
-**Impact Assessment**: [How changes affect business operations]
-**Logic Vulnerabilities**: [Potential business rule bypasses or edge cases]
-**Data Integrity Concerns**: [Data validation and consistency issues]
-
-### ⚙️ Technology-Specific Issues
-**[Technology] Gotchas Applied**: [Specific issues found using framework gotchas]
-**Performance Implications**: [Technology-specific performance concerns]
-**Best Practice Violations**: [Deviations from established patterns]
-
-### 📚 Documentation & Quality
-**Missing Documentation**: [What needs documentation]
-**Code Quality Score**: [Based on automated analysis]
-**Technical Debt Impact**: [How changes affect maintainability]
-
-### 🎨 Style & Standards
-**Formatting Issues**: [Automated style violations]
-**Naming Convention Problems**: [Poor naming patterns found]
-**Code Organization**: [Structural improvements needed]
-
-### ⚡ Performance Analysis
-**Performance Risks**: [Potential bottlenecks or inefficiencies]
-**Database Impact**: [Query performance and N+1 issues]
-**Resource Usage**: [Memory/CPU implications]
-
-### ✅ Recommendations
-**Must Fix (Blocking)**:
-1. [Critical security issues]
-2. [Business logic vulnerabilities]
-3. [Architecture violations]
-
-**Should Fix (Important)**:
-1. [Performance concerns]
-2. [Documentation gaps]
-3. [Code quality issues]
-
-**Could Fix (Nice to Have)**:
-1. [Style improvements]
-2. [Minor optimizations]
-3. [Additional testing]
-
-### 🔧 Action Items
-- [ ] [Specific actionable items with owners]
-- [ ] [Required testing or validation]
-- [ ] [Documentation updates needed]
-
-## Integration with Framework Standards
-
-This comprehensive review process leverages:
-- `References/Gotchas/validation_commands.md` for automated quality checks
-- `References/Gotchas/automation_testing_gotchas.md` for testing standards
-- `References/Gotchas/[technology]_gotchas.md` for technology-specific validations
-- `References/Gotchas/architecture_patterns.md` for design compliance
-- `References/Gotchas/general_coding_standards.md` for universal quality gates
-
-The review adapts its depth and focus based on the detected risk level and technology stack, ensuring comprehensive coverage while maintaining efficiency for different types of changes.
+*This command orchestrates comprehensive PR review by leveraging the generic code-reviewer agent with GitHub native integration, providing deep, actionable insights for code quality improvement without posting findings back to the PR.*

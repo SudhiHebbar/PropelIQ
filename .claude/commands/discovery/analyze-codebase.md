@@ -8,10 +8,11 @@ allowed-tools: Bash, Read, Glob, Task
 Entry point for comprehensive codebase analysis. Validates input and delegates complex analysis to the code-analyzer agent.
 
 ## Input Parameters: $ARGUMENTS (Optional)
-**Accepts:** Repository URL | Root path | Technology stack | Business domain | Analysis depth
+**Accepts:** Repository URL | Folder Path | Root path | Technology stack | Business domain | Analysis depth
 
 **Default Parameters:**
 - `repo_url`: Current directory or provided Git URL
+- 'Folder_path': Source code directory
 - `root_path`: "." (current directory)
 - `primary_stack`: Auto-detected from codebase
 - `business_domain`: "General business application"
