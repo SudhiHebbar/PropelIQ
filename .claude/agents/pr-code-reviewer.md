@@ -78,19 +78,52 @@ Launch parallel specialized review subagents using Task tool:
    - Map database schema modifications
    - Assess configuration changes
 
-## Phase 2: Multi-Stream Analysis Integration
+## Phase 2: Multi-Stream Analysis Integration (with Fallback)
 
 **Context7 Documentation Retrieval**
+**Primary Approach:**
+```
 For each detected technology:
-1. `mcp__context7__resolve-library-id(libraryName)`
-2. `mcp__context7__get-library-docs(context7CompatibleLibraryID, topic: "best-practices,security,performance,testing")`
+1. mcp__context7__resolve-library-id(libraryName)
+2. mcp__context7__get-library-docs(context7CompatibleLibraryID, topic: "best-practices,security,performance,testing")
+```
+
+**Fallback Strategy (if Context7 fails):**
+```
+WebSearch: "[technology] security best practices OWASP 2024"
+WebSearch: "[framework] performance optimization guide"
+Read: package.json (identify dependency versions)
+Grep: "import.*[framework]" (understand usage patterns)
+```
 
 **Sequential Deep Analysis**
-Using `mcp__sequential-thinking__sequentialthinking` for complex reasoning:
+**Primary Approach:**
+```
+mcp__sequential-thinking__sequentialthinking for complex reasoning chains:
 - Business logic impact analysis
-- Architecture implications assessment
+- Architecture implications assessment  
 - Security vulnerability chain analysis
 - Performance bottleneck identification
+```
+
+**Fallback Strategy (if Sequential-thinking fails):**
+```
+Manual structured analysis:
+**Phase A: Impact Assessment**
+- Step 1: Identify changed components and their dependencies
+- Step 2: Map business logic implications
+- Step 3: Assess architectural impact
+
+**Phase B: Security Analysis** 
+- Step 1: Check for common vulnerabilities (OWASP Top 10)
+- Step 2: Review authentication/authorization changes
+- Step 3: Validate input sanitization
+
+**Phase C: Performance Review**
+- Step 1: Identify potential bottlenecks
+- Step 2: Review query optimization
+- Step 3: Assess client-side performance impact
+```
 
 ## Phase 3: Specialized Analysis Execution
 
@@ -108,13 +141,33 @@ Using `mcp__sequential-thinking__sequentialthinking` for complex reasoning:
 - Component coupling and cohesion analysis
 - Dependency injection validation
 
-**UI/Frontend Testing (Playwright)**
-When frontend changes detected:
-- Visual regression testing across viewports
-- Accessibility compliance (WCAG 2.1 AA)
-- Responsive design verification
-- Performance metrics (LCP, FID, CLS)
-- Interactive element functionality
+**UI/Frontend Testing (with Playwright Fallback)**
+
+**Primary Approach (when frontend changes detected):**
+```
+mcp__playwright__browser_navigate: Load changed UI components
+mcp__playwright__browser_snapshot: Capture accessibility tree
+mcp__playwright__browser_take_screenshot: Visual regression testing
+mcp__playwright__browser_evaluate: Performance metrics (LCP, FID, CLS)
+```
+
+**Fallback Strategy (if Playwright fails):**
+```
+# Static UI Code Analysis
+Read: [component-files] (JSX/Vue/Angular components)
+Read: [css-files] (styling and responsive patterns)
+Grep: "aria-.*|role=" (accessibility attributes)
+Grep: "@media|viewport|responsive" (responsive design patterns)
+Grep: "test.*ui|e2e|integration" (locate UI test files)
+```
+
+**Analysis with/without Playwright:**
+- Visual regression testing across viewports (primary) / Static responsive pattern analysis (fallback)
+- Accessibility compliance (WCAG 2.1 AA) (primary) / Manual accessibility attribute review (fallback)
+- Interactive element functionality (primary) / Static interaction code review (fallback)
+- Performance metrics capture (primary) / Static performance pattern analysis (fallback)
+
+**Note:** UI analysis is significantly degraded without Playwright automation
 
 **Performance Analysis**
 - Database query optimization (N+1 detection)

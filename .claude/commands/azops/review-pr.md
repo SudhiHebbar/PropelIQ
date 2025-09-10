@@ -2,7 +2,7 @@
 
 ---
 allowed-tools: Task, mcp__azure-devops__repo_get_pull_request_by_id, mcp__azure-devops__repo_list_pull_request_threads, mcp__azure-devops__repo_create_pull_request_thread, mcp__azure-devops__repo_reply_to_comment, mcp__azure-devops__repo_list_pull_requests_by_repo, mcp__azure-devops__repo_get_branch_by_name, mcp__azure-devops__repo_search_commits, mcp__azure-devops__search_code, mcp__azure-devops__build_get_builds, mcp__azure-devops__build_get_log, Bash, Grep, Read, TodoWrite
-description: Perform comprehensive code review for Azure DevOps Pull Requests using generic code-reviewer agent with Context7, sequential-thinking, and Playwright integration
+description: Perform comprehensive code review for Azure DevOps Pull Requests using generic code-reviewer agent with Context7, sequential-thinking, and Playwright integration. Includes fallback strategies for MCP server failures.
 argument-hint: <pr_id> [--project=PROJECT] [--repository=REPO] [--depth=comprehensive] [--ui-testing=auto]
 ---
 
@@ -87,14 +87,14 @@ echo "Review Mode: $REVIEW_MODE"
 echo "Base Branch: $BASE_BRANCH"
 ```
 
-### Phase 2: Context Retrieval (PR Mode)
+### Phase 2: Context Retrieval (PR Mode with Fallback)
 
 ```javascript
 let reviewContext = {};
 
 if (reviewMode === "pr") {
   try {
-    // 1. Fetch PR details from Azure DevOps
+    // 1. Primary: Fetch PR details from Azure DevOps MCP
     console.log("📋 Fetching PR details from Azure DevOps...");
     const prDetails = await mcp__azure-devops__repo_get_pull_request_by_id({
       pullRequestId: $ARGUMENTS.pr_id,
@@ -102,7 +102,6 @@ if (reviewMode === "pr") {
       includeWorkItemRefs: true
     });
 
-    // 2. Extract key information
     reviewContext = {
       mode: "pr",
       prId: $ARGUMENTS.pr_id,
@@ -117,15 +116,30 @@ if (reviewMode === "pr") {
       repository: prDetails.repository
     };
 
-    // 3. Get existing review threads
-    console.log("💬 Fetching existing review comments...");
     reviewContext.existingThreads = await mcp__azure-devops__repo_list_pull_request_threads({
       repositoryId: prDetails.repository.id,
       pullRequestId: $ARGUMENTS.pr_id,
       fullResponse: true
     });
 
-    // 4. Get changed files and commits
+  } catch (error) {
+    console.log("⚠️ Azure DevOps MCP failed, falling back to local git analysis");
+    
+    // Fallback: Use local git commands
+    reviewContext = {
+      mode: "fallback-local",
+      prId: $ARGUMENTS.pr_id,
+      title: "PR Review (Fallback Mode)",
+      description: "Azure DevOps integration unavailable - using local git analysis",
+      sourceRef: await Bash("git rev-parse --abbrev-ref HEAD"),
+      targetRef: $ARGUMENTS.base_branch || "main",
+      author: await Bash("git config user.name"),
+      repository: { name: await Bash("basename $(git rev-parse --show-toplevel)") },
+      warning: "Limited functionality - Azure DevOps integration unavailable"
+    };
+  }
+
+    // 4. Get changed files and commits (works in both modes)
     console.log("📁 Analyzing changed files and commits...");
     reviewContext.commits = await mcp__azure-devops__repo_search_commits({
       project: $ARGUMENTS.project,

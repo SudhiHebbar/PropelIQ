@@ -93,9 +93,27 @@ Task(subagent_type: "general-purpose", description: "Integration validation", pr
 - **Security Compliance Subagent**: Security vulnerability assessment and compliance validation
 - **Integration Validation Subagent**: System integration and compatibility verification
 
-### Phase 1: Parallel Research (Context7)
+### Phase 1: Parallel Research (Context7 with Fallback)
 
 **Task Context & Documentation Research**
+
+**Primary Approach:** Use Context7 MCP for authoritative documentation
+```
+For each framework/library referenced in task:
+mcp__context7__resolve-library-id: [library-name]
+mcp__context7__get-library-docs: [library-id] --topic="[analysis-focus]"
+```
+
+**Fallback Strategy (if Context7 fails):**
+```
+WebSearch: "[framework] [topic] documentation best practices 2024"
+WebSearch: "[library] official documentation examples"
+Read: package.json (identify dependencies and versions)
+Read: README.md (understand project context)
+Grep: "import.*[framework]" (find usage patterns in codebase)
+```
+
+**Execution Pattern:**
 ```
 For each framework/library referenced in task:
 1. mcp__context7__resolve-library-id(libraryName: "framework-name")
@@ -115,10 +133,39 @@ For each framework/library referenced in task:
 - Map system integration points and dependencies
 - Extract validation commands from task file
 
-### Phase 2: Sequential Analysis (Sequential-thinking MCP)
+### Phase 2: Sequential Analysis (Sequential-thinking MCP with Fallback)
 
 **Systematic Review Process**
-Use `mcp__sequential-thinking__sequentialthinking` for comprehensive step-by-step analysis:
+
+**Primary Approach:** Use Sequential-thinking MCP for deep reasoning
+```
+mcp__sequential-thinking__sequentialthinking: 
+- thought: "Analyze task requirements against implementation..."
+- nextThoughtNeeded: true
+- thoughtNumber: 1
+- totalThoughts: 8
+```
+
+**Fallback Strategy (if Sequential-thinking fails):**
+Use manual step-by-step reasoning with clear structure:
+```
+**Analysis Phase 1: Requirements Assessment**
+- Step 1: Parse task acceptance criteria
+- Step 2: Map requirements to implementation files  
+- Step 3: Identify any missing implementations
+
+**Analysis Phase 2: Quality Evaluation**
+- Step 1: Review code quality and patterns
+- Step 2: Analyze error handling and security
+- Step 3: Assess test coverage completeness
+
+**Analysis Phase 3: Integration Validation**  
+- Step 1: Check API contracts and data flow
+- Step 2: Verify backwards compatibility
+- Step 3: Validate system integration points
+```
+
+**Core Analysis (with or without MCP):**
 
 **Requirements Alignment Analysis:**
 - Derive detailed checklist from acceptance criteria and non-functional constraints

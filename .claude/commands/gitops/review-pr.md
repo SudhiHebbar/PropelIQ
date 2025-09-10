@@ -2,7 +2,7 @@
 
 ---
 allowed-tools: Task, mcp__github__get_pull_request, mcp__github__get_pull_request_comments, mcp__github__list_commits, mcp__github__get_pull_request_files, mcp__github__get_pull_request_status, Bash, Grep, Read, TodoWrite
-description: Perform comprehensive code review for GitHub Pull Requests using generic code-reviewer agent with Context7, sequential-thinking, and Playwright integration
+description: Perform comprehensive code review for GitHub Pull Requests using generic code-reviewer agent with Context7, sequential-thinking, and Playwright integration. Includes fallback strategies for MCP server failures.
 argument-hint: <pr_id> [--owner=OWNER] [--repo=REPO] [--depth=comprehensive] [--ui-testing=auto]
 ---
 
@@ -119,7 +119,7 @@ if (reviewMode === "pr") {
       throw new Error("Could not auto-detect repository owner/name from git remote");
     }
 
-    // 1. Fetch PR details from GitHub
+    // 1. Primary: Fetch PR details from GitHub MCP
     console.log("📋 Fetching PR details from GitHub...");
     const prDetails = await mcp__github__get_pull_request({
       owner: owner,
@@ -127,7 +127,6 @@ if (reviewMode === "pr") {
       pull_number: $ARGUMENTS.pr_id
     });
 
-    // 2. Extract key information
     reviewContext = {
       mode: "pr",
       prId: $ARGUMENTS.pr_id,
@@ -142,24 +141,15 @@ if (reviewMode === "pr") {
       owner: owner
     };
 
-    // 3. Get existing review comments
-    console.log("💬 Fetching existing review comments...");
+    // Get additional PR context
     reviewContext.existingComments = await mcp__github__get_pull_request_comments({
-      owner: owner,
-      repo: repo,
-      pull_number: $ARGUMENTS.pr_id
+      owner: owner, repo: repo, pull_number: $ARGUMENTS.pr_id
     });
-
-    // 4. Get changed files
-    console.log("📁 Analyzing changed files...");
+    
     reviewContext.changedFiles = await mcp__github__get_pull_request_files({
-      owner: owner,
-      repo: repo,
-      pull_number: $ARGUMENTS.pr_id
+      owner: owner, repo: repo, pull_number: $ARGUMENTS.pr_id
     });
-
-    // 5. Get commits
-    console.log("📝 Fetching commit history...");
+    
     reviewContext.commits = await mcp__github__list_commits({
       owner: owner,
       repo: repo,
@@ -177,21 +167,39 @@ if (reviewMode === "pr") {
     console.log("✅ GitHub context retrieved successfully");
 
   } catch (error) {
-    console.error("❌ Failed to retrieve PR context from GitHub:", error.message);
+    console.error("❌ GitHub MCP failed:", error.message);
     
-    if (error.message.includes("authentication") || error.message.includes("unauthorized")) {
-      console.log("\n🔐 Authentication Error:");
-      console.log("Please ensure you're authenticated with GitHub:");
-      console.log("1. Run: gh auth login");
-      console.log("2. Or check your GitHub token permissions");
+    // Fallback: Use local git commands for PR analysis  
+    console.log("⚠️  Falling back to local git analysis...");
+    
+    reviewContext = {
+      mode: "fallback-local",
+      prId: $ARGUMENTS.pr_id,
+      title: "PR Review (Fallback Mode)",
+      description: "GitHub integration unavailable - using local git analysis",
+      sourceRef: await Bash("git rev-parse --abbrev-ref HEAD"),
+      targetRef: $ARGUMENTS.base_branch || "main",
+      author: await Bash("git config user.name"),
+      repository: repo || await Bash("basename $(git rev-parse --show-toplevel)"),
+      owner: owner || "local",
+      warning: "Limited functionality - GitHub MCP integration unavailable",
       
-      // Fall back to local mode
-      console.log("\n⚠️  Falling back to local analysis mode...");
-      reviewMode = "local";
-      reviewContext = await setupLocalReviewContext();
-    } else {
-      throw error;
-    }
+      // Use git commands for file analysis
+      changedFiles: await Bash(`git diff --name-only HEAD~1`).then(files => 
+        files.split('\n').filter(f => f.trim()).map(file => ({
+          filename: file,
+          status: 'modified',
+          patch: null // Will analyze files directly
+        }))
+      ),
+      
+      commits: await Bash(`git log --oneline -5`).then(logs =>
+        logs.split('\n').filter(l => l.trim()).map(line => ({
+          sha: line.split(' ')[0],
+          message: line.substring(8)
+        }))
+      )
+    };
   }
 } else {
   // Local mode setup

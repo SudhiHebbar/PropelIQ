@@ -2,6 +2,7 @@
 
 ---
 allowed-tools: Grep, LS, Read, Edit, MultiEdit, Write, WebFetch, TodoWrite, WebSearch, BashOutput, KillBash, ListMcpResourcesTool, ReadMcpResourceTool, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, Bash, Glob
+# Note: Context7 MCP with fallback to WebSearch for framework research when MCP unavailable
 ---
 
 ## Task File: $ARGUMENTS (Mandatory)

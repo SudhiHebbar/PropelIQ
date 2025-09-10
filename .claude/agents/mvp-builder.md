@@ -111,8 +111,33 @@ Task(subagent_type: "general-purpose", description: "MVP architecture planning",
    - Identify battle-tested optimization techniques for MVP development
    - Gather essential security considerations for MVP deployment
 
-5. **shadcn Minimal Component Discovery**
-   - Search shadcn registry for essential UI components only
+5. **shadcn Minimal Component Discovery (with Fallback)**
+
+**Primary Approach:** Use shadcn MCP for component discovery
+```
+mcp__shadcn__get_project_registries
+mcp__shadcn__search_items_in_registries(registries: ["@shadcn"], query: "button card form")
+mcp__shadcn__get_item_examples_from_registries(registries: ["@shadcn"], query: "button-demo")
+```
+
+**Fallback Strategy (if shadcn MCP fails):**
+```
+# Use generic UI component patterns
+WebSearch: "React component library best practices 2024"
+WebSearch: "minimal UI components for MVP development"
+Read: package.json (check for existing UI libraries like Material-UI, Ant Design)
+```
+
+**Generic Component Patterns (when shadcn unavailable):**
+- Use standard React/Vue/Angular component conventions
+- Apply Material Design or similar established patterns  
+- Reference framework-specific component libraries
+- Focus on semantic HTML with basic styling
+- Plan manual component creation using proven patterns
+
+**Activities:**
+   - Search shadcn registry for essential UI components only (primary)
+   - Use generic component patterns if shadcn fails (fallback)
    - Identify proven component examples and minimal implementations
    - Evaluate design system compatibility for rapid development
    - Plan minimal component integration strategy for MVP validation

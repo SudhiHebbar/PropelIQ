@@ -89,13 +89,24 @@ Task(subagent_type: "general-purpose", description: "Business logic extraction",
 - **Architecture Subagent**: Pattern recognition, topology mapping, design analysis
 - **Business Logic Subagent**: Plain English documentation, decision flow mapping
 
-### Phase 1: Parallel Research Execution (Context7)
+### Phase 1: Parallel Research Execution (Context7 with Fallback)
 
 **Technology Stack Detection & Documentation**
+
+**Primary Approach:**
 ```
 For each detected technology/framework:
 1. mcp__context7__resolve-library-id(libraryName: "technology-name")
 2. mcp__context7__get-library-docs(context7CompatibleLibraryID: "resolved-id")
+```
+
+**Fallback Strategy (if Context7 fails):**
+```
+WebSearch: "[technology] architecture best practices documentation"
+WebSearch: "[framework] security vulnerabilities CVE"
+Read: package.json (detect technology stack and versions)
+Read: README.md (understand project structure and technologies)
+Grep: "import.*|require.*|using.*" (identify framework usage patterns)
 ```
 
 **Parallel Research Tasks:**
@@ -132,14 +143,38 @@ npm test -- --coverage --coverageReporters=json-summary text lcov || true
 pytest --cov=. --cov-report=json --cov-report=term || true
 ```
 
-### Phase 2: Sequential Analysis (Sequential-thinking MCP)
+### Phase 2: Sequential Analysis (Sequential-thinking MCP with Fallback)
 
 **Architecture Discovery & Pattern Recognition**
-- Use `mcp__sequential-thinking__sequentialthinking` for step-by-step:
-  - **Architectural Patterns**: Layered, Microservices, Event-Driven, Hexagonal, CQRS, MVC, MVP, MVVM
-  - **Design Patterns**: Singleton, Factory, Observer, Strategy, Repository, Unit of Work
-  - **Anti-Patterns Detection**: God objects, circular dependencies, tight coupling
-  - **System Topology Mapping**: Entry points, communication protocols, data flow
+
+**Primary Approach:**
+```
+mcp__sequential-thinking__sequentialthinking for step-by-step analysis:
+- Architectural Patterns: Layered, Microservices, Event-Driven, Hexagonal, CQRS, MVC, MVP, MVVM
+- Design Patterns: Singleton, Factory, Observer, Strategy, Repository, Unit of Work
+- Anti-Patterns Detection: God objects, circular dependencies, tight coupling
+- System Topology Mapping: Entry points, communication protocols, data flow
+```
+
+**Fallback Strategy (if Sequential-thinking fails):**
+```
+Manual structured analysis:
+
+**Phase A: Architecture Pattern Discovery**
+- Step 1: Identify directory structure and module organization
+- Step 2: Map component relationships and dependencies  
+- Step 3: Classify architectural style (monolith/microservices/etc.)
+
+**Phase B: Design Pattern Recognition** 
+- Step 1: Scan for common creational patterns (Factory, Builder, Singleton)
+- Step 2: Identify behavioral patterns (Observer, Strategy, Command)
+- Step 3: Find structural patterns (Adapter, Decorator, Repository)
+
+**Phase C: Quality & Risk Assessment**
+- Step 1: Calculate complexity metrics and identify God objects
+- Step 2: Map circular dependencies and coupling issues
+- Step 3: Document system entry points and data flow
+```
 
 **Business Logic Analysis**
 - **Core Business Logic Discovery**: Identify classes/modules solving business problems
