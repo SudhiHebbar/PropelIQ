@@ -356,7 +356,7 @@ if (reviewContext.mode === "pr") {
   };
 }
 
-// Invoke the generic code-reviewer agent
+// Invoke the specialized pr-code-reviewer agent
 const reviewResults = await Task({
   description: reviewContext.mode === "pr" ? "Deep PR analysis" : "Local changes analysis",
   prompt: `
@@ -377,7 +377,7 @@ const reviewResults = await Task({
       'For local analysis, provide actionable feedback on work-in-progress changes before they are committed or pushed.' : 
       'The review should be thorough and actionable, with clear recommendations for the PR.'}
   `,
-  subagent_type: "code-reviewer"
+  subagent_type: "pr-code-reviewer"
 });
 ```
 
