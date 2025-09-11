@@ -11,6 +11,7 @@ The AI agent only gets the context you are appending to the design and training 
 *** ULTRATHINK ABOUT THE DESIGN AND PLAN YOUR APPROACH ***
 *** ASK FOR USER CONFIRMATION (YES/NO) BEFORE START WRITING / UPDATING THE DESIGN ***
 *** If the output file is already available make the necessary changes to applicable sections. Do not overwrite the whole file ***
+*** Generate a single unified design document at Context/design.md only ***
 
 ## Research Process
 
@@ -64,7 +65,9 @@ Using Templates/design_base.md as template:
 - [List all context needed to implement the feature]
 
 ## Output
-Save as: `Artefacts/design.md`
+Save as: `Context/design.md`
+
+**IMPORTANT**: Generate ONLY this single file. Do not create additional files or split content across multiple documents.
 
 ## Quality Checklist
 - [ ] All necessary context included
