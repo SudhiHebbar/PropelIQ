@@ -2,6 +2,17 @@
 
 This file provides specific guidelines for breaking down user stories and creating tasks for command-related development work.
 
+## Controlled Parallelism Guardrail
+
+### Controlled Sub-Agent Instances
+- **Cap parallelism**: Run at most 4 subagents in parallel.
+- **No recursion**: Do not spawn subagents recursively (max depth 2).
+- **Spawn criteria**: Only spawn when tasks are independent and bounded; otherwise run sequentially.
+- **Queue overflow**: If 4 are already active, queue additional work.
+- **Chunking**: Split work into 25-item chunks and process in waves.
+- **Join step**: After each wave, summarize and merge results.
+- **Back off**: If time/IO grows, stop spawning and continue sequentially.
+
 ## User Story Breakdown Guidelines
 
 ### Story Point Estimation
