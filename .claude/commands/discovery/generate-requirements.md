@@ -2,13 +2,50 @@
 
 ## Project Scope File: $ARGUMENTS (Mandatory)
 **Accepts:** Feature specifications | Business requirements | Project scope documents | User needs text
+**Supported File Types:** .pdf | .txt | .md | .docx
+
+### Input Processing Instructions
+**CRITICAL**: Before proceeding with requirements generation, you MUST determine input type and process accordingly:
+
+#### Input Type Detection
+1. **File Path Detection**: Check if `$ARGUMENTS` contains a file path (contains file extensions .pdf, .txt, .md, .docx)
+2. **Direct Text Detection**: If `$ARGUMENTS` doesn't contain a file extension, treat it as direct specification text
+
+#### File Input Processing
+If `$ARGUMENTS` is a file path:
+1. **File Existence Check**: Verify the file exists using appropriate tools
+2. **Read File Contents**: Use the Read tool to extract content from the provided file
+   - For .pdf files: Read and extract text content
+   - For .txt files: Read plain text content
+   - For .md files: Read markdown content
+   - For .docx files: Read and extract document content
+3. **Content Validation**: Ensure file contents are readable and contain relevant information
+
+#### Direct Text Processing
+If `$ARGUMENTS` is direct text specification:
+1. **Text Validation**: Ensure the provided text contains meaningful specification content
+2. **Content Processing**: Use the text directly as the source material for requirements generation
+3. **Length Check**: Verify text is substantial enough for requirements analysis
+
+#### Fallback Handling
+- If file cannot be read: Request user to provide alternative file path or paste content directly
+- If text is too brief: Request additional specification details
+- If no input provided: Request user to provide either file path or specification text
+
+**Example Usage:**
+- `/generate-requirements project_scope.pdf` (file input)
+- `/generate-requirements business_requirements.docx` (file input)
+- `/generate-requirements "Build a user authentication system with OAuth2 support, password reset functionality, and role-based access control"` (direct text)
+- `/generate-requirements Create a mobile app for food delivery with real-time tracking` (direct text)
 
 As an expert Business Analyst and Product Manager with deep technical understanding, generate comprehensive Product Requirements Documents (PRDs) that bridge business needs with technical implementation. This unified command ensures thorough requirements analysis with stakeholder alignment and technical feasibility validation.
 
 ## Core Requirements Principles
 
 *** MANDATORY VALIDATIONS ***
-- Analyze project scope and business context before requirements generation
+- **FIRST**: Process `$ARGUMENTS` input according to Input Processing Instructions above
+- **SECOND**: Extract and analyze the specification content (from file or direct text)
+- **THIRD**: Analyze project scope and business context before requirements generation
 - Review existing codebase (if available) to understand current state and constraints
 - Validate technical feasibility with architecture and technology stack considerations
 - ULTRATHINK the requirements — comprehensively analyze business and technical implications
@@ -18,6 +55,13 @@ As an expert Business Analyst and Product Manager with deep technical understand
 - Ensure requirements are testable, measurable, and aligned with business objectives
 - Include both functional and non-functional requirements comprehensively
 - Generate a single unified PRD document at Context/requirements.md only
+
+### Content Processing Workflow
+1. **Input Analysis**: Determine if `$ARGUMENTS` is file path or direct text
+2. **Content Extraction**: Read file content OR use direct text as source material
+3. **Content Parsing**: Extract key business requirements, user needs, and technical constraints
+4. **Context Integration**: Combine extracted content with codebase analysis and business context
+5. **Requirements Generation**: Create comprehensive PRD based on processed specification content
 
 ## Business Analysis Strategy
 
