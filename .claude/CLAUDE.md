@@ -2,7 +2,7 @@
 
 This file provides specific guidelines for breaking down user stories and creating tasks for command-related development work.
 
-## Controlled Parallelism Guardrail
+## Controlled Parallelism
 
 ### Controlled Sub-Agent Instances
 - **Cap parallelism**: Run at most 4 subagents in parallel.
@@ -12,6 +12,35 @@ This file provides specific guidelines for breaking down user stories and creati
 - **Chunking**: Split work into 25-item chunks and process in waves.
 - **Join step**: After each wave, summarize and merge results.
 - **Back off**: If time/IO grows, stop spawning and continue sequentially.
+
+## MCP Pagination Policy
+
+### Scope 
+Applies to any MCP tool that can return large lists, logs, files, or code.
+
+### Rules
+- **Always paginate**: Include a limit and offset/cursor on every call.
+- **Token budget**: Hard ceiling 25,000 tokens per tool response. Reserve headroom; target ≤ 18,000 tokens per call to leave space for prompts/reasoning.
+- **Projection first**: Request only required fields; avoid full objects/blobs.
+- **Filter early**: Use server-side filters (since, ids, status, path, glob, etc.) to shrink results.
+
+### Defaults (tune up/down based on page size)
+- **Lists/records**: Start with limit: 50.
+    - If a page < ~9k tokens → double limit next page (up to your safe target).
+    - If a page ≥ ~18k tokens → halve limit next page.
+- **Files/text**: Use range reads (offset + limit).
+    - Start with 60k–80k chars per slice (≈15k–20k tokens). Return nextOffset/hasMore.
+
+### Loop Pattern (Claude should follow)
+- Fetch one page with limit + filters (+ cursor/offset if continuing).
+- Summarize/extract what’s needed; drop raw page text from working memory.
+- Continue only if required and a nextCursor/hasMore (or next offset) exists.
+
+### Stop & Safety
+- Stop when goal met or after 5 pages unless explicitly required.
+- If nearing budget (≥ ~18k tokens) or latency rises, reduce limit by 50% and tighten filters.
+- No whole-dataset pulls. Prefer filtered queries and targeted ranges.
+- Log decisions: e.g., “Read 3 pages @ 50/100/50; final output < 18k tokens.”
 
 ## User Story Breakdown Guidelines
 

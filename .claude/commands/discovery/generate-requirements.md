@@ -17,6 +17,7 @@ As an expert Business Analyst and Product Manager with deep technical understand
 - Split complex requirements by functional areas and technology stacks when applicable
 - Ensure requirements are testable, measurable, and aligned with business objectives
 - Include both functional and non-functional requirements comprehensively
+- Generate a single unified PRD document at Context/requirements.md only
 
 ## Business Analysis Strategy
 
@@ -153,6 +154,8 @@ Base all PRDs on `Templates/requirement_base.md` for consistency and completenes
 ## Output Specifications
 
 **File Path**: `Context/requirements.md`
+
+**IMPORTANT**: Generate ONLY this single file. Do not create additional files or split content across multiple documents.
 
 **Document Structure**:
 - Executive summary with business context
