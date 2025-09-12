@@ -235,7 +235,7 @@ The framework includes **5 AI agents** that provide targeted expertise for diffe
 | Agent | Purpose | When to Use | Key Capabilities |
 |-------|---------|-------------|------------------|
 | **🔍 Code Analyzer** | Deep codebase analysis | Legacy code, technical debt, architecture review | C4 diagrams, security analysis, dependency mapping |
-| **👀 Code Reviewer** | Comprehensive code review | Pull requests, quality assurance | SOLID principles, vulnerability detection, compliance |
+| **👀 PR Code Reviewer** | Comprehensive code review | Pull requests, quality assurance | SOLID principles, vulnerability detection, compliance |
 | **🎨 Design Analyzer** | Architecture & design patterns | System design, modernization | Pattern recommendations, scalability assessment |
 | **🚀 MVP Builder** ⭐ | General rapid prototyping | Proof of concepts, standard prototyping | Quick prototyping, shadcn UI, lean validation |
 | **⚙️ Task Analyzer** | Project planning & breakdown | Sprint planning, requirement analysis | User story decomposition, effort estimation |
