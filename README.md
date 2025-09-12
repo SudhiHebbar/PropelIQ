@@ -319,7 +319,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 
 ```bash
 # Analyze an existing project  
-/analyze-codebase
+/analyze-codebase # **Note**: Run the root folder of the existing source code (or) provide repo url-path.
 # → Generates comprehensive analysis in Context/code-analysis.md
 
 # Create user story for business needs
