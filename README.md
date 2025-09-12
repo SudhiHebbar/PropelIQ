@@ -237,11 +237,9 @@ The framework includes **5 AI agents** that provide targeted expertise for diffe
 | **🔍 Code Analyzer** | Deep codebase analysis | Legacy code, technical debt, architecture review | C4 diagrams, security analysis, dependency mapping |
 | **👀 Code Reviewer** | Comprehensive code review | Pull requests, quality assurance | SOLID principles, vulnerability detection, compliance |
 | **🎨 Design Analyzer** | Architecture & design patterns | System design, modernization | Pattern recommendations, scalability assessment |
-| **🚀 MVP Builder** ⭐ | Rapid prototype validation | Business hypothesis testing, 18-hour MVPs | Quick prototyping, shadcn UI, lean validation |
+| **🚀 MVP Builder** ⭐ | Rapid prototype validation | Business hypothesis testing | Quick prototyping, shadcn UI, lean validation |
 | **🚀 Prototype Builder** | General rapid prototyping | Proof of concepts, standard prototyping | Multi-stack generation, template scaffolding |
 | **⚙️ Task Analyzer** | Project planning & breakdown | Sprint planning, requirement analysis | User story decomposition, effort estimation |
-
-*⭐ Special: MVP Builder requires direct invocation using `@mvp-builder` and focuses exclusively on business hypothesis validation within 18 hours*
 
 ### Agent Integration Patterns
 

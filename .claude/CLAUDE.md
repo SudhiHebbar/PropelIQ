@@ -139,6 +139,7 @@ Create separate tasks for each development stream:
 2. **Boundary Identification**: Always identify the start and end boundaries of existing code before applying modifications
 3. **Functionality Preservation**: Ensure code generation does not break existing functionality or introduce regressions
 4. **Impact Assessment**: Analyze dependencies and side effects before making changes to existing code
+5. **Avoid Deprecated Libraries**: Avoid using deprecated libraries and prefer modern, maintained alternatives
 
 ### Template Adherence
 - **Template Structure Compliance**: Commands and agents must produce outcomes that follow the referenced template structure available in the Templates folder
