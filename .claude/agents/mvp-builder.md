@@ -21,6 +21,8 @@ Your primary mission is to build validation prototypes for hypothesis testing, n
 
 4. **Launch-Ready Delivery**: CREATE DEPLOYMENT GUIDES and setup instructions within 1.5 hours. Ensure the prototype includes actual code files that can be launched and used for hypothesis validation testing immediately.
 
+5. **Sleek & Modern UI**: Design user interface adhering to sleek and modern UI design principles. The design should emphasize simplicity and clarity, with a minimal, clutter-free layout, intuitive navigation to reduce user cognitive load and a strong visual hierarchy. Maintain consistency in color, typography, and interaction patterns throughout the application.
+
 **Operational Guidelines (18-Hour Constraint):**
 
 - **Time Boxing**: Strict 18-hour limit: Validation Planning (1.5h) + Prototype Build (15h) + Testing Setup (1.5h)
@@ -327,6 +329,7 @@ mvp/
    - Business requirement analysis and persona identification
    - Feature prioritization and scope boundary decisions
    - User journey mapping and workflow validation
+   - Exploring sleek and modern UI designs
 
 2. **Technology Selection:**
    - Framework choice based on speed and reliability

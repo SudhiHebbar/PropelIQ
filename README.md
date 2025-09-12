@@ -1,26 +1,38 @@
 # Codegen Framework 🚀
 
-A comprehensive, enterprise-grade framework for generating high-quality applications across multiple technology stacks using Claude Code (https://www.anthropic.com/claude-code). This repository provides structured templates, best practices, custom Claude Code commands, and quality validation patterns to accelerate development while maintaining professional standards.
+> **Transform your development workflow with AI-powered code generation and intelligent automation**
 
-## 🎯 What This Project Does
+An enterprise-grade framework that combines **Claude Code**, **specialized AI agents**, and **proven templates** to accelerate high-quality software development across multiple technology stacks.
 
-The **Codegen Framework** is a structured approach to generating code, artefacts, and performing code analysis, combining:
+## 📋 Table of Contents
 
-- **Multi-stack Templates** for React, .NET, Python, and more
-- **Advanced Test Automation** with comprehensive Playwright automation and best practices
-- **Quality-First Patterns** with built-in validation and testing strategies  
-- **Enterprise Architecture** following SOLID principles and clean code practices
-- **Custom Claude Commands** for automated analysis, requirements generation, and task execution
-- **Comprehensive Best Practices** covering security, performance, and maintainability
+### 🚀 **Getting Started**
+[Quick Start](#-quick-start) • [How It Works](#️-how-codegen-works) • [Architecture](#️-architecture) • [Technology Stacks](#️-supported-technology-stacks)
 
-### Key Benefits
+### 🛠️ **Development**  
+[Commands & Workflows](#-commands--workflows) • [Specialized Agents](#-specialized-agents) • [Examples](#-examples--use-cases) • [Quality Standards](#-quality-standards)
 
-✅ **Accelerated Development** - Pre-configured templates and patterns reduce setup time  
-✅ **Advanced Test Automation** - Complete Playwright test generation from requirements to executable scripts
-✅ **Consistent Quality** - Built-in validation ensures code standards compliance
-✅ **Enterprise Ready** - Architecture patterns proven in production environments  
-✅ **Multi-Technology** - Support for modern tech stacks and frameworks  
-✅ **AI-Enhanced** - Custom Claude Code commands for intelligent assistance
+### 📚 **Resources**
+[Documentation](#-documentation--resources) • [FAQ](#-frequently-asked-questions) • [Contributing](#-contributing) • [Support](#-support--community)
+
+## 🎯 Why Choose Codegen Framework?
+
+**From idea to production in minutes, not hours:**
+
+| Traditional Development | Codegen Framework | Time Saved |
+|------------------------|-------------------|------------|
+| Manual project setup | `/generate-task` + `/execute-task` | **70%** |
+| Writing test plans | `/generate-automation-test` | **60%** |
+| Code reviews | `/review-pr` with AI analysis | **70%** |
+| Requirements analysis | `/analyze-codebase` + `/generate-requirements` | **75%** |
+
+### 🚀 Core Value Propositions
+
+**🎯 Rapid Prototyping** - Go from user story to working prototype in few hours  
+**🔍 Intelligent Analysis** - Deep codebase understanding with C4 architecture diagrams  
+**🧪 Test-First Development** - Automated Playwright test generation from requirements  
+**⚡ Production Ready** - Enterprise patterns with SOLID principles and security best practices  
+**🤖 AI-Enhanced Workflows** - 5 specialized agents for targeted development assistance
 
 ## 📋 Prerequisites
 
@@ -36,152 +48,214 @@ The **Codegen Framework** is a structured approach to generating code, artefacts
 - **GitHub CLI**: For GitHub integration (if using gitops commands)
 - **VS Code or Cursor**: Optional IDEs for integration with Claude Code
 
-## 🏗️ Repository Architecture
+## 🏗️ Architecture
+
+![Alt text](./Assets/Architecture.png "Codegen Architecture")
+
+
+### 📁 Framework Structure
 
 ```
-📁 Codegen Framework/
-├── 📂 .claude/                   # Claude Code configuration and extensions
-│   ├── 📂 agents/               # Specialized agent configurations
-│   │   ├── 🔍 code-analyzer.md  # Deep codebase analysis agent
-│   │   ├── 👀 code-reviewer.md  # Comprehensive code review agent
-│   │   ├── 🎨 design-analyzer.md # Design pattern analysis agent
-│   │   ├── 🚀 prototype-builder-agent.md # Rapid prototype generation agent
-│   │   └── ⚙️ task-analyzer.md  # Task breakdown and planning agent
-│   ├── 📂 commands/             # Custom Claude Code commands
-│   │   ├── 🔍 discovery/        # analyze-codebase, generate-requirements
-│   │   ├── ⚙️ task/             # execute-task, generate-task
-│   │   ├── 🎨 design/           # generate-design  
-│   │   ├── 🧪 test/             # generate-automation-test, generate-playwright-scripts
-│   │   ├── 🔄 gitops/           # review-pr, resolve-review-comment
-│   │   └── 💻 ux/               # review-user-interface
-│   ├── 📄 CLAUDE.md             # Additional context for command development
-│   └── 📄 settings.local.json   # Local Claude Code settings (never committed)
-├── 📂 Context/                   # Generated project analysis & specifications
-│   ├── 📄 code-analysis.md      # Output from /analyze-codebase
-│   ├── 📄 design.md             # Output from /generate-design
-│   ├── 📄 requirements.md       # Output from /generate-requirements
-│   ├── 📂 Tasks/                # Task plans and logs (output from /generate-task)
-│   └── 📂 Test/                 # Test workflows from /generate-automation-test
-├── 📂 References/               # Best practices & configuration libraries
-│   ├── 🏗️ Build/               # Technology configurations (react_config.yaml, dotnet_config.yaml)
-│   ├── ⚠️ Gotchas/             # Comprehensive best practices documentation
-│   └── � Figma/               # Figma design artefacts (optional)
-├── 📂 Templates/                # Base templates for command outputs
-│   ├── 📄 analyze_code_base.md  # Template for codebase analysis
-│   ├── 📄 automation_test_base.md # Template for test workflows
-│   ├── 📄 design_base.md        # Template for system design
-│   ├── 📄 requirement_base.md   # Template for requirements
-│   └── 📄 task_base.md          # Template for task execution
-├── 📂 test-automation/         # Generated Playwright test suites
-│   ├── 📂 tests/               # Executable test specifications
-│   ├── 📂 pages/               # Page Object Model classes
-│   ├── 📂 data/                # Test data management
-│   ├── 📂 utils/               # Test utilities and helpers
-│   └── 📄 playwright.config.ts # Test execution configuration
-│   └── 📄 package.json         # Test dependencies and scripts (add as needed)
-├── 📄 .env                     # API keys and secrets (never committed)
-├── 📄 .mcp.json                # MCP server configuration
-├── 📄 .gitignore               # Git ignore rules
-└── 📄 README.md                # Project documentation
+Codegen Framework/
+├── .claude/                    # Claude Code configuration
+│   ├── agents/                 # AI agents (5 specialized agents)
+│   │   ├── code-analyzer.md
+│   │   ├── design-analyzer.md
+│   │   ├── mvp-builder.md
+│   │   ├── pr-code-reviewer.md
+│   │   └── task-analyzer.md
+│   ├── commands/               # Custom commands
+│   │   ├── azops/              # Azure DevOps commands
+│   │   ├── design/             # Design generation commands
+│   │   ├── discovery/          # Analysis & requirements commands
+│   │   ├── gitops/             # GitHub operations commands
+│   │   ├── task/               # Task management commands
+│   │   ├── test/               # Test generation commands
+│   │   └── ux/                 # UI/UX review commands
+│   └── CLAUDE.md               # Development guidelines
+├── Assets/                     # Images and diagrams
+├── Context/                    # Generated project artifacts
+│   ├── Tasks/                  # Generated task plans
+│   ├── Test/                   # Generated test workflows
+│   ├── code-analysis.md        # Codebase analysis results
+│   ├── requirements.md         # Generated requirements
+│   └── design.md               # System design documents
+├── References/                 # Best practices library
+│   ├── Build/                  # Technology configurations
+│   ├── Figma/                  # Design references
+│   ├── Gotchas/                # Best practices (15+ docs)
+│   └── CLAUDE.md               # Additional context
+├── Templates/                  # Output templates
+│   ├── analyze_code_base.md
+│   ├── analyze_task_base.md
+│   ├── automation_test_base.md
+│   ├── design_base.md
+│   ├── requirement_base.md
+│   └── task_base.md
+├── utils/                      # Framework utilities
+│   └── mcp-server-fallbacks.md # MCP server fallback configurations
+├── .env                        # Environment variables (gitignored)
+├── .gitignore                  # Git ignore rules
+├── .mcp.json                   # MCP server configuration
+├── LICENSE                     # MIT License
+└── README.md                   # This file
 ```
 
-## 🛠️ Supported Technology Stacks
+### 📂 Key Directories
 
-### Frontend
-- **React 19** + TypeScript + Vite
-  - CSS Modules, SCSS, Path aliases
-  - Jest + React Testing Library
-  - ESLint + Prettier integration
-  - **Reference**: [React Gotchas](References/Gotchas/react_gotchas.md) for best practices
+<details>
+<summary><strong>.claude/</strong> - Claude Code configuration and AI agents</summary>
 
-### Backend  
-- **.NET 8** + ASP.NET Core
-  - Clean Architecture with layered separation
-  - Entity Framework Core + AutoMapper
-  - xUnit + Moq + TestContainers
-  - **Reference**: [.NET Gotchas](References/Gotchas/dotnet_gotchas.md) for optimization patterns
+| Directory | Purpose | Key Files |
+|-----------|---------|-----------|
+| `agents/` | 6 specialized AI agents | code-analyzer, code-reviewer, design-analyzer, mvp-builder, prototype-builder, task-analyzer |
+| `commands/` | Custom Claude Code commands | discovery/, task/, design/, test/, gitops/, ux/ |
+| `CLAUDE.md` | Development context | Additional instructions for command development |
 
-### Additional Stacks
- - **Python FastAPI** with modern async patterns
- - **Python Django** for robust web applications
- - **Node.js Express** with TypeScript
- - **Angular** with Angular CLI
- - **Vue 3** with Composition API
- - **GoLang** with Gin or Echo frameworks
- - **Java** with Spring Boot or Quarkus
+</details>
 
-**Comprehensive Guidance**: All technology stacks benefit from the extensive documentation in `References/Gotchas/`, covering:
-- [Frontend Best Practices](References/Gotchas/frontend_best_practices.md)
-- [Backend Best Practices](References/Gotchas/backend_best_practices.md) 
-- [Database Best Practices](References/Gotchas/database_best_practices.md)
-- [General Coding Standards](References/Gotchas/general_coding_standards.md)
+<details>
+<summary><strong>Context/</strong> - Generated analysis and specifications</summary>
 
-## 🌟 Why Choose Codegen Framework?
+| File/Folder | Generated By | Contains |
+|-------------|--------------|----------|
+| `code-analysis.md` | `/analyze-codebase` | Architecture diagrams, security analysis, technical debt |
+| `requirements.md` | `/generate-requirements` | User stories, acceptance criteria, use cases |
+| `Tasks/` | `/generate-task` | Structured task plans with dependencies |
+| `Test/` | `/generate-automation-test` | Test workflow specifications |
 
-The Codegen Framework isn't just another template collection—it's a comprehensive system designed for professional software development:
+</details>
 
-- **🎯 Proven Patterns** - Architecture patterns tested in production environments
-- **🚀 AI-Enhanced** - Custom Claude commands for intelligent development assistance  
-- **📊 Quality-Focused** - Built-in validation and testing ensure professional standards
-- **🔧 Multi-Stack** - Support for modern technology stacks and frameworks
-- **📚 Knowledge Base** - Extensive documentation covering best practices and gotchas
-- **⚡ Rapid Development** - Reduce setup time while maintaining quality and consistency
+<details>
+<summary><strong>References/</strong> - Best practices and configuration library</summary>
 
-Start building better applications faster with the Codegen Framework! 🚀
+| Directory | Purpose | Coverage |
+|-----------|---------|----------|
+| `Build/` | Technology configurations | React, .NET, Python, Node.js setups |
+| `Gotchas/` | Comprehensive best practices | 15+ documentation files covering all aspects |
 
-## 🤖 Specialized Agents
+</details>
 
-The Codegen Framework includes a collection of specialized AI agents designed for specific aspects of software development. These agents leverage advanced reasoning and domain expertise to provide targeted assistance:
+<details>
+<summary><strong>Templates/</strong> - Structured output templates</summary>
 
-### 🔍 **Code Analyzer Agent**
-- **Purpose**: Deep codebase analysis and reverse engineering
-- **Capabilities**: Architecture assessment, dependency mapping, security analysis
-- **Best For**: Understanding legacy codebases, technical debt analysis
+Ensures consistent, professional output across all generated artifacts:
+- Analysis reports • Requirements documents • Design specifications • Task plans • Test workflows
 
-### 👀 **Code Reviewer Agent** 
-- **Purpose**: Comprehensive code review with enterprise standards
-- **Capabilities**: SOLID principles validation, security vulnerability detection, performance analysis
-- **Best For**: Pull request reviews, code quality assurance, compliance checking
+</details>
 
-### 🎨 **Design Analyzer Agent**
-- **Purpose**: System design and architecture pattern analysis
-- **Capabilities**: C4 model diagrams, design pattern recommendations, scalability assessment
-- **Best For**: Architecture reviews, design decisions, system modernization
+<details>
+<summary><strong>test-automation/</strong> - Generated Playwright test suites</summary>
 
-### 🚀 **Prototype Builder Agent**
-- **Purpose**: Rapid prototype generation and MVP development
-- **Capabilities**: Multi-stack code generation, template-based scaffolding, best practice integration
-- **Best For**: Proof of concepts, rapid development, technology exploration
+| Directory | Purpose |
+|-----------|---------|
+| `tests/` | Executable Playwright test files |
+| `pages/` | Page Object Model classes |
+| `data/` | Test data and fixtures |
+| `utils/` | Test utilities and helpers |
 
-### ⚙️ **Task Analyzer Agent**
-- **Purpose**: Task breakdown and project planning
-- **Capabilities**: User story decomposition, dependency mapping, effort estimation
-- **Best For**: Sprint planning, requirement analysis, project management
+</details>
 
-**Agent Integration**: All agents work seamlessly with the command system and can be invoked directly through Claude Code commands or integrated into existing workflows for enhanced development productivity.
+## ⚙️ Supported Technology Stacks
+
+| Stack | Framework/Version | Features | Best Practices Doc |
+|-------|------------------|----------|--------------------| 
+| **Frontend** | React 19 + TypeScript + Vite | CSS Modules, Jest, ESLint | [React Gotchas](References/Gotchas/react_gotchas.md) |
+| **Backend** | .NET 8 + ASP.NET Core | Clean Architecture, EF Core, xUnit | [.NET Gotchas](References/Gotchas/dotnet_gotchas.md) |
+| **API** | Python FastAPI | Async patterns, Pydantic, pytest | [Backend Best Practices](References/Gotchas/backend_best_practices.md) |
+| **Web** | Python Django | ORM, Admin, Testing | [Backend Best Practices](References/Gotchas/backend_best_practices.md) |
+| **Server** | Node.js Express + TypeScript | RESTful APIs, Middleware | [Backend Best Practices](References/Gotchas/backend_best_practices.md) |
+| **SPA** | Angular + CLI | Components, Services, Guards | [Frontend Best Practices](References/Gotchas/frontend_best_practices.md) |
+| **Progressive** | Vue 3 + Composition API | Reactive, Composables | [Frontend Best Practices](References/Gotchas/frontend_best_practices.md) |
+| **Cloud** | GoLang + Gin/Echo | High performance, Microservices | [General Coding Standards](References/Gotchas/general_coding_standards.md) |
+| **Enterprise** | Java Spring Boot | Enterprise patterns, JPA | [General Coding Standards](References/Gotchas/general_coding_standards.md) |
+
+> **📚 Comprehensive Coverage**: Each stack is supported by extensive documentation in `References/Gotchas/` covering architecture patterns, security, performance, and testing strategies.
 
 ## 🛠️ How Codegen Works
 
-Codegen Framework orchestrates intelligent generation of code, artefacts, and code analysis through a combination of:
+**The power of AI-driven development automation in 4 simple steps:**
 
-- **Command-Driven Workflow:** All actions are initiated via custom Claude Code commands (see `.claude/commands/`). These commands are defined as Markdown files and automate code analysis, requirements, design, testing, and artefact generation (such as documentation, test plans, and more).
-- **Best Practices & Standards:** Every command leverages the standards, principles, and anti-patterns documented in the `References/` folder. This ensures generated code is robust, maintainable, and enterprise-grade.
-- **MCP Server Integration:** Commands can invoke one or more MCP servers (configured in `.mcp.json`) for advanced context, code analysis, or automation. For example, Playwright MCP for browser automation, Context7 for requirements and analysis, etc.
-- **Template-Driven Outcomes:** Structural outputs (requirements, designs, tests, etc.) are generated using templates from the `Templates/` folder. This guarantees consistency and clarity in all deliverables.
-- **Context-Aware Generation:** Commands use project context, standards, and MCP server responses to produce outcomes tailored to your technology stack and business needs.
+![Alt text](./Assets/SystemOverview.png "Codegen Workflow")
 
-**Workflow Example:**
-1. A user runs a command (e.g., `/generate-automation-test Context/requirements.md`).
-2. The command references best practices from `References/Gotchas/automation_testing_gotchas.md` and validation rules.
-3. If needed, the command queries MCP servers for additional analysis or codegen.
-4. The output is structured using a template from `Templates/automation_test_base.md` and saved in the appropriate folder.
-5. All generated artifacts follow the standards and patterns defined in the repository.
+### 🔄 Core Workflow Components
 
-This approach ensures every generated outcome is:
-- Standards-compliant
-- Context-aware
-- Consistent in structure
-- Ready for enterprise use
+| Component | Role | Example |
+|-----------|------|---------|
+| **🎯 Commands** | Entry points for all operations | `/analyze-codebase`, `/generate-task`, `/execute-task` |
+| **🤖 Specialized Agents** | Domain-specific AI processing | Code analysis, task planning, code review, quick prototype |
+| **📋 Templates** | Consistent output structure | Requirements, designs, test plans, analysis reports |
+| **📚 Best Practices** | Quality assurance & standards | SOLID principles, security patterns, anti-patterns |
+| **🔌 MCP Servers** | External integrations | Context7, Playwright, GitHub, Azure DevOps |
+
+### 💡 Real-World Example: From User Story to Running Tests
+
+```bash
+# 1. Start with a user story
+echo "Develop a web based onboarding digital platform that supports registration, renewal, and lifecycle management of institutional and
+individual memberships. The goal is to simplify the user experience, streamline internal workflows, and enable process automation across membership types and levels." > scope.md
+
+# 2. Generate structured requirements  
+/generate-requirements scope.md
+# → Creates Context/requirements.md with acceptance criteria
+
+# 3. Break down into executable tasks
+/generate-task Context/requirements.md  
+# → Creates Context/Tasks/<markdown files for each of the task>
+
+# 4. Generate comprehensive tests
+/generate-automation-test Context/requirements.md
+# → Creates Context/Test/<markdown files for each of the test flow>
+
+# 5. Convert to executable Playwright scripts
+/generate-playwright-scripts
+# → Creates test-automation/tests/test1.spec.ts with Page Objects
+
+# 6. Execute the task 
+/execute-task Context/Tasks/task1.md
+# → Implements the task with TodoWrite tracking
+
+# Total time: 5-10 minutes vs 2-4 hours manually
+```
+
+### 🎯 Quality Assurance Built-In
+
+Every generated artifact automatically includes:
+
+- **🔒 Security Best Practices** - OWASP Top 10 compliance, input validation
+- **⚡ Performance Patterns** - Caching strategies, optimization techniques  
+- **🧪 Test Coverage** - Unit, integration, and E2E test generation
+- **📖 Documentation** - Code comments, API docs, architecture diagrams
+- **🔍 Code Review** - Automated quality checks and validation
+
+## 🤖 Specialized Agents
+
+The framework includes **5 AI agents** that provide targeted expertise for different aspects of software development:
+
+| Agent | Purpose | When to Use | Key Capabilities |
+|-------|---------|-------------|------------------|
+| **🔍 Code Analyzer** | Deep codebase analysis | Legacy code, technical debt, architecture review | C4 diagrams, security analysis, dependency mapping |
+| **👀 Code Reviewer** | Comprehensive code review | Pull requests, quality assurance | SOLID principles, vulnerability detection, compliance |
+| **🎨 Design Analyzer** | Architecture & design patterns | System design, modernization | Pattern recommendations, scalability assessment |
+| **🚀 MVP Builder** ⭐ | Rapid prototype validation | Business hypothesis testing, 18-hour MVPs | Quick prototyping, shadcn UI, lean validation |
+| **🚀 Prototype Builder** | General rapid prototyping | Proof of concepts, standard prototyping | Multi-stack generation, template scaffolding |
+| **⚙️ Task Analyzer** | Project planning & breakdown | Sprint planning, requirement analysis | User story decomposition, effort estimation |
+
+*⭐ Special: MVP Builder requires direct invocation using `@mvp-builder` and focuses exclusively on business hypothesis validation within 18 hours*
+
+### Agent Integration Patterns
+
+```bash
+# Agent invocation through commands
+/analyze-codebase # → internally call agent=code-analyzer 
+/generate-design # → internally call agent=design-analyzer
+/review-pr # → internally call agent=pr-code-reviewer
+/analyze-task # → internally call agent=task-analyzer
+
+# Direct agent invocation
+@mvp-builder "Scope Description"
+@mvp-builder scope-document.md
+```
 
 ## 🚀 Quick Start
 
@@ -192,179 +266,279 @@ cd "Codegen Framework"
 ```
 
 ### 2. Install MCP Servers
-Install both Playwright and Context7 MCP servers for full functionality:
+
+**📦 Complete MCP Server Setup:**
 
 ```bash
-# Install Playwright MCP server
+# Core MCP servers (Required)
+claude mcp add context7 https://mcp.context7.com/mcp
+claude mcp add sequential-thinking npx @modelcontextprotocol/server-sequential-thinking
+
+# Development & Testing
 claude mcp add playwright npx @playwright/mcp@latest
 
-# Install Context7 MCP server
-claude mcp add context7 https://mcp.context7.com/mcp
+# Platform Integrations (Choose based on your needs)
+claude mcp add github npx @github/mcp-server
+claude mcp add azure-devops npx @azure-devops/mcp-server
+
+# UI Development (Required for MVP Builder)
+claude mcp add shadcn npx @shadcn/mcp-server
 ```
+
+**🎯 MCP Server Requirements by Use Case:**
+
+| Use Case | Required MCP Servers | Purpose |
+|----------|---------------------|---------|
+| **Basic Development** | Context7, sequential-thinking | Core framework functionality |
+| **Test Automation** | + Playwright | Automated testing capabilities |
+| **GitHub Integration** | + GitHub | Pull request reviews, repository operations |
+| **Azure DevOps** | + Azure DevOps | Azure DevOps integration |
+| **MVP Development** | + shadcn | UI component generation with shadcn |
+| **Complete Setup** | All of the above | Full framework capabilities |
 
 After installation, restart Claude Code or reload the configuration to activate the MCP servers.
 
-### 3. Initialize Agents and Explore Commands
-The framework includes specialized agents and Claude Code commands organized by category:
+### 3. Try Your First Command
 
-**Available Agents:**
-The framework includes 5 specialized AI agents for targeted development assistance:
+**🎯 Get started in under 2 minutes:**
 
-- **🔍 Code Analyzer Agent** (`code-analyzer.md`) - Deep codebase analysis, architecture assessment, dependency mapping, and security analysis
-- **👀 Code Reviewer Agent** (`code-reviewer.md`) - Comprehensive code review with enterprise standards, SOLID principles validation, and performance analysis  
-- **🎨 Design Analyzer Agent** (`design-analyzer.md`) - System design and architecture pattern analysis, C4 model diagrams, and scalability assessment
-- **🚀 Prototype Builder Agent** (`prototype-builder-agent.md`) - Rapid prototype generation, multi-stack code generation, and MVP development
-- **⚙️ Task Analyzer Agent** (`task-analyzer.md`) - Task breakdown and project planning, user story decomposition, and effort estimation
-
-Each agent can be invoked directly through Claude Code or integrated into command workflows for enhanced development productivity.
-
-**Command Categories:**
-
-#### 🔍 Discovery & Analysis
 ```bash
-# Analyze existing codebases with comprehensive reverse engineering
-/analyze-codebase [repo_url] [analysis_depth] [priority_areas]
-# Output: Context/code-analysis.md
+# Analyze an existing project  
+/analyze-codebase
+# → Generates comprehensive analysis in Context/code-analysis.md
 
-# Generate requirements from specifications
-/generate-requirements [requirements-source]
-# Output: Context/requirements.md
-```
-#### 🎨 Design & Architecture
-```bash
-# Create system designs and architecture diagrams
-/generate-design [design-specification]
-# Output: Context/design.md
+# Create user story for business needs
+/generate-requirements [BRD file | Plain text]
+# → Generates comprehensive user stories in Context/requirements.md
 ```
 
-#### ⚙️ Task Management 
+**✅ Success indicators:**
+- New files appear in `Context/` folder
+- Commands complete without errors  
+- Generated content follows framework templates
+
+## 📋 Commands & Workflows
+
+### 🔄 Common Development Workflows
+
+**🤔 Which workflow should you use?**
+
+![Alt text](./Assets/FlowDiagram.png "Codegen Flow Diagram")
+
+<details>
+<summary><strong>🌱 Green-field Development</strong> - Building from scratch</summary>
+
 ```bash
-# Generate structured task plans from user stories or descriptions
-/generate-task [user-story | task-description]
-# Output: Context/Tasks/task_<name>.md
+# 1. Create user stories from business needs
+/generate-requirements brd.md
+# → Context/requirements.md
 
-# Execute tasks systematically with TodoWrite integration
-/execute-task [task-file-path]
-# Output: technology-specific project files
+# 2. Generate system design (optional)  
+/generate-design Context/requirements.md
+# → Context/design.md
 
-# Review and analyze completed tasks against requirements
-/analyze-task [task-file-path] [--analysis-depth=standard] [--focus-areas=security,testing,performance]
-# Output: Post-implementation analysis with quality assessment and recommendations
+# 3. Break down into tasks
+/generate-task Context/requirements.md
+# → Context/Tasks/feature-name.md (list of tasks)
+
+# 4. Execute tasks systematically for code generation
+/execute-task Context/Tasks/feature-name.md
+# → Logic Implementation with TodoWrite tracking
+
+# 5. Quality review (optional)
+/analyze-task Context/Tasks/feature-name.md
+# → Quality assessment and recommendations for the implemented logic
+```
+
+</details>
+
+<details>
+<summary><strong>🏗️ Brown-field Development</strong> - Working with existing code</summary>
+
+```bash
+# 1. Understand the codebase
+/analyze-codebase <repo url path | code-base directory | root-path>
+# → Context/code-analysis.md 
+
+# 2. Generate user stories for new features
+/generate-requirements new-feature-spec.md
+# → Context/requirements.md
+
+# 3. Create implementation plan
+/generate-task Context/requirements.md
+# → Context/Tasks/new-feature.md (List of tasks)
+
+# 4. Execute with existing code integration
+/execute-task Context/Tasks/new-feature .md
+# → Updated codebase with new functionality
+```
+
+</details>
+
+<details>
+<summary><strong>🧪 Test-Driven Development</strong> - Tests first approach</summary>
+
+```bash
+# 1. Generate comprehensive test workflows
+/generate-automation-test Context/requirements.md
+# → Context/Test/test_workflow_*.md
+
+# 2. Create executable Playwright scripts
+/generate-playwright-scripts
+# → test-automation/tests/, pages/, data/, utils/
+
+# 3. Implement features to pass tests
+/execute-task Context/Tasks/feature.md
+# → Implementation guided by tests
+```
+
+</details>
+
+<details>
+<summary><strong>🐛 Bug-fixing Workflow</strong> - Systematic issue resolution</summary>
+
+```bash
+# 1. Create task from bug description
+/generate-task "Bug: Login fails with 500 error on special characters | bug url"  
+# → Context/Tasks/login-bug-fix.md
+
+# 2. Execute systematic debugging
+/execute-task Context/Tasks/login-bug-fix.md
+# → Guided debugging with TodoWrite tracking
+
+# 3. Verify fix completeness
+/analyze-task Context/Tasks/login-bug-fix.md
+# → Validation that bug is fully resolved
+```
+
+</details>
+
+<details>
+<summary><strong>🚀 MVP Validation</strong> - Test business hypotheses rapidly (18-hour constraint)</summary>
+
+```bash
+# Direct agent invocation for MVP development (requires @mvp-builder)
+@agent-mvp-builder "Build a prototype automated invoice tracking"
+
+# Alternative: Provide scope document
+@agent-mvp-builder scope-of-work.md
 
 ```
 
-#### 🧪 Test Automation
+</details>
+
+<details>
+<summary><strong>🔍 Code Review & Quality</strong> - Maintain high standards</summary>
+
 ```bash
-# Generate comprehensive test workflows from requirements
-/generate-automation-test [requirements-file|use-case|user-story]
-# Output: Context/Test/test_workflow_*.md
+# Review pull requests
+/review-pr [pr-url-or-number | local changes]
+# → Context/Reviews/review-pr.md with comprehensive analysis
 
-# Convert test workflows into executable Playwright scripts
-/generate-playwright-scripts [workflow-file-path] # Auto-detects from Context/Test/ if empty
-# Output: test-automation/tests/, test-automation/pages/, test-automation/data/, test-automation/utils/
-```
-
-#### 🔄 GitOps & Code Review
-```bash
-# Review pull requests with comprehensive analysis
-/review-pr [pr-url|pr-number]
-# Output: Context/review-pr.md
-
-# Resolve specific review comments
+# Resolve specific review comments  
 /resolve-review-comment [comment-reference]
-# Output: Context/review-comment-resolution.md
+# → Implements the corrections to resolve the comment.
+
+# UI/UX review with visual testing
+/review-user-interface [ui-spec-or-screenshot]
+# → Playwright/snapshot.jpg
 ```
 
-#### ☁️ Azure DevOps Operations
-```bash
-# Review Azure DevOps pull requests with comprehensive analysis
-/azops/review-pr [pr-id] [--project=PROJECT] [--repository=REPO] [--depth=comprehensive]
-# Output: Context/review-pr.md + Azure DevOps PR comments
-```
+</details>
 
-#### 💻 User Experience
-```bash
-# Review and analyze user interfaces
-/review-user-interface [ui-specification|screenshot-path]
-# Output: Context/ui-review.md
-```
+### 📖 Command Reference
 
-## 📘 How to use Codegen
+| Command | Purpose | Input | Output |
+|---------|---------|-------|--------|
+| `/analyze-codebase` | Deep codebase analysis | Repository path/URL | `Context/code-analysis.md` |
+| `/generate-requirements` | Create structured requirements | Specifications, user stories | `Context/requirements.md` |
+| `/generate-design` | System design & architecture | Requirements, specifications | `Context/design.md` |
+| `/generate-task` | Break down into executable tasks | User stories, requirements | `Context/Tasks/task_*.md` |
+| `/execute-task` | Implement tasks systematically | Task file path | Technology-specific code |
+| `/analyze-task` | Post-implementation quality review | Task file path | Quality assessment report |
+| `/generate-automation-test` | Create test workflows | Requirements, use cases | `Context/Test/workflow_*.md` |
+| `/generate-playwright-scripts` | Convert to executable tests | Workflow files | `test-automation/` structure |
+| `/review-pr` | Comprehensive PR analysis | PR URL/number | `Context/review-pr.md` |
+| `/resolve-review-comment` | Address review feedback | Comment reference | Resolution documentation |
+| `/review-user-interface` | UI/UX analysis | UI specs, screenshots | `Context/ui-review.md` |
+| `@agent-mvp-builder` | Rapid MVP for hypothesis testing | Business hypothesis or scope doc | `mvp/` folder with working code |
 
-Follow these steps to use the Codegen Framework in your project:
+*⭐ Special: Requires direct agent invocation using `@` symbol*
 
-1. **Clone the framework to the root folder of your project**
-   ```bash
-   git clone <repository-url> <your-project-root>
-   ```
-2. **Launch Claude Code**
-   - Use the Claude Code terminal, or integrate Claude Code into VS Code or Cursor.
-3. **Install the necessary MCP Servers for Claude Code**
-   - Use the provided commands (see MCP Server Configuration section) to add and configure MCP servers.
-4. **Execute commands in the Claude Code terminal or write panel**
-   - Use the documented commands (e.g., `/generate-requirements`, `/analyze-codebase`, `/generate-automation-test`, etc.).
-5. **Artefacts and code outcomes**
-   - Artefacts (requirements, analysis, workflows) are stored in the `Context` folder.
-   - Code-related outcomes (tests, pages, utils, etc.) are stored in the appropriate project folders.
-
-### Recommended Workflows
-
-#### Green-field Development
-- `/generate-requirements` → `/generate-design` (optional) → `/generate-task` → `/execute-task` → `/analyze-task` (optional quality review)
-
-#### Brown-field Development
-- `/analyze-codebase` → `/generate-requirements` (for new features, optional) → `/generate-task` (using user stories if previous step is skipped) → `/execute-task` → `/analyze-task` (optional quality review)
-
-#### Bug-fixing
-- `/generate-task` (using bug description) → `/execute-task` → `/analyze-task` (verify fix completeness)
-
-#### Code Review (GitHub only)
-- `/review-pr`
-- `/review-user-interface` (pixel-perfect design review using Playwright MCP)
-- `/resolve-review-comment` (resolve specific review comment)
-
-#### Test Flow
-- `/generate-automation-test` → `/generate-playwright-scripts`
 
 ## ⚡ MCP Server Configuration
 
-MCP servers are configured project-wide in the root `.mcp.json` file. For sequential-thinking workflows, ensure your MCP configuration supports chaining commands and context propagation between phases.
+MCP servers are configured project-wide in the root `.mcp.json` file. This configuration enables seamless integration with external tools and services.
 
-**Example `.mcp.json` (matches project configuration):**
+**Complete `.mcp.json` Configuration:**
 ```json
 {
-   "mcpServers": {
-      "context7": {
-         "type": "http",
-         "url": "https://mcp.context7.com/mcp",
-         "headers": {
-            "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
-         }
-      },
-      "playwright": {
-         "type": "stdio",
-         "command": "npx",
-         "args": [
-            "@playwright/mcp@latest"
-         ],
-         "env": {}
-      },
-      "sequential-thinking": {
-         "type": "stdio",
-         "command": "npx",
-         "args": [
-            "@modelcontextprotocol/server-sequential-thinking"
-         ],
-         "env": {}
+  "mcpServers": {
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
       }
-   }
+    },
+    "playwright": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ],
+      "env": {}
+    },
+    "sequential-thinking": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "env": {}
+    },
+    "azure-devops": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@azure-devops/mcp",
+        "${AZ_DEVOPS_ORG}"
+      ],
+      "env": {}
+    },
+    "shadcn": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "shadcn@latest",
+        "mcp"
+      ],
+      "env": {}
+    },
+    "github": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github@latest",
+        "--env",
+        "GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PAT}"
+      ],
+      "env": {}
+    }
+  }
 }
 ```
 
-**Example `.env`:**
+**Complete `.env` Configuration:**
 ```
-SEQUENTIAL_THINKING_API_KEY=your-api-key-here
-CONTEXT7_API_KEY=your-api-key-here
+# Core APIs
+CONTEXT7_API_KEY=your-context7-api-key-here
+
+# Platform Integration
+GITHUB_PAT=your-github-personal-access-token
+AZ_DEVOPS_ORG=your-azure-devops-organization
 ```
 
 **Security:**  
@@ -374,216 +548,77 @@ The `.env` file is listed in `.gitignore` and should never be committed to the r
 1. Copy `.mcp.json` from the repository root.
 2. Create a `.env` file in the root and add your API keys.
 3. Run `claude mcp list` or `/mcp` to verify MCP server setup.
-4. Ensure agent configurations in `.claude/agents/` are accessible for specialized workflows.
-
+4. Run `/agent` to verify the available agents.
+5. Use `@` (e.g. @agent-mvp-builder) to run the agents directly
+6. Ensure the following are available
 - Architecture patterns and design principles
 - Technology-specific best practices
 - Anti-patterns and common pitfalls
 - Validation commands and quality gates
 
-## 🎯 Custom Claude Commands
+## 🏆 Quality Standards
 
-### 🔍 Discovery Commands
+**Built-in enterprise-grade quality assurance:**
 
-#### `/analyze-codebase`
-**Purpose:** Unified codebase analyzer and reverse engineering specialist
+### 📊 Metrics & Standards
+- **Maximum 500 lines** per source file for maintainability
+- **80% minimum test coverage** across all application layers  
+- **SOLID principles compliance** with automated validation
+- **Comprehensive documentation** for all public APIs and components
+- **Security-first approach** with OWASP Top 10 compliance
 
-**Parameters:**
-- `repo_url`: Repository URL or current directory (default: ".")
-- `primary_stack`: Auto-detected or specified technology stack
-- `analysis_depth`: "comprehensive" | "standard" | "quick" (default: "comprehensive")
-- `priority_areas`: "architecture, security, performance, data model, integrations" (default)
-- `time_budget_minutes`: Analysis time limit (default: 60)
-
-**Capabilities:**
-- **11-Phase Analysis Process**: From repository intelligence to modernization roadmap
-- **C4 Architecture Diagrams**: Context, Container, Component, and Deployment views
-- **Security Assessment**: OWASP Top 10 compliance and vulnerability scanning
-- **Business Logic Documentation**: Reverse-engineered use cases and actor analysis
-- **Risk Register**: Prioritized risks with mitigation strategies
-- **Output**: Comprehensive analysis report in `Context/code-analysis.md`
-
-#### `/generate-requirements`
-**Purpose:** Requirements analysis and documentation from various sources
-
-**Capabilities:**
-- User story generation with acceptance criteria
-- Use case analysis with Mermaid diagrams
-- Actor identification and system boundaries
-- Business rule extraction and validation
-- **Output**: Structured requirements in `Context/requirements.md`
-
-### ⚙️ Task Management Commands
-
-#### `/execute-task`
-**Purpose:** Systematic task execution with comprehensive tracking
-
-**Features:**
-- **TodoWrite Integration**: Real-time progress tracking
-- **Quality Validation**: Technology-specific validation at each step
-- **Error Handling**: Comprehensive rollback and recovery strategies
-- **Template-Based**: Uses `Templates/task_base.md` structure
-
-#### `/generate-task`
-**Purpose:** Generate structured task plans from descriptions
-
-**Features:**
-- Break down complex tasks into manageable steps
-- Include validation checkpoints
-- Estimate effort and dependencies
-
-#### `/analyze-task`
-**Purpose:** Post-implementation task analysis and quality review
-
-**Features:**
-- **Requirement Verification**: Validates completed code against task requirements
-- **Quality Assessment**: Reviews implementation for adherence to standards
-- **Gap Analysis**: Identifies missing functionality or incomplete requirements  
-- **Actionable Recommendations**: Provides specific improvement suggestions
-- **Agent Integration**: Leverages task-analyzer agent for comprehensive analysis
-
-### 🎨 Design Commands
-
-#### `/generate-design`
-**Purpose:** Create system designs and architecture documentation
-
-**Features:**
-- C4 model architecture diagrams
-- System design patterns and anti-patterns
-- Technology stack recommendations
-- **Output**: Design documentation using `Templates/design_base.md`
-
-### 🧪 Advanced Test Automation Pipeline
-
-#### `/generate-automation-test`
-**Purpose:** Generate comprehensive test workflows from requirements
-
-**Input Types:**
-- **Requirements File**: `Context/requirements.md` (primary source)
-- **Specific Use Case**: Targeted workflow for specific scenario
-- **User Story Reference**: Story-driven test workflow
-- **Feature Specification**: Complete feature validation workflow
-
-**Capabilities:**
-- **Process Workflow Design**: Step-by-step user journey automation
-- **Playwright Integration Planning**: Selector strategies and page object design
-- **Scenario Coverage**: Happy path, edge cases, and error handling
-- **Best Practice Compliance**: Follows `References/Gotchas/automation_testing_gotchas.md`
-- **Output**: Workflow specifications in `Context/Test/test_workflow_*.md`
-
-#### `/generate-playwright-scripts`
-**Purpose:** Convert test workflows into executable Playwright automation
-
-**Integration Pattern:**
+### ✅ Validation Commands
 ```bash
-# Complete automation pipeline
-/generate-automation-test Context/requirements.md  # → Creates workflows
-/generate-playwright-scripts                       # → Auto-detects & processes workflows
+# Universal quality checks built into all generated code
+npm run lint && npm test && npm build        # React/Node.js
+dotnet format && dotnet test && dotnet build # .NET
+pytest --cov=src tests/ --cov-report=term   # Python
 ```
 
-**Input Modes:**
-- **Auto-Discovery** (Default): Scans `Context/Test/` for workflow files
-- **Specific File**: Process individual workflow file
-- **Directory Scan**: Process all workflows in specified directory
-- **Name Pattern**: Find workflows by feature name
-
-**Generated Output Structure:**
-```
-test-automation/
-├── tests/                    # Executable Playwright test files
-├── pages/                    # Page Object Model classes
-├── data/                     # Test data management
-├── utils/                    # Helper functions and setup
-├── playwright.config.ts      # Browser and execution configuration
-└── package.json             # Dependencies and test scripts
-```
-
-**Quality Standards:**
-- **Stable Selectors**: Role-based locators and test-ids
-- **Proper Wait Strategies**: Web-first assertions, no hard-coded timeouts
-- **Test Isolation**: Independent test execution with cleanup
-- **Cross-Browser Support**: Chrome, Firefox, Safari testing
-- **Anti-Pattern Prevention**: Built-in gotchas compliance
-
-### 🔄 GitOps Commands
-
-#### `/review-pr`
-**Purpose:** Comprehensive pull request analysis and review
-
-**Features:**
-- Code quality assessment
-- Security vulnerability detection
-- Architecture impact analysis
-- Test coverage evaluation
-
-#### `/resolve-review-comment`
-**Purpose:** Address specific pull request review comments
-
-**Features:**
-- Targeted code fixes
-- Explanation of changes
-- Verification of resolution
-
-### 💻 User Experience Commands
-
-#### `/review-user-interface`
-**Purpose:** Analyze and improve user interface designs
-
-**Features:**
-- Accessibility compliance checking
-- UX best practices validation
-- Design system consistency
-- Usability recommendations
-
-## 📚 Key Features
-
-### Quality Standards
-- **Maximum 500 lines** per source file
-- **80% minimum test coverage** across all layers  
-- **SOLID principles compliance** with architectural validation
-- **Comprehensive documentation** for all public APIs
-- **Security-first approach** with vulnerability scanning
-
-### Validation Patterns
-```bash
-# Universal code quality validation
-rg "function.*\{[\s\S]{3000,}" --type typescript  # Function size check
-find src -name "*.ts" | while read file; do testfile=$(echo $file | sed 's/src/tests/' | sed 's/\.ts/.test.ts/'); [ ! -f "$testfile" ] && echo "MISSING TEST: $testfile"; done
-
-# Technology-specific validation
-npm run lint && npm test && npm run build        # React
-dotnet format && dotnet test && dotnet build     # .NET
-```
-
-### Best Practices Integration
-- **Anti-pattern detection** and prevention
-- **Performance optimization** patterns
-- **Security vulnerability** scanning and remediation
-- **Database optimization** and query analysis
-- **DevOps best practices** and CI/CD patterns
+### 🛡️ Built-in Protections
+- **Anti-pattern detection** and prevention across all technology stacks
+- **Performance optimization** patterns applied automatically  
+- **Security vulnerability** scanning and remediation suggestions
+- **Database optimization** with query analysis and indexing recommendations
+- **DevOps best practices** integration for CI/CD pipelines
 
 ## ❓ Frequently Asked Questions
 
-**Q: Can I use this framework without Claude Code?**  
-A: No, the framework is specifically designed for Claude Code integration and requires Claude Code to function.
+<details>
+<summary><strong>🚀 Getting Started</strong></summary>
 
-**Q: How do I update the framework to the latest version?**  
-A: Pull the latest changes from the repository using `git pull origin main` and review any breaking changes in the documentation.
+**Q: Do I need Claude Code to use this framework?**  
+A: Yes, this framework is specifically designed for Claude Code and requires it to function.
 
-**Q: Can I add custom commands to the framework?**  
-A: Yes, you can add custom commands by following the patterns in `.claude/commands/`. See the Contributing section for detailed guidelines.
+**Q: Which MCP servers do I need?**  
+A: **Basic**: Context7 + sequential-thinking. **Testing**: Add Playwright. **Azure**: Add Azure DevOps MCP.
 
-**Q: Which technology stacks are fully supported vs. partially supported?**  
-A: React and .NET have comprehensive configurations and gotchas documentation. Other stacks listed have basic support and can be extended using the patterns in `References/Build/` and `References/Gotchas/`.
+**Q: Can I use this with existing projects?**  
+A: Absolutely! Use the brown-field workflow starting with `/analyze-codebase`.
 
-**Q: How do I know which MCP servers I need for my project?**  
-A: The basic setup requires Context7 and sequential-thinking. Add Playwright for test automation, and Azure DevOps MCP if using Azure DevOps features.
+</details>
 
-**Q: Can I use this framework for existing projects (brown-field development)?**  
-A: Yes, the framework includes specific workflows for brown-field development. Start with `/analyze-codebase` to understand your existing codebase structure.
+<details>
+<summary><strong>🛠️ Development</strong></summary>
 
-**Q: I see an empty `commands/` directory at the root level. What is it for?**  
-A: This directory is reserved for future command extensions and is currently unused. All active commands are located in `.claude/commands/`.
+**Q: Which technology stacks are fully supported?**  
+A: It support most of the technology stack.
+
+**Q: Can I add custom commands?**  
+A: Yes! Follow patterns in `.claude/commands/`.
+
+</details>
+
+<details>
+<summary><strong>⚡ Performance</strong></summary>
+
+**Q: How much time does this save?**  
+A: **70-80% reduction** in setup time, **60% faster** code reviews, **75% faster** requirements analysis.
+
+**Q: What's the learning curve?**  
+A: **2 minutes** to first command, **30 minutes** to productive workflows, **1 hour** for advanced features.
+
+</details>
 
 ## 🤝 Contributing
 
@@ -606,74 +641,162 @@ A: This directory is reserved for future command extensions and is currently unu
 4. Ensure quality validation integration
 
 ### Agent Development
-1. Create agent configurations in `.claude/agents/` following existing patterns
+1. Create agent using /agent --> create new agent in the Claude code.
 2. Define agent purpose, capabilities, and integration points
 3. Include clear usage guidelines and examples
-4. Ensure agents work seamlessly with command workflows
+4. Ensure agents work seamlessly
 5. Test agent functionality across different scenarios
+6. Agents are defined as Markdown files with specific structure in `.claude/agents/`
+7. Ensure quality validation integration
 
-## 📖 Documentation
+## 📚 Documentation & Resources
 
-### Core Documentation
-- **[Context/code-analysis.md](Context/code-analysis.md)** - Generated codebase analysis reports
-- **[Context/requirements.md](Context/requirements.md)** - Generated project requirements  
-- **[Context/Test/](Context/Test/)** - Generated test workflow specifications
+### 🎯 By User Journey
 
-### Agent Documentation
-- **[.claude/agents/code-analyzer.md](.claude/agents/code-analyzer.md)** - Deep codebase analysis agent configuration
-- **[.claude/agents/code-reviewer.md](.claude/agents/code-reviewer.md)** - Comprehensive code review agent setup
-- **[.claude/agents/design-analyzer.md](.claude/agents/design-analyzer.md)** - Design pattern analysis agent
-- **[.claude/agents/prototype-builder-agent.md](.claude/agents/prototype-builder-agent.md)** - Rapid prototype generation agent
-- **[.claude/agents/task-analyzer.md](.claude/agents/task-analyzer.md)** - Task breakdown and planning agent
+<details>
+<summary><strong>🚀 Getting Started</strong> [New Users]</summary>
 
-### Command Templates
-- **[Templates/analyze_code_base.md](Templates/analyze_code_base.md)** - Codebase analysis template
-- **[Templates/analyze_task_base.md](Templates/analyze_task_base.md)** - Task analysis template
-- **[Templates/automation_test_base.md](Templates/automation_test_base.md)** - Test workflow template
-- **[Templates/design_base.md](Templates/design_base.md)** - System design template
-- **[Templates/requirement_base.md](Templates/requirement_base.md)** - Requirements template
-- **[Templates/task_base.md](Templates/task_base.md)** - Task execution template
+| Document | Purpose |
+|----------|---------|
+| [README.md](README.md) | Complete framework overview |
+| [References/Gotchas/framework_methodology.md](References/Gotchas/framework_methodology.md) | Usage patterns and workflows |
+| [References/Gotchas/troubleshooting_guide.md](References/Gotchas/troubleshooting_guide.md) | Common setup issues and solutions |
 
-### Best Practices Library
-- **[References/Gotchas/automation_testing_gotchas.md](References/Gotchas/automation_testing_gotchas.md)** - Critical Playwright patterns and anti-patterns
-- **[References/Gotchas/validation_commands.md](References/Gotchas/validation_commands.md)** - Quality validation commands for all stacks
-- **[References/Gotchas/architecture_patterns.md](References/Gotchas/architecture_patterns.md)** - System design patterns guide
-- **[References/Gotchas/design-principles.md](References/Gotchas/design-principles.md)** - Software design principles
-- **[References/Gotchas/anti_patterns.md](References/Gotchas/anti_patterns.md)** - Common anti-patterns to avoid
-- **[References/Gotchas/anti_redundancy_rules.md](References/Gotchas/anti_redundancy_rules.md)** - Code redundancy prevention patterns
-- **[References/Gotchas/frontend_best_practices.md](References/Gotchas/frontend_best_practices.md)** - Frontend development standards
-- **[References/Gotchas/backend_best_practices.md](References/Gotchas/backend_best_practices.md)** - Backend development patterns
-- **[References/Gotchas/database_best_practices.md](References/Gotchas/database_best_practices.md)** - Database design and optimization
-- **[References/Gotchas/devops_best_practices.md](References/Gotchas/devops_best_practices.md)** - CI/CD and deployment patterns
-- **[References/Gotchas/general_coding_standards.md](References/Gotchas/general_coding_standards.md)** - Universal coding standards
-- **[References/Gotchas/testing_workflow_patterns.md](References/Gotchas/testing_workflow_patterns.md)** - Test workflow best practices
+</details>
 
-### Technology Configuration
-- **[References/Build/react_config.yaml](References/Build/react_config.yaml)** - React + TypeScript + Vite setup
-- **[References/Build/dotnet_config.yaml](References/Build/dotnet_config.yaml)** - .NET Core + Clean Architecture setup
+<details>
+<summary><strong>🛠️ Development Reference</strong> [Active Development]</summary>
 
-## 🔧 Advanced Usage
+| Category | Document | Purpose |
+|----------|----------|---------|
+| **Commands** | `.claude/commands/*/` | All command implementations |
+| **Templates** | `Templates/*.md` | Output structure templates |
+| **Generated** | `Context/*.md` | Your project analysis and specs |
 
-### For Enterprise Projects
-1. Use Clean Architecture templates for scalable applications
-2. Implement comprehensive testing strategies
-3. Follow security best practices and compliance requirements
-4. Apply performance optimization patterns
+</details>
 
-### For AI-Assisted Development
-1. Leverage custom Claude commands for intelligent assistance
-2. Use structured templates for consistent code generation
-3. Apply quality validation patterns throughout development
-4. Reference best practices for technology-specific guidance
+<details>
+<summary><strong>📖 Best Practices</strong> [Quality Assurance]</summary>
 
-### For Team Collaboration
-1. Establish consistent coding standards using validation commands
-2. Use templates for consistent project structure
-3. Reference gotchas documentation for knowledge sharing
-4. Implement quality gates in CI/CD pipelines
+| Focus Area | Document |
+|------------|----------|
+| **Architecture** | [architecture_patterns.md](References/Gotchas/architecture_patterns.md) • [design-principles.md](References/Gotchas/design-principles.md) |
+| **Quality** | [anti_patterns.md](References/Gotchas/anti_patterns.md) • [validation_commands.md](References/Gotchas/validation_commands.md) |
+| **Frontend** | [frontend_best_practices.md](References/Gotchas/frontend_best_practices.md) • [react_gotchas.md](References/Gotchas/react_gotchas.md) |
+| **Backend** | [backend_best_practices.md](References/Gotchas/backend_best_practices.md) • [dotnet_gotchas.md](References/Gotchas/dotnet_gotchas.md) |
+| **Database** | [database_best_practices.md](References/Gotchas/database_best_practices.md) |
+| **DevOps** | [devops_best_practices.md](References/Gotchas/devops_best_practices.md) |
+| **Testing** | [automation_testing_gotchas.md](References/Gotchas/automation_testing_gotchas.md) • [testing_workflow_patterns.md](References/Gotchas/testing_workflow_patterns.md) |
+| **Standards** | [general_coding_standards.md](References/Gotchas/general_coding_standards.md) • [anti_redundancy_rules.md](References/Gotchas/anti_redundancy_rules.md) |
 
-## 🔧 Troubleshooting
+</details>
 
-For common issues and solutions, refer to the comprehensive troubleshooting guide:
-- **[References/Gotchas/troubleshooting_guide.md](References/Gotchas/troubleshooting_guide.md)** - Common setup issues, configuration problems, and solutions
-- **[References/Gotchas/framework_methodology.md](References/Gotchas/framework_methodology.md)** - Framework usage patterns and best practices
+<details>
+<summary><strong>⚙️ Advanced Configuration</strong> [Power Users]</summary>
+
+| Component | Configuration |
+|-----------|---------------|
+| **AI Agents** | `.claude/agents/*.md` - 6 specialized agents (including MVP Builder) |
+| **MCP Setup** | `.mcp.json` - Server integrations |
+
+</details>
+
+## 💡 Examples & Use Cases
+
+### 🏪 E-commerce Platform (Brown-field)
+```bash
+# 1. Analyze codebase for insights
+/analyze-codebase https://github.com/competitor/shop
+
+# 2. Generate use story for enhancementfeature: cart functionality
+/generate-requirements "Multi-vendor shopping cart with payment integration"
+
+# 3. Create comprehensive test suite
+/generate-automation-test Context/requirements.md
+/generate-playwright-scripts
+
+# 4. Break down into tasks
+/generate-task requirements.md
+
+# 4. Implement with best practices
+/execute-task Context/Tasks/enhancement-task1.md
+```
+
+### 🏢 Enterprise Dashboard (Green-field)
+```bash
+# 1. Quick prototype for client validation
+@mvp-builder "Real-time analytics dashboard with role-based access for client validation" or <scope document>
+# → mvp/ folder with working prototype for stakeholder feedback
+
+# 2. Generate user story for dashboard requirements
+/generate-requirements "Real-time analytics dashboard with role-based access" or <Scope document>
+
+# 3. Design system architecture
+/generate-design requirements.md
+
+# 4. Break down into tasks
+/generate-task requirements.md
+
+# 5. Generate secure, scalable implementation
+/execute-task Context/Tasks/dashboard-system.md
+```
+
+### 🔄 App Modernization (Legacy to Modern)
+```bash
+# 1. Analyze existing codebase for insights (reverse-engineering)
+/analyze-codebase https://github.com/legacy-app/monolith
+# → Context/code-analysis.md with C4 diagrams, technical debt, security analysis
+
+# 2. Generate user story using analysis outcome for modernization
+/generate-requirements "Modernize legacy monolith to microservices with API-first architecture"
+# → Context/requirements.md with modernization user stories
+
+# 3. Generate system architecture
+/generate-design Context/requirements.md
+# → Context/design.md with modernized system architecture and migration strategy
+
+# 4. Create comprehensive test suite
+/generate-automation-test Context/requirements.md
+/generate-playwright-scripts
+# → Context/Test/workflow_*.md and test-automation/ with migration validation tests
+
+# 5. Breakdown user stories into tasks
+/generate-task Context/requirements.md
+# → Context/Tasks/modernization-*.md with phased implementation tasks
+
+# 6. Generate secure, scalable implementation
+/execute-task Context/Tasks/modernization-phase1.md
+# → Modern microservices implementation with security best practices
+```
+
+## 🤝 Contributing
+
+**📝 How to Contribute**
+1. **Fork the repository** and create a feature branch
+2. **Follow existing patterns** in `.claude/commands/` and `References/`  
+3. **Test your changes** with the validation commands
+4. **Update documentation** and add examples
+5. **Submit a pull request** with clear description
+
+**🔧 Development Guidelines**
+- Commands or agents are Markdown files with specific structure. Refer to Claude code documentation for further details.
+- Templates ensure consistent output format
+- Best practices prevent common pitfalls
+- All contributions must include comprehensive documentation
+
+## 📞 Support & Community
+
+- **🐛 Report Issues**: [GitHub Issues](https://github.com/anthropics/claude-code/issues)  
+- **💬 Discussions**: Framework patterns and use cases
+- **📖 Documentation**: Comprehensive guides in `References/`
+- **🛠️ Troubleshooting**: [troubleshooting_guide.md](References/Gotchas/troubleshooting_guide.md)
+
+---
+
+**🚀 Ready to transform your development workflow?**  
+
+**[⬆️ Back to top](#codegen-framework-)** • **[📖 View Documentation](References/)** • **[🐛 Report Issues](https://github.com/anthropics/claude-code/issues)**
+
+---
+
+*Built with ❤️ for developers who value quality, speed, and intelligent automation.*
