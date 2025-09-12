@@ -41,7 +41,15 @@ Check if the development server is running. If not, start it:
 
 If no server is running, identify and start the appropriate dev server based on the project type.
 
-## Step 3: Invoke the Design-Analyzer Agent
+## Step 3: Generate Timestamp and Setup Storage
+
+Generate a timestamp for file naming:
+
+```bash
+!`timestamp=$(date +%Y%m%d_%H%M%S) && echo "Generated timestamp: $timestamp"`
+```
+
+## Step 4: Invoke the Design-Analyzer Agent
 
 Use the Task tool to invoke the design-analyzer agent with the following configuration:
 
@@ -60,9 +68,11 @@ Task(
     - Perform pixel-perfect comparison between design and implementation
     {% endif %}
     
-    Git context:
-    - Review all modified files and understand the scope of changes
-    - Focus on UI/UX components, styles, and user-facing features
+    Screenshot Storage Requirements:
+    - Save ALL screenshots to Context/playwright/ directory
+    - Use descriptive naming convention: <feature>_<viewport>_<issue-type>_<timestamp>.png
+    - Examples: checkout_mobile_alignment_20250912_143022.png, header_desktop_spacing_20250912_143022.png
+    - Return full file paths for all screenshots in your report
     
     Follow the comprehensive design review methodology:
     1. Phase 0: Preparation - Analyze changes and set up Playwright
@@ -76,17 +86,19 @@ Task(
     
     Provide a structured markdown report with:
     - Design Review Summary
+    - Screenshots Section (list all captured screenshots with file paths)
     - Findings categorized as:
       * [Blocker] - Critical issues requiring immediate fix
       * [High-Priority] - Significant issues to fix before merge
       * [Medium-Priority] - Improvements for follow-up
       * [Nitpick] - Minor aesthetic details (prefix with "Nit:")
-    - Include screenshots for all visual issues
+    - Resolution Status for each finding (Fixed/Pending/Not Applicable)
+    - Include references to screenshot files for all visual issues
     - Focus on problems and impact, not prescriptive solutions
     
     Use Playwright MCP tools for comprehensive testing:
     - Navigate and interact with the UI
-    - Take screenshots at multiple viewports
+    - Take screenshots at multiple viewports with descriptive filenames
     - Test keyboard navigation and accessibility
     - Monitor console for errors
     - Verify responsive behavior
@@ -94,6 +106,27 @@ Task(
 )
 ```
 
-## Step 4: Return the Report
+## Step 5: Save and Return the Report
 
-The agent will provide a comprehensive design review report. Return this report to the user as the final output.
+Save the agent's comprehensive design review report to a timestamped file:
+
+```bash
+# Create the report file with timestamp
+!`echo "$AGENT_REPORT" > "Context/ui-review/ui-review-${timestamp}.md"`
+```
+
+```bash
+# Confirm file was created
+!`ls -la Context/ui-review/ui-review-${timestamp}.md`
+```
+
+Return the report location and summary to the user:
+
+```
+UI Design Review Complete!
+
+Report saved to: Context/ui-review/ui-review-${timestamp}.md
+Screenshots saved to: Context/playwright/
+
+The agent has provided a comprehensive design review report with categorized findings and screenshot references.
+```
