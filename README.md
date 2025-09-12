@@ -267,22 +267,37 @@ cd "Codegen Framework"
 
 ### 2. Install MCP Servers
 
+**🔧 Environment Variables Setup (Required):**
+
+Set these environment variables before installing MCP servers:
+
+```bash
+# Required for Context7 (documentation lookup)
+export CONTEXT7_API_KEY="your-context7-api-key"
+
+# Required for GitHub integration
+export GITHUB_PAT="your-github-personal-access-token"
+
+# Required for Azure DevOps integration
+export AZ_DEVOPS_ORG="your-azure-devops-organization"
+```
+
 **📦 Complete MCP Server Setup:**
 
 ```bash
 # Core MCP servers (Required)
-claude mcp add context7 https://mcp.context7.com/mcp
-claude mcp add sequential-thinking npx @modelcontextprotocol/server-sequential-thinking
+claude mcp add context7 http https://mcp.context7.com/mcp --header "CONTEXT7_API_KEY=${CONTEXT7_API_KEY}" --scope project
+claude mcp add sequential-thinking stdio npx @modelcontextprotocol/server-sequential-thinking --scope project
 
 # Development & Testing
-claude mcp add playwright npx @playwright/mcp@latest
+claude mcp add playwright stdio npx @playwright/mcp@latest --scope project
 
 # Platform Integrations (Choose based on your needs)
-claude mcp add github npx @github/mcp-server
-claude mcp add azure-devops npx @azure-devops/mcp-server
+claude mcp add github stdio npx -y @modelcontextprotocol/server-github@latest --env "GITHUB_PERSONAL_ACCESS_TOKEN=${GITHUB_PAT}" --scope project
+claude mcp add azure-devops stdio npx -y @azure-devops/mcp ${AZ_DEVOPS_ORG} --scope project
 
 # UI Development (Required for MVP Builder)
-claude mcp add shadcn npx @shadcn/mcp-server
+claude mcp add shadcn stdio npx shadcn@latest mcp --scope project
 ```
 
 **🎯 MCP Server Requirements by Use Case:**
