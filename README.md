@@ -478,8 +478,6 @@ After installation, restart Claude Code or reload the configuration to activate 
 | `/review-user-interface` | UI/UX analysis | UI specs, screenshots | `Context/ui-review.md` |
 | `@agent-mvp-builder` | Rapid MVP for hypothesis testing | Business hypothesis or scope doc | `mvp/` folder with working code |
 
-*⭐ Special: Requires direct agent invocation using `@` symbol*
-
 
 ## ⚡ MCP Server Configuration
 
@@ -565,11 +563,6 @@ The `.env` file is listed in `.gitignore` and should never be committed to the r
 3. Run `claude mcp list` or `/mcp` to verify MCP server setup.
 4. Run `/agent` to verify the available agents.
 5. Use `@` (e.g. @agent-mvp-builder) to run the agents directly
-6. Ensure the following are available
-- Architecture patterns and design principles
-- Technology-specific best practices
-- Anti-patterns and common pitfalls
-- Validation commands and quality gates
 
 ## 🏆 Quality Standards
 
