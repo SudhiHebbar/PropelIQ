@@ -437,7 +437,15 @@ console.log("✅ PR-code-reviewer agent analysis completed");
 ```javascript
 // Structure review results for local output
 async function outputReviewResults(results) {
-  const reportPath = "github-pr-review-report.md";
+  // Ensure output directory exists
+  await Bash({
+    command: "mkdir -p Context/pr-reviews",
+    description: "Create PR reviews output directory"
+  });
+  
+  // Generate timestamp-based filename
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
+  const reportPath = `Context/pr-reviews/pr-review-${timestamp}.md`;
   
   console.log(`\n🔍 ${reviewContext.mode === "pr" ? "GitHub PR" : "Local"} Code Review Completed`);
   console.log(`📊 Analysis Summary:`);
@@ -622,6 +630,16 @@ async function performQuickAnalysis() {
 }
 
 async function outputErrorSummary(error) {
+  // Ensure output directory exists
+  await Bash({
+    command: "mkdir -p Context/pr-reviews",
+    description: "Create PR reviews output directory"
+  });
+  
+  // Generate timestamp-based error report filename
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
+  const errorReportPath = `Context/pr-reviews/pr-review-error-${timestamp}.md`;
+  
   const errorReport = `# Review Error Report
 
 Error: ${error.message}
@@ -638,11 +656,11 @@ Try running with --local-only for offline analysis.
 `;
 
   await Write({
-    file_path: "review-error-report.md",
+    file_path: errorReportPath,
     content: errorReport
   });
   
-  console.log("📄 Error details saved to review-error-report.md");
+  console.log(`📄 Error details saved to ${errorReportPath}`);
 }
 ```
 

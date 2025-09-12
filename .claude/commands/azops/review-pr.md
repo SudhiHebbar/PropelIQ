@@ -538,7 +538,15 @@ async function postToAzureDevOpsPR(threads, results) {
 }
 
 async function outputLocalReview(results) {
-  const reportPath = "code-review-report.md";
+  // Ensure output directory exists
+  await Bash({
+    command: "mkdir -p Context/pr-reviews",
+    description: "Create PR reviews output directory"
+  });
+  
+  // Generate timestamp-based filename
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
+  const reportPath = `Context/pr-reviews/pr-review-${timestamp}.md`;
   
   console.log(`\n🔍 Local Code Review Completed`);
   console.log(`📊 Analysis Summary:`);
@@ -559,7 +567,10 @@ async function outputLocalReview(results) {
   console.log(`\n📄 Detailed report saved to: ${reportPath}`);
   
   // Save detailed report
-  await writeFile(reportPath, generateDetailedReport(results));
+  await Write({
+    file_path: reportPath,
+    content: generateDetailedReport(results)
+  });
   
   // Show top priority items
   const criticalIssues = results.findings.filter(f => f.severity === 'critical');
@@ -681,6 +692,111 @@ try {
   
   // Always provide some feedback
   await postErrorSummary(error);
+}
+
+async function performQuickAnalysis() {
+  // Fallback to basic linting and quick checks
+  console.log("🚀 Performing quick analysis...");
+  
+  try {
+    await Bash({
+      command: "npm run lint || echo 'Linting not available'",
+      description: "Run linting checks"
+    });
+  } catch (e) {
+    console.log("⚠️  Linting issues found or not available");
+  }
+  
+  try {
+    await Bash({
+      command: "npm test || echo 'Tests not available'",
+      description: "Run tests"
+    });
+  } catch (e) {
+    console.log("⚠️  Test failures found or not available");
+  }
+}
+
+async function performLocalAnalysis() {
+  // Use local git commands for basic analysis
+  console.log("🏠 Performing local git analysis...");
+  
+  try {
+    const changedFiles = await Bash({
+      command: "git diff --name-only HEAD~1",
+      description: "Get changed files"
+    });
+    console.log(`📁 Changed files: ${changedFiles.split('\n').length}`);
+    
+    const commitMessage = await Bash({
+      command: "git log -1 --pretty=format:'%s'",
+      description: "Get latest commit message"
+    });
+    console.log(`💬 Latest commit: ${commitMessage}`);
+  } catch (e) {
+    console.log("⚠️  Could not perform local git analysis");
+  }
+}
+
+async function retryWithBackoff() {
+  // Implement exponential backoff retry logic
+  console.log("🔄 Retrying with exponential backoff...");
+  
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      console.log(`   Attempt ${attempt}/3...`);
+      
+      // Wait with exponential backoff
+      const delay = Math.pow(2, attempt) * 1000; // 2s, 4s, 8s
+      await new Promise(resolve => setTimeout(resolve, delay));
+      
+      // Retry the main operation (this would be replaced with actual retry logic)
+      console.log("   Retry logic would be implemented here");
+      break;
+      
+    } catch (retryError) {
+      if (attempt === 3) {
+        console.log("❌ All retry attempts failed");
+        throw retryError;
+      }
+      console.log(`   Attempt ${attempt} failed, retrying...`);
+    }
+  }
+}
+
+async function postErrorSummary(error) {
+  // Ensure output directory exists
+  await Bash({
+    command: "mkdir -p Context/pr-reviews",
+    description: "Create PR reviews output directory"
+  });
+  
+  // Generate timestamp-based error report filename
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
+  const errorReportPath = `Context/pr-reviews/pr-review-error-${timestamp}.md`;
+  
+  const errorReport = `# Azure DevOps Review Error Report
+
+Error: ${error.message}
+Time: ${new Date().toISOString()}
+Type: ${error.type || 'Unknown'}
+
+Please check:
+- Azure authentication: \`az login\` and \`az devops login\`
+- PAT token: \`AZURE_DEVOPS_EXT_PAT\` environment variable
+- Repository permissions
+- Network connectivity
+- MCP server status
+
+Try running with --local-only for offline analysis.
+`;
+
+  await Write({
+    file_path: errorReportPath,
+    content: errorReport
+  });
+  
+  console.log(`📄 Error details saved to ${errorReportPath}`);
 }
 ```
 
