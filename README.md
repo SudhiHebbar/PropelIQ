@@ -259,7 +259,7 @@ The framework includes **5 AI agents** that provide targeted expertise for diffe
 
 ## 🚀 Quick Start
 
-### 1. Clone the Repository
+### 1. Clone the Repository into project root folder
 ```bash
 git clone <repository-url>
 cd "Codegen Framework"
