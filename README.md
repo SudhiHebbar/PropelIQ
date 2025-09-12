@@ -238,7 +238,7 @@ The framework includes **5 AI agents** that provide targeted expertise for diffe
 | **👀 PR Code Reviewer** | Comprehensive code review | Pull requests, quality assurance | SOLID principles, vulnerability detection, compliance |
 | **🎨 Design Analyzer** | Architecture & design patterns | System design, modernization | Pattern recommendations, scalability assessment |
 | **🚀 MVP Builder** ⭐ | General rapid prototyping | Proof of concepts, standard prototyping | Quick prototyping, shadcn UI, lean validation |
-| **⚙️ Task Analyzer** | Project planning & breakdown | Sprint planning, requirement analysis | User story decomposition, effort estimation |
+| **⚙️ Task Analyzer** | Post-implementation quality review | Quality assurance | Detec task implementation, gate review |
 
 ### Agent Integration Patterns
 
