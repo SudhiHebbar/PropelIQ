@@ -414,7 +414,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 </details>
 
 <details>
-<summary><strong>🚀 MVP Validation</strong> - Test business hypotheses rapidly (18-hour constraint)</summary>
+<summary><strong>🚀 MVP Validation</strong> - Validate business hypotheses rapidly </summary>
 
 ```bash
 # Direct agent invocation for MVP development (requires @mvp-builder)
@@ -428,7 +428,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 </details>
 
 <details>
-<summary><strong>🔍 Code Review & Quality</strong> - Maintain high standards</summary>
+<summary><strong>🔍 Code Review & Quality</strong> - Maintain high quality standards</summary>
 
 ```bash
 # Review pull requests
