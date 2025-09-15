@@ -50,7 +50,7 @@ An enterprise-grade framework that combines **Claude Code**, **specialized AI ag
 
 ## 🏗️ Architecture
 
-![Alt text](./media/Architecture.png "PropelIQ Architecture")
+![Alt text](./Media/Architecture.png "PropelIQ Architecture")
 
 
 ### 📁 Framework Structure
@@ -73,7 +73,7 @@ PropelIQ/
 │   │   ├── test/               # Test generation commands
 │   │   └── ux/                 # UI/UX review commands
 │   └── CLAUDE.md               # Development guidelines
-├── media/                      # Images and diagrams
+├── Media/                      # Images and diagrams
 ├── Context/                    # Generated project artifacts
 │   ├── Tasks/                  # Generated task plans
 │   ├── Test/                   # Generated test workflows
@@ -84,8 +84,8 @@ PropelIQ/
 ├── References/                 # Best practices library
 │   ├── Build/                  # Technology configurations
 │   ├── Gotchas/                # Best practices (15+ docs)
+│   ├── Templates/              # Output templates
 │   └── CLAUDE.md               # Additional context
-├── Templates/                  # Output templates
 │   ├── analyze_code_base.md
 │   ├── analyze_task_base.md
 │   ├── automation_test_base.md
@@ -135,7 +135,7 @@ PropelIQ/
 </details>
 
 <details>
-<summary><strong>Templates/</strong> - Structured output templates</summary>
+<summary><strong>References/Templates/</strong> - Structured output templates</summary>
 
 Ensures consistent, professional output across all generated artifacts:
 - Analysis reports • Requirements documents • Design specifications • Task plans • Test workflows
@@ -174,7 +174,7 @@ Ensures consistent, professional output across all generated artifacts:
 
 **The power of AI-driven development automation in 4 simple steps:**
 
-![Alt text](./media/SystemOverview.png "PropelIQ Workflow")
+![Alt text](./Media/SystemOverview.png "PropelIQ Workflow")
 
 ### 🔄 Core Workflow Components
 
@@ -333,7 +333,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 
 **🤔 Which workflow should you use?**
 
-![Alt text](./media/FlowDiagram.png "PropelIQ Flow Diagram")
+![Alt text](./Media/FlowDiagram.png "PropelIQ Flow Diagram")
 
 <details>
 <summary><strong>🌱 Green-field Development</strong> - Building from scratch</summary>
@@ -673,7 +673,7 @@ A: **2 minutes** to first command, **30 minutes** to productive workflows, **1 h
 | Category | Document | Purpose |
 |----------|----------|---------|
 | **Commands** | `.claude/commands/*/` | All command implementations |
-| **Templates** | `Templates/*.md` | Output structure templates |
+| **Templates** | `References/Templates/*.md` | Output structure templates |
 | **Generated** | `Context/*.md` | Your project analysis and specs |
 
 </details>

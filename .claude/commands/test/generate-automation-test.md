@@ -63,7 +63,7 @@ The generated automation test workflows will be consumed by the `generate` comma
 ## Test Workflow Framework
 
 ### Template Foundation
-Base all test workflows on `Templates/automation_test_base.md` structure for consistency.
+Base all test workflows on `References/Templates/automation_test_base.md` structure for consistency.
 
 ### Critical Test Context Integration
 Package comprehensive context for automation script generation:
@@ -123,7 +123,7 @@ Package comprehensive context for automation script generation:
 **File Naming Convention**: `Context/Test/test_workflow_<feature_name>_<timestamp>.md`
 
 **Content Structure**:
-- Based on `Templates/automation_test_base.md`
+- Based on `References/Templates/automation_test_base.md`
 - Includes complete process workflow specification
 - Contains Playwright integration details
 - Defines test data and configuration requirements

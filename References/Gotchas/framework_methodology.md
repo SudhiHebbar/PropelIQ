@@ -125,12 +125,12 @@ Throughout execution:
 Our framework provides four core templates, each following the Discover → Plan → Execute methodology:
 
 > **Quick Links to Templates:**
-> - [Codebase Analysis Template](../../Templates/analyze_code_base.md)
-> - [Design Template](../../Templates/design_base.md)
-> - [Requirements Template](../../Templates/requirement_base.md)
-> - [Task Template](../../Templates/task_base.md)
+> - [Codebase Analysis Template](../Templates/analyze_code_base.md)
+> - [Design Template](../Templates/design_base.md)
+> - [Requirements Template](../Templates/requirement_base.md)
+> - [Task Template](../Templates/task_base.md)
 
-#### 1. Codebase Analysis Template ([analyze_code_base.md](../../Templates/analyze_code_base.md))
+#### 1. Codebase Analysis Template ([analyze_code_base.md](../Templates/analyze_code_base.md))
 
 **Purpose**: Comprehensive reverse engineering and codebase analysis for stakeholder communication and technical understanding.
 
@@ -140,7 +140,7 @@ Our framework provides four core templates, each following the Discover → Plan
 
 **Key Outputs**: Executive summary, architecture diagrams, quality metrics, security assessment, performance analysis, dependency health
 
-#### 2. Design Template ([design_base.md](../../Templates/design_base.md))
+#### 2. Design Template ([design_base.md](../Templates/design_base.md))
 
 **Purpose**: Context-rich design documentation optimized for AI agents to implement features with validation loops.
 
@@ -150,7 +150,7 @@ Our framework provides four core templates, each following the Discover → Plan
 
 **Key Outputs**: Architecture goals, validated tech stack, coding standards, UI/UX guidelines, workflow documentation
 
-#### 3. Requirements Template ([requirement_base.md](../../Templates/requirement_base.md))
+#### 3. Requirements Template ([requirement_base.md](../Templates/requirement_base.md))
 
 **Purpose**: Feature requirements documentation with user stories and comprehensive context for implementation.
 
@@ -160,7 +160,7 @@ Our framework provides four core templates, each following the Discover → Plan
 
 **Key Outputs**: User stories with IDs, acceptance criteria, entity definitions, UX requirements, risk mitigations
 
-#### 4. Task Template ([task_base.md](../../Templates/task_base.md))
+#### 4. Task Template ([task_base.md](../Templates/task_base.md))
 
 **Purpose**: Task-level implementation planning with detailed workflow and validation strategies.
 

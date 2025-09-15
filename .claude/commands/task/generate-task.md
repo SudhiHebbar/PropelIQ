@@ -65,7 +65,7 @@ Optimize for success probability over execution speed. Spawn multiple agents and
 ## Task Design Framework
 
 ### Template Foundation
-Base all tasks on `Templates/task_base.md` structure for consistency.
+Base all tasks on `References/Templates/task_base.md` structure for consistency.
 
 ### Critical Context Integration
 Package comprehensive context for AI agent success:

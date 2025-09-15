@@ -279,7 +279,7 @@ npm audit --audit-level=moderate
 ## Output Requirements
 
 **Report Structure:**
-- Follow `Templates/analyze_task_base.md` template structure
+- Follow `References/Templates/analyze_task_base.md` template structure
 - Save comprehensive report to `Context/Analysis/<task_file_name>_analysis.md`
 - Include executive summary and detailed technical findings
 

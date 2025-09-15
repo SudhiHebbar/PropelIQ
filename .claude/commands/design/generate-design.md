@@ -45,7 +45,7 @@ During the research process, create clear tasks and spawn as many agents and sub
 
 ## Design Generation
 
-Using Templates/design_base.md as template:
+Using References/Templates/design_base.md as template:
 
 ### Critical Context to Include and pass to the AI agent as part of the Design
 - **Documentation**: URLs with specific sections

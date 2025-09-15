@@ -113,7 +113,7 @@ Optimize for requirements completeness and implementation success over speed. Sp
 ## PRD Generation Framework
 
 ### Template Foundation
-Base all PRDs on `Templates/requirement_base.md` for consistency and completeness.
+Base all PRDs on `References/Templates/requirement_base.md` for consistency and completeness.
 
 ### Critical Context Integration
 
