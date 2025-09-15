@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Documentation
+    url: https://github.com/SudhiHebbar/PropelIQ#-documentation--resources
+    about: Check the documentation for setup and usage guidance
+  - name: 💬 Discussions
+    url: https://github.com/SudhiHebbar/PropelIQ/discussions
+    about: Ask questions and share your experience with PropelIQ
+  - name: 🐛 Bug Report
+    url: https://github.com/SudhiHebbar/PropelIQ/issues/new?template=bug_report.md
+    about: Report a bug or issue with PropelIQ framework
+  - name: 🚀 Feature Request
+    url: https://github.com/SudhiHebbar/PropelIQ/issues/new?template=feature_request.md
+    about: Suggest a new feature or enhancement

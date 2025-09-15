@@ -4,10 +4,37 @@
 
 An enterprise-grade framework that combines **Claude Code**, **specialized AI agents**, and **proven templates** to accelerate high-quality software development across multiple technology stacks.
 
+## 🎯 Use This Template
+
+**Get started instantly with PropelIQ:**
+
+<div align="center">
+
+[![Use this template](https://img.shields.io/badge/Use%20this%20template-2ea44f?style=for-the-badge&logo=github)](https://github.com/SudhiHebbar/PropelIQ/generate)
+
+</div>
+
+**📋 How to enable the "Use this template" button:**
+
+If you're a repository maintainer and don't see the "Use this template" button:
+
+1. Go to your repository **Settings** on GitHub
+2. Scroll down to the **"Repository template"** section  
+3. Check the box **"Template repository"**
+4. Save changes
+
+The green **"Use this template"** button will now appear next to the **"Code"** button for all users.
+
+**📖 For users creating projects from this template:**
+- Click the **"Use this template"** button above
+- Create your new repository
+- Follow our [Template Setup Guide](./.github/TEMPLATE_GUIDE.md)
+- Start building with AI-accelerated development!
+
 ## 📋 Table of Contents
 
 ### 🚀 **Getting Started**
-[Quick Start](#-quick-start) • [How It Works](#️-how-propeliq-works) • [Architecture](#️-architecture) • [Technology Stacks](#️-supported-technology-stacks)
+[Use This Template](#-use-this-template) • [Quick Start](#-quick-start) • [How It Works](#️-how-propeliq-works) • [Architecture](#️-architecture) • [Technology Stacks](#️-supported-technology-stacks)
 
 ### 🛠️ **Development**  
 [Commands & Workflows](#-commands--workflows) • [Specialized Agents](#-specialized-agents) • [Examples](#-examples--use-cases) • [Quality Standards](#-quality-standards)
@@ -255,27 +282,60 @@ PropelIQ includes **5 AI agents** that provide targeted expertise for different 
 
 ## 🚀 Quick Start
 
-### 1. Clone the Repository into project root folder
+### 1. Create from Template or Clone Repository
+
+**Option A: Use as Template (Recommended)**
+1. Click the **"Use this template"** button above
+2. Create your new repository
+3. Clone your new repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/your-username/your-repository-name
+cd "your-repository-name"
+```
+
+**Option B: Clone Directly**
+```bash
+git clone https://github.com/SudhiHebbar/PropelIQ
 cd "PropelIQ"
 ```
 
-### 2. Install MCP Servers
+### 2. Automated Setup (Recommended)
+
+**🎯 Quick Setup with Script:**
+
+**Linux/macOS:**
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+**Windows:**
+```cmd
+setup.bat
+```
+
+The setup script will:
+- ✅ Check prerequisites (Claude Code, Node.js, Git)
+- ✅ Create .env file from template
+- ✅ Install required MCP servers
+- ✅ Verify installation
+
+### 3. Manual Setup (Alternative)
+
+If you prefer manual setup or the script doesn't work for your environment:
 
 **🔧 Environment Variables Setup (Required):**
 
 Set these environment variables before installing MCP servers:
 
 ```bash
-# Required for Context7 (documentation lookup)
-export CONTEXT7_API_KEY="your-context7-api-key"
+# Copy environment template
+cp .env.example .env
 
-# Required for GitHub integration
-export GITHUB_PAT="your-github-personal-access-token"
-
-# Required for Azure DevOps integration
-export AZ_DEVOPS_ORG="your-azure-devops-organization"
+# Edit .env with your API keys:
+# CONTEXT7_API_KEY="your-context7-api-key"
+# GITHUB_PAT="your-github-personal-access-token"
+# AZ_DEVOPS_ORG="your-azure-devops-organization"
 ```
 
 **📦 Complete MCP Server Setup:**
