@@ -53,7 +53,7 @@ Template optimized for AI agents to implement features with sufficient context a
 - [general_coding_standards.md](../References/Gotchas/general_coding_standards.md) - - [Concise purpose in less than 20 words]
 
 ## Project Conext References
-- [Refer to requirements.md file in the '/Context' folder]
+- [Refer to requirements.md file in the '/Context/Docs' folder]
 - [Refer to design.md file in the '/Context' folder]
 
 ## External References

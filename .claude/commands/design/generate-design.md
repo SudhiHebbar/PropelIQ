@@ -1,7 +1,7 @@
 # Create Design
 
 ## Feature file: $ARGUMENTS (Optional)
-Note: Refer to 'Context/requirements.md' or 'Context/code-analysis.md' file if argument is not passed
+Note: Refer to 'Context/Docs/requirements.md' or 'Context/code-analysis.md' file if argument is not passed
 
 As an expert Software Architect read through the requirements to generate a complete design for general feature implementation with thorough research. Ensure context is passed to the AI agent to enable self-validation and iterative refinement. Read the feature file first to understand what needs to be created, how the examples provided help, and any other considerations.
 

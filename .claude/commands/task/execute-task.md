@@ -13,7 +13,7 @@ Implement features, fix bugs, or complete development tasks using comprehensive 
 
 *** MANDATORY VALIDATIONS ***
 - Load and comprehend the complete task file before starting implementation
-- Understand all context by reviewing requirements.md, design.md, and existing codebase
+- Understand all context by reviewing Docs/requirements.md, design.md, and existing codebase
 - Verify task completion status - terminate if already completed with "All tasks were implemented"
 - Follow all task instructions and extend research when additional context is needed
 - Update task file sections based on current codebase state and implementation progress
@@ -70,7 +70,7 @@ Optimize for implementation success and code quality over execution speed. Use s
 - Update task understanding based on current codebase state
 
 **Context Gathering**
-- Review requirements.md, code-analysis.md and design.md for comprehensive understanding
+- Review Docs/requirements.md, code-analysis.md and design.md for comprehensive understanding
 - Analyze existing codebase for patterns and integration points
 - Use `mcp__context7__resolve-library-id` to lock framework/library versions present in the task and codebase before fetching guidance
 - Use `mcp__context7__get-library-docs` for technology-specific, version-specific documentation, code examples, design principles and coding standards

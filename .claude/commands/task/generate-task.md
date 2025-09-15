@@ -195,7 +195,7 @@ Score generated tasks using the following metrics (1-100% scale):
 This unified command automatically detects and processes:
 
 ### 🎯 Feature Requirements
-- **Source**: `Context/requirements.md` (mandatory)
+- **Source**: `Context/Docs/requirements.md` (mandatory)
 - **Design**: `Context/design.md` (mandatory)
 - **Focus**: New feature implementation with comprehensive planning
 

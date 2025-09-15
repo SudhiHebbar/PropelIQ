@@ -5,7 +5,7 @@ This file provides structured context about the project to help understand the c
 ## Additional Context
 
 ### Requirements
-- **Location**: `Context/requirements.md`
+- **Location**: `Context/Docs/requirements.md`
 - Contains functional and non-functional requirements for the project
 - Defines the scope, goals, user stories and constraints
 
@@ -42,5 +42,5 @@ When working on this project:
 
 - Follow existing code patterns found in code-analysis.md
 - Ensure all changes align with the design principles in design.md
-- Verify implementation meets requirements specified in requirements.md
+- Verify implementation meets requirements specified in Docs/requirements.md
 - Create or update tests as defined in the Test folder structure
