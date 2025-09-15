@@ -143,6 +143,6 @@ Create separate tasks for each development stream:
 
 ### Template Adherence
 - **Template Structure Compliance**: Commands and agents must produce outcomes that follow the referenced template structure available in the Templates folder
-- **Template Reading**: Always read the appropriate template from Templates/ directory before generating outputs
+- **Template Reading**: Always read the appropriate template from References/Templates/ directory before generating outputs
 - **Structure Validation**: Validate that generated content matches the expected template sections and format
 - **Placeholder Replacement**: Ensure all template placeholders are replaced with actual content, not left empty

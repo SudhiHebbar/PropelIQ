@@ -5,17 +5,17 @@ This file provides structured context about the project to help understand the c
 ## Additional Context
 
 ### Requirements
-- **Location**: `Context/requirements.md`
+- **Location**: `Context/Docs/Spec.md`
 - Contains functional and non-functional requirements for the project
 - Defines the scope, goals, user stories and constraints
 
 ### Design
-- **Location**: `Context/design.md`
+- **Location**: `Context/Docs/Design.md`
 - Outlines the system architecture and design decisions
 - Includes component structure, data flow, and integration patterns
 
 ### Code Analysis
-- **Location**: `Context/code-analysis.md`
+- **Location**: `Context/Docs/CodeAnalysis.md`
 - Provides insights into the existing codebase structure
 - Documents code patterns, conventions, and technical debt
 
@@ -40,7 +40,7 @@ When working on this project:
 
 ## Key Conventions
 
-- Follow existing code patterns found in code-analysis.md
-- Ensure all changes align with the design principles in design.md
-- Verify implementation meets requirements specified in requirements.md
+- Follow existing code patterns found in CodeAnalysis.md
+- Ensure all changes align with the design principles in Design.md
+- Verify implementation meets requirements specified in Docs/Spec.md
 - Create or update tests as defined in the Test folder structure

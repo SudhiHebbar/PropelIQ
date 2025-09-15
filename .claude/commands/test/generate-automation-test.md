@@ -21,7 +21,7 @@ As a Senior QA Engineer expert in Test Automation and Process Design, generate c
 The generated automation test workflows will be consumed by the `generate` command to create executable Playwright scripts. Focus on creating comprehensive process flows that can be directly translated to automation code.
 
 ### 1. Requirements Analysis
-- **Use Case Extraction**: Extract specific use cases from requirements.md in Context folder
+- **Use Case Extraction**: Extract specific use cases from Docs/Spec.md in Context folder
 - **User Story Mapping**: Map test scenarios to user stories and acceptance criteria
 - **Business Process Understanding**: Identify the complete user workflow and business process
 - **Actor Analysis**: Understand different user roles and their interaction patterns
@@ -43,7 +43,7 @@ The generated automation test workflows will be consumed by the `generate` comma
 ## Essential Project Intelligence
 
 ### Reference Materials Analysis
-- **Requirements Document**: Read Context/requirements.md for use case analysis and user stories
+- **Requirements Document**: Read Context/Docs/Spec.md for use case analysis and user stories
 - **Automation Testing Gotchas**: **MANDATORY** review `References/Gotchas/automation_testing_gotchas.md` for critical best practices
 - **Existing Test Patterns**: Examine any existing test files for patterns and conventions
 - **Application Structure**: Understand the application architecture for effective test design
@@ -63,7 +63,7 @@ The generated automation test workflows will be consumed by the `generate` comma
 ## Test Workflow Framework
 
 ### Template Foundation
-Base all test workflows on `Templates/automation_test_base.md` structure for consistency.
+Base all test workflows on `References/Templates/automation_test_base.md` structure for consistency.
 
 ### Critical Test Context Integration
 Package comprehensive context for automation script generation:
@@ -123,7 +123,7 @@ Package comprehensive context for automation script generation:
 **File Naming Convention**: `Context/Test/test_workflow_<feature_name>_<timestamp>.md`
 
 **Content Structure**:
-- Based on `Templates/automation_test_base.md`
+- Based on `References/Templates/automation_test_base.md`
 - Includes complete process workflow specification
 - Contains Playwright integration details
 - Defines test data and configuration requirements
@@ -184,7 +184,7 @@ Score generated test workflows using the following metrics (1-100% scale):
 This command automatically detects and processes:
 
 ### 📋 Requirements File Analysis
-- **Source**: `Context/requirements.md` (primary source)
+- **Source**: `Context/Docs/Spec.md` (primary source)
 - **Focus**: Extract use cases and user stories for test workflow creation
 - **Output**: Comprehensive test workflows covering all identified scenarios
 

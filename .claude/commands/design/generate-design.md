@@ -1,7 +1,7 @@
 # Create Design
 
 ## Feature file: $ARGUMENTS (Optional)
-Note: Refer to 'Context/requirements.md' or 'Context/code-analysis.md' file if argument is not passed
+Note: Refer to 'Context/Docs/Spec.md' or 'Context/Docs/CodeAnalysis.md' file if argument is not passed
 
 As an expert Software Architect read through the requirements to generate a complete design for general feature implementation with thorough research. Ensure context is passed to the AI agent to enable self-validation and iterative refinement. Read the feature file first to understand what needs to be created, how the examples provided help, and any other considerations.
 
@@ -11,7 +11,7 @@ The AI agent only gets the context you are appending to the design and training 
 *** ULTRATHINK ABOUT THE DESIGN AND PLAN YOUR APPROACH ***
 *** ASK FOR USER CONFIRMATION (YES/NO) BEFORE START WRITING / UPDATING THE DESIGN ***
 *** If the output file is already available make the necessary changes to applicable sections. Do not overwrite the whole file ***
-*** Generate a single unified design document at Context/design.md only ***
+*** Generate a single unified design document at Context/Docs/Design.md only ***
 
 ## Research Process
 
@@ -45,7 +45,7 @@ During the research process, create clear tasks and spawn as many agents and sub
 
 ## Design Generation
 
-Using Templates/design_base.md as template:
+Using References/Templates/design_base.md as template:
 
 ### Critical Context to Include and pass to the AI agent as part of the Design
 - **Documentation**: URLs with specific sections
@@ -65,7 +65,7 @@ Using Templates/design_base.md as template:
 - [List all context needed to implement the feature]
 
 ## Output
-Save as: `Context/design.md`
+Save as: `Context/Docs/Design.md`
 
 **IMPORTANT**: Generate ONLY this single file. Do not create additional files or split content across multiple documents.
 
