@@ -53,7 +53,7 @@ An enterprise-grade framework that combines **Claude Code**, **specialized AI ag
 ![Alt text](./Media/Architecture.png "PropelIQ Architecture")
 
 
-### 📁 Framework Structure
+### 📁 PropelIQ Structure
 
 ```
 PropelIQ/
@@ -94,6 +94,8 @@ PropelIQ/
 │   ├── requirement_base.md
 │   └── task_base.md
 ├── .env                        # Environment variables (gitignored)
+├── .env.example                # Environment variables template
+├── .gitattributes              # Git export attributes for template
 ├── .gitignore                  # Git ignore rules
 ├── .mcp.json                   # MCP server configuration
 ├── LICENSE                     # MIT License
