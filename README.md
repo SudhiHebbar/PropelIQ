@@ -230,7 +230,7 @@ Every generated artifact automatically includes:
 
 ## 🤖 Specialized Agents
 
-The framework includes **5 AI agents** that provide targeted expertise for different aspects of software development:
+PropelIQ includes **5 AI agents** that provide targeted expertise for different aspects of software development:
 
 | Agent | Purpose | When to Use | Key Capabilities |
 |-------|---------|-------------|------------------|
@@ -592,8 +592,8 @@ pytest --cov=src tests/ --cov-report=term   # Python
 <details>
 <summary><strong>🚀 Getting Started</strong></summary>
 
-**Q: Do I need Claude Code to use this framework?**  
-A: Yes, this framework is specifically designed for Claude Code and requires it to function.
+**Q: Do I need Claude Code to use PropelIQ?**
+A: Yes, PropelIQ is specifically designed for Claude Code and requires it to function.
 
 **Q: Which MCP servers do I need?**  
 A: **Basic**: Context7 + sequential-thinking. **Testing**: Add Playwright. **Azure**: Add Azure DevOps MCP.
@@ -663,7 +663,7 @@ A: **2 minutes** to first command, **30 minutes** to productive workflows, **1 h
 
 | Document | Purpose |
 |----------|---------|
-| [README.md](README.md) | Complete framework overview |
+| [README.md](README.md) | Complete PropelIQ overview |
 | [References/Gotchas/framework_methodology.md](References/Gotchas/framework_methodology.md) | Usage patterns and workflows |
 | [References/Gotchas/troubleshooting_guide.md](References/Gotchas/troubleshooting_guide.md) | Common setup issues and solutions |
 
@@ -792,7 +792,7 @@ A: **2 minutes** to first command, **30 minutes** to productive workflows, **1 h
 ## 📞 Support & Community
 
 - **🐛 Report Issues**: [GitHub Issues](https://github.com/anthropics/claude-code/issues)  
-- **💬 Discussions**: Framework patterns and use cases
+- **💬 Discussions**: PropelIQ patterns and use cases
 - **📖 Documentation**: Comprehensive guides in `References/`
 - **🛠️ Troubleshooting**: [troubleshooting_guide.md](References/Gotchas/troubleshooting_guide.md)
 
