@@ -3,7 +3,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Visual Development & Testing
 Design System
-The project follows S-Tier SaaS design standards inspired by Stripe, Airbnb, and Linear. All UI development must adhere to:
+The UI development must adhere to:
 
 Design Principles: /context/design-principles.md - Comprehensive checklist for world-class UI
 Component Library: NextUI with custom Tailwind configuration
@@ -59,6 +59,7 @@ mcp__playwright__browser_snapshot(); // Accessibility check
 mcp__playwright__browser_wait_for(
   text / element
 ); // Ensure loading
+
 Design Compliance Checklist
 When implementing UI features, verify:
 
