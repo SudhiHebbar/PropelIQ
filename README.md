@@ -1,13 +1,13 @@
-# Codegen Framework 🚀
+# PropelIQ 🚀
 
-> **Transform your development workflow with AI-powered code generation and intelligent automation**
+> **AI-driven velocity from idea to deploy**
 
 An enterprise-grade framework that combines **Claude Code**, **specialized AI agents**, and **proven templates** to accelerate high-quality software development across multiple technology stacks.
 
 ## 📋 Table of Contents
 
 ### 🚀 **Getting Started**
-[Quick Start](#-quick-start) • [How It Works](#️-how-codegen-works) • [Architecture](#️-architecture) • [Technology Stacks](#️-supported-technology-stacks)
+[Quick Start](#-quick-start) • [How It Works](#️-how-propeliq-works) • [Architecture](#️-architecture) • [Technology Stacks](#️-supported-technology-stacks)
 
 ### 🛠️ **Development**  
 [Commands & Workflows](#-commands--workflows) • [Specialized Agents](#-specialized-agents) • [Examples](#-examples--use-cases) • [Quality Standards](#-quality-standards)
@@ -15,11 +15,11 @@ An enterprise-grade framework that combines **Claude Code**, **specialized AI ag
 ### 📚 **Resources**
 [Documentation](#-documentation--resources) • [FAQ](#-frequently-asked-questions) • [Contributing](#-contributing) • [Support](#-support--community)
 
-## 🎯 Why Choose Codegen Framework?
+## 🎯 Why Choose PropelIQ?
 
 **From idea to production in minutes, not hours:**
 
-| Traditional Development | Codegen Framework | Time Saved |
+| Traditional Development | PropelIQ | Time Saved |
 |------------------------|-------------------|------------|
 | Manual project setup | `/generate-task` + `/execute-task` | **70%** |
 | Writing test plans | `/generate-automation-test` | **60%** |
@@ -50,13 +50,13 @@ An enterprise-grade framework that combines **Claude Code**, **specialized AI ag
 
 ## 🏗️ Architecture
 
-![Alt text](./Assets/Architecture.png "Codegen Architecture")
+![Alt text](./Assets/Architecture.png "PropelIQ Architecture")
 
 
 ### 📁 Framework Structure
 
 ```
-Codegen Framework/
+PropelIQ/
 ├── .claude/                    # Claude Code configuration
 │   ├── agents/                 # AI agents (5 specialized agents)
 │   │   ├── code-analyzer.md
@@ -108,7 +108,7 @@ Codegen Framework/
 
 | Directory | Purpose | Key Files |
 |-----------|---------|-----------|
-| `agents/` | 6 specialized AI agents | code-analyzer, code-reviewer, design-analyzer, mvp-builder, prototype-builder, task-analyzer |
+| `agents/` | 5 specialized AI agents | code-analyzer, design-analyzer, mvp-builder, pr-code-reviewer, task-analyzer |
 | `commands/` | Custom Claude Code commands | discovery/, task/, design/, test/, gitops/, ux/ |
 | `CLAUDE.md` | Development context | Additional instructions for command development |
 
@@ -172,11 +172,11 @@ Ensures consistent, professional output across all generated artifacts:
 
 > **📚 Comprehensive Coverage**: Each stack is supported by extensive documentation in `References/Gotchas/` covering architecture patterns, security, performance, and testing strategies.
 
-## 🛠️ How Codegen Works
+## 🛠️ How PropelIQ Works
 
 **The power of AI-driven development automation in 4 simple steps:**
 
-![Alt text](./Assets/SystemOverview.png "Codegen Workflow")
+![Alt text](./Assets/SystemOverview.png "PropelIQ Workflow")
 
 ### 🔄 Core Workflow Components
 
@@ -259,7 +259,7 @@ The framework includes **5 AI agents** that provide targeted expertise for diffe
 ### 1. Clone the Repository into project root folder
 ```bash
 git clone <repository-url>
-cd "Codegen Framework"
+cd "PropelIQ"
 ```
 
 ### 2. Install MCP Servers
@@ -335,7 +335,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 
 **🤔 Which workflow should you use?**
 
-![Alt text](./Assets/FlowDiagram.png "Codegen Flow Diagram")
+![Alt text](./Assets/FlowDiagram.png "PropelIQ Flow Diagram")
 
 <details>
 <summary><strong>🌱 Green-field Development</strong> - Building from scratch</summary>
@@ -713,7 +713,7 @@ A: **2 minutes** to first command, **30 minutes** to productive workflows, **1 h
 # 1. Analyze codebase for insights
 /analyze-codebase https://github.com/competitor/shop
 
-# 2. Generate use story for enhancementfeature: cart functionality
+# 2. Generate user story for enhancement feature: cart functionality
 /generate-requirements "Multi-vendor shopping cart with payment integration"
 
 # 3. Create comprehensive test suite
@@ -721,7 +721,7 @@ A: **2 minutes** to first command, **30 minutes** to productive workflows, **1 h
 /generate-playwright-scripts
 
 # 4. Break down into tasks
-/generate-task requirements.md
+/generate-task Context/requirements.md
 
 # 4. Implement with best practices
 /execute-task Context/Tasks/enhancement-task1.md
@@ -734,13 +734,13 @@ A: **2 minutes** to first command, **30 minutes** to productive workflows, **1 h
 # → mvp/ folder with working prototype for stakeholder feedback
 
 # 2. Generate user story for dashboard requirements
-/generate-requirements "Real-time analytics dashboard with role-based access" or <Scope document>
+/generate-requirements "Real-time analytics dashboard with role-based access"
 
 # 3. Design system architecture
-/generate-design requirements.md
+/generate-design Context/requirements.md
 
 # 4. Break down into tasks
-/generate-task requirements.md
+/generate-task Context/requirements.md
 
 # 5. Generate secure, scalable implementation
 /execute-task Context/Tasks/dashboard-system.md
@@ -800,7 +800,7 @@ A: **2 minutes** to first command, **30 minutes** to productive workflows, **1 h
 
 **🚀 Ready to transform your development workflow?**  
 
-**[⬆️ Back to top](#codegen-framework-)** • **[📖 View Documentation](References/)** • **[🐛 Report Issues](https://github.com/anthropics/claude-code/issues)**
+**[⬆️ Back to top](#propeliq-)** • **[📖 View Documentation](References/)** • **[🐛 Report Issues](https://github.com/anthropics/claude-code/issues)**
 
 ---
 
