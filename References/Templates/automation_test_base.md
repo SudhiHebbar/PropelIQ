@@ -28,7 +28,7 @@ Template optimized for AI agents to create automation test workflows based on us
 **Business Process**: [High-level business process being automated]
 
 ## Use Case Analysis Source
-**Requirements File**: [Path to source requirements.md]
+**Requirements File**: [Path to source Spec.md]
 **Use Case ID**: [Reference to specific use case from requirements]
 **User Story ID**: [Reference to user story being tested]
 

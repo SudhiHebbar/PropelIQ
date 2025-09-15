@@ -15,7 +15,7 @@ As a Senior Software Engineer expert in Full Stack development, generate compreh
 *** MANDATORY VALIDATIONS ***
 - Understanding the input, design documents, and existing codebase is required before task creation
 - If source code is missing, prioritize project creation tasks first
-- Continue execution if design.md is unavailable (optional for user stories and bug reports)
+- Continue execution if Design.md is unavailable (optional for user stories and bug reports)
 - ULTRATHINK the implementation — analyze approach comprehensively before proceeding
 - Request explicit user confirmation (YES/NO) before writing/updating task files
 - Update existing files incrementally; avoid unnecessary complete overwrites
@@ -195,18 +195,18 @@ Score generated tasks using the following metrics (1-100% scale):
 This unified command automatically detects and processes:
 
 ### 🎯 Feature Requirements
-- **Source**: `Context/Docs/requirements.md` (mandatory)
-- **Design**: `Context/design.md` (mandatory)
+- **Source**: `Context/Docs/Spec.md` (mandatory)
+- **Design**: `Context/Docs/Design.md` (mandatory)
 - **Focus**: New feature implementation with comprehensive planning
 
 ### 📖 User Stories  
 - **Source**: User story file path provided in $ARGUMENTS
-- **Design**: `Context/design.md` (optional)
+- **Design**: `Context/Docs/Design.md` (optional)
 - **Focus**: Story-driven development with acceptance criteria
 
 ### 🐛 Bug Reports
 - **Source**: Bug report file or URL provided in $ARGUMENTS  
-- **Design**: `Context/design.md` (optional)
+- **Design**: `Context/Docs/Design.md` (optional)
 - **Focus**: Problem resolution with root cause analysis
 
 ### 📋 Functional Specifications

@@ -54,7 +54,7 @@ As an expert Business Analyst and Product Manager with deep technical understand
 - Split complex requirements by functional areas and technology stacks when applicable
 - Ensure requirements are testable, measurable, and aligned with business objectives
 - Include both functional and non-functional requirements comprehensively
-- Generate a single unified PRD document at Context/Docs/requirements.md only
+- Generate a single unified PRD document at Context/Docs/Spec.md only
 
 ### Content Processing Workflow
 1. **Input Analysis**: Determine if `$ARGUMENTS` is file path or direct text
@@ -197,7 +197,7 @@ Base all PRDs on `References/Templates/requirement_base.md` for consistency and 
 
 ## Output Specifications
 
-**File Path**: `Context/Docs/requirements.md`
+**File Path**: `Context/Docs/Spec.md`
 
 **IMPORTANT**: Generate ONLY this single file. Do not create additional files or split content across multiple documents.
 

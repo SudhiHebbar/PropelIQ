@@ -37,7 +37,7 @@ Entry point for comprehensive codebase analysis. Validates input and delegates c
 ### 3. Summary Presentation
 - Present executive summary from agent analysis
 - Highlight critical findings and recommendations
-- Provide link to full detailed report in `Context/code-analysis.md`
+- Provide link to full detailed report in `Context/Docs/CodeAnalysis.md`
 
 ## Usage Examples
 
