@@ -255,11 +255,23 @@ PropelIQ includes **5 AI agents** that provide targeted expertise for different 
 
 ## 🚀 Quick Start
 
-### 1. Clone the Repository into project root folder
+### 1. Get PropelIQ Framework
+
+**Option 1: Direct Clone**
 ```bash
 git clone <repository-url>
 cd "PropelIQ"
 ```
+
+**Option 2: Use GitHub Template (Recommended)**
+1. Visit the [PropelIQ GitHub repository](https://github.com/your-org/PropelIQ)
+2. Click **"Use this template"** button
+3. Name your new repository
+4. Clone your new repository:
+   ```bash
+   git clone <your-new-repo-url>
+   cd <your-project-name>
+   ```
 
 ### 2. Install MCP Servers
 
