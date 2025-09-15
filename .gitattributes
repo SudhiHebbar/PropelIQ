@@ -1,0 +1,3 @@
+# Files to exclude from GitHub template repository
+README.md export-ignore
+LICENSE export-ignore
