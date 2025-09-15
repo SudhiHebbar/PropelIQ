@@ -77,12 +77,12 @@ PropelIQ/
 ├── Context/                    # Generated project artifacts
 │   ├── Tasks/                  # Generated task plans
 │   ├── Test/                   # Generated test workflows
+│   ├── Figma/                  # Design references
 │   ├── code-analysis.md        # Codebase analysis results
 │   ├── requirements.md         # Generated requirements
 │   └── design.md               # System design documents
 ├── References/                 # Best practices library
 │   ├── Build/                  # Technology configurations
-│   ├── Figma/                  # Design references
 │   ├── Gotchas/                # Best practices (15+ docs)
 │   └── CLAUDE.md               # Additional context
 ├── Templates/                  # Output templates
