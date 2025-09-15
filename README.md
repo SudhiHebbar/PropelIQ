@@ -50,7 +50,7 @@ An enterprise-grade framework that combines **Claude Code**, **specialized AI ag
 
 ## 🏗️ Architecture
 
-![Alt text](./Assets/Architecture.png "PropelIQ Architecture")
+![Alt text](./media/Architecture.png "PropelIQ Architecture")
 
 
 ### 📁 Framework Structure
@@ -73,7 +73,7 @@ PropelIQ/
 │   │   ├── test/               # Test generation commands
 │   │   └── ux/                 # UI/UX review commands
 │   └── CLAUDE.md               # Development guidelines
-├── Assets/                     # Images and diagrams
+├── media/                      # Images and diagrams
 ├── Context/                    # Generated project artifacts
 │   ├── Tasks/                  # Generated task plans
 │   ├── Test/                   # Generated test workflows
@@ -92,8 +92,6 @@ PropelIQ/
 │   ├── design_base.md
 │   ├── requirement_base.md
 │   └── task_base.md
-├── utils/                      # Framework utilities
-│   └── mcp-server-fallbacks.md # MCP server fallback configurations
 ├── .env                        # Environment variables (gitignored)
 ├── .gitignore                  # Git ignore rules
 ├── .mcp.json                   # MCP server configuration
@@ -176,7 +174,7 @@ Ensures consistent, professional output across all generated artifacts:
 
 **The power of AI-driven development automation in 4 simple steps:**
 
-![Alt text](./Assets/SystemOverview.png "PropelIQ Workflow")
+![Alt text](./media/SystemOverview.png "PropelIQ Workflow")
 
 ### 🔄 Core Workflow Components
 
@@ -335,7 +333,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 
 **🤔 Which workflow should you use?**
 
-![Alt text](./Assets/FlowDiagram.png "PropelIQ Flow Diagram")
+![Alt text](./media/FlowDiagram.png "PropelIQ Flow Diagram")
 
 <details>
 <summary><strong>🌱 Green-field Development</strong> - Building from scratch</summary>
