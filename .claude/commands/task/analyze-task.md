@@ -1,8 +1,11 @@
-# Task Analysis Command
-
 ---
+name: Task Analysis Command
+description: Entry point for post-implementation task analysis. Reviews completed code changes against task requirements to verify scope alignment, identify gaps, and provide quality assessment with actionable recommendations through specialized task-analyzer agent delegation
+model: inherit
 allowed-tools: Bash, Read, Glob, Task
 ---
+
+# Task Analysis Command
 
 ## Purpose
 Entry point for post-implementation task analysis. Reviews completed code changes against task requirements to verify scope alignment, identify gaps, and provide quality assessment with actionable recommendations.

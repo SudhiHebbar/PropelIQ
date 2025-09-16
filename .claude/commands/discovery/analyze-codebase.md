@@ -1,8 +1,11 @@
-# Codebase Analysis Command
-
 ---
+name: Codebase Analysis Command
+description: Entry point for comprehensive codebase analysis. Validates input and delegates complex analysis to the specialized code-analyzer agent for architectural insights and strategic recommendations
+model: inherit
 allowed-tools: Bash, Read, Glob, Task
 ---
+
+# Codebase Analysis Command
 
 ## Purpose
 Entry point for comprehensive codebase analysis. Validates input and delegates complex analysis to the code-analyzer agent.

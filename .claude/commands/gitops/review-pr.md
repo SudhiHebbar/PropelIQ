@@ -1,10 +1,12 @@
-# GitHub Pull Request Review
-
 ---
-allowed-tools: Task, mcp__github__get_pull_request, mcp__github__get_pull_request_comments, mcp__github__list_commits, mcp__github__get_pull_request_files, mcp__github__get_pull_request_status, Bash, Grep, Read, TodoWrite
+name: GitHub Pull Request Review
 description: Perform comprehensive code review for GitHub Pull Requests using generic code-reviewer agent with Context7, sequential-thinking, and Playwright integration. Includes fallback strategies for MCP server failures.
+model: inherit
+allowed-tools: Task, mcp__github__get_pull_request, mcp__github__get_pull_request_comments, mcp__github__list_commits, mcp__github__get_pull_request_files, mcp__github__get_pull_request_status, Bash, Grep, Read, TodoWrite
 argument-hint: <pr_id> [--owner=OWNER] [--repo=REPO] [--depth=comprehensive] [--ui-testing=auto]
 ---
+
+# GitHub Pull Request Review
 
 As a **Senior Software Architect**, orchestrate comprehensive pull request analysis for GitHub PRs by leveraging the generic code-reviewer agent with advanced MCP integrations.
 

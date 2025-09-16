@@ -1,3 +1,10 @@
+---
+name: Automation Test Workflow Generator
+description: Generates comprehensive automation test workflows based on use case analysis from requirements that serve as blueprints for Playwright automation script generation
+model: inherit
+allowed-tools: Bash, Grep, Glob, Read, Edit, MultiEdit, Write, WebFetch, WebSearch, TodoWrite, Task, mcp__sequential-thinking__sequentialthinking
+---
+
 # Automation Test Workflow Generator
 
 ## Input: $ARGUMENTS (Mandatory)
@@ -11,6 +18,7 @@ As a Senior QA Engineer expert in Test Automation and Process Design, generate c
 - Requirements analysis and use case understanding is required before test workflow creation
 - Use case analysis must be extracted from source requirements or provided by user
 - Generate test workflows that are directly translatable to Playwright scripts
+- **Use sequential thinking MCP for systematic analysis. If unavailable, apply structured analysis approach**
 - Request explicit user confirmation (YES/NO) before creating test workflow files
 - Create workflows that cover primary paths, edge cases, and error scenarios
 - Ensure all test steps are automatable and include proper validation points
@@ -20,25 +28,34 @@ As a Senior QA Engineer expert in Test Automation and Process Design, generate c
 
 The generated automation test workflows will be consumed by the `generate` command to create executable Playwright scripts. Focus on creating comprehensive process flows that can be directly translated to automation code.
 
-### 1. Requirements Analysis
+**Use sequential thinking MCP (mcp__sequential-thinking__sequentialthinking) for:**
+- Systematic requirements analysis and use case extraction
+- Complex test workflow planning and validation
+- Integration of multiple test scenarios and edge cases
+- **Fallback**: If MCP unavailable, use structured written analysis with explicit reasoning sections for each phase
+
+### 1. Requirements Analysis (Sequential Thinking Recommended)
 - **Use Case Extraction**: Extract specific use cases from Docs/Spec.md in Context folder
 - **User Story Mapping**: Map test scenarios to user stories and acceptance criteria
 - **Business Process Understanding**: Identify the complete user workflow and business process
 - **Actor Analysis**: Understand different user roles and their interaction patterns
 - **System Boundary Identification**: Define what parts of the system are being tested
+- **Fallback**: Create explicit requirements analysis document with structured sections for each analysis type
 
-### 2. Process Workflow Design
+### 2. Process Workflow Design (Sequential Thinking Recommended)
 - **Step-by-Step Documentation**: Break down user workflows into discrete, testable steps
 - **Validation Point Identification**: Define what needs to be verified at each step
 - **Selector Strategy**: Plan for stable, maintainable element identification
 - **Test Data Planning**: Identify required test data and data management strategy
 - **Error Scenario Coverage**: Document expected error conditions and handling
+- **Fallback**: Use structured workflow templates with explicit validation checkpoints
 
-### 3. Playwright Integration Planning
+### 3. Playwright Integration Planning (Sequential Thinking Recommended)
 - **Page Object Strategy**: Plan page object model structure
 - **Test Organization**: Organize tests by feature, user journey, or business process
 - **Configuration Requirements**: Define browser, viewport, and execution settings
 - **Assertion Strategy**: Plan functional, visual, and performance validations
+- **Fallback**: Create detailed integration blueprint with explicit technical decisions documented
 
 ## Essential Project Intelligence
 
@@ -95,10 +112,11 @@ Package comprehensive context for automation script generation:
 
 ### Process Workflow Architecture
 
-**Workflow Decomposition**
+**Workflow Decomposition (Use Sequential Thinking MCP)**
 - Break complex user journeys into manageable test scenarios
 - Define clear entry and exit criteria for each workflow
 - Map workflow steps to specific application actions
+- **Fallback**: Use systematic decomposition templates with explicit criteria checklists
 
 **Validation Strategy Design**
 - Identify all verification points throughout the workflow
@@ -143,6 +161,13 @@ Package comprehensive context for automation script generation:
 ## Comprehensive Evaluation Protocol
 
 Score generated test workflows using the following metrics (1-100% scale):
+
+**Quality Improvement Process (Sequential Thinking Recommended):**
+- If any score falls below 80%, use sequential thinking MCP to analyze root causes and plan improvements
+- **Fallback**: If MCP unavailable, create structured improvement analysis documenting:
+  - Specific quality gaps for each metric
+  - Targeted improvement actions
+  - Re-evaluation criteria and process
 
 ### Quality Metrics Assessment
 

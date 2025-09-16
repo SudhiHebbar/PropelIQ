@@ -92,7 +92,8 @@ PropelIQ/
 │   ├── automation_test_base.md
 │   ├── design_base.md
 │   ├── requirement_base.md
-│   └── task_base.md
+│   ├── task_base.md
+│   └── triage_base.md
 ├── .env                        # Environment variables (gitignored)
 ├── .env.example                # Environment variables template
 ├── .gitattributes              # Git export attributes for template
@@ -423,17 +424,21 @@ After installation, restart Claude Code or reload the configuration to activate 
 <summary><strong>🐛 Bug-fixing Workflow</strong> - Systematic issue resolution</summary>
 
 ```bash
-# 1. Create task from bug description
-/generate-task "Bug: Login fails with 500 error on special characters | bug url"  
-# → Context/Tasks/login-bug-fix.md
+# 1. Triage bug and create fix task with root cause analysis
+/generate-bugfix-task "Bug: Login fails with 500 error on special characters | bug url"
+# → Performs comprehensive triage protocol
+# → Identifies root cause and impact
+# → Context/Tasks/task_001_fix_login_special_chars.md
 
-# 2. Execute systematic debugging
-/execute-task Context/Tasks/login-bug-fix.md
+# 2. Execute the generated fix task
+/execute-task Context/Tasks/task_001_fix_login_special_chars.md
+# → Implements fix with regression prevention
 # → Guided debugging with TodoWrite tracking
 
-# 3. Verify fix completeness
-/analyze-task Context/Tasks/login-bug-fix.md
-# → Validation that bug is fully resolved
+# 3. Verify fix completeness and quality
+/analyze-task Context/Tasks/task_001_fix_login_special_chars.md
+# → Validates bug resolution and test coverage
+# → Ensures no regression introduced
 ```
 
 </details>
