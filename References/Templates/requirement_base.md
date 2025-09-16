@@ -1,5 +1,7 @@
-name: "Base Feature Template - Context-Rich with Validation Loops"
-description: |
+---
+name: Base Feature Template
+description: Structured template for feature requirement documentation with standardized ID formats, use case analysis, user stories, and acceptance criteria. Provides comprehensive framework for capturing functional, non-functional, technical, data, and UX requirements.
+---
 
 ## Purpose
 Template optimized for AI agents to implement features with sufficient context and self-validation capabilities to achieve working code through iterative refinement.
@@ -11,6 +13,12 @@ Template optimized for AI agents to implement features with sufficient context a
 4. **Progressive Success**: Start simple, validate, then enhance
 5. **Global rules**: Be sure to follow all rules in CLAUDE.md
 
+## Best Practices
+1. **Be Specific**: Use measurable criteria and concrete examples
+2. **Be Testable**: Each requirement should be verifiable
+3. **Be Traceable**: Use unique IDs for requirement tracking
+4. **Be Complete**: Avoid ambiguous language and undefined terms
+5. **Mark Unclear**: Flag requirements needing clarification rather than guessing
 ---
 
 ## Goal
@@ -33,19 +41,51 @@ Template optimized for AI agents to implement features with sufficient context a
 Note: Include the research based technology stack
 
 ## Functional Requirements
-- [List of functional scopes]
+- FR-001: System MUST [specific capability, e.g., "allow users to create accounts with email validation"]
+- FR-002: System MUST [specific feature, e.g., "enable users to reset passwords via email"]
+- FR-003: System MUST [business rule, e.g., "prevent duplicate user registrations"]
+- FR-004: [UNCLEAR] System MUST [ambiguous functional requirement needing clarification]
+
+**Note**: Mark unclear or ambiguous requirements with [UNCLEAR] tag for later clarification.
 
 ## Non-Functional Requirements
-- [List of non-fucntional socpe]
+- NFR-001: System MUST [performance requirement, e.g., "respond to user requests within 2 seconds"]
+- NFR-002: System MUST [security requirement, e.g., "encrypt all data at rest using AES-256"]
+- NFR-003: System MUST [availability requirement, e.g., "maintain 99.9% uptime during business hours"]
+- NFR-004: System MUST [scalability requirement, e.g., "support concurrent access by 1000+ users"]
+- NFR-005: [UNCLEAR] System MUST [ambiguous non-functional requirement needing specification]
+
+**Note**: Mark unclear or ambiguous requirements with [UNCLEAR] tag for later clarification.
 
 ## Technical Requirements
-- [Based on the technology stack and other implementation aspects]
+- TR-001: System MUST [technology choice, e.g., "use PostgreSQL 14+ as the primary database"]
+- TR-002: System MUST [architecture requirement, e.g., "implement RESTful API following OpenAPI 3.0 specification"]
+- TR-003: System MUST [platform requirement, e.g., "support deployment on containerized environments (Docker)"]
+- TR-004: System MUST [integration requirement, e.g., "integrate with third-party authentication via OAuth 2.0"]
+- TR-005: [UNCLEAR] System MUST [ambiguous technical requirement needing specification]
+
+**Note**: Mark unclear or ambiguous requirements with [UNCLEAR] tag for later clarification.
 
 ## Data Requirements
-- [Detailed Database schema for each of the entity]
+- DR-001: System MUST [data structure, e.g., "store user profiles with email as unique identifier"]
+- DR-002: System MUST [data integrity, e.g., "enforce referential integrity between users and orders"]
+- DR-003: System MUST [data retention, e.g., "maintain audit logs for 7 years minimum"]
+- DR-004: System MUST [data backup, e.g., "perform automated daily backups with point-in-time recovery"]
+- DR-005: System MUST [data migration, e.g., "support zero-downtime schema migrations"]
+- DR-006: [UNCLEAR] System MUST [ambiguous data requirement needing specification]
+
+**Note**: Mark unclear or ambiguous requirements with [UNCLEAR] tag for later clarification.
 
 ## UX Requirements
-- [Detailed UX requirements based on the research following modern design approach and standards, unless something specified by the user]
+- UXR-001: System MUST [usability requirement, e.g., "provide intuitive navigation with maximum 3 clicks to any feature"]
+- UXR-002: System MUST [accessibility requirement, e.g., "comply with WCAG 2.1 AA accessibility standards"]
+- UXR-003: System MUST [responsiveness requirement, e.g., "adapt seamlessly to mobile, tablet, and desktop viewports"]
+- UXR-004: System MUST [visual design requirement, e.g., "follow consistent design system with defined color palette"]
+- UXR-005: System MUST [interaction requirement, e.g., "provide real-time feedback for all user actions within 200ms"]
+- UXR-006: System MUST [error handling requirement, e.g., "display clear, actionable error messages with recovery options"]
+- UXR-007: [UNCLEAR] System MUST [ambiguous UX requirement needing specification]
+
+**Note**: Mark unclear or ambiguous requirements with [UNCLEAR] tag for later clarification.
 
 ## Use Case Analysis
 
@@ -220,11 +260,10 @@ When creating use case diagrams using this template:
 - `C4Context` = System context diagrams
 
 ## Core Entities
-### [Entity_#_Name]
+- [Entity 1]: [What it represents, key attributes without implementation]
+- [Entity 2]: [What it represents, relationships to other entities]
 
-- [Key responsibilities]
-- [Business rules]
-- [Constraints or invariants]
+**Note**: Include only if feature involves data
 
 ## Stories
 - [For each of the epic, containing epicID and short description define the stories]
@@ -234,6 +273,11 @@ When creating use case diagrams using this template:
   * User Story ID  
   * Full story format: "As a..., I want..., so that..."  
   * Acceptance Criteria
+  * Acceptance Criteria Format: "Given [initial state], When [action], Then [expected outcome]"
+
+#### Edge Cases
+- What happens when [boundary condition]?
+- How does system handle [error scenario]?
 
 Note: 
 - If a user story requires more than 20 hours of effort, break it down into smaller, more manageable stories.
@@ -241,7 +285,7 @@ Note:
 - Ensure that data requirements and core entities are considered during the user story creation process.
 - If the codebase URL is not provided, create user stories for creation of new project based on the technical stack and organize them under the Technical Epic.
 - Clearly define acceptance criteria for each user story, ensuring they are specific, measurable, and testable.
-Regularly review and refine user stories to maintain relevance and accuracy throughout the project lifecycle.
+- Regularly review and refine user stories to maintain relevance and accuracy throughout the project lifecycle.
 
 Format:
 ```yaml
@@ -250,32 +294,15 @@ Format:
   * #### User Story: <ID>  
   * [Story to be populated]
       Acceptance Criteria:[]
+  * #### Edge Case
+  * [Edge case to be populated]
       
 ```
 ## Risks & Mitigations
-- [Limit this to the scope of Functional and Non-Functional Requirements only]
+- [Top 5 limiting this to the scope of Functional and Non-Functional Requirements only]
 
 ## Constraints & Assumptions
-- [Rationale, limited to Functional and Non-Functional Requirements scope only]
+- [Top 5 rationale, limited to Functional and Non-Functional Requirements scope only]
 
-## All Needed Context
-
-### Documentation & References (list all context needed for planning)
-```yaml
-# MUST READ - Include these in your context window
-- url: [Official API docs URL]
-  why: [Specific sections/methods you'll need]
-  
-- file: [path/to/example.py]
-  why: [Pattern to follow, gotchas to avoid]
-  
-- doc: [Library documentation URL] 
-  section: [Specific section about common pitfalls]
-  critical: [Key insight that prevents common errors]
-
-- docfile: [PRPs/ai_docs/file.md]
-  why: [docs that the user has pasted in to the project]
-
-```
-## Areas for Potential Improvement  
-- [List specific, actionable suggestions for improvement, if any.]
+## Areas for Potential Improvement
+- [List top 5 specific, actionable suggestions for improvement, if any.]
