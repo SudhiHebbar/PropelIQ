@@ -1,12 +1,14 @@
-# Resolve GitHub PR Review Comment
-
 ---
+name: Resolve GitHub PR Review Comment
+description: Resolve GitHub PR Review Comment with comprehensive code analysis using Context7 MCP for framework research and fallback to WebSearch when unavailable
+model: inherit
 allowed-tools: Grep, LS, Read, Edit, MultiEdit, Write, WebFetch, TodoWrite, WebSearch, BashOutput, KillBash, ListMcpResourcesTool, ReadMcpResourceTool, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, Bash, Glob
-# Note: Context7 MCP with fallback to WebSearch for framework research when MCP unavailable
-
-description: Resolve GitHub PR Review Comment
 argument-hint: <comment_id or comment url> [--resolve]
+
+# Note: Context7 MCP with fallback to WebSearch for framework research when MCP unavailable
 ---
+
+# Resolve GitHub PR Review Comment
 
 This guide explains how to resolve a specific review comment on a GitHub Pull Request.
 

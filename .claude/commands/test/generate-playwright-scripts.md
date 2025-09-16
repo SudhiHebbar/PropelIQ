@@ -1,3 +1,10 @@
+---
+name: Playwright Automation Script Generator
+description: Generates comprehensive Playwright automation scripts based on test workflow specifications created by the automation test workflow generator
+model: inherit
+allowed-tools: Bash, Grep, Glob, Read, Edit, MultiEdit, Write, WebFetch, WebSearch, TodoWrite, Task
+---
+
 # Playwright Automation Script Generator
 
 ## Input: $ARGUMENTS (Optional)

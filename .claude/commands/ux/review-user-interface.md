@@ -1,6 +1,8 @@
 ---
+name: User Interface Design Review
+description: Complete a design review of the pending changes on the current branch using the design-analyzer agent for comprehensive UI/UX validation with Playwright automation
+model: inherit
 allowed-tools: Task, Bash, Glob
-description: Complete a design review of the pending changes on the current branch using the design-analyzer agent
 parameters:
   figma_design:
     type: string

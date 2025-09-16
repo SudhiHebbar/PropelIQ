@@ -1,3 +1,10 @@
+---
+name: Design Generator
+description: Generates comprehensive design documents for feature implementation with thorough research and architectural patterns
+model: inherit
+allowed-tools: Bash, Grep, Glob, Read, Edit, MultiEdit, Write, WebFetch, WebSearch, TodoWrite, Task
+---
+
 # Create Design
 
 ## Feature file: $ARGUMENTS (Optional)

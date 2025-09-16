@@ -1,10 +1,12 @@
-# Azure DevOps Pull Request Review
-
 ---
-allowed-tools: Task, mcp__azure-devops__repo_get_pull_request_by_id, mcp__azure-devops__repo_list_pull_request_threads, mcp__azure-devops__repo_create_pull_request_thread, mcp__azure-devops__repo_reply_to_comment, mcp__azure-devops__repo_list_pull_requests_by_repo, mcp__azure-devops__repo_get_branch_by_name, mcp__azure-devops__repo_search_commits, mcp__azure-devops__search_code, mcp__azure-devops__build_get_builds, mcp__azure-devops__build_get_log, Bash, Grep, Read, TodoWrite
+name: Azure DevOps Pull Request Review
 description: Perform comprehensive code review for Azure DevOps Pull Requests using generic code-reviewer agent with Context7, sequential-thinking, and Playwright integration. Includes fallback strategies for MCP server failures.
+model: inherit
+allowed-tools: Task, mcp__azure-devops__repo_get_pull_request_by_id, mcp__azure-devops__repo_list_pull_request_threads, mcp__azure-devops__repo_create_pull_request_thread, mcp__azure-devops__repo_reply_to_comment, mcp__azure-devops__repo_list_pull_requests_by_repo, mcp__azure-devops__repo_get_branch_by_name, mcp__azure-devops__repo_search_commits, mcp__azure-devops__search_code, mcp__azure-devops__build_get_builds, mcp__azure-devops__build_get_log, Bash, Grep, Read, TodoWrite
 argument-hint: <pr_id> [--project=PROJECT] [--repository=REPO] [--depth=comprehensive] [--ui-testing=auto]
 ---
+
+# Azure DevOps Pull Request Review
 
 As a **Senior Software Architect**, orchestrate comprehensive pull request analysis for Azure DevOps PRs by leveraging the generic code-reviewer agent with advanced MCP integrations.
 

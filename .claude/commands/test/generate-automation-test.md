@@ -1,3 +1,10 @@
+---
+name: Automation Test Workflow Generator
+description: Generates comprehensive automation test workflows based on use case analysis from requirements that serve as blueprints for Playwright automation script generation
+model: inherit
+allowed-tools: Bash, Grep, Glob, Read, Edit, MultiEdit, Write, WebFetch, WebSearch, TodoWrite, Task, mcp__sequential-thinking__sequentialthinking
+---
+
 # Automation Test Workflow Generator
 
 ## Input: $ARGUMENTS (Mandatory)
