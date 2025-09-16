@@ -1,5 +1,7 @@
-name: "Base Task Template"
+---
+name: Base Task Template
 description: 
+---
 
 ## Purpose
 Template optimized for AI agents to implement features with sufficient context and self-validation capabilities to achieve working code through iterative refinement.
@@ -48,9 +50,9 @@ Template optimized for AI agents to implement features with sufficient context a
 ## References
 
 ### Universal Standards & Principle References
-- [anti_pattern.md](../References/Gotchas/anti_patterns.md) - [Concise purpose in less than 20 words]
-- [anti_redundancy_rules.md](../References/Gotchas/anti_redundancy_rules.md)- [Concise purpose in less than 20 words]
-- [general_coding_standards.md](../References/Gotchas/general_coding_standards.md) - - [Concise purpose in less than 20 words]
+- [anti_pattern.md](../References/Gotchas/anti_patterns.md) - [Concise purpose in less than 50 words]
+- [anti_redundancy_rules.md](../References/Gotchas/anti_redundancy_rules.md)- [Concise purpose in less than 50 words]
+- [general_coding_standards.md](../References/Gotchas/general_coding_standards.md) - - [Concise purpose in less than 50 words]
 
 ## Project Conext References
 - [Refer to Spec.md file in the '/Context/Docs' folder]

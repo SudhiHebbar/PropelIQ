@@ -1,12 +1,17 @@
-# Unified Task Generator
-
 ---
-allowed-tools: Grep, LS, Read, Edit, MultiEdit, Write, WebFetch, TodoWrite, WebSearch, BashOutput, KillBash, ListMcpResourcesTool, ReadMcpResourceTool, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, Bash, Glob
+name: Unified Task Generator
+description: Generates comprehensive implementation tasks from feature requirements, user stories, bug reports, or functional specifications with thorough research, context integration, and quality validation
+model: inherit
+allowed-tools: Bash, Grep, Glob, Read, Edit, MultiEdit, Write, WebFetch, WebSearch, TodoWrite, Task, ListMcpResourcesTool, ReadMcpResourceTool, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, mcp__sequential-thinking__sequentialthinking, BashOutput, KillShell
+
 # Note: Context7 MCP with fallback to WebSearch for framework research when MCP unavailable
 ---
 
+# Unified Task Generator
+
+
 ## Input: $ARGUMENTS (Mandatory)
-**Accepts:** Feature requirements | User story file | Bug report | URL | Functional specification
+**Accepts:** Feature requirements | User story file | URL | Functional specification
 
 As a Senior Software Engineer expert in Full Stack development, generate comprehensive implementation tasks based on the provided input. This unified command handles all task generation scenarios with consistent quality and thorough research approach.
 
@@ -15,13 +20,13 @@ As a Senior Software Engineer expert in Full Stack development, generate compreh
 *** MANDATORY VALIDATIONS ***
 - Understanding the input, design documents, and existing codebase is required before task creation
 - If source code is missing, prioritize project creation tasks first
-- Continue execution if Design.md is unavailable (optional for user stories and bug reports)
+- Continue execution if Design.md is unavailable (optional for user stories)
 - ULTRATHINK the implementation — analyze approach comprehensively before proceeding
 - Request explicit user confirmation (YES/NO) before writing/updating task files
 - Update existing files incrementally; avoid unnecessary complete overwrites
 - Split tasks exceeding 6 hours into smaller, independently testable units
 - Split tasks by technology stack when applicable (separate tasks for frontend, backend, database, etc.)
-- Map one task to one requirement/story/bug only — NO cross-referencing multiple items
+- Map one task to one requirement/story only — NO cross-referencing multiple items
 - Single requirements can spawn multiple task files when complexity demands it
 
 ## AI Agent Context Strategy
@@ -192,7 +197,7 @@ Score generated tasks using the following metrics (1-100% scale):
 
 ## Input Type Handling
 
-This unified command automatically detects and processes:
+This command processes feature-oriented development tasks:
 
 ### 🎯 Feature Requirements
 - **Source**: `Context/Docs/Spec.md` (mandatory)
@@ -204,10 +209,6 @@ This unified command automatically detects and processes:
 - **Design**: `Context/Docs/Design.md` (optional)
 - **Focus**: Story-driven development with acceptance criteria
 
-### 🐛 Bug Reports
-- **Source**: Bug report file or URL provided in $ARGUMENTS  
-- **Design**: `Context/Docs/Design.md` (optional)
-- **Focus**: Problem resolution with root cause analysis
 
 ### 📋 Functional Specifications
 - **Source**: Any text-based functional description

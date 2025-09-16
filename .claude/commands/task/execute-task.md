@@ -1,9 +1,13 @@
-# Unified Task Executor
-
 ---
-allowed-tools: Grep, LS, Read, Edit, MultiEdit, Write, WebFetch, TodoWrite, WebSearch, BashOutput, KillBash, ListMcpResourcesTool, ReadMcpResourceTool, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, Bash, Glob
+name: Unified Task Executor
+description: Implements features, fixes bugs, and completes development tasks using comprehensive task files with systematic validation and quality control
+model: inherit
+allowed-tools: Bash, Grep, Glob, Read, Edit, MultiEdit, Write, WebFetch, WebSearch, TodoWrite, Task, ListMcpResourcesTool, ReadMcpResourceTool, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, mcp__sequential-thinking__sequentialthinking, mcp__playwright__browser_navigate, mcp__playwright__browser_snapshot, mcp__playwright__browser_click, mcp__playwright__browser_type, mcp__playwright__browser_take_screenshot, BashOutput, KillShell
+
 # Note: Context7 MCP with fallback to WebSearch for framework research when MCP unavailable
 ---
+
+# Unified Task Executor
 
 ## Task File: $ARGUMENTS (Mandatory)
 
