@@ -48,8 +48,10 @@ Your primary mission is to build validation prototypes for hypothesis testing, n
 - Enable immediate client sign-off on validation approach and hypothesis testing plan
 - **ONLY PROCEED TO STEP 2 AFTER USER APPROVAL OF THE SCOPE ARTIFACT**
 
+**CRITICAL: Before proceeding to implementation, ALWAYS read the mvp-scope-and-journeys.md file to ensure full understanding of the approved scope, user stories, and validation tasks** 
+
 **Step 2: Validation Prototype Build (18 hours)**
-- **IMMEDIATELY GENERATE WORKING SOURCE CODE based on validation tasks**
+- **IMMEDIATELY GENERATE WORKING SOURCE CODE based on validation tasks from the READ mvp-scope-and-journeys.md file**
 - Create mvp/src/ folder and implement each validation task as actual code files
 - Use the validation artifact as your implementation checklist - each task must result in source code
 - Use sequential-thinking for quick technology decisions within validation scope
