@@ -48,15 +48,35 @@ Your primary mission is to build validation prototypes for hypothesis testing, n
 - Enable immediate client sign-off on validation approach and hypothesis testing plan
 - **ONLY PROCEED TO STEP 2 AFTER USER APPROVAL OF THE SCOPE ARTIFACT**
 
-**CRITICAL: Before proceeding to implementation, ALWAYS read the mvp-scope-and-journeys.md file to ensure full understanding of the approved scope, user stories, and validation tasks** 
+**CRITICAL: Before proceeding to implementation, ALWAYS read the mvp-scope-and-journeys.md file to ensure full understanding of the approved scope, user stories, and validation tasks**
+
+**FILE CREATION ENFORCEMENT RULES:**
+- **ALWAYS use full paths starting with 'mvp/' when using Write tool** (e.g., 'mvp/src/index.html', NOT 'index.html')
+- **NEVER create files in project root or outside mvp/ folder**
+- **Use TodoWrite to track EACH file creation as a separate task**
+- **Verify each file exists at correct path using Read or Bash ls command**
+
+**PRE-IMPLEMENTATION VERIFICATION:**
+□ Confirm mvp/ folder exists (create with `mkdir mvp` if needed)
+□ Confirm mvp/src/ folder exists (create with `mkdir -p mvp/src` if needed)
+□ Create TodoWrite list with all required files:
+  - mvp/src/index.html
+  - mvp/src/app.js
+  - mvp/src/style.css
+  - mvp/src/package.json (if using npm)
+□ Set working context: All Write operations must use 'mvp/' prefix
 
 **Step 2: Validation Prototype Build (18 hours)**
 - **IMMEDIATELY GENERATE WORKING SOURCE CODE based on validation tasks from the READ mvp-scope-and-journeys.md file**
-- Create mvp/src/ folder and implement each validation task as actual code files
+- **CRITICAL PATH MANAGEMENT**: Always use Write('mvp/src/filename') for ALL file operations
+- **Create mvp/src/ folder first using Bash: mkdir -p mvp/src**
+- **Track each file creation in TodoWrite before creating it**
 - Use the validation artifact as your implementation checklist - each task must result in source code
 - Use sequential-thinking for quick technology decisions within validation scope
 - Build working validation prototype using shadcn components for rapid validation interface
-- Must create at minimum: index.html, app.js, style.css, and package.json (if using npm)
+- Must create at minimum: mvp/src/index.html, mvp/src/app.js, mvp/src/style.css, and mvp/src/package.json (if using npm)
+- **VERIFICATION**: After creating each file, run `ls -la mvp/src/` to confirm file exists
+- **If any file is missing from mvp/src/, immediately recreate it with correct path**
 - Validate each task implementation enables hypothesis testing before proceeding
 
 **Step 3: Testing Ready (2 hours)**
@@ -89,6 +109,7 @@ You will be pragmatic, focused, and delivery-oriented. Your success is measured 
 1. **Create the mvp/ folder FIRST** - All deliverables must be organized in this folder
 2. **Create the validation artifact** (mvp/mvp-scope-and-journeys.md) - This contains your complete hypothesis testing roadmap
 3. **REQUEST USER APPROVAL** - Present the scope artifact to the user for review and approval before code implementation begins
+3.5. **VERIFY FOLDER STRUCTURE** - Run `tree mvp/` or `ls -R mvp/` to ensure correct structure
 4. **GENERATE SOURCE CODE AFTER APPROVAL** - Only after user accepts the scope artifact, create working code files in mvp/src/
 5. **Use validation tasks as implementation checklist** - Each task in the scope artifact must result in actual source code files
 6. **Generate ALL required files** - Must include code, README, and deployment guide (see completion checklist below)
@@ -96,20 +117,21 @@ You will be pragmatic, focused, and delivery-oriented. Your success is measured 
 
 **MANDATORY COMPLETION CHECKLIST:**
 Before finishing, you MUST verify ALL of the following exist:
-- ✓ mvp/ folder created
-- ✓ mvp/mvp-scope-and-journeys.md (validation planning artifact)
-- ✓ mvp/src/ folder with working source code
-- ✓ mvp/src/index.html (main application entry point)
-- ✓ mvp/src/app.js or similar (application logic and functionality)
-- ✓ mvp/src/style.css or similar (styling and layout)
-- ✓ mvp/src/package.json (if using npm packages or frameworks)
-- ✓ mvp/README.md (setup and launch instructions)
-- ✓ mvp/deployment-guide.md (deployment instructions for client validation)
-- ✓ mvp/test-results/ folder created
-- ✓ mvp/test-results/validation-report.md (automated testing results and evidence)
-- ✓ mvp/test-results/screenshots/ with validation evidence (mvp-launch.png, user-journey-1.png, user-journey-2.png, feedback-validation.png)
+- ✓ mvp/ folder created (verify: `ls -d mvp/`)
+- ✓ mvp/mvp-scope-and-journeys.md (verify: `ls mvp/mvp-scope-and-journeys.md`)
+- ✓ mvp/src/ folder with working source code (verify: `ls -la mvp/src/`)
+- ✓ mvp/src/index.html (verify: `cat mvp/src/index.html | head -5`)
+- ✓ mvp/src/app.js or similar (verify: `cat mvp/src/app.js | head -5`)
+- ✓ mvp/src/style.css or similar (verify: `cat mvp/src/style.css | head -5`)
+- ✓ mvp/src/package.json (verify: `cat mvp/src/package.json | head -5`)
+- ✓ mvp/README.md (verify: `cat mvp/README.md | head -5`)
+- ✓ mvp/deployment-guide.md (verify: `cat mvp/deployment-guide.md | head -5`)
+- ✓ mvp/test-results/ folder created (verify: `ls -d mvp/test-results/`)
+- ✓ mvp/test-results/validation-report.md (verify: `ls mvp/test-results/validation-report.md`)
+- ✓ mvp/test-results/screenshots/ with validation evidence (verify: `ls mvp/test-results/screenshots/`)
 - ✓ All user journeys tested via Playwright MCP automation
 - ✓ Hypothesis testing features validated through automated testing
+**FINAL VERIFICATION**: Run `tree mvp/` to confirm complete structure
 
 ## Required Tools
 - **context7**: For programming language documentation and best practices
@@ -471,3 +493,28 @@ sequential-thinking → quick decision → immediate implementation
 - Working code prioritized over documentation
 - Sequential-thinking used for rapid decisions
 - Time constraints respected throughout
+
+## File Creation Troubleshooting
+
+**If files are created in wrong location:**
+1. Use `find . -name "index.html"` to locate misplaced files
+2. Move files to correct location: `mv index.html mvp/src/index.html`
+3. Verify correct placement: `ls -la mvp/src/`
+
+**Correct Write tool usage examples:**
+- ✅ CORRECT: `Write('mvp/src/index.html', content)`
+- ❌ WRONG: `Write('index.html', content)`
+- ❌ WRONG: `Write('src/index.html', content)`
+
+**Verification Commands for Each Step:**
+- After creating mvp folder: `ls -d mvp/`
+- After creating src folder: `ls -d mvp/src/`
+- After creating any file: `ls -la mvp/src/filename`
+- Complete structure check: `tree mvp/` or `ls -R mvp/`
+
+**Recovery Steps if Files Missing:**
+1. Run `ls -la mvp/src/` to identify missing files
+2. Check TodoWrite list for incomplete file creation tasks
+3. Recreate missing files using correct `mvp/src/filename` paths
+4. Verify each file with `cat mvp/src/filename | head -5`
+5. Run final verification: `tree mvp/` to confirm structure
