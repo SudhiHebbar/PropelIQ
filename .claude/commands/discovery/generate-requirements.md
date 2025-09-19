@@ -34,6 +34,19 @@ If `$ARGUMENTS` is direct text specification:
 2. **Content Processing**: Use the text directly as the source material for requirements generation
 3. **Length Check**: Verify text is substantial enough for requirements analysis
 
+#### Design Asset Processing (UI Impact Only)
+If `$ARGUMENTS` includes design references and has UI impact:
+1. **UI Impact Assessment**: Determine if requirements involve user interface changes
+2. **Figma Link Detection**: Check for Figma URLs (figma.com/file/, figma.com/proto/)
+3. **Design Image Detection**: Check for image paths (.png, .jpg, .svg, .sketch)
+4. **Design System References**: Look for design system documentation links
+
+#### Design Asset Extraction (When UI Changes Required)
+- **Figma Links**: Store and reference in requirements for UI specifications
+- **Image Assets**: Copy to `Context/Design/` folder and reference in specs
+- **Design Tokens**: Extract color schemes, typography, spacing systems (UI only)
+- **Component Specifications**: Document reusable UI component requirements
+
 #### Fallback Handling
 - If file cannot be read: Request user to provide alternative file path or paste content directly
 - If text is too brief: Request additional specification details
@@ -98,6 +111,15 @@ Optimize for requirements completeness and implementation success over speed. Sp
 - **Performance Implications**: Analyze scalability and performance requirements
 - **Security Considerations**: Document security requirements and compliance needs
 
+### 2.5. Design and User Experience Analysis (UI Impact Only)
+**Apply only if requirements include user interface changes:**
+- **UI Impact Assessment**: Clearly identify which features require UI modifications
+- **Visual Design Requirements**: Extract design specifications from Figma/images
+- **Design System Mapping**: Document colors, typography, spacing, components (UI only)
+- **UI/UX Patterns**: Identify interaction patterns and micro-animations
+- **Responsive Design**: Document breakpoints and adaptive behaviors
+- **Accessibility Standards**: WCAG compliance requirements from designs
+
 ### 3. Existing System Analysis (If Applicable)
 - **Current State Documentation**: Map existing features and functionality
 - **Gap Analysis**: Identify differences between current and desired states
@@ -127,6 +149,7 @@ Optimize for requirements completeness and implementation success over speed. Sp
 
 ### Template Foundation
 Base all spec on `References/Templates/requirement_base.md` for consistency and completeness.
+**Design specifications** use `References/Templates/design_reference_base.md` only when UI impact is identified.
 
 ### Critical Context Integration
 
@@ -146,7 +169,14 @@ Base all spec on `References/Templates/requirement_base.md` for consistency and 
 - Detailed functional requirements with acceptance criteria
 - Non-functional requirements (performance, security, usability)
 - Data requirements and information architecture
-- User interface and experience requirements
+- User interface and experience requirements (only when UI changes required)
+
+**🎨 Design Context (UI Impact Only)**
+- Visual references: Figma URLs OR design images (PNG, JPG, SVG, Sketch files)
+- Design system tokens (colors, typography, spacing) for UI components
+- Component specifications with visual asset references (Figma frames OR screenshots)
+- Interaction patterns and animation requirements
+- Responsive design breakpoints and behaviors
 
 **⚠️ Constraints and Dependencies**
 - Technical limitations and workarounds
@@ -210,18 +240,39 @@ Base all spec on `References/Templates/requirement_base.md` for consistency and 
 
 ## Output Specifications
 
-**File Path**: `Context/Docs/Spec.md`
+**Primary File**: `Context/Docs/Spec.md`
 
-**IMPORTANT**: Generate ONLY this single file. Do not create additional files or split content across multiple documents.
+**Design Reference File**: `Context/Docs/DesignReference.md` (only when UI impact exists)
 
-**Document Structure**:
+**IMPORTANT**: Generate Spec.md as primary output. Generate DesignReference.md ONLY when requirements include UI changes.
+
+**Spec.md Document Structure**:
 - Executive summary with business context
 - Comprehensive stakeholder analysis
+- User stories with design reference links (when UI impact exists)
 - Detailed functional requirements
 - Non-functional requirements specification
 - Technical architecture considerations
 - Implementation roadmap and priorities
 - Success metrics and validation criteria
+
+**DesignReference.md Generation (UI Impact Only)**:
+1. **Assess UI Impact**: Determine if any user stories require UI changes
+2. **Generate Design Document**: Use `References/Templates/design_reference_base.md` as foundation
+3. **Populate Design Assets**: Fill template with actual Figma URLs OR design images from input
+4. **Create User Story Mappings**: Map each UI-impacting user story to design assets
+5. **Link from Spec.md**: Reference DesignReference.md sections in user stories
+6. **Organize Assets**: Create folder structure in `Context/Design/US-XXX/` for each story
+
+**Example User Story Linking in Spec.md**:
+```yaml
+## User Story: US-001 - User Login Interface
+**Design Reference**: [Context/Docs/DesignReference.md#US-001](Context/Docs/DesignReference.md#US-001)
+**Visual Assets**:
+  - Figma: https://figma.com/file/xyz?node-id=2:45
+  - OR Images: Context/Design/US-001/login_mockup.png
+**UI Impact**: Yes - New login screen implementation required
+```
 
 ## Quality Assurance Framework
 
@@ -230,6 +281,10 @@ Base all spec on `References/Templates/requirement_base.md` for consistency and 
 - [ ] **Stakeholder Coverage**: All stakeholder needs identified and addressed
 - [ ] **Technical Feasibility**: Requirements validated against technical constraints
 - [ ] **Story Sizing**: User stories exceeding 20 hours decomposed into smaller, manageable units
+- [ ] **Design Reference Generated**: DesignReference.md created and populated (when UI impact exists)
+- [ ] **User Story Design Links**: All UI-impacting stories linked to design references
+- [ ] **Visual Asset Organization**: Design assets organized in Context/Design/US-XXX/ structure
+- [ ] **Design-to-Story Mapping**: Clear mapping between user stories and design assets
 - [ ] **Testability**: All requirements have clear acceptance criteria
 - [ ] **Completeness**: Functional and non-functional requirements comprehensive
 - [ ] **Clarity**: Requirements are unambiguous and well-documented

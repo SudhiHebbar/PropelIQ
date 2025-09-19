@@ -36,6 +36,11 @@ Optimize for implementation success and code quality over execution speed. Use s
 
 ### 1. Task Comprehension and Planning
 - **Task Analysis**: Parse complete task file including context, requirements, and validation criteria
+- **UI Impact Assessment**: Determine if task requires UI changes and load design assets accordingly
+- **Design Asset Review**: Load Figma links OR design images from task context (UI tasks only)
+- **Visual Specification Analysis**: Extract pixel-perfect implementation requirements from design assets
+- **Component Design Mapping**: Map visual designs to code components (UI tasks only)
+- **Design System Integration**: Apply design tokens and style specifications (UI tasks only)
 - **Codebase Assessment**: Review existing code patterns, conventions, and integration points
 - **Impact Analysis**: Identify existing features that may be affected by the implementation
 - **Pattern Recognition**: Identify existing implementation patterns to follow for consistency
@@ -58,6 +63,7 @@ Optimize for implementation success and code quality over execution speed. Use s
 
 ### Reference Materials Analysis
 - **Gotchas Repository**: Examine `References\Gotchas` for technology-specific implementation guidance
+- **Design References**: Load `References/Templates/design_reference_base.md` for visual validation criteria (UI tasks only)
 - **Codebase Patterns**: Follow existing code organization, naming conventions, and architectural decisions
 - **Documentation Standards**: Maintain consistency with existing documentation and inline comments
 - **Testing Patterns**: Follow established testing strategies and validation approaches
@@ -75,6 +81,13 @@ Optimize for implementation success and code quality over execution speed. Use s
 
 **Context Gathering**
 - Review Docs/Spec.md, Docs/CodeAnalysis.md and Docs/Design.md for comprehensive understanding
+- **Load Design Reference**: Read `Context/Docs/DesignReference.md` and extract design context for task's user stories (UI tasks only)
+- **Extract Visual Specifications**: Load Figma URLs OR design images from DesignReference.md sections
+- **Parse Design Tokens**: Extract colors, typography, spacing from DesignReference.md for implementation
+- **Load Component Mappings**: Use design-to-code mappings from DesignReference.md
+- **Validation Criteria**: Extract pixel-perfect requirements from DesignReference.md validation sections
+- Map visual components to existing code patterns (UI tasks only)
+- Identify design system tokens for consistent styling (UI tasks only)
 - Analyze existing codebase for patterns and integration points
 - Use `mcp__context7__resolve-library-id` to lock framework/library versions present in the task and codebase before fetching guidance
 - Use `mcp__context7__get-library-docs` for technology-specific, version-specific documentation, code examples, design principles and coding standards
@@ -96,7 +109,11 @@ Optimize for implementation success and code quality over execution speed. Use s
 
 ### Phase 3: Systematic Implementation
 **Code Implementation**
-- Use Playwright MCP to implement the pixel perfect user interface
+- **Reference Design Document**: Use Context/Docs/DesignReference.md as source of truth for visual specifications (UI tasks only)
+- Use Playwright MCP to implement pixel-perfect UI from DesignReference.md visual assets
+- Navigate to Figma URLs OR view design images loaded from DesignReference.md during implementation
+- Apply design tokens (colors, typography, spacing) extracted from DesignReference.md
+- Follow component mappings defined in DesignReference.md sections
 - Execute implementation following TodoWrite plan systematically
 - Implement all required code following existing project patterns
 - Mark each completed todo task as [X] in the task file progressively
@@ -112,7 +129,12 @@ Optimize for implementation success and code quality over execution speed. Use s
 - Run validation commands after each significant implementation step
 - Fix any failures immediately before proceeding
 - Re-run validations until all pass successfully
-- Use Playwright MCP to review the implemented user interface
+- **Design Reference Validation**: Use Context/Docs/DesignReference.md as validation criteria source (UI tasks only)
+- Use Playwright MCP to capture screenshots of implemented UI against DesignReference.md specifications
+- Compare implementation against visual assets referenced in DesignReference.md (Figma OR images)
+- Validate design tokens match specifications defined in DesignReference.md
+- Check responsive behavior against breakpoints specified in DesignReference.md
+- Verify component implementations match mappings in DesignReference.md
 - Use Context7 MCP for the review of implemented code against the design principles and coding guidelines
 - Update todo progress in real-time
 
@@ -149,6 +171,12 @@ Optimize for implementation success and code quality over execution speed. Use s
 ### Completion Criteria
 - [ ] **MCP Critique Resolved**: All critical Gaps from `mcp__sequential_thinking__critique`/`reflect` are fixed or explicitly waived with rationale
 - [ ] **Context7 Alignment**: At least one validation pass confirms implemented patterns align with versioned guidance fetched via Context7
+- [ ] **Design Reference Compliance**: Implementation matches specifications in Context/Docs/DesignReference.md (UI tasks only)
+- [ ] **Visual Fidelity**: UI matches visual assets (Figma/images) referenced in DesignReference.md (UI tasks only)
+- [ ] **Design Token Accuracy**: All colors, typography, spacing applied per DesignReference.md specifications (UI tasks only)
+- [ ] **Component Mapping**: Implementation follows component mappings defined in DesignReference.md (UI tasks only)
+- [ ] **Responsive Validation**: All breakpoints behave per DesignReference.md specifications (UI tasks only)
+- [ ] **Pixel-Perfect Screenshots**: Playwright validation confirms implementation matches DesignReference.md criteria (UI tasks only)
 - [ ] **Task Implementation**: All todo items in task file marked as completed [X]
 - [ ] **Code Quality**: Implementation follows existing project patterns and standards
 - [ ] **Testing**: Unit tests created/updated and all tests passing

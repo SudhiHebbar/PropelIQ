@@ -38,8 +38,11 @@ The AI agent receives only your research findings and training data. Since agent
 Optimize for success probability over execution speed. Spawn multiple agents and subagents using batch tools for comprehensive analysis.
 
 ### 1. Codebase Intelligence Gathering (Sequential Thinking)
+- **Design Reference Analysis**: Read `Context/Docs/DesignReference.md` to extract design context for relevant user stories (UI tasks only)
+- **User Story Design Mapping**: Identify which user stories this task relates to and extract their design references
+- **Visual Asset Loading**: Load Figma URLs OR design images referenced in DesignReference.md for this task's user stories
 - **Pattern Discovery**: Search for similar features/implementations in existing codebase
-- **Impact Analysis**: Identify existing features requiring modification to maintain functionality  
+- **Impact Analysis**: Identify existing features requiring modification to maintain functionality
 - **Reference Mapping**: Document files and patterns to reference in task design
 - **Convention Documentation**: Catalog existing code styles, naming patterns, and architectural approaches
 - **Test Pattern Analysis**: Review testing strategies and validation approaches used in the project
@@ -48,6 +51,10 @@ Optimize for success probability over execution speed. Spawn multiple agents and
 - **Implementation Research**: Search for similar features/patterns in open-source projects
 - **Sample Code**: Use `mcp__context7__get-library-docs` for technology-specific, version-specific documentation, code examples, design principles and coding standards
 - **Version Pinning**: Use `mcp__context7__resolve-library-id` to pin exact framework/library versions referenced in the task (e.g., .NET 8, EF Core 8, React 19, Python) so subsequent docs/examples are version-accurate.
+- **Design Asset Integration**: Reference Figma links OR design images in task context (only when UI impact exists)
+- **UI Implementation Guidance**: Include specific design specifications from visual assets (Figma frames OR image files)
+- **Component Mapping**: Map design components to code implementation patterns
+- **Visual Validation Criteria**: Define pixel-perfect implementation requirements using available design references
 - **Style Guidelines**: Research project-specific or framework coding standards
 - **Documentation Deep-Dive**: Library documentation with specific section URLs
 - **Example Collection**: GitHub repositories, StackOverflow solutions, technical blog implementations
@@ -71,6 +78,7 @@ Optimize for success probability over execution speed. Spawn multiple agents and
 
 ### Template Foundation
 Base all tasks on `References/Templates/task_base.md` structure for consistency.
+Integrate design context from `References/Templates/design_reference_base.md` for UI tasks only.
 
 ### Critical Context Integration
 Package comprehensive context for AI agent success:
@@ -89,6 +97,37 @@ Package comprehensive context for AI agent success:
 - Real code snippets from existing codebase
 - Configuration examples and environment setup
 - Error handling patterns used in the project
+
+**🎨 Design Context (UI Impact Only)**
+- **Design Reference Source**: Context/Docs/DesignReference.md#US-XXX (extracted for this task's user stories)
+- **Visual References**: Figma URLs OR design images loaded from DesignReference.md
+- **Design System Tokens**: Colors, typography, spacing extracted from design reference document
+- **Component Specifications**: Visual asset references from DesignReference.md sections
+- **Interaction Patterns**: Animation requirements from design reference document
+- **Responsive Design**: Breakpoints and behaviors from DesignReference.md
+
+**📸 Visual Assets (Loaded from DesignReference.md)**
+- **Screenshot References**: UI validation assets from Context/Design/US-XXX/ folders
+- **Component Documentation**: Visual specs from DesignReference.md component mappings
+- **Design-to-Code Mapping**: Guidelines extracted from design reference document
+- **Pixel-Perfect Requirements**: Implementation criteria from DesignReference.md validation sections
+
+**Example Task Design Reference**:
+```yaml
+Design Context:
+  source_document: Context/Docs/DesignReference.md#US-001
+  user_story: US-001 - User Login Interface
+  visual_references:
+    figma_url: https://figma.com/file/xyz?node-id=2:45
+    # OR design_images: Context/Design/US-001/login_mockup.png
+  design_tokens:
+    primary_color: "#007AFF"
+    typography: "SF Pro Display, 32px, 600"
+  validation_criteria:
+    screenshot_comparison: true
+    pixel_tolerance: 5%
+    responsive_breakpoints: [375px, 768px, 1440px]
+```
 
 **⚠️ Critical Knowledge**
 - Library-specific quirks and version compatibility issues
@@ -147,6 +186,12 @@ Package comprehensive context for AI agent success:
 ### Pre-Delivery Checklist
 - [ ] **Context7 References**: Version-pinned docs (IDs + links) are included for all critical patterns the task requires.
 - [ ] **Sequential Plan Checklist**: A traceability-friendly checklist derived via `mcp__sequential_thinking__plan` is embedded for execution/analysis.
+- [ ] **Design Reference Loaded**: Context/Docs/DesignReference.md read and design context extracted (UI tasks only)
+- [ ] **User Story Design Mapping**: Task linked to specific user story design sections from DesignReference.md
+- [ ] **Visual Assets Referenced**: Figma URLs OR design images loaded from DesignReference.md (UI tasks only)
+- [ ] **Design Tokens Extracted**: Colors, typography, spacing from DesignReference.md included in task
+- [ ] **Component Mapping**: Design components from DesignReference.md mapped to code implementations
+- [ ] **Validation Criteria Defined**: Pixel-perfect requirements from DesignReference.md included
 - [ ] **Context Completeness**: All necessary implementation context included and accessible
 - [ ] **Task Scope Validation**: Tasks are under 6 hours and properly split by technology stack when applicable
 - [ ] **Technology Stack Separation**: Frontend, backend, database, and infrastructure tasks are independently manageable
