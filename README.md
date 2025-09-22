@@ -178,7 +178,7 @@ Ensures consistent, professional output across all generated artifacts:
 
 **The power of AI-driven development automation in 4 simple steps:**
 
-![Alt text](./Media/SystemOverview.png "PropelIQ Workflow")
+![Alt text](./media/SystemOverview.png "PropelIQ Workflow")
 
 ### 🔄 Core Workflow Components
 
@@ -349,7 +349,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 
 **🤔 Which workflow should you use?**
 
-![Alt text](./Media/FlowDiagram.png "PropelIQ Flow Diagram")
+![Alt text](./media/FlowDiagram.png "PropelIQ Flow Diagram")
 
 <details>
 <summary><strong>🌱 Green-field Development</strong> - Building from scratch</summary>
