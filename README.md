@@ -50,7 +50,7 @@ An enterprise-grade framework that combines **Claude Code**, **specialized AI ag
 
 ## 🏗️ Architecture
 
-![Alt text](./Media/Architecture.png "PropelIQ Architecture")
+![Alt text](./media/Architecture.png "PropelIQ Architecture")
 
 
 ### 📁 PropelIQ Structure
