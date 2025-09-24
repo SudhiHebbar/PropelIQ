@@ -11,17 +11,33 @@ allowed-tools: Bash, Grep, Glob, Read, Edit, MultiEdit, Write, WebFetch, WebSear
 
 
 ## Input: $ARGUMENTS (Mandatory)
-**Accepts:** Feature requirements | User story file | URL | Functional specification
+**Accepts:** User story file path | User story URL | User story text | Feature requirements | Functional specification
+
+### Argument Types:
+1. **User Story File**: Path to US_XXX.md file (e.g., Context/Tasks/US_001/US_001.md)
+2. **User Story URL**: URL pointing to user story specification
+3. **User Story Text**: Direct user story content in "As a... I want... so that..." format
+4. **Feature Requirements**: Path to requirements specification
+5. **Functional Specification**: General functional description
+
+### User Story Input Processing
+**When $ARGUMENTS contains user story (file, URL, or text):**
+1. **Extract US ID**: Parse US_XXX identifier from file path, content, or generate if text input
+2. **Create Task Folder**: Ensure `/Context/Tasks/US_<ID>/` directory exists
+3. **Task File Naming**: Generate tasks as `task_<seqnum>_<descriptive_name>.md` within US folder
+4. **Parent Story Reference**: Maintain traceability to parent user story in all tasks
+5. **Acceptance Mapping**: Map implementation tasks to user story acceptance criteria
 
 As a Senior Software Engineer expert in Full Stack development, generate comprehensive implementation tasks based on the provided input. This unified command handles all task generation scenarios with consistent quality and thorough research approach.
 
 ## Core Execution Principles
 
 *** MANDATORY VALIDATIONS ***
+- **FIRST**: Detect input type and extract User Story ID if applicable (US_XXX pattern, file path, or generate)
 - Understanding the input, design documents, and existing codebase is required before task creation
 - If source code is missing, prioritize project creation tasks first
 - Continue execution if Design.md is unavailable (optional for user stories)
-- ULTRATHINK the implementation — analyze approach comprehensively before proceeding
+- Think deeply and keep thinking about the implementation — think longer to analyze approach comprehensively before proceeding
 - Request explicit user confirmation (YES/NO) before writing/updating task files
 - Update existing files incrementally; avoid unnecessary complete overwrites
 - Split tasks exceeding 6 hours into smaller, independently testable units
@@ -174,16 +190,54 @@ Design Context:
 
 ## Output Specifications
 
-**File Naming Convention**: `Context/Tasks/task_<seqnum>_<descriptive_name>.md`
+### File Organization Strategy:
+**For User Story Tasks:**
+- **Directory**: `/Context/Tasks/US_<ID>/`
+- **File Pattern**: `task_<seqnum>_<descriptive_name>.md`
+- **Example**: `/Context/Tasks/US_001/task_001_implement_login_ui.md`
+
+**For General Tasks (non-user story):**
+- **Directory**: `/Context/Tasks/`
+- **File Pattern**: `task_<seqnum>_<descriptive_name>.md`
+- **Example**: `/Context/Tasks/task_001_setup_database.md`
 
 **Sequence Number Logic**:
-- Auto-increment based on existing task files in directory
+- Auto-increment based on existing task files in the target directory
 - Use zero-padded 3-digit format (001, 002, 003...)
+- Separate sequence per US_<ID> folder
 - Descriptive name should reflect primary functionality being implemented
+
+## Directory Management
+
+### User Story Task Organization
+1. **Parse US ID**: Extract from input (file path, URL content, or generate)
+2. **Create Directory**: Ensure `/Context/Tasks/US_<ID>/` exists
+3. **Check Existing Tasks**: List existing task files in US folder
+4. **Sequential Numbering**: Continue from highest existing task number
+5. **Task Generation**: Create new task files with proper sequence
+
+### Example Directory Structure:
+```
+Context/Tasks/
+├── US_001/
+│   ├── US_001.md (user story)
+│   ├── task_001_implement_login_form.md
+│   ├── task_002_add_validation_logic.md
+│   └── task_003_create_unit_tests.md
+├── US_002/
+│   ├── US_002.md
+│   └── task_001_setup_password_reset.md
+└── task_001_general_setup.md (non-US task)
+```
 
 ## Quality Assurance Framework
 
 ### Pre-Delivery Checklist
+- [ ] **User Story Validation**: Parent user story identified and referenced correctly
+- [ ] **Folder Structure**: Tasks created in correct US_XXX folder when applicable
+- [ ] **Task Numbering**: Sequential numbering within US folder maintained
+- [ ] **Acceptance Mapping**: Tasks map to user story acceptance criteria
+- [ ] **Story Traceability**: Each task references parent US_XXX appropriately
 - [ ] **Context7 References**: Version-pinned docs (IDs + links) are included for all critical patterns the task requires.
 - [ ] **Sequential Plan Checklist**: A traceability-friendly checklist derived via `mcp__sequential_thinking__plan` is embedded for execution/analysis.
 - [ ] **Design Reference Loaded**: Context/Docs/DesignReference.md read and design context extracted (UI tasks only)
@@ -249,16 +303,47 @@ This command processes feature-oriented development tasks:
 - **Design**: `Context/Docs/Design.md` (mandatory)
 - **Focus**: New feature implementation with comprehensive planning
 
-### 📖 User Stories  
-- **Source**: User story file path provided in $ARGUMENTS
-- **Design**: `Context/Docs/Design.md` (optional)
-- **Focus**: Story-driven development with acceptance criteria
+### 📝 User Stories (Primary Input Type)
+- **Source**: User story file path (Context/Tasks/US_XXX/US_XXX.md)
+- **URL Source**: Remote user story specification
+- **Text Source**: Direct user story in standard format
+- **Output**: Tasks generated in /Context/Tasks/US_XXX/ folder
+- **Focus**: Story-driven task decomposition with acceptance criteria mapping
+- **Task Scope**: Each task ≤ 6 hours, split by tech stack
+- **Traceability**: All tasks reference parent US_XXX
 
 
 ### 📋 Functional Specifications
 - **Source**: Any text-based functional description
 - **Design**: Available project documentation
 - **Focus**: Specification-driven implementation with detailed requirements analysis
+
+## Example Usage
+
+### User Story Task Generation
+```bash
+# User story file input
+/generate-task Context/Tasks/US_001/US_001.md
+
+# User story URL
+/generate-task https://docs.company.com/stories/US_001
+
+# Direct user story text
+/generate-task "As a user, I want to log in with email and password, so that I can access my account"
+```
+
+### Feature Requirements (Existing Behavior)
+```bash
+# Feature requirements from specification
+/generate-task Context/Docs/Spec.md
+
+# Functional specification text
+/generate-task "Implement user authentication system with OAuth2 integration"
+```
+
+**Task Output Examples:**
+- User story input → `/Context/Tasks/US_001/task_001_implement_login_form.md`
+- Feature requirements → `/Context/Tasks/task_001_setup_authentication.md`
 
 ---
 

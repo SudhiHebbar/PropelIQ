@@ -64,11 +64,11 @@ As an expert Business Analyst and Product Manager with deep technical understand
 
 *** MANDATORY VALIDATIONS ***
 - **FIRST**: Process `$ARGUMENTS` input according to Input Processing Instructions above
-- **SECOND**: Extract and analyze the specification content (from file or direct text)
+- **SECOND**: Extract and analyze the specification content (think more about hidden requirements and implications from file or direct text)
 - **THIRD**: Analyze project scope and business context before requirements generation
 - Review existing codebase (if available) to understand current state and constraints
 - Validate technical feasibility with architecture and technology stack considerations
-- ULTRATHINK the requirements — comprehensively analyze business and technical implications
+- Think deeply and keep thinking about the requirements — think longer to comprehensively analyze business and technical implications
 - Request explicit user confirmation (YES/NO) before writing/updating files
 - Update existing sections incrementally when file exists; avoid complete overwrites
 - Split complex requirements by functional areas and technology stacks when applicable
@@ -87,9 +87,9 @@ As an expert Business Analyst and Product Manager with deep technical understand
 
 The AI agent receives your research findings and domain knowledge. Since agents have codebase access and equivalent knowledge cutoff, embed comprehensive business context and technical constraints in the specification. Agents have web search capabilities — provide specific documentation URLs, industry standards, and best practice references.
 
-## Deep Requirements Analysis Methodology (Sequential Thinking)
+## Deep Requirements Analysis Methodology (Think A Lot - Sequential Thinking)
 
-Optimize for requirements completeness and implementation success over speed. Spawn multiple agents and subagents using batch tools for comprehensive analysis.
+Optimize for requirements completeness and implementation success over speed. Think longer and keep thinking. Spawn multiple agents and subagents using batch tools for comprehensive analysis.
 
 **Fallback Mechanism:** If the sequential-thinking tool fails or is unavailable, automatically fall back to standard iterative analysis approach:
 - Perform systematic step-by-step requirement analysis
@@ -98,6 +98,7 @@ Optimize for requirements completeness and implementation success over speed. Sp
 - Ensure no degradation in analysis quality or completeness
 
 ### 1. Business Context Analysis
+Think deeply about business context - keep thinking about stakeholder needs:
 - **Stakeholder Identification**: Map all stakeholders and their requirements priorities
 - **Business Objectives**: Align features with strategic business goals and KPIs
 - **User Journey Mapping**: Document end-to-end user flows and interaction points
@@ -379,6 +380,139 @@ This unified command automatically processes various requirement sources:
 - **Focus**: User-centric requirements with experience priorities
 - **Output**: User-focused spec with usability criteria
 
+## User Story Generation Implementation
+
+### Post-Spec Generation Process
+**CRITICAL**: After generating the main Spec.md file, automatically generate user story files following these steps:
+
+#### 1. Epic Analysis and Story Generation
+For each Epic defined in the Epics table within Spec.md:
+
+**Epic Processing Algorithm:**
+1. **Extract Epic Data**: Parse Epic ID, title, and mapped requirement IDs from the generated Epics table
+2. **Requirement Analysis**: Analyze each mapped requirement (think more about FR-, NFR-, TR-, DR-, UXR-) to understand functionality scope
+3. **Story Decomposition**: Break down epic requirements into 3-8 user stories following INVEST principles
+4. **Effort Estimation**: Ensure each story is ≤ 5 story points (30 hours), break down larger stories
+5. **Story File Creation**: Generate individual `.md` files using UserStory_base.md template
+
+#### 2. Story File Generation Process
+**Directory Structure Creation:**
+```bash
+# Create directory structure for each story
+Context/Tasks/US_001/US_001.md
+Context/Tasks/US_002/US_002.md
+Context/Tasks/US_003/US_003.md
+...
+```
+
+**Sequential ID Assignment:**
+- Start with US_001 and increment for each story across all epics
+- Maintain sequential numbering regardless of epic boundaries
+- Use zero-padded 3-digit format (US_001, US_002, ..., US_999)
+
+#### 3. Template Population Requirements
+For each generated story file, populate the UserStory_base.md template with:
+
+**ID Section:**
+- Format: US_001, US_002, US_003 (sequential across all epics)
+
+**Title Section:**
+- Concise, action-oriented title (≤ 10 words)
+- Focus on user value and functionality
+
+**Description Section:**
+- Standard format: "As a [user type], I want [functionality], so that [business value]"
+- Derived from requirement analysis and business context
+
+**Acceptance Criteria Section:**
+- Given/When/Then format for each criterion
+- Specific, measurable, and testable conditions
+- Cover normal flow and key variations
+
+**Edge Cases Section:**
+- Boundary conditions and error scenarios
+- System behavior under exceptional circumstances
+- Integration failure scenarios
+
+**Traceability Section:**
+- Parent Epic ID (EP-001, EP-002, etc.)
+- Map to specific requirements (FR-001, NFR-002, etc.)
+
+**Tags Section:**
+- Primary requirement type (FR, NFR, TR, DR, UXR)
+- Platform tags (Web, Mobile, API, etc.)
+- Domain tags (Authentication, Reporting, Integration, etc.)
+
+#### 4. Story Generation Examples
+
+**Example for EP-001 (User Account Access & Authentication):**
+```
+US_001: User Registration with Email Validation
+- Parent: EP-001
+- Requirements: FR-001, UXR-001
+- Tags: FR, Web, Authentication
+
+US_002: User Login Authentication
+- Parent: EP-001
+- Requirements: FR-002, NFR-002
+- Tags: FR, NFR, Web, Authentication
+
+US_003: Password Reset Functionality
+- Parent: EP-001
+- Requirements: FR-002, UXR-001
+- Tags: FR, UXR, Web, Authentication
+```
+
+#### 5. Technical Epic Handling
+**When No Existing Codebase (New Project):**
+1. **Create EP-TECH**: Technical foundation epic with scaffolding requirements
+2. **Generate Technical Stories**: Include project setup, infrastructure, and tooling stories
+3. **Technology Stack Stories**: Based on identified tech stack in Spec.md
+4. **Development Environment Stories**: IDE setup, build tools, testing frameworks
+
+**Technical Story Examples:**
+```
+US_XXX: Project Structure and Build Configuration
+US_XXX: Development Environment Setup
+US_XXX: Framework Selection and Integration
+US_XXX: CI/CD Pipeline Configuration
+US_XXX: Testing Infrastructure Setup
+US_XXX: Documentation Foundation
+```
+
+#### 6. Quality Validation Checklist
+Before completing story generation, validate:
+- [ ] All epic requirements mapped to at least one user story
+- [ ] Each story follows UserStory_base.md template exactly
+- [ ] Story effort estimates are realistic (≤ 5 story points)
+- [ ] Acceptance criteria are specific and testable
+- [ ] Edge cases are comprehensively covered
+- [ ] Traceability to parent epics is maintained
+- [ ] Sequential ID numbering is correct
+- [ ] All directories and files are created properly
+- [ ] Technical Epic included for new projects
+
+#### 7. Implementation Instructions for AI Agents
+**File Creation Process:**
+1. **Read UserStory_base.md template**: Load the exact template structure
+2. **Create directory**: For each story, create `Context/Tasks/US_XXX/` directory
+3. **Generate story file**: Create `US_XXX.md` file within the directory
+4. **Populate template**: Fill all template sections with generated content
+5. **Validate structure**: Ensure template compliance and completeness
+
+**Automated Generation Flow:**
+```
+1. Parse Epics table from generated Spec.md
+2. For each Epic:
+   a. Extract mapped requirements
+   b. Generate 3-8 user stories
+   c. Create story files with sequential IDs
+   d. Populate UserStory_base.md template
+3. Create technical Epic if new project
+4. Validate all generated stories
+5. Confirm file structure and content
+```
+
 ---
 
-*This unified spec generator ensures comprehensive, business-aligned specs with technical feasibility validation and stakeholder alignment for successful implementation.*
+*This unified spec generator ensures comprehensive, business-aligned specs with technical feasibility validation, stakeholder alignment, and detailed user story breakdown for successful implementation.*

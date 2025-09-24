@@ -265,39 +265,110 @@ When creating use case diagrams using this template:
 
 **Note**: Include only if feature involves data
 
-## Stories
-- [For each of the epic, containing epicID and short description define the stories]
+## Epics 
+Provide a table of all in-scope epics. Each epic must have a unique ID (format: EP-###), a concise action-oriented title, and a complete, comma‑separated list of mapped requirement IDs from all categories (FR-, NFR-, TR-, DR-, UXR-). Exclude unclear ([UNCLEAR]) items until clarified. Split or add epics if any single epic maps to more than ~12 requirements or mixes unrelated outcomes. Order epics by business value, then dependency priority.
 
-### User Stories
-- User Stories, complete with:  
-  * User Story ID  
-  * Full story format: "As a..., I want..., so that..."  
-  * Acceptance Criteria
-  * Acceptance Criteria Format: "Given [initial state], When [action], Then [expected outcome]"
+| Epic ID | Epic Title | Mapped Requirement IDs |
+|---------|------------|------------------------|
+| EP-001 | User Account Access & Authentication | FR-001, FR-002, FR-003, NFR-002, TR-004, UXR-001 |
+| EP-002 | Performance & Reliability Foundation | NFR-001, NFR-003, NFR-004, TR-003, DR-004 |
+| EP-003 | Core Data & Persistence Layer | TR-001, DR-001, DR-002, DR-003, DR-005 |
+| EP-004 | API & Integration Enablement | TR-002, TR-004, FR-002 (reset flow dependency), DR-005 |
+| EP-005 | User Experience & Accessibility | UXR-001, UXR-002, UXR-003, UXR-004, UXR-005, UXR-006 |
+| EP-006 | Reporting & Administrative Operations | FR-004 (pending clarification), UC-04 (reports), UC-05 (admin panel), NFR-002 (security scope overlap) |
+| EP-007 | Security & Compliance Controls | NFR-002, NFR-003, DR-003, DR-004 |
 
-#### Edge Cases
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
+Notes:
+1. Replace or expand rows as real scope is finalized.
+2. Move any ambiguous ([UNCLEAR]) tagged requirement into a separate backlog refinement list before mapping.
+3. Add EP-TECH if bootstrapping a new project (tooling, CI/CD, scaffolding) becomes necessary.
+4. Keep traceability: every requirement must appear in exactly one epic (no duplicates) unless explicitly shared (e.g., security).
+5. Append new epics with next sequential ID (zero-padded).
 
-Note: 
-- If a user story requires more than 20 hours of effort, break it down into smaller, more manageable stories.
-- Document every functional and  non-functional requirement as a detailed user story and map it to an Epic.
-- Ensure that data requirements and core entities are considered during the user story creation process.
-- If the codebase URL is not provided, create user stories for creation of new project based on the technical stack and organize them under the Technical Epic.
-- Clearly define acceptance criteria for each user story, ensuring they are specific, measurable, and testable.
-- Regularly review and refine user stories to maintain relevance and accuracy throughout the project lifecycle.
+## User Story Generation for Epics
 
-Format:
-```yaml
-### Epic: \<Title\> for each epic.  
-* Under each epic, add all the stories associated to the epic:  
-  * #### User Story: <ID>  
-  * [Story to be populated]
-      Acceptance Criteria:[]
-  * #### Edge Case
-  * [Edge case to be populated]
-      
+### Story Generation Requirements
+After completing the Epics table, automatically generate detailed user stories for each epic following the guidelines in CLAUDE.md and using the UserStory_base.md template.
+
+**Story Generation Rules:**
+- **Story Size Limit**: Maximum 5 story points per story (1 story point = 6 hours of effort)
+- **Effort Threshold**: If a user story requires more than 20 hours of effort, break it down into smaller, more manageable stories
+- **Story Independence**: Each story must be testable independently and deliver business value
+- **INVEST Principles**: Stories should be Independent, Negotiable, Valuable, Estimable, Small, and Testable
+- **Complete Coverage**: Document every functional and non-functional requirement as detailed user stories mapped to an Epic
+- **Technical Stories**: If codebase URL is not provided, create user stories for new project creation based on technical stack and organize under Technical Epic (EP-TECH)
+- **Acceptance Criteria**: Clearly define acceptance criteria using Given/When/Then format, ensuring they are specific, measurable, and testable
+
+### Story Generation Process
+For each Epic in the table:
+
+1. **Analyze Mapped Requirements**: Extract all functional and non-functional requirements mapped to the epic
+2. **Story Decomposition**: Break requirements into user-focused stories following the "As a... I want... so that..." format
+3. **Effort Estimation**: Estimate story points and break down stories exceeding 5 points
+4. **Technical Considerations**: Include data requirements and core entities in story creation
+5. **File Creation**: Generate individual story files at `Context/Tasks/US_<ID>/US_<ID>.md`
+6. **Template Compliance**: Use the `References/Templates/UserStory_base.md` template structure
+
+### Story File Generation Instructions
+**CRITICAL**: After generating the Epics table, automatically create user story files:
+
+**File Structure:**
 ```
+Context/Tasks/US_001/US_001.md
+Context/Tasks/US_002/US_002.md
+Context/Tasks/US_003/US_003.md
+...
+```
+
+**Story ID Format:** US_001, US_002, US_003 (sequential numbering across all epics)
+
+**Template Usage:** Each story file MUST follow the exact structure in `References/Templates/UserStory_base.md`
+
+**Required Story Elements:**
+- **ID**: Unique sequential ID (US_001, US_002, etc.)
+- **Title**: Concise title in less than 10 words
+- **Description**: "As a [user type], I want [functionality], so that [business value]"
+- **Acceptance Criteria**: Given/When/Then format with specific, measurable criteria
+- **Edge Cases**: Boundary conditions and error scenarios
+- **Traceability**: Parent epic mapping (EP-001, EP-002, etc.)
+- **Tags**: Appropriate tags (FR, NFR, TR, DR, UXR, platform tags, domain tags)
+
+**Story Generation Algorithm:**
+1. For each Epic, identify 3-8 core user stories based on mapped requirements
+2. Ensure each story represents a testable unit of functionality
+3. Break down complex requirements into multiple stories if needed
+4. Create technical scaffolding stories for new projects without existing codebase
+5. Validate story independence and business value delivery
+6. Generate files in sequential order across all epics
+
+**Example Story Generation:**
+For EP-001 (User Account Access & Authentication) with requirements FR-001, FR-002, FR-003, NFR-002, TR-004, UXR-001:
+- US_001: User Registration with Email Validation
+- US_002: User Login Authentication
+- US_003: Password Reset Functionality
+- US_004: Secure Password Storage Implementation
+- US_005: User Interface for Authentication Flow
+
+**Project Scaffolding Stories (No Existing Codebase):**
+When no codebase URL is provided, create EP-TECH with stories for:
+- US_XXX: Project Structure and Build Configuration
+- US_XXX: Development Environment Setup
+- US_XXX: Framework Selection and Integration
+- US_XXX: CI/CD Pipeline Configuration
+- US_XXX: Testing Infrastructure Setup
+- US_XXX: Documentation Foundation
+
+### Quality Assurance for User Stories
+Before completing story generation, validate:
+- [ ] All stories follow UserStory_base.md template exactly
+- [ ] Each story has clear, testable acceptance criteria
+- [ ] Story effort does not exceed 5 story points (30 hours)
+- [ ] All functional and non-functional requirements are covered
+- [ ] Stories are independent and can be delivered separately
+- [ ] Technical Epic included for new projects
+- [ ] Proper traceability to parent epics maintained
+- [ ] Sequential ID numbering across all stories
+
 ## Risks & Mitigations
 - [Top 5 limiting this to the scope of Functional and Non-Functional Requirements only]
 
