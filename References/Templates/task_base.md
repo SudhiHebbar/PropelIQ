@@ -16,7 +16,9 @@ Template optimized for AI agents to implement features with sufficient context a
 ---
 
 ## Requirement Reference
-- User Story: [US ID]
+- User Story: [US_XXX] (extracted from input)
+- Story Location: [Context/Tasks/US_XXX/US_XXX.md]
+- Acceptance Criteria: [Reference from user story]
 
 ## Task Overview
 [High level Task description — purpose, and capabilities]
