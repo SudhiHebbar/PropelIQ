@@ -17,27 +17,28 @@ Entry point for post-implementation task analysis. Reviews completed code change
 - `task_file_path`: Path to the task file that defines requirements, acceptance criteria, and validation gates (e.g., `Context/Tasks/task_001_signin.md`)
 
 **Optional Parameters:**
-- `analysis_depth`: "quick" | "standard" | "comprehensive" (default: "standard")
-- `focus_areas`: Specific areas to emphasize (e.g., "security,testing,performance")
+- `analysis_depth`: "quick" | "standard" | "comprehensive" (default: "standard") - comprehensive mode triggers exhaustive thinking about all implications
+- `focus_areas`: Specific areas to emphasize with deep analysis (e.g., "security,testing,performance") - each area will be probed extensively for hidden issues
 
 ## Execution Flow
 
 ### 1. Parameter Validation
-- Validate task file path and accessibility
-- Parse basic task file structure to ensure it's processable
-- Verify repository context and related code accessibility
+- Validate task file path and accessibility, thinking carefully about potential access issues
+- Parse basic task file structure to ensure it's processable, probing deeper into structural integrity
+- Verify repository context and related code accessibility, considering all possible dependency factors
 
 ### 2. Agent Delegation
-- Invoke **task-analyzer** agent with validated parameters
+- Invoke **task-analyzer** agent with validated parameters, directing it to think deeply about all aspects of the implementation
 - Pass structured context including:
   - Task file path and parsed metadata
-  - Analysis depth and focus area preferences
+  - Analysis depth and focus area preferences with instructions to probe deeper into each area
   - Repository context and permissions
+- Instruct the agent to keep thinking until all potential gaps and edge cases are thoroughly examined
 
 ### 3. Summary Presentation
-- Present executive summary of analysis findings
-- Highlight critical gaps, risks, and recommendations
-- Provide pass/fail verdict with prioritized action items
+- Present executive summary of analysis findings after reflecting extensively on all discovered issues
+- Highlight critical gaps, risks, and recommendations by thinking longer about their implications
+- Provide pass/fail verdict with prioritized action items, ensuring thorough consideration of consequences
 - Link to detailed analysis report in `Context/Analysis/<task_file_name>.md`
 
 ## Usage Examples

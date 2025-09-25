@@ -28,12 +28,33 @@ allowed-tools: Bash, Grep, Glob, Read, Edit, MultiEdit, Write, WebFetch, WebSear
 4. **Parent Story Reference**: Maintain traceability to parent user story in all tasks
 5. **Acceptance Mapping**: Map implementation tasks to user story acceptance criteria
 
+### US ID Extraction Algorithm
+**File Input**: Extract US_XXX from file path using pattern matching
+- Pattern: `/US_(\d{3})/` or `US_(\d{3})\.md`
+- Example: `Context/Tasks/US_001/US_001.md` → Extract `US_001`
+
+**URL Input**:
+- First attempt: Parse URL path for US_XXX pattern
+- If not found: Fetch URL content and search for US ID in content
+- Pattern: `US[_-]?(\d{3,4})`
+
+**Text Input**:
+- Search for existing US ID in text: `US[_-]?(\d{3,4})`
+
+**Fallback Behavior**:
+- If no US ID can be extracted or found → Create tasks in `/Context/Tasks/` folder directly
+- Use standard task numbering: `task_XXX_<descriptive_name>.md`
+- Log clearly where tasks are being created (US folder vs. root Tasks folder)
+
 As a Senior Software Engineer expert in Full Stack development, generate comprehensive implementation tasks based on the provided input. This unified command handles all task generation scenarios with consistent quality and thorough research approach.
 
 ## Core Execution Principles
 
 *** MANDATORY VALIDATIONS ***
-- **FIRST**: Detect input type and extract User Story ID if applicable (US_XXX pattern, file path, or generate)
+- **FIRST**: Detect input type and attempt US ID extraction using patterns defined above
+- **VALIDATE**: Check if extracted ID is valid (US_XXX format with 3-digit numeric)
+- **DECIDE**: If valid US ID → create `/Context/Tasks/US_<ID>/` folder; else → use `/Context/Tasks/`
+- **LOG**: Clearly indicate task placement decision ("Creating tasks in US_XXX folder" or "No US ID found, using root /Context/Tasks/")
 - Understanding the input, design documents, and existing codebase is required before task creation
 - If source code is missing, prioritize project creation tasks first
 - Continue execution if Design.md is unavailable (optional for user stories)
@@ -191,15 +212,23 @@ Design Context:
 ## Output Specifications
 
 ### File Organization Strategy:
-**For User Story Tasks:**
+**For User Story Tasks (US ID found in input):**
 - **Directory**: `/Context/Tasks/US_<ID>/`
 - **File Pattern**: `task_<seqnum>_<descriptive_name>.md`
 - **Example**: `/Context/Tasks/US_001/task_001_implement_login_ui.md`
+- **Trigger**: Valid US_XXX pattern extracted from file path, URL, or text content
 
-**For General Tasks (non-user story):**
+**For General Tasks (no US ID found - fallback):**
 - **Directory**: `/Context/Tasks/`
 - **File Pattern**: `task_<seqnum>_<descriptive_name>.md`
 - **Example**: `/Context/Tasks/task_001_setup_database.md`
+- **Trigger**: No valid US ID extractable from input → automatic fallback to root folder
+
+**Fallback Behavior:**
+- When US ID cannot be extracted → default to `/Context/Tasks/`
+- No forced generation of US IDs when not present in input
+- Clear logging of task placement decision and reasoning
+- Maintain consistent numbering within chosen directory structure
 
 **Sequence Number Logic**:
 - Auto-increment based on existing task files in the target directory
@@ -209,26 +238,44 @@ Design Context:
 
 ## Directory Management
 
-### User Story Task Organization
-1. **Parse US ID**: Extract from input (file path, URL content, or generate)
-2. **Create Directory**: Ensure `/Context/Tasks/US_<ID>/` exists
-3. **Check Existing Tasks**: List existing task files in US folder
-4. **Sequential Numbering**: Continue from highest existing task number
-5. **Task Generation**: Create new task files with proper sequence
+### US ID Extraction Priority
+1. **Parse Input**: Attempt to extract US_XXX from input using patterns defined above
+2. **Validate Format**: Check if extracted ID matches US_XXX pattern (3-digit numeric)
+3. **Fallback to Root**: If no valid US ID found → use `/Context/Tasks/` directly
 
-### Example Directory Structure:
+### Directory Creation Logic
+**With Valid US ID Found**:
+- **Directory**: `/Context/Tasks/US_<ID>/`
+- **File Pattern**: `task_<seqnum>_<descriptive_name>.md`
+- **Sequence**: Continue from highest existing task number in US folder
+- **Example**: `/Context/Tasks/US_001/task_001_implement_login_form.md`
+
+**Without Valid US ID (Fallback)**:
+- **Directory**: `/Context/Tasks/`
+- **File Pattern**: `task_<seqnum>_<descriptive_name>.md`
+- **Sequence**: Continue from highest existing task number in root Tasks folder
+- **Example**: `/Context/Tasks/task_001_setup_database.md`
+
+### Task Organization Examples
 ```
 Context/Tasks/
-├── US_001/
+├── US_001/ (US ID extracted from input)
 │   ├── US_001.md (user story)
 │   ├── task_001_implement_login_form.md
 │   ├── task_002_add_validation_logic.md
 │   └── task_003_create_unit_tests.md
-├── US_002/
+├── US_002/ (US ID found in URL content)
 │   ├── US_002.md
 │   └── task_001_setup_password_reset.md
-└── task_001_general_setup.md (non-US task)
+├── task_001_general_setup.md (no US ID - fallback)
+├── task_002_oauth_integration.md (no US ID - fallback)
+└── task_003_database_migration.md (no US ID - fallback)
 ```
+
+### Logging and Transparency
+- **Always log** the decision: "Creating tasks in US_XXX folder" or "No US ID found, creating tasks in root /Context/Tasks/"
+- **Document reasoning** for task placement in task files
+- **Maintain clear traceability** between input type and output location
 
 ## Quality Assurance Framework
 
@@ -320,30 +367,51 @@ This command processes feature-oriented development tasks:
 
 ## Example Usage
 
-### User Story Task Generation
+### User Story Task Generation (US ID Found)
 ```bash
-# User story file input
+# User story file input (US ID extracted from path)
 /generate-task Context/Tasks/US_001/US_001.md
+# → Creates: /Context/Tasks/US_001/task_001_implement_login_form.md
 
-# User story URL
-/generate-task https://docs.company.com/stories/US_001
+# User story URL with US ID in path
+/generate-task https://docs.company.com/stories/US_042/requirements
+# → Extracts US_042, Creates: /Context/Tasks/US_042/task_001_*.md
 
-# Direct user story text
-/generate-task "As a user, I want to log in with email and password, so that I can access my account"
+# URL with US ID in content (fetches and parses)
+/generate-task https://jira.company.com/browse/STORY-15
+# → Fetches content, finds "US_015" in body
+# → Creates: /Context/Tasks/US_015/task_001_*.md
+
+# Direct user story text with US ID
+/generate-task "US_003: As a user, I want to log in with email and password"
+# → Extracts US_003, Creates: /Context/Tasks/US_003/task_001_*.md
 ```
 
-### Feature Requirements (Existing Behavior)
+### General Task Generation (No US ID - Fallback)
 ```bash
-# Feature requirements from specification
+# Feature requirements without US ID
 /generate-task Context/Docs/Spec.md
+# → No US ID found, Creates: /Context/Tasks/task_001_setup_authentication.md
 
-# Functional specification text
-/generate-task "Implement user authentication system with OAuth2 integration"
+# Direct text without US reference
+/generate-task "Implement password reset feature"
+# → No US ID found, Creates: /Context/Tasks/task_001_password_reset.md
+
+# URL without US ID in path or content
+/generate-task https://docs.company.com/features/oauth-integration
+# → Fetches content, no US ID found
+# → Creates: /Context/Tasks/task_001_oauth_integration.md
 ```
 
-**Task Output Examples:**
-- User story input → `/Context/Tasks/US_001/task_001_implement_login_form.md`
-- Feature requirements → `/Context/Tasks/task_001_setup_authentication.md`
+**Task Output Decision Matrix:**
+| Input Type | US ID Found | Output Location | Example |
+|------------|-------------|-----------------|---------|
+| File path | Yes | `/Context/Tasks/US_XXX/` | `US_001/task_001_*.md` |
+| File path | No | `/Context/Tasks/` | `task_001_*.md` |
+| URL | Yes | `/Context/Tasks/US_XXX/` | `US_042/task_001_*.md` |
+| URL | No | `/Context/Tasks/` | `task_001_*.md` |
+| Text | Yes | `/Context/Tasks/US_XXX/` | `US_003/task_001_*.md` |
+| Text | No | `/Context/Tasks/` | `task_001_*.md` |
 
 ---
 

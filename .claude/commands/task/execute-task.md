@@ -42,12 +42,12 @@ Optimize for implementation success and code quality over execution speed. Use s
 - **Component Design Mapping**: Map visual designs to code components (UI tasks only)
 - **Design System Integration**: Apply design tokens and style specifications (UI tasks only)
 - **Codebase Assessment**: Review existing code patterns, conventions, and integration points
-- **Impact Analysis**: Identify existing features that may be affected by the implementation
+- **Impact Analysis**: Think longer about cascading effects and identify existing features that may be affected by the implementation, keeping thinking until all potential interactions are uncovered
 - **Pattern Recognition**: Identify existing implementation patterns to follow for consistency
 - **Dependency Mapping**: Understand task dependencies and execution order requirements
 
 ### 2. Implementation Planning
-- **ULTRATHINK Phase**: Create comprehensive implementation plan addressing all requirements
+- **ULTRATHINK Phase**: Think deeply and extensively to create comprehensive implementation plan, probing deeper into all requirements and their hidden implications
 - **Task Breakdown**: Use TodoWrite to create detailed, trackable implementation steps
 - **Technology Separation**: Plan frontend, backend, and database components independently when applicable
 - **Restoration Points**: Plan strategic code backup points for easy rollback if needed
@@ -102,10 +102,10 @@ Optimize for implementation success and code quality over execution speed. Use s
 - Identify precise code modification targets using line numbers, function names, variables
 
 **Quality Planning**
-- Define validation commands and success criteria for each step
-- Plan unit test creation/updates for all new functionality
-- Establish restoration points for complex code changes
-- Define completion criteria and validation gates
+- Define validation commands and success criteria for each step, thinking exhaustively about potential failure modes
+- Plan unit test creation/updates for all new functionality, probing deeper into edge cases and error scenarios
+- Establish restoration points for complex code changes, considering all possible rollback requirements
+- Define completion criteria and validation gates, reflecting thoroughly on quality benchmarks
 
 ### Phase 3: Systematic Implementation
 **Code Implementation**
@@ -121,9 +121,9 @@ Optimize for implementation success and code quality over execution speed. Use s
 - Preserve existing functionality while adding new features
 
 **MCP Validation Loop (pre-commit)**
-- **Plan**: Run `mcp__sequential_thinking__plan` to materialize a verification checklist from the task’s acceptance criteria and NFRs.
-- **Critique**: Run `mcp__sequential_thinking__critique` mapping real repo evidence (files/endpoints/tests) to each checklist item; capture Pass/Gap/Fail with pointers.
-- **Reflect**: Run `mcp__sequential_thinking__reflect` to summarize risks and generate the minimal fix list and missing tests to address before proceeding.
+- **Plan**: Run `mcp__sequential_thinking__plan` to materialize a verification checklist from the task's acceptance criteria and NFRs, thinking thoroughly about all validation requirements.
+- **Critique**: Run `mcp__sequential_thinking__critique` mapping real repo evidence (files/endpoints/tests) to each checklist item; capture Pass/Gap/Fail with pointers. Think more critically about each assessment.
+- **Reflect**: Run `mcp__sequential_thinking__reflect` to summarize risks and generate the minimal fix list and missing tests to address before proceeding. Reflect deeply on all identified issues before finalizing recommendations.
 
 **Continuous Validation**
 - Run validation commands after each significant implementation step
@@ -146,10 +146,10 @@ Optimize for implementation success and code quality over execution speed. Use s
 - Validate logical correctness against requirements
 
 **Integration Testing**
-- Test integration with existing functionality to prevent regressions
-- Validate error handling and edge case scenarios
-- Confirm adherence to coding standards and project conventions
-- Verify proper documentation and code comments
+- Test integration with existing functionality to prevent regressions, thinking exhaustively about all interaction patterns
+- Validate error handling and edge case scenarios, probing deeper into failure modes
+- Confirm adherence to coding standards and project conventions, reflecting thoroughly on consistency
+- Verify proper documentation and code comments, considering all aspects of maintainability
 
 ## Implementation Quality Standards
 
@@ -243,10 +243,10 @@ Evaluate completed implementation using detailed metrics (1-100% scale):
 ## Error Recovery and Rollback Procedures
 
 ### Error Handling Strategy
-- **Immediate Validation**: Validate after each significant code change
-- **Rollback Planning**: Use established restoration points for quick recovery
-- **Pattern-Based Fixes**: Apply error patterns from task file for systematic resolution
-- **Iterative Resolution**: Fix-validate-retest cycle until all validations pass
+- **Immediate Validation**: Validate after each significant code change, thinking carefully about validation completeness
+- **Rollback Planning**: Use established restoration points for quick recovery, considering all recovery scenarios
+- **Pattern-Based Fixes**: Apply error patterns from task file for systematic resolution, thinking deeper about root causes
+- **Iterative Resolution**: Fix-validate-retest cycle until all validations pass, keep thinking through each iteration for comprehensive solutions
 
 ### Quality Assurance Gates
 - **Code Review**: Self-review against project standards before completion
