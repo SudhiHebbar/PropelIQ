@@ -41,12 +41,40 @@ An enterprise-grade framework that combines **Claude Code**, **specialized AI ag
 - **Git**: Version 2.25 or higher
 
 ### Technology-Specific Requirements
-- **Node.js**: Version 18.x or higher 
+- **Node.js**: Version 18.x or higher
 
 ### Optional Tools
 - **Azure CLI**: For Azure DevOps integration (if using azops commands)
 - **GitHub CLI**: For GitHub integration (if using gitops commands)
 - **VS Code or Cursor**: Optional IDEs for integration with Claude Code
+
+## 🔒 Claude Code Security Configuration
+
+This PropelIQ uses Claude Code security hooks to restrict access to sensitive files and prevent accidental exposure of production data.
+
+### Setup Instructions
+
+1. Create or update your `.claude/settings.local.json` file with the following configuration:
+
+```json
+{
+  "hooks": {
+    "PreToolUse": [{
+      "matcher": "Read|Write|Edit|MultiEdit",
+      "hooks": [{
+        "type": "command",
+        "command": "python .claude/hooks/file-access-validator.py"
+      }]
+    }]
+  }
+}
+```
+
+2. The hooks will automatically validate file access based on patterns defined in `.claude/hooks/restricted-patterns.json`
+
+3. You can customize the restricted patterns by editing `.claude/hooks/restricted-patterns.json` to match your security requirements.
+
+**Note**: `.claude/settings.local.json` is gitignored and will not be committed to the repository. This ensures your personal security configurations remain private while allowing team collaboration.
 
 ## 🏗️ Architecture
 
@@ -904,4 +932,4 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (U
 
 ---
 
-*Built with ❤️ for developers who value quality, speed, and intelligent automation.*
+*Built for developers who value quality, speed, and intelligent automation.*
