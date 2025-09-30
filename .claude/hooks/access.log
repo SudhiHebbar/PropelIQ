@@ -1,0 +1,4 @@
+2025-09-26T18:05:41.868011 | ALLOW | ./README.md | No restrictions matched
+2025-09-26T18:05:49.116902 | DENY | .env.production | Matches pattern: .*\.env\.production.*
+2025-09-26T18:05:57.450388 | ALLOW | ./Context/Tasks/US_001/task_001.md | No restrictions matched
+2025-09-26T18:06:04.816362 | DENY | /etc/passwd | In blocked directory: /etc
