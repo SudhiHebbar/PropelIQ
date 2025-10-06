@@ -1,6 +1,7 @@
 ---
 name: code-analyzer
-description: Use this agent when you need comprehensive architectural analysis of a codebase, including structure evaluation, pattern identification, dependency mapping, and strategic recommendations. This agent excels at providing both broad overview insights and deep technical analysis by coordinating parallel research tasks with sequential reasoning chains. This agent is extermely using during the reverse engineering process.
+description: |
+   Use this agent when you need comprehensive architectural analysis of a codebase, including structure evaluation, pattern identification, dependency mapping, and strategic recommendations. This agent excels at providing both broad overview insights and deep technical analysis by coordinating parallel research tasks with sequential reasoning chains. This agent is extermely using during the reverse engineering process.
 model: inherit
 allowed-tools: Grep, Read, Edit, MultiEdit, Write, WebFetch, TodoWrite, WebSearch, BashOutput, KillBash, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, mcp__sequential-thinking__sequentialthinking, Bash, Glob, Task
 ---
