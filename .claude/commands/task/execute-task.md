@@ -122,6 +122,7 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 - Break down complex tasks into manageable, testable units
 - Plan technology stack separation (frontend/backend/database) when needed
 - Identify precise code modification targets using line numbers, function names, variables
+- **MANDATORY**: Include "Generate evaluation metrics report" as final todo item before task completion
 
 **Quality Planning**
 - Define validation commands and success criteria for each step, thinking exhaustively about potential failure modes
@@ -161,7 +162,7 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 - Use Context7 MCP for the review of implemented code against the design principles and coding guidelines
 - Update todo progress in real-time
 
-### Phase 4: Comprehensive Validation
+### Phase 4: Comprehensive Validation and Metrics Generation
 **Quality Validation**
 - Execute complete validation suite as defined in task file
 - Verify all checklist items are completed successfully
@@ -173,6 +174,9 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 - Validate error handling and edge case scenarios, probing deeper into failure modes
 - Confirm adherence to coding standards and project conventions, reflecting thoroughly on consistency
 - Verify proper documentation and code comments, considering all aspects of maintainability
+
+**Mandatory Metrics Generation**
+⚠️ **CRITICAL**: Generate evaluation metrics table with measured values before task completion. Use validation results, test outputs, and build logs for actual measurements.
 
 ## Implementation Quality Standards
 
@@ -208,6 +212,7 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 - [ ] **Documentation**: Code properly documented and comments updated
 - [ ] **Error Handling**: Comprehensive error scenarios handled appropriately
 - [ ] **Requirements Compliance**: All original requirements fully implemented
+- [ ] **Evaluation Metrics Generated**: Complete metrics table populated with measured values and evidence
 
 ### Final Deliverables
 **Implementation Report**
@@ -222,27 +227,15 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 - Integration points for related features
 - Performance optimization opportunities
 
+**Evaluation Metrics Report** (Mandatory)
+- Complete evaluation metrics table with measured values
+- Production readiness assessment
+
 ## Comprehensive Evaluation Protocol
 
-⚠️ **REQUIRES HUMAN REVIEW** - All metrics must be verified and reviewed before code acceptance.
+### Evaluation Metrics (AI-Generated, Requires Human Verification)
 
-### Completion Verification Checklist
-
-Verify all completion criteria from lines 171-187 are satisfied:
-- [ ] All MCP critique gaps resolved with evidence or documented waivers
-- [ ] Context7 validation confirms alignment with framework best practices
-- [ ] Design reference compliance verified (UI tasks only)
-- [ ] All task todo items marked as completed
-- [ ] Code follows existing project patterns and standards
-- [ ] Unit tests created/updated and passing
-- [ ] Validation commands execute successfully
-- [ ] No regressions in existing functionality
-- [ ] Code properly documented with comments
-- [ ] Comprehensive error handling implemented
-- [ ] All original requirements fully satisfied
-- [ ] No unmodified public code - all external references adapted to project patterns
-
-### Evaluation Metrics (Manual Review)
+🚫 **MANDATORY**: AI must generate this table with measured values before task completion.
 
 **Task Type**: [FE/BE/DB/Integration/Docs/Infrastructure]
 
