@@ -25,6 +25,7 @@ Implement features, fix bugs, or complete development tasks using comprehensive 
 - Use TodoWrite tool for systematic progress tracking throughout implementation
 - Request explicit confirmation for destructive changes that affect multiple files
 - Validate each step before proceeding to maintain code quality and functionality
+- Do not copy-paste publicly available code as-is - adapt, understand, and integrate following project patterns
 
 ## AI Agent Implementation Strategy
 
@@ -67,6 +68,27 @@ Optimize for implementation success and code quality over execution speed. Use s
 - **Codebase Patterns**: Follow existing code organization, naming conventions, and architectural decisions
 - **Documentation Standards**: Maintain consistency with existing documentation and inline comments
 - **Testing Patterns**: Follow established testing strategies and validation approaches
+
+### External Code Usage Policy
+
+**⚠️ CRITICAL: Do not copy-paste publicly available code as-is**
+
+When referencing external code (Stack Overflow, GitHub, documentation examples):
+- **Understand** the code completely before adapting
+- **Verify** license compatibility (avoid GPL/AGPL in proprietary projects)
+- **Audit** for security vulnerabilities and code quality
+- **Adapt** to match existing project patterns and conventions
+- **Document** the source and rationale for adaptation
+- **Test** thoroughly as if it were original code
+
+**Why this matters:**
+- **Legal**: Incompatible licenses can create IP issues
+- **Security**: Public code may contain vulnerabilities or malicious code
+- **Quality**: May not meet enterprise standards
+- **Maintainability**: Team must understand all code in production
+- **Customization**: Rarely fits requirements without modification
+
+*** All code must be understood, adapted, and validated by the team ***
 
 *** Existing codebase pattern compliance is mandatory for quality implementation ***
 
@@ -201,44 +223,67 @@ Optimize for implementation success and code quality over execution speed. Use s
 
 ## Comprehensive Evaluation Protocol
 
-Evaluate completed implementation using detailed metrics (1-100% scale):
+⚠️ **REQUIRES HUMAN REVIEW** - All metrics must be verified and reviewed before code acceptance.
 
-### Implementation Quality Assessment
+### Completion Verification Checklist
 
-| **Evaluation Dimension** | **Assessment Criteria** |
-|---------------------------|-------------------------|
-| **Requirements Fulfillment** | Complete adherence to task specifications and acceptance criteria |
-| **Code Quality** | Clean, maintainable code following project patterns and standards |
-| **Testing Coverage** | Comprehensive unit tests with appropriate edge case coverage |
-| **Integration Success** | Seamless integration without breaking existing functionality |
-| **Error Handling** | Robust error scenarios coverage with appropriate responses |
-| **Performance Impact** | Optimal performance with consideration for system resources |
-| **Documentation Quality** | Clear, comprehensive documentation and code comments |
-| **Pattern Consistency** | Adherence to existing architectural and coding patterns |
+Verify all completion criteria from lines 171-187 are satisfied:
+- [ ] All MCP critique gaps resolved with evidence or documented waivers
+- [ ] Context7 validation confirms alignment with framework best practices
+- [ ] Design reference compliance verified (UI tasks only)
+- [ ] All task todo items marked as completed
+- [ ] Code follows existing project patterns and standards
+- [ ] Unit tests created/updated and passing
+- [ ] Validation commands execute successfully
+- [ ] No regressions in existing functionality
+- [ ] Code properly documented with comments
+- [ ] Comprehensive error handling implemented
+- [ ] All original requirements fully satisfied
+- [ ] No unmodified public code - all external references adapted to project patterns
 
-### Evaluation Output Template
+### Evaluation Metrics (Manual Review)
 
-```markdown
-## Implementation Quality Assessment
+**Task Type**: [FE/BE/DB/Integration/Docs/Infrastructure]
 
-| Metric | Score | Notes |
-|--------|-------|-------|
-| Requirements Fulfillment (%) | [Score]% | [Completeness assessment] |
-| Code Quality (%) | [Score]% | [Standards adherence notes] |
-| Testing Coverage (%) | [Score]% | [Test comprehensiveness evaluation] |
-| Integration Success (%) | [Score]% | [System integration assessment] |
-| Error Handling (%) | [Score]% | [Error scenario coverage] |
-| Performance Impact (%) | [Score]% | [Performance considerations] |
-| Documentation Quality (%) | [Score]% | [Documentation assessment] |
-| Pattern Consistency (%) | [Score]% | [Architectural alignment] |
+| # | Metric | Value | Production Gate | Notes |
+|---|--------|-------|-----------------|-------|
+| 1 | BuildSuccess | [PASS/FAIL] | MUST PASS | Build completes without errors |
+| 2 | AllTestsPassed | [PASS/FAIL] | MUST PASS | 100% of tests pass |
+| 3 | RequirementsFulfilled | [0-100]% | = 100% | All requirements implemented with evidence |
+| 4 | SecurityClean | [PASS/FAIL] | MUST PASS | No secrets, vulnerabilities, or critical issues |
+| 5 | NoRegressions | [PASS/FAIL] | MUST PASS | Existing functionality unbroken |
+| 6 | CodeQualityScore | [0-100] | ≥ 70 | Maintainability index (complexity, duplication, smells) |
+| 7 | TestCoverage | [0-100]% | ≥ 80% | Line/branch coverage percentage |
+| 8 | StaticAnalysisClean | [PASS/FAIL] | MUST PASS | No critical/high static analysis issues |
+| 9 | DocumentationComplete | [PASS/FAIL] | MUST PASS | Code comments, README, API docs updated |
+| 10 | ProductionSafe | [PASS/FAIL] | MUST PASS | Error handling, logging, validation present |
+| 11 | OriginalCodeCompliance | [PASS/FAIL] | MUST PASS | No unmodified public code; all external references adapted and documented |
+
+**Metric Notes**:
+- All metrics must be measured, not estimated
+- Use "NA" only for genuinely non-applicable metrics (document why)
+- Thresholds (70%, 80%) can be adjusted per project standards
+- Manual human review is final arbiter
+
+### Evaluation Assessment
+
+**Failed Gates** (if any):
+- [List any metrics that don't meet production gates]
+- [Include remediation plan for each failure]
 
 ### Implementation Summary
+
 **Successfully Implemented**: [Key features and functionality delivered]
-**Quality Highlights**: [Code quality achievements and best practices followed]
-**Test Coverage**: [Testing strategy and validation results]
-**Integration Impact**: [Effects on existing system and functionality]
-**Future Recommendations**: [Suggestions for continued development]
-```
+
+**Quality Highlights**: [Code quality achievements, pattern adherence, notable design decisions]
+
+**Test Coverage**: [Testing strategy, validation results, edge cases covered]
+
+**Integration Impact**: [Effects on existing system, breaking changes, migration notes]
+
+**Review Considerations**: [Areas requiring special attention, potential concerns, follow-up items]
+
+**Future Recommendations**: [Refactoring opportunities, performance optimizations, technical debt notes]
 
 ## Error Recovery and Rollback Procedures
 

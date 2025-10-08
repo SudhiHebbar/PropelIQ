@@ -1,6 +1,6 @@
 ---
 name: Unified Task Generator
-description: Generates comprehensive implementation tasks from feature requirements, user stories, bug reports, or functional specifications with thorough research, context integration, and quality validation
+description: Generates comprehensive implementation tasks from feature requirements, user stories, or functional specifications with thorough research, context integration, and quality validation
 model: inherit
 allowed-tools: Bash, Grep, Glob, Read, Edit, MultiEdit, Write, WebFetch, WebSearch, TodoWrite, Task, ListMcpResourcesTool, ReadMcpResourceTool, mcp__context7__resolve-library-id, mcp__context7__get-library-docs, mcp__sequential-thinking__sequentialthinking, BashOutput, KillShell
 
