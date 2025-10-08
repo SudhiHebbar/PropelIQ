@@ -60,6 +60,7 @@ As a Senior Software Engineer expert in Full Stack development, generate compreh
 - Continue execution if Design.md is unavailable (optional for user stories)
 - Think deeply and keep thinking about the implementation — think longer to analyze approach comprehensively before proceeding
 - Request explicit user confirmation (YES/NO) before writing/updating task files
+- **NEVER mark todo items as completed [X] during generation** - all checkboxes must be unchecked `[ ]`
 - Update existing files incrementally; avoid unnecessary complete overwrites
 - Split tasks exceeding 6 hours into smaller, independently testable units
 - Split tasks by technology stack when applicable (separate tasks for frontend, backend, database, etc.)

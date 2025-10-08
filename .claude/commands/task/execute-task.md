@@ -139,6 +139,7 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 - Execute implementation following TodoWrite plan systematically
 - Implement all required code following existing project patterns
 - Mark each completed todo task as [X] in the task file progressively
+- **Update task file checkboxes**: After completing each todo in TodoWrite, immediately update the corresponding checkbox in the source task.md file using Edit tool (`[ ]` → `[X]`)
 - Maintain precise targeting using line numbers and function references
 - Preserve existing functionality while adding new features
 
