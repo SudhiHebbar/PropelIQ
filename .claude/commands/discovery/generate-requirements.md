@@ -67,6 +67,7 @@ As an expert Business Analyst and Product Manager with deep technical understand
 - **SECOND**: Extract and analyze the specification content (think more about hidden requirements and implications from file or direct text)
 - **THIRD**: Analyze project scope and business context before requirements generation
 - Review existing codebase (if available) to understand current state and constraints
+- **If no codebase exists (green-field project)**: Include EP-TECH epic for project scaffolding
 - Validate technical feasibility with architecture and technology stack considerations
 - Think deeply and keep thinking about the requirements — think longer to comprehensively analyze business and technical implications
 - Request explicit user confirmation (YES/NO) before writing/updating files
@@ -464,11 +465,11 @@ US_003: Password Reset Functionality
 ```
 
 #### 5. Technical Epic Handling
-**When No Existing Codebase (New Project):**
-1. **Create EP-TECH**: Technical foundation epic with scaffolding requirements
-2. **Generate Technical Stories**: Include project setup, infrastructure, and tooling stories
-3. **Technology Stack Stories**: Based on identified tech stack in Spec.md
-4. **Development Environment Stories**: IDE setup, build tools, testing frameworks
+**When No Existing Codebase (Green-Field Project):**
+Create EP-TECH epic as FIRST epic with scaffolding stories (≤ 5 SP each), including:
+- Project setup, infrastructure, and tooling
+- Technology stack configuration
+- Development environment and build tools
 
 **Technical Story Examples:**
 ```
@@ -503,14 +504,13 @@ Before completing story generation, validate:
 **Automated Generation Flow:**
 ```
 1. Parse Epics table from generated Spec.md
-2. For each Epic:
+2. For each Epic (process EP-TECH FIRST if green-field project):
    a. Extract mapped requirements
    b. Generate 3-8 user stories
    c. Create story files with sequential IDs
    d. Populate UserStory_base.md template
-3. Create technical Epic if new project
-4. Validate all generated stories
-5. Confirm file structure and content
+3. Validate all generated stories
+4. Confirm file structure and content
 ```
 
 ---

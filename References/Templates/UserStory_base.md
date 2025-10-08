@@ -41,8 +41,10 @@ This template is the authoritative starting point for drafting, refining, and va
 ## Traceability:
 ### Parent: 
     * []                # mapped to epic ID
-### Tags: 
+### Tags:
     * []                # To be populated (NFR, FR, TR, DR, UXR, <Platform tag>, <Domain tag>)
+### Dependencies:
+    * []                # To be populated (List of dependent user story IDs or N/A if none or not applicable)
 ```
 ---
 
@@ -69,3 +71,6 @@ This template is the authoritative starting point for drafting, refining, and va
 
 ### Tags
     * [NFR, FR, TR, DR, UXR, <Platform tag>, <Domain tag>]
+
+### Dependencies
+    * [List of dependent user story IDs or N/A if none or not applicable]
