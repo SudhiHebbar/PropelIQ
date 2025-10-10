@@ -93,6 +93,69 @@ Your primary mission is to build validation prototypes for hypothesis testing, n
 - Test user feedback collection mechanisms
 - Document test results and validation evidence in mvp/test-results/
 - Create automated test validation report for stakeholder review
+- **MANDATORY**: Generate MVP Evaluation Metrics with measured values (see MVP Evaluation Protocol below)
+
+## MVP Evaluation Protocol
+
+### Evaluation Metrics (AI-Generated, Requires Human Verification)
+
+🚫 **MANDATORY**: AI must generate this table with measured values before MVP completion.
+
+**MVP Type**: [Validation Prototype for Hypothesis Testing]
+
+| # | Metric | Value | MVP Gate | Notes |
+|---|--------|-------|----------|-------|
+| 1 | BuildSuccess | [PASS/FAIL] | MUST PASS | Prototype builds/runs without critical errors |
+| 2 | ValidationStoriesImplemented | [0-100]% | = 100% | All validation stories from mvp-scope-and-journeys.md are testable |
+| 3 | LocalLaunchReady | [PASS/FAIL] | MUST PASS | Stakeholders can launch and test locally following README |
+| 4 | ValidationDocumentation | [PASS/FAIL] | MUST PASS | README, deployment guide, and hypothesis testing procedures complete |
+
+**Metric Measurement Guidelines**:
+- All metrics must be measured through actual validation, not estimated
+- Use "NA" only for genuinely non-applicable metrics (document why)
+- Manual human review is final arbiter for MVP readiness
+
+**Measurement Procedures**:
+
+1. **BuildSuccess**:
+   - Execute build/start command from README.md
+   - Verify application launches without blocking errors
+   - Confirm all core validation features are accessible
+
+2. **ValidationStoriesImplemented**:
+   - Review each validation story in mvp-scope-and-journeys.md
+   - Test that each story's acceptance criteria can be validated
+   - Calculate percentage: (implemented stories / total stories) × 100
+
+3. **LocalLaunchReady**:
+   - Perform fresh clone/download simulation
+   - Follow README.md setup instructions exactly
+   - Verify stakeholder can launch app and test validation features
+
+4. **ValidationDocumentation**:
+   - Confirm mvp/README.md exists with setup/launch instructions
+   - Confirm mvp/deployment-guide.md exists with deployment steps
+   - Verify hypothesis testing procedures documented in mvp-scope-and-journeys.md
+
+### MVP Evaluation Assessment
+
+**Failed Gates** (if any):
+- [List any metrics that don't meet MVP gates]
+- [Include remediation plan for each failure]
+
+### MVP Validation Summary
+
+**Hypothesis Testing Readiness**: [Ready/Not Ready - based on all gates passing]
+
+**Implemented Validation Features**: [List core validation features delivered]
+
+**Launch Readiness**: [Can stakeholders launch and test the prototype?]
+
+**Documentation Quality**: [Are testing procedures clear and complete?]
+
+**Stakeholder Testing Recommendations**: [Key areas for stakeholder focus during validation]
+
+**Post-Validation Improvements**: [Potential enhancements if hypothesis validates]
 
 **Quality Principles:**
 
@@ -132,6 +195,7 @@ Before finishing, you MUST verify ALL of the following exist:
 - ✓ mvp/test-results/screenshots/ with validation evidence (verify: `ls mvp/test-results/screenshots/`)
 - ✓ All user journeys tested via Playwright MCP automation
 - ✓ Hypothesis testing features validated through automated testing
+- ✓ **MVP Evaluation Metrics generated with measured values** (see MVP Evaluation Protocol)
 **FINAL VERIFICATION**: Run `tree mvp/` to confirm complete structure
 
 ## Required Tools
