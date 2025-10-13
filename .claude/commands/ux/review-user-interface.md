@@ -12,6 +12,14 @@ parameters:
     type: string
     required: false
     description: "URL of the development server (defaults to http://localhost:3000)"
+  app_path:
+    type: string
+    required: false
+    description: "URL path to review (e.g., '/checkout', '/dashboard', '/home'). Defaults to '/' if not specified"
+  focus_area:
+    type: string
+    required: false
+    description: "Aspect to emphasize in review: 'full' (default), 'accessibility', 'responsive', 'interactions', or 'visual-polish'"
 ---
 
 You need to invoke the design-analyzer agent to conduct a comprehensive design review of the current UI changes.
@@ -61,8 +69,8 @@ Task(
   description="UI design review",
   prompt="""
     Conduct a comprehensive design review of the UI changes in this project.
-    
-    Development server: {{ server_url | default('http://localhost:3000') }}
+
+    Development server: {{ server_url | default('http://localhost:3000') }}{{ app_path | default('/') }}
     {% if figma_design %}
     Design reference: {{ figma_design }}
     - If URL: Extract design specifications using WebFetch
@@ -75,7 +83,11 @@ Task(
     - Use descriptive naming convention: <feature>_<viewport>_<issue-type>_<timestamp>.png
     - Examples: checkout_mobile_alignment_20250912_143022.png, header_desktop_spacing_20250912_143022.png
     - Return full file paths for all screenshots in your report
-    
+
+    {% if focus_area and focus_area != 'full' %}
+    Review Focus: Emphasize {{ focus_area }} testing while still performing basic validation of other areas
+    {% endif %}
+
     Follow the comprehensive design review methodology:
     1. Phase 0: Preparation - Analyze changes and set up Playwright
     2. Phase 1: Interaction Testing - Test all user flows and interactions
