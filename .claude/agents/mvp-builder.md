@@ -109,6 +109,7 @@ Your primary mission is to build validation prototypes for hypothesis testing, n
 | 2 | ValidationStoriesImplemented | [0-100]% | = 100% | All validation stories from mvp-scope-and-journeys.md are testable |
 | 3 | LocalLaunchReady | [PASS/FAIL] | MUST PASS | Stakeholders can launch and test locally following README |
 | 4 | ValidationDocumentation | [PASS/FAIL] | MUST PASS | README, deployment guide, and hypothesis testing procedures complete |
+| 5 | TimelineAdherence | [X/24]h | ≤ 24h | All planned tasks fit within 24-hour constraint |
 
 **Metric Measurement Guidelines**:
 - All metrics must be measured through actual validation, not estimated
