@@ -62,7 +62,7 @@ As a Senior Software Engineer expert in Full Stack development, generate compreh
 - Request explicit user confirmation (YES/NO) before writing/updating task files
 - **NEVER mark todo items as completed [X] during generation** - all checkboxes must be unchecked `[ ]`
 - Update existing files incrementally; avoid unnecessary complete overwrites
-- Split tasks exceeding 6 hours into smaller, independently testable units
+- Split tasks exceeding 4 hours into smaller, independently testable units
 - Split tasks by technology stack when applicable (separate tasks for frontend, backend, database, etc.)
 - Map one task to one requirement/story only — NO cross-referencing multiple items
 - Single requirements can spawn multiple task files when complexity demands it
