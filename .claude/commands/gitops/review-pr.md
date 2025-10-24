@@ -420,9 +420,14 @@ const reviewResults = await Task({
     3. ${uiTestingNeeded ? 'Perform UI testing using Playwright MCP for frontend changes' : 'Skip UI testing'}
     4. Focus on: ${$ARGUMENTS.focus || 'security, architecture, UI/UX, performance, testing, business logic'}
     5. ${reviewContext.mode === "local" ? 'Analyze both committed changes against base branch AND uncommitted/staged changes' : ''}
-    6. Apply validation commands from References/Gotchas/validation_commands.md
-    7. Check against gotchas in References/Gotchas/ for detected technologies
-    8. Return structured results in the defined format
+    6. Apply Conditional Gotcha Loading Strategy from .claude/CLAUDE.md based on changed files:
+       - Load core gotchas (always)
+       - Analyze changed file extensions (.tsx/.jsx → frontend, .cs → backend, .sql → database)
+       - Load layer-based best_practices for detected layers
+       - Load react_gotchas.md only if .tsx/.jsx files changed
+       - Load dotnet_gotchas.md only if .cs files changed
+       - Load validation_commands.md for validation strategy
+    7. Return structured results in the defined format
     
     ${reviewContext.mode === "local" ? 
       'For local analysis, provide actionable feedback on work-in-progress changes before they are committed or pushed.' : 

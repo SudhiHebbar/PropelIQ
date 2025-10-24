@@ -76,7 +76,15 @@ This command consumes test workflow specifications from `Context/Test/` director
 
 ### Test Workflow Analysis
 - **Workflow Specifications**: Read test workflow files from Context/Test directory
-- **Automation Testing Gotchas**: **MANDATORY** follow `References/Gotchas/automation_testing_gotchas.md` for best practices
+- **Gotcha Loading**: Apply Conditional Gotcha Loading Strategy from `.claude/CLAUDE.md` with testing focus:
+  - Load core gotchas (always)
+  - **MANDATORY**: Load automation_testing_gotchas.md (testing context)
+  - **MANDATORY**: Load testing_workflow_patterns.md (testing context)
+  - Analyze test workflow for layer detection (UI tests → frontend, API tests → backend)
+  - Load frontend_best_practices.md if generating UI tests
+  - Load backend_best_practices.md if generating API tests
+  - Load react_gotchas.md only if testing React components explicitly
+  - Load dotnet_gotchas.md only if testing .NET APIs explicitly
 - **Technical Requirements**: Extract browser, viewport, and execution requirements
 - **Test Data Needs**: Understand data requirements and management strategy
 - **Assertion Strategies**: Implement functional, visual, and performance validations

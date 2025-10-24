@@ -62,7 +62,7 @@ As a Senior Software Engineer expert in Full Stack development, generate compreh
 - Request explicit user confirmation (YES/NO) before writing/updating task files
 - **NEVER mark todo items as completed [X] during generation** - all checkboxes must be unchecked `[ ]`
 - Update existing files incrementally; avoid unnecessary complete overwrites
-- Split tasks exceeding 6 hours into smaller, independently testable units
+- Split tasks exceeding 4 hours into smaller, independently testable units
 - Split tasks by technology stack when applicable (separate tasks for frontend, backend, database, etc.)
 - Map one task to one requirement/story only — NO cross-referencing multiple items
 - Single requirements can spawn multiple task files when complexity demands it
@@ -106,7 +106,12 @@ Optimize for success probability over execution speed. Spawn multiple agents and
 ## Essential Project Intelligence
 
 ### Reference Materials Analysis
-- **Gotchas Repository**: Examine `\References\Gotchas` for technology-specific guidelines, anti-patterns, and implementation warnings
+- **Gotcha Loading**: Apply Conditional Gotcha Loading Strategy from `.claude/CLAUDE.md` based on requirements/design context:
+  - Load core gotchas (always)
+  - Analyze requirements for layer detection (frontend/backend/database keywords)
+  - Load layer-based best_practices based on detected layers
+  - Load react_gotchas.md only if React explicitly mentioned in requirements
+  - Load dotnet_gotchas.md only if .NET/C# explicitly mentioned in requirements
 - **Codebase Structure**: Explore `app`, `backend`, `server` folders for existing code patterns and architectural decisions
 - **Documentation Review**: Study existing README files, API documentation, and inline code comments
 

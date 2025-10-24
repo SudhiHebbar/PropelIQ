@@ -139,9 +139,12 @@ Think deeply about business context - keep thinking about stakeholder needs:
 ## Essential Project Intelligence
 
 ### Reference Materials Integration
-- **Gotchas Repository**: Examine `References\Gotchas` for technology-specific constraints and guidelines
-- **Architecture Patterns**: Review `References\Gotchas\architecture_patterns.md` for system design considerations
-- **Anti-Patterns**: Check `References\Gotchas\anti_patterns.md` to avoid common pitfalls
+- **Gotcha Loading**: Apply Conditional Gotcha Loading Strategy from `.claude/CLAUDE.md` based on specification scope:
+  - Load core gotchas (always) - includes architecture_patterns.md and anti_patterns.md
+  - Analyze specification for layer detection (UI/frontend, API/backend, database mentions)
+  - Load layer-based best_practices based on detected scope
+  - Load react_gotchas.md only if React explicitly mentioned
+  - Load dotnet_gotchas.md only if .NET/C# explicitly mentioned
 - **Existing Codebase**: Analyze `app`, `backend`, `server` folders for current implementation patterns
 - **Documentation Standards**: Follow existing documentation patterns and conventions
 

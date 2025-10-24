@@ -55,7 +55,11 @@ Optimize for implementation success and code quality over execution speed. Use s
 - **Validation Strategy**: Define testing and validation approach for each implementation step
 
 ### 3. Quality Assurance Integration
-- **Gotchas Review**: Check `References\Gotchas` for technology-specific warnings and best practices
+- **Gotcha Loading**: Apply Conditional Gotcha Loading Strategy from `.claude/CLAUDE.md` based on task file context:
+  - Analyze task todos for file extensions and technology keywords
+  - Load core gotchas (always)
+  - Load layer-based best_practices based on detected layers
+  - Load technology-specific gotchas only if React or .NET explicitly detected
 - **Code Standards**: Ensure adherence to existing coding standards and project conventions
 - **Test Strategy**: Plan unit test creation/updates as mandatory part of implementation
 - **Error Handling**: Implement comprehensive error handling following project patterns
@@ -63,7 +67,7 @@ Optimize for implementation success and code quality over execution speed. Use s
 ## Essential Project Intelligence Integration
 
 ### Reference Materials Analysis
-- **Gotchas Repository**: Examine `References\Gotchas` for technology-specific implementation guidance
+- **Gotcha Loading**: Follow Conditional Gotcha Loading Strategy defined in `.claude/CLAUDE.md` for optimized, context-aware guidance
 - **Design References**: Load `References/Templates/design_reference_base.md` for visual validation criteria (UI tasks only)
 - **Codebase Patterns**: Follow existing code organization, naming conventions, and architectural decisions
 - **Documentation Standards**: Maintain consistency with existing documentation and inline comments

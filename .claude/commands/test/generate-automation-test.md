@@ -61,7 +61,15 @@ The generated automation test workflows will be consumed by the `generate` comma
 
 ### Reference Materials Analysis
 - **Requirements Document**: Read Context/Docs/Spec.md for use case analysis and user stories
-- **Automation Testing Gotchas**: **MANDATORY** review `References/Gotchas/automation_testing_gotchas.md` for critical best practices
+- **Gotcha Loading**: Apply Conditional Gotcha Loading Strategy from `.claude/CLAUDE.md` with testing focus:
+  - Load core gotchas (always)
+  - **MANDATORY**: Load automation_testing_gotchas.md (testing context)
+  - **MANDATORY**: Load testing_workflow_patterns.md (testing context)
+  - Analyze test scope for layer detection (UI tests → frontend, API tests → backend)
+  - Load frontend_best_practices.md if testing UI components
+  - Load backend_best_practices.md if testing APIs
+  - Load react_gotchas.md only if testing React components explicitly
+  - Load dotnet_gotchas.md only if testing .NET APIs explicitly
 - **Existing Test Patterns**: Examine any existing test files for patterns and conventions
 - **Application Structure**: Understand the application architecture for effective test design
 - **User Interface Patterns**: Analyze UI components and interaction patterns
