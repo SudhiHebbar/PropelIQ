@@ -146,3 +146,163 @@ Create separate tasks for each development stream:
 - **Template Reading**: Always read the appropriate template from References/Templates/ directory before generating outputs
 - **Structure Validation**: Validate that generated content matches the expected template sections and format
 - **Placeholder Replacement**: Ensure all template placeholders are replaced with actual content, not left empty
+
+## Conditional Gotcha Loading Strategy
+
+### Purpose
+Loading only relevant gotcha files based on task/command context while maintaining comprehensive coverage.
+
+### Critical Distinction
+- **best_practices.md files** = Universal guidance for ANY technology in that layer (frontend/backend/database)
+- **Technology-specific gotchas** = Framework/language-specific issues (**react_gotchas.md** for React ONLY, **dotnet_gotchas.md** for .NET ONLY)
+
+### Standardized Loading Template
+
+Commands should apply this conditional loading logic based on their context:
+
+#### **Step 1: ALWAYS Load Core Gotchas**
+These apply to ALL tasks regardless of technology or context:
+- Read `References/Gotchas/anti_redundancy_rules.md` - Framework rules and scope discipline
+- Read `References/Gotchas/general_coding_standards.md` - Universal coding standards
+- Read `References/Gotchas/anti_patterns.md` - Common pitfalls across all technologies
+- Read `References/Gotchas/architecture_patterns.md` - Architectural guidance and patterns
+- Read `References/Gotchas/framework_methodology.md` - Process methodology and workflow
+
+#### **Step 2: Conditional Layer-Based Best Practices**
+Load based on which application layer is involved:
+
+**IF Frontend Layer Detected** (UI, components, client-side code):
+- Read `References/Gotchas/frontend_best_practices.md` - Universal frontend guidance (ANY framework)
+- Read `References/Gotchas/design-principles.md` - Design principles (if UI design is involved)
+
+**IF Backend Layer Detected** (APIs, services, server-side logic):
+- Read `References/Gotchas/backend_best_practices.md` - Universal backend guidance (ANY framework)
+
+**IF Database Layer Detected** (SQL, migrations, data access):
+- Read `References/Gotchas/database_best_practices.md` - Database patterns and practices
+
+#### **Step 3: Conditional Technology-Specific Gotchas**
+Load ONLY if the specific technology is explicitly detected:
+
+**IF React Explicitly Detected**:
+- Read `References/Gotchas/react_gotchas.md` - React-specific patterns and issues
+- **Detection criteria**: Import statements with 'react', JSX/TSX syntax, package.json includes react dependency
+
+**IF .NET/C# Explicitly Detected**:
+- Read `References/Gotchas/dotnet_gotchas.md` - .NET-specific patterns and issues
+- **Detection criteria**: .csproj/.sln files, using statements, C# syntax, ASP.NET mentions
+
+#### **Step 4: Conditional Context-Specific Guidance**
+Load based on specific work context:
+
+**IF Testing Context** (test creation, automation, Playwright):
+- Read `References/Gotchas/automation_testing_gotchas.md` - Testing best practices
+- Read `References/Gotchas/testing_workflow_patterns.md` - Test organization patterns
+
+**IF DevOps Context** (deployment, CI/CD, infrastructure):
+- Read `References/Gotchas/devops_best_practices.md` - DevOps practices
+- Read `References/Gotchas/validation_commands.md` - Validation strategies
+
+**IF Troubleshooting Context** (debugging, error resolution):
+- Read `References/Gotchas/troubleshooting_guide.md` - Debugging guidance
+
+### Detection Heuristics
+
+#### Layer Detection
+**Frontend Layer:**
+- File extensions: `.tsx`, `.jsx`, `.css`, `.scss`, `.html`
+- Keywords: UI, component, client-side, browser, DOM, state management
+- Directories: `/components`, `/pages`, `/app`, `/src/client`
+
+**Backend Layer:**
+- File extensions: `.cs`, API files, controller files
+- Keywords: API, controller, service, server-side, endpoint, middleware
+- Directories: `/Controllers`, `/Services`, `/API`, `/backend`
+
+**Database Layer:**
+- File extensions: `.sql`, migration files
+- Keywords: database, SQL, migration, query, Entity Framework, data access
+- Directories: `/Migrations`, `/Data`, `/Database`
+
+#### Technology-Specific Detection
+**React Detection** (triggers react_gotchas.md):
+- Import statements: `import React`, `import { useState }`
+- JSX/TSX syntax in file content
+- package.json contains "react" dependency
+- **Do NOT load for**: Vue, Angular, Svelte, vanilla JavaScript
+
+**.NET Detection** (triggers dotnet_gotchas.md):
+- File extensions: `.csproj`, `.sln`
+- Using statements: `using System`, `using Microsoft`
+- Keywords: ASP.NET, Entity Framework, C#
+- **Do NOT load for**: Node.js, Python, Java backends
+
+#### Context Detection
+**Testing Context:**
+- Files: `.test.ts`, `.spec.ts`, `playwright.config.ts`
+- Keywords: test, Playwright, E2E, automation, test workflow
+
+**DevOps Context:**
+- Files: `Dockerfile`, `.yml`, `.yaml`, CI/CD configuration files
+- Keywords: deployment, pipeline, container, infrastructure
+
+**Design Context:**
+- Keywords: UI design, Figma, design system, visual specifications
+- Context: UI tasks with design requirements
+
+**Troubleshooting Context:**
+- Keywords: debug, error, fix, troubleshoot, issue, bug
+
+### Default Behaviors
+
+1. **If layer is unclear**: Load both `frontend_best_practices.md` + `backend_best_practices.md` (safest default)
+2. **Never load react_gotchas.md**: Unless React is explicitly detected in code/dependencies
+3. **Never load dotnet_gotchas.md**: Unless .NET/C# is explicitly detected in code/files
+4. **ALWAYS load core gotchas**: The 5 core files apply universally to all work
+5. **Multiple technologies**: Load all relevant layer best_practices and detected technology gotchas
+6. **Testing tasks**: Always include testing gotchas + layer best_practices based on what's being tested
+
+### Usage in Commands
+
+Commands should reference this strategy with context-appropriate detection:
+
+**Example for Implementation Tasks:**
+```markdown
+**Gotcha Loading:**
+Apply Conditional Gotcha Loading Strategy from CLAUDE.md based on task file context:
+- Analyze task todos for file extensions and technology keywords
+- Load core gotchas (always)
+- Load layer-based best_practices based on detected layers
+- Load technology-specific gotchas only if React or .NET explicitly detected
+```
+
+**Example for Review/Analysis Tasks:**
+```markdown
+**Gotcha Loading:**
+Apply Conditional Gotcha Loading Strategy from CLAUDE.md based on changed files:
+- Analyze file extensions (.tsx → frontend, .cs → backend, .sql → database)
+- Load core gotchas (always)
+- Load relevant layer best_practices
+- Load react_gotchas.md only if .tsx/.jsx files present
+- Load dotnet_gotchas.md only if .cs files present
+```
+
+### Examples
+
+**Example 1: Generic Frontend Component Task**
+- Detected: `.tsx` files, "component" keyword
+- Load: Core (5) + frontend_best_practices
+- Skip: react_gotchas (unless React imports detected in task context)
+
+**Example 2: React Hook Implementation**
+- Detected: `import { useState }` in task, React in package.json
+- Load: Core (5) + frontend_best_practices + react_gotchas + design-principles
+
+**Example 3: Generic REST API Task**
+- Detected: "API endpoint" keyword, controller mentions
+- Load: Core (5) + backend_best_practices
+- Skip: dotnet_gotchas (unless .NET detected)
+
+**Example 4: .NET Web API with Database**
+- Detected: `.cs` files, Entity Framework, SQL migrations
+- Load: Core (5) + backend_best_practices + dotnet_gotchas + database_best_practices

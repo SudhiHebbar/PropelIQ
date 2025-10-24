@@ -52,7 +52,13 @@ During the research process, create clear tasks and spawn as many agents and sub
 
 ## OTHER CONSIDERATIONS:
 
-- Check the 'References\Gotchas' folder for guidelines, gotchas, and additional instructions relevant to the technology stack used in the project.
+- **Gotcha Loading**: Apply Conditional Gotcha Loading Strategy from `.claude/CLAUDE.md` based on design scope:
+  - Load core gotchas (always)
+  - Load design-principles.md (for UI design tasks)
+  - Analyze requirements for layer detection (UI/frontend, API/backend, database)
+  - Load layer-based best_practices based on design scope
+  - Load react_gotchas.md only if React explicitly mentioned in requirements
+  - Load dotnet_gotchas.md only if .NET/C# explicitly mentioned in requirements
 - Explore the 'app', 'backend', and 'server' folders within the project directory to review the existing source code, if available.
 
 *** Understanding the existing codebase, if available, is mandatory. ***
