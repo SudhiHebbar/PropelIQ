@@ -155,7 +155,7 @@ PropelIQ/
 |-------------|--------------|----------|
 | `docs/codeanalysis.md` | `/analyze-codebase` | Architecture diagrams, security analysis, technical debt |
 | `docs/spec.md` | `/generate-requirements` | Epics with mapped requirements, business context |
-| `tasks/us_XXX/us_XXX.md` | `/generate-requirements` or `/generate-userstory` | Individual user stories with acceptance criteria |
+| `tasks/us_XXX/us_XXX.md` | `/generate-userstory` | Individual user stories with acceptance criteria |
 | `tasks/us_XXX/task_*.md` | `/generate-task` | Implementation tasks organized by user story |
 | `tasks/task_*.md` | `/generate-task` | General tasks (non-user story) |
 | `test/` | `/generate-automation-test` | Test workflow specifications |
@@ -259,13 +259,16 @@ PropelIQ/
 echo "Develop a web based onboarding digital platform that supports registration, renewal, and lifecycle management of institutional and
 individual memberships. The goal is to simplify the user experience, streamline internal workflows, and enable process automation across membership types and levels." > scope.md
 
-# 2. Generate structured requirements with epics and user stories
+# 2. Generate structured requirements with epics
 /generate-requirements scope.md
 # → Creates .propel/context/docs/spec.md with epics and acceptance criteria
-# → Auto-generates .propel/context/tasks/us_XXX/us_XXX.md for each epic
 
-# 3. (Optional) Generate user stories for specific epic
-/generate-userstory .propel/context/docs/spec.md EP-001
+# 3. Generate user stories from epics
+/generate-userstory
+# → Creates .propel/context/tasks/us_XXX/us_XXX.md for all epics
+
+# 3a. (Optional) Generate user stories for specific epic
+/generate-userstory EP-001
 # → Creates .propel/context/tasks/us_XXX/us_XXX.md for EP-001
 
 # 4. Break down user stories into executable tasks
@@ -422,14 +425,17 @@ After installation, restart Claude Code or reload the configuration to activate 
 <summary><strong>🌱 Green-field Development</strong> - Building from scratch</summary>
 
 ```bash
-# 1. Create requirements with epics and auto-generated user stories
+# 1. Create requirements with epics
 /generate-requirements brd.md
 # → .propel/context/docs/spec.md (with epics)
-# → .propel/context/tasks/us_XXX/us_XXX.md (auto-generated stories)
 
-# 2. Generate additional user stories manually (optional)
+# 2. Generate user stories from epics
+/generate-userstory
+# → .propel/context/tasks/us_XXX/us_XXX.md (all epics)
+
+# 2a. Or generate stories for specific epic (optional)
 /generate-userstory EP-001
-# → .propel/context/tasks/us_XXX/us_XXX.md (stories for specific epic)
+# → .propel/context/tasks/us_XXX/us_XXX.md (specific epic)
 
 # 3. Generate system design (optional)
 /generate-design .propel/context/docs/spec.md
@@ -458,14 +464,17 @@ After installation, restart Claude Code or reload the configuration to activate 
 /analyze-codebase <repo url path | code-base directory | root-path>
 # → .propel/context/docs/codeanalysis.md
 
-# 2. Generate requirements with epics and auto-generated user stories
+# 2. Generate requirements with epics
 /generate-requirements new-feature-spec.md
 # → .propel/context/docs/spec.md (with epics)
-# → .propel/context/tasks/us_XXX/us_XXX.md (auto-generated stories)
 
-# 3. Generate additional user stories for specific epics (optional)
-/generate-userstory .propel/context/docs/spec.md EP-002
-# → .propel/context/tasks/us_XXX/us_XXX.md (stories for specific epic)
+# 3. Generate user stories from epics
+/generate-userstory
+# → .propel/context/tasks/us_XXX/us_XXX.md (all epics)
+
+# 3a. Or generate stories for specific epic (optional)
+/generate-userstory EP-002
+# → .propel/context/tasks/us_XXX/us_XXX.md (specific epic)
 
 # 4. Break down user stories into implementation tasks
 /generate-task .propel/context/tasks/us_005/us_005.md
@@ -558,7 +567,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 | Command | Purpose | Input | Output |
 |---------|---------|-------|--------|
 | `/analyze-codebase` | Deep codebase analysis | Repository path/URL | `.propel/context/docs/codeanalysis.md` |
-| `/generate-requirements` | Create structured requirements | Specifications, user stories | `.propel/context/docs/spec.md` + auto-generated user stories |
+| `/generate-requirements` | Create structured requirements | Specifications, user stories | `.propel/context/docs/spec.md` with epics |
 | `/generate-userstory` | Generate user stories from epics | Epic ID, scope file, or text | `.propel/context/tasks/us_XXX/us_XXX.md` |
 | `/generate-design` | System design & architecture | Requirements, specifications | `.propel/context/docs/design.md` |
 | `/generate-task` | Break down into executable tasks | User stories, requirements | `.propel/context/tasks/us_XXX/task_*.md` or `.propel/context/tasks/task_*.md` |
@@ -817,14 +826,17 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (u
 # 1. Analyze codebase for insights
 /analyze-codebase https://github.com/competitor/shop
 
-# 2. Generate epics and auto-generated user stories
+# 2. Generate epics from requirements
 /generate-requirements "Multi-vendor shopping cart with payment integration"
 # → .propel/context/docs/spec.md (with epics)
-# → .propel/context/tasks/us_XXX/us_XXX.md (auto-generated stories)
 
-# 3. Generate additional user stories for specific features (optional)
+# 3. Generate user stories from epics
+/generate-userstory
+# → .propel/context/tasks/us_XXX/us_XXX.md (all epics)
+
+# 3a. Or generate stories for specific features (optional)
 /generate-userstory EP-001
-# → .propel/context/tasks/us_XXX/us_XXX.md (targeted story generation)
+# → .propel/context/tasks/us_XXX/us_XXX.md (specific epic)
 
 # 4. Create comprehensive test suite
 /generate-automation-test .propel/context/docs/spec.md
@@ -844,10 +856,13 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (u
 @mvp-builder "Real-time analytics dashboard with role-based access for client validation" or <scope document>
 # → mvp/ folder with working prototype for stakeholder feedback
 
-# 2. Generate epics and auto-generated user stories
+# 2. Generate epics from requirements
 /generate-requirements "Real-time analytics dashboard with role-based access"
 # → .propel/context/docs/spec.md (with epics)
-# → .propel/context/tasks/us_XXX/us_XXX.md (auto-generated stories)
+
+# 2a. Generate user stories from epics
+/generate-userstory
+# → .propel/context/tasks/us_XXX/us_XXX.md (all epics)
 
 # 3. Design system architecture
 /generate-design .propel/context/docs/spec.md
@@ -866,14 +881,17 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (u
 /analyze-codebase https://github.com/legacy-app/monolith
 # → .propel/context/docs/codeanalysis.md with C4 diagrams, technical debt, security analysis
 
-# 2. Generate epics and auto-generated user stories for modernization
+# 2. Generate epics for modernization
 /generate-requirements "Modernize legacy monolith to microservices with API-first architecture"
 # → .propel/context/docs/spec.md with modernization epics
-# → .propel/context/tasks/us_XXX/us_XXX.md (auto-generated modernization stories)
 
-# 3. Generate additional user stories for specific modernization phases
-/generate-userstory .propel/context/docs/spec.md EP-002
-# → .propel/context/tasks/us_XXX/us_XXX.md (targeted modernization stories)
+# 3. Generate user stories from modernization epics
+/generate-userstory
+# → .propel/context/tasks/us_XXX/us_XXX.md (all modernization epics)
+
+# 3a. Or generate stories for specific modernization phases (optional)
+/generate-userstory EP-002
+# → .propel/context/tasks/us_XXX/us_XXX.md (specific epic)
 
 # 4. Generate system architecture
 /generate-design .propel/context/docs/spec.md

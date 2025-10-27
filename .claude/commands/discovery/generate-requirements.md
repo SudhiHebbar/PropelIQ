@@ -251,6 +251,14 @@ Base all spec on `.propel/templates/requirement_base.md` for consistency and com
 
 **IMPORTANT**: Generate spec.md as primary output. Generate designsystem.md ONLY when requirements include UI changes.
 
+**User Story Generation:**
+After generating spec.md, use the `/generate-userstory` command to create detailed user stories from the epics defined in the specification.
+
+**Command Usage:**
+- `/generate-userstory` - Generate stories for all epics in spec.md
+- `/generate-userstory EP-001` - Generate stories for a specific epic
+- `/generate-userstory scope_file.md` - Generate stories from scope file
+
 **spec.md Document Structure**:
 - Executive summary with business context
 - Comprehensive stakeholder analysis
@@ -285,11 +293,8 @@ Base all spec on `.propel/templates/requirement_base.md` for consistency and com
 - [ ] **Business Alignment**: Requirements align with business objectives and KPIs
 - [ ] **Stakeholder Coverage**: All stakeholder needs identified and addressed
 - [ ] **Technical Feasibility**: Requirements validated against technical constraints
-- [ ] **Story Sizing**: User stories exceeding 20 hours decomposed into smaller, manageable units
 - [ ] **Design Reference Generated**: designsystem.md created and populated (when UI impact exists)
-- [ ] **User Story Design Links**: All UI-impacting stories linked to design references
-- [ ] **Visual Asset Organization**: Design assets organized in .propel/context/Design/US-XXX/ structure
-- [ ] **Design-to-Story Mapping**: Clear mapping between user stories and design assets
+- [ ] **Visual Asset Organization**: Design assets organized in .propel/context/Design/ structure (when UI impact exists)
 - [ ] **Testability**: All requirements have clear acceptance criteria
 - [ ] **Completeness**: Functional and non-functional requirements comprehensive
 - [ ] **Clarity**: Requirements are unambiguous and well-documented
@@ -384,137 +389,6 @@ This unified command automatically processes various requirement sources:
 - **Focus**: User-centric requirements with experience priorities
 - **Output**: User-focused spec with usability criteria
 
-## User Story Generation Implementation
-
-### Post-Spec Generation Process
-**CRITICAL**: After generating the main spec.md file, automatically generate user story files following these steps:
-
-#### 1. Epic Analysis and Story Generation
-For each Epic defined in the Epics table within spec.md:
-
-**Epic Processing Algorithm:**
-1. **Extract Epic Data**: Parse Epic ID, title, and mapped requirement IDs from the generated Epics table
-2. **Requirement Analysis**: Analyze each mapped requirement (think more about FR-, NFR-, TR-, DR-, UXR-) to understand functionality scope
-3. **Story Decomposition**: Break down epic requirements into 3-8 user stories following INVEST principles
-4. **Effort Estimation**: Ensure each story is ≤ 5 story points (30 hours), break down larger stories
-5. **Story File Creation**: Generate individual `.md` files using userstory-base.md template
-
-#### 2. Story File Generation Process
-**Directory Structure Creation:**
-```bash
-# Create directory structure for each story
-.propel/context/tasks/us_001/us_001.md
-.propel/context/tasks/us_002/us_002.md
-.propel/context/tasks/us_003/us_003.md
-...
-```
-
-**Sequential ID Assignment:**
-- Start with us_001 and increment for each story across all epics
-- Maintain sequential numbering regardless of epic boundaries
-- Use zero-padded 3-digit format (us_001, us_002, ..., us_999)
-
-#### 3. Template Population Requirements
-For each generated story file, populate the userstory-base.md template with:
-
-**ID Section:**
-- Format: us_001, us_002, us_003 (sequential across all epics)
-
-**Title Section:**
-- Concise, action-oriented title (≤ 10 words)
-- Focus on user value and functionality
-
-**Description Section:**
-- Standard format: "As a [user type], I want [functionality], so that [business value]"
-- Derived from requirement analysis and business context
-
-**Acceptance Criteria Section:**
-- Given/When/Then format for each criterion
-- Specific, measurable, and testable conditions
-- Cover normal flow and key variations
-
-**Edge Cases Section:**
-- Boundary conditions and error scenarios
-- System behavior under exceptional circumstances
-- Integration failure scenarios
-
-**Traceability Section:**
-- Parent Epic ID (EP-001, EP-002, etc.)
-- Map to specific requirements (FR-001, NFR-002, etc.)
-
-**Tags Section:**
-- Primary requirement type (FR, NFR, TR, DR, UXR)
-- Platform tags (Web, Mobile, API, etc.)
-- Domain tags (Authentication, Reporting, Integration, etc.)
-
-#### 4. Story Generation Examples
-
-**Example for EP-001 (User Account Access & Authentication):**
-```
-us_001: User Registration with Email Validation
-- Parent: EP-001
-- Requirements: FR-001, UXR-001
-- Tags: FR, Web, Authentication
-
-us_002: User Login Authentication
-- Parent: EP-001
-- Requirements: FR-002, NFR-002
-- Tags: FR, NFR, Web, Authentication
-
-us_003: Password Reset Functionality
-- Parent: EP-001
-- Requirements: FR-002, UXR-001
-- Tags: FR, UXR, Web, Authentication
-```
-
-#### 5. Technical Epic Handling
-**When No Existing Codebase (Green-Field Project):**
-Create EP-TECH epic as FIRST epic with scaffolding stories (≤ 5 SP each), including:
-- Project setup, infrastructure, and tooling
-- Technology stack configuration
-- Development environment and build tools
-
-**Technical Story Examples:**
-```
-us_XXX: Project Structure and Build Configuration
-us_XXX: Development Environment Setup
-us_XXX: Framework Selection and Integration
-us_XXX: CI/CD Pipeline Configuration
-us_XXX: Testing Infrastructure Setup
-us_XXX: Documentation Foundation
-```
-
-#### 6. Quality Validation Checklist
-Before completing story generation, validate:
-- [ ] All epic requirements mapped to at least one user story
-- [ ] Each story follows userstory-base.md template exactly
-- [ ] Story effort estimates are realistic (≤ 5 story points)
-- [ ] Acceptance criteria are specific and testable
-- [ ] Edge cases are comprehensively covered
-- [ ] Traceability to parent epics is maintained
-- [ ] Sequential ID numbering is correct
-- [ ] All directories and files are created properly
-- [ ] Technical Epic included for new projects
-
-#### 7. Implementation Instructions for AI Agents
-**File Creation Process:**
-1. **Read userstory-base.md template**: Load the exact template structure
-2. **Create directory**: For each story, create `.propel/context/tasks/us_XXX/` directory
-3. **Generate story file**: Create `us_XXX.md` file within the directory
-4. **Populate template**: Fill all template sections with generated content
-5. **Validate structure**: Ensure template compliance and completeness
-
-**Automated Generation Flow:**
-```
-1. Parse Epics table from generated spec.md
-2. For each Epic (process EP-TECH FIRST if green-field project):
-   a. Extract mapped requirements
-   b. Generate 3-8 user stories
-   c. Create story files with sequential IDs
-   d. Populate userstory-base.md template
-3. Validate all generated stories
-4. Confirm file structure and content
-```
 
 ---
 
