@@ -17,7 +17,7 @@ Implement features, fix bugs, or complete development tasks using comprehensive 
 
 *** MANDATORY VALIDATIONS ***
 - Load and comprehend the complete task file before starting implementation
-- Understand all context by reviewing Docs/spec.md, Docs/design.md, and existing codebase
+- Understand all context by reviewing docs/spec.md, docs/design.md, and existing codebase
 - Verify task completion status - terminate if already completed with "All tasks were implemented"
 - Follow all task instructions and extend research when additional context is needed
 - Update task file sections based on current codebase state and implementation progress
@@ -241,7 +241,7 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 
 🚫 **MANDATORY**: AI must generate this table with measured values before task completion.
 
-**Task Type**: [FE/BE/DB/Integration/Docs/Infrastructure]
+**Task Type**: [FE/BE/DB/Integration/docs/Infrastructure]
 
 | # | Metric | Value | Production Gate | Notes |
 |---|--------|-------|-----------------|-------|

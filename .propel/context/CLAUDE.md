@@ -42,5 +42,5 @@ When working on this project:
 
 - Follow existing code patterns found in codeanalysis.md
 - Ensure all changes align with the design principles in design.md
-- Verify implementation meets requirements specified in Docs/spec.md
+- Verify implementation meets requirements specified in docs/spec.md
 - Create or update tests as defined in the Test folder structure

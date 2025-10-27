@@ -35,7 +35,7 @@ The generated automation test workflows will be consumed by the `generate` comma
 - **Fallback**: If MCP unavailable, use structured written analysis with explicit reasoning sections for each phase
 
 ### 1. Requirements Analysis (Sequential Thinking Recommended)
-- **Use Case Extraction**: Extract specific use cases from Docs/spec.md in Context folder
+- **Use Case Extraction**: Extract specific use cases from docs/spec.md in Context folder
 - **User Story Mapping**: Map test scenarios to user stories and acceptance criteria
 - **Business Process Understanding**: Identify the complete user workflow and business process
 - **Actor Analysis**: Understand different user roles and their interaction patterns
