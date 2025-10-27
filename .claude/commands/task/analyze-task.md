@@ -14,7 +14,7 @@ Entry point for post-implementation task analysis. Reviews completed code change
 **Accepts:** Task file path
 
 **Required Parameters:**
-- `task_file_path`: Path to the task file that defines requirements, acceptance criteria, and validation gates (e.g., `Context/Tasks/task_001_signin.md`)
+- `task_file_path`: Path to the task file that defines requirements, acceptance criteria, and validation gates (e.g., `.propel/context/tasks/task_001_signin.md`)
 
 **Optional Parameters:**
 - `analysis_depth`: "quick" | "standard" | "comprehensive" (default: "standard") - comprehensive mode triggers exhaustive thinking about all implications
@@ -39,19 +39,19 @@ Entry point for post-implementation task analysis. Reviews completed code change
 - Present executive summary of analysis findings after reflecting extensively on all discovered issues
 - Highlight critical gaps, risks, and recommendations by thinking longer about their implications
 - Provide pass/fail verdict with prioritized action items, ensuring thorough consideration of consequences
-- Link to detailed analysis report in `Context/Analysis/<task_file_name>.md`
+- Link to detailed analysis report in `.propel/context/Analysis/<task_file_name>.md`
 
 ## Usage Examples
 
 ```bash
 # Analyze completed task implementation
-/analyze-task Context/Tasks/task_001_signin.md
+/analyze-task .propel/context/tasks/task_001_signin.md
 
 # Quick analysis with security focus
-/analyze-task Context/Tasks/task_002_api.md --depth=quick --focus="security,testing"
+/analyze-task .propel/context/tasks/task_002_api.md --depth=quick --focus="security,testing"
 
 # Comprehensive analysis of complex feature
-/analyze-task Context/Tasks/task_003_payment.md --depth=comprehensive
+/analyze-task .propel/context/tasks/task_003_payment.md --depth=comprehensive
 ```
 
 ## Integration Notes
@@ -68,13 +68,13 @@ Entry point for post-implementation task analysis. Reviews completed code change
 
 ```bash
 # Direct agent invocation with comprehensive analysis
-@task-analyzer Context/Tasks/task_001_signin.md --depth=comprehensive --focus="security,testing" --parallel-research=6
+@task-analyzer .propel/context/tasks/task_001_signin.md --depth=comprehensive --focus="security,testing" --parallel-research=6
 
 # Direct invocation with custom validation mode
-@task-analyzer Context/Tasks/task_002_api.md --validation-mode=strict --evidence-level=exhaustive
+@task-analyzer .propel/context/tasks/task_002_api.md --validation-mode=strict --evidence-level=exhaustive
 
 # Quick direct analysis with smart defaults
-@task-analyzer Context/Tasks/task_003_feature.md --depth=quick
+@task-analyzer .propel/context/tasks/task_003_feature.md --depth=quick
 ```
 
 **Choose your approach:**
@@ -83,7 +83,7 @@ Entry point for post-implementation task analysis. Reviews completed code change
 
 ## Output Specifications
 
-**File Naming Convention**: `Context/Analysis/<task_file_name>_analysis.md`
+**File Naming Convention**: `.propel/context/Analysis/<task_file_name>_analysis.md`
 **Content**: Executive summary, detailed findings, scoring rubric, actionable recommendations
 
 ---

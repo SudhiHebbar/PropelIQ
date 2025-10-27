@@ -60,7 +60,7 @@ The generated automation test workflows will be consumed by the `generate` comma
 ## Essential Project Intelligence
 
 ### Reference Materials Analysis
-- **Requirements Document**: Read Context/Docs/Spec.md for use case analysis and user stories
+- **Requirements Document**: Read .propel/context/docs/Spec.md for use case analysis and user stories
 - **Gotcha Loading**: Apply Conditional Gotcha Loading Strategy from `.claude/CLAUDE.md` with testing focus:
   - Load core gotchas (always)
   - **MANDATORY**: Load automation_testing_gotchas.md (testing context)
@@ -146,7 +146,7 @@ Package comprehensive context for automation script generation:
 
 ## Output Specifications
 
-**File Naming Convention**: `Context/Test/test_workflow_<feature_name>_<timestamp>.md`
+**File Naming Convention**: `.propel/context/test/test_workflow_<feature_name>_<timestamp>.md`
 
 **Content Structure**:
 - Based on `.propel/templates/automation_test_base.md`
@@ -217,7 +217,7 @@ Score generated test workflows using the following metrics (1-100% scale):
 This command automatically detects and processes:
 
 ### 📋 Requirements File Analysis
-- **Source**: `Context/Docs/Spec.md` (primary source)
+- **Source**: `.propel/context/docs/Spec.md` (primary source)
 - **Focus**: Extract use cases and user stories for test workflow creation
 - **Output**: Comprehensive test workflows covering all identified scenarios
 
@@ -238,7 +238,7 @@ This command automatically detects and processes:
 
 ## Integration with Generate Command
 
-The output of this command (`Context/Test/test_workflow_*.md`) will be consumed by the `generate` command to create:
+The output of this command (`.propel/context/test/test_workflow_*.md`) will be consumed by the `generate` command to create:
 
 1. **Playwright Test Scripts**: Executable test files in `test-automation/tests/`
 2. **Page Object Models**: Reusable page objects in `test-automation/pages/`

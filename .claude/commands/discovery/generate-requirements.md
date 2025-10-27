@@ -43,7 +43,7 @@ If `$ARGUMENTS` includes design references and has UI impact:
 
 #### Design Asset Extraction (When UI Changes Required)
 - **Figma Links**: Store and reference in requirements for UI specifications
-- **Image Assets**: Copy to `Context/Design/` folder and reference in specs
+- **Image Assets**: Copy to `.propel/context/Design/` folder and reference in specs
 - **Design Tokens**: Extract color schemes, typography, spacing systems (UI only)
 - **Component Specifications**: Document reusable UI component requirements
 
@@ -75,7 +75,7 @@ As an expert Business Analyst and Product Manager with deep technical understand
 - Split complex requirements by functional areas and technology stacks when applicable
 - Ensure requirements are testable, measurable, and aligned with business objectives
 - Include both functional and non-functional requirements comprehensively
-- Generate a single unified document at Context/Docs/Spec.md only
+- Generate a single unified document at .propel/context/docs/Spec.md only
 
 ### Content Processing Workflow
 1. **Input Analysis**: Determine if `$ARGUMENTS` is file path or direct text
@@ -245,9 +245,9 @@ Base all spec on `.propel/templates/requirement_base.md` for consistency and com
 
 ## Output Specifications
 
-**Primary File**: `Context/Docs/Spec.md`
+**Primary File**: `.propel/context/docs/Spec.md`
 
-**Design Reference File**: `Context/Docs/DesignReference.md` (only when UI impact exists)
+**Design Reference File**: `.propel/context/docs/DesignReference.md` (only when UI impact exists)
 
 **IMPORTANT**: Generate Spec.md as primary output. Generate DesignReference.md ONLY when requirements include UI changes.
 
@@ -267,15 +267,15 @@ Base all spec on `.propel/templates/requirement_base.md` for consistency and com
 3. **Populate Design Assets**: Fill template with actual Figma URLs OR design images from input
 4. **Create User Story Mappings**: Map each UI-impacting user story to design assets
 5. **Link from Spec.md**: Reference DesignReference.md sections in user stories
-6. **Organize Assets**: Create folder structure in `Context/Design/US-XXX/` for each story
+6. **Organize Assets**: Create folder structure in `.propel/context/Design/US-XXX/` for each story
 
 **Example User Story Linking in Spec.md**:
 ```yaml
 ## User Story: US-001 - User Login Interface
-**Design Reference**: [Context/Docs/DesignReference.md#US-001](Context/Docs/DesignReference.md#US-001)
+**Design Reference**: [.propel/context/docs/DesignReference.md#US-001](.propel/context/docs/DesignReference.md#US-001)
 **Visual Assets**:
   - Figma: https://figma.com/file/xyz?node-id=2:45
-  - OR Images: Context/Design/US-001/login_mockup.png
+  - OR Images: .propel/context/Design/US-001/login_mockup.png
 **UI Impact**: Yes - New login screen implementation required
 ```
 
@@ -288,7 +288,7 @@ Base all spec on `.propel/templates/requirement_base.md` for consistency and com
 - [ ] **Story Sizing**: User stories exceeding 20 hours decomposed into smaller, manageable units
 - [ ] **Design Reference Generated**: DesignReference.md created and populated (when UI impact exists)
 - [ ] **User Story Design Links**: All UI-impacting stories linked to design references
-- [ ] **Visual Asset Organization**: Design assets organized in Context/Design/US-XXX/ structure
+- [ ] **Visual Asset Organization**: Design assets organized in .propel/context/Design/US-XXX/ structure
 - [ ] **Design-to-Story Mapping**: Clear mapping between user stories and design assets
 - [ ] **Testability**: All requirements have clear acceptance criteria
 - [ ] **Completeness**: Functional and non-functional requirements comprehensive
@@ -403,9 +403,9 @@ For each Epic defined in the Epics table within Spec.md:
 **Directory Structure Creation:**
 ```bash
 # Create directory structure for each story
-Context/Tasks/US_001/US_001.md
-Context/Tasks/US_002/US_002.md
-Context/Tasks/US_003/US_003.md
+.propel/context/tasks/US_001/US_001.md
+.propel/context/tasks/US_002/US_002.md
+.propel/context/tasks/US_003/US_003.md
 ...
 ```
 
@@ -499,7 +499,7 @@ Before completing story generation, validate:
 #### 7. Implementation Instructions for AI Agents
 **File Creation Process:**
 1. **Read userstory-base.md template**: Load the exact template structure
-2. **Create directory**: For each story, create `Context/Tasks/US_XXX/` directory
+2. **Create directory**: For each story, create `.propel/context/tasks/US_XXX/` directory
 3. **Generate story file**: Create `US_XXX.md` file within the directory
 4. **Populate template**: Fill all template sections with generated content
 5. **Validate structure**: Ensure template compliance and completeness

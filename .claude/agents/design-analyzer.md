@@ -65,7 +65,7 @@ This agent supports two invocation methods:
 @design-analyzer --focus="accessibility,responsiveness"
 
 # Slash command invocation (guided experience)
-/review-user-interface figma_design="./Context/Figma/homepage.png"
+/review-user-interface figma_design="./.propel/context/figma/homepage.png"
 ```
 
 ## Core Expertise

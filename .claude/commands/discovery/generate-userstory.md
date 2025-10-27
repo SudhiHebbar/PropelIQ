@@ -1,6 +1,6 @@
 ---
 name: User Story Generator
-description: Generates detailed user stories from epic URLs, feature text, or scope files. Creates individual user story files in Context/Tasks/US_<ID>/ following userstory-base.md template with proper effort estimation and breakdown.
+description: Generates detailed user stories from epic URLs, feature text, or scope files. Creates individual user story files in .propel/context/tasks/US_<ID>/ following userstory-base.md template with proper effort estimation and breakdown.
 model: inherit
 allowed-tools: Read, Write, Edit, MultiEdit, Glob, Grep, Task, WebSearch, WebFetch, mcp__sequential-thinking__sequentialthinking
 ---
@@ -9,13 +9,13 @@ allowed-tools: Read, Write, Edit, MultiEdit, Glob, Grep, Task, WebSearch, WebFet
 
 ## Command Arguments: $ARGUMENTS (Optional)
 **Accepts:** Scope file path [Epic ID] | Epic ID | Feature text | Epic URL
-**Default Behavior:** Uses Context/Docs/Spec.md if no arguments provided
+**Default Behavior:** Uses .propel/context/docs/Spec.md if no arguments provided
 
 ### Argument Combinations:
 1. **Scope file + Epic ID**: `scope_file.md EP-001` - Generate stories for specific epic within scope file
 2. **Scope file only**: `scope_file.md` - Generate stories for all epics in scope file
 3. **Epic ID only**: `EP-001` - Find epic in Spec.md and generate stories
-4. **No arguments**: Use Context/Docs/Spec.md and generate stories for all epics
+4. **No arguments**: Use .propel/context/docs/Spec.md and generate stories for all epics
 
 ### Input Processing Instructions
 **CRITICAL**: Before proceeding with user story generation, determine input type and process accordingly:
@@ -28,7 +28,7 @@ allowed-tools: Read, Write, Edit, MultiEdit, Glob, Grep, Task, WebSearch, WebFet
 3. **Epic ID Only**: Single argument matching Epic ID pattern (EP-001, EP-002, etc.)
 4. **Epic URL**: Single argument containing URLs pointing to epic specifications or documents
 5. **Direct Text**: Single argument that doesn't match file path or Epic ID patterns
-6. **No Arguments**: If `$ARGUMENTS` is empty, use Context/Docs/Spec.md as source
+6. **No Arguments**: If `$ARGUMENTS` is empty, use .propel/context/docs/Spec.md as source
 
 #### Scope File + Epic ID Processing (Two Arguments)
 If `$ARGUMENTS` has two parts: scope file + Epic ID:
@@ -51,7 +51,7 @@ If `$ARGUMENTS` is a single file path:
 
 #### Epic ID Only Processing (Single Epic Argument)
 If `$ARGUMENTS` contains single Epic ID (EP-001, EP-002, etc.):
-1. **Spec.md Lookup**: Read Context/Docs/Spec.md to find the specified epic
+1. **Spec.md Lookup**: Read .propel/context/docs/Spec.md to find the specified epic
 2. **Epic Extraction**: Extract epic details, mapped requirements, and scope
 3. **Story Generation**: Generate user stories for the identified epic only
 
@@ -71,7 +71,7 @@ If `$ARGUMENTS` is direct text specification:
 
 #### Default Processing (No Arguments)
 If no `$ARGUMENTS` provided:
-1. **Spec.md Check**: Verify Context/Docs/Spec.md exists and contains epic specifications
+1. **Spec.md Check**: Verify .propel/context/docs/Spec.md exists and contains epic specifications
 2. **All Epics Discovery**: Parse all epics from the Spec.md file
 3. **Multi-Epic Processing**: Generate user stories for ALL epics found in the specification file
 
@@ -154,9 +154,9 @@ All generated stories MUST follow the exact structure from `.propel/templates/us
 #### File Structure and Organization
 **Directory Creation:**
 ```
-Context/Tasks/US_001/US_001.md
-Context/Tasks/US_002/US_002.md
-Context/Tasks/US_003/US_003.md
+.propel/context/tasks/US_001/US_001.md
+.propel/context/tasks/US_002/US_002.md
+.propel/context/tasks/US_003/US_003.md
 ...
 ```
 
@@ -169,7 +169,7 @@ Context/Tasks/US_003/US_003.md
 For each generated story:
 
 1. **Read userstory-base.md**: Load the exact template structure
-2. **Create Directory**: Generate Context/Tasks/US_XXX/ directory
+2. **Create Directory**: Generate .propel/context/tasks/US_XXX/ directory
 3. **Generate Story File**: Create US_XXX.md within the directory
 4. **Populate Sections**: Fill all template sections with generated content
 5. **Validate Structure**: Ensure template compliance and completeness
@@ -272,7 +272,7 @@ Before completing story generation, validate each story:
 
 ### File Organization Validation
 After generating all stories:
-- [ ] All directories created properly (Context/Tasks/US_XXX/)
+- [ ] All directories created properly (.propel/context/tasks/US_XXX/)
 - [ ] All story files created with correct names (US_XXX.md)
 - [ ] Sequential ID numbering is correct and continuous
 - [ ] No duplicate IDs or missing sequences
@@ -320,8 +320,8 @@ After successful story generation:
 **Example Output Messages:**
 - "Generated 5 user stories for Epic EP-001 from scope_document.md"
 - "Generated 23 user stories for 4 epics from scope_document.md"
-- "Generated 8 user stories for Epic EP-002 from Context/Docs/Spec.md"
-- "Generated 45 user stories for all 7 epics from Context/Docs/Spec.md"
+- "Generated 8 user stories for Epic EP-002 from .propel/context/docs/Spec.md"
+- "Generated 45 user stories for all 7 epics from .propel/context/docs/Spec.md"
 
 ---
 

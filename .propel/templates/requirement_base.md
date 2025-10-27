@@ -306,7 +306,7 @@ For each Epic in the table:
 2. **Story Decomposition**: Break requirements into user-focused stories following the "As a... I want... so that..." format
 3. **Effort Estimation**: Estimate story points and break down stories exceeding 5 points
 4. **Technical Considerations**: Include data requirements and core entities in story creation
-5. **File Creation**: Generate individual story files at `Context/Tasks/US_<ID>/US_<ID>.md`
+5. **File Creation**: Generate individual story files at `.propel/context/tasks/US_<ID>/US_<ID>.md`
 6. **Template Compliance**: Use the `.propel/templates/userstory-base.md` template structure
 
 ### Story File Generation Instructions
@@ -314,9 +314,9 @@ For each Epic in the table:
 
 **File Structure:**
 ```
-Context/Tasks/US_001/US_001.md
-Context/Tasks/US_002/US_002.md
-Context/Tasks/US_003/US_003.md
+.propel/context/tasks/US_001/US_001.md
+.propel/context/tasks/US_002/US_002.md
+.propel/context/tasks/US_003/US_003.md
 ...
 ```
 

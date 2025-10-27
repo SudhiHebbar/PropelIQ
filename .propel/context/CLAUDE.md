@@ -5,27 +5,27 @@ This file provides structured context about the project to help understand the c
 ## Additional Context
 
 ### Requirements
-- **Location**: `Context/Docs/Spec.md`
+- **Location**: `.propel/context/docs/Spec.md`
 - Contains functional and non-functional requirements for the project
 - Defines the scope, goals, user stories and constraints
 
 ### Design
-- **Location**: `Context/Docs/Design.md`
+- **Location**: `.propel/context/docs/Design.md`
 - Outlines the system architecture and design decisions
 - Includes component structure, data flow, and integration patterns
 
 ### Code Analysis
-- **Location**: `Context/Docs/CodeAnalysis.md`
+- **Location**: `.propel/context/docs/CodeAnalysis.md`
 - Provides insights into the existing codebase structure
 - Documents code patterns, conventions, and technical debt
 
 ### Tasks
-- **Location**: `Context/Tasks/*`
+- **Location**: `.propel/context/tasks/*`
 - Contains task definitions, and implementation guidelines
 - Organized by feature areas or development phases
 
 ### Test Cases
-- **Location**: `Context/Test/*`
+- **Location**: `.propel/context/test/*`
 - Defines test scenarios, test data, and expected outcomes
 - Includes unit tests, integration tests, and acceptance criteria
 

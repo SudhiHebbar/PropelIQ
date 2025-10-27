@@ -107,7 +107,7 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 
 **Context Gathering**
 - Review Docs/Spec.md, Docs/CodeAnalysis.md and Docs/Design.md for comprehensive understanding
-- **Load Design Reference**: Read `Context/Docs/DesignReference.md` and extract design context for task's user stories (UI tasks only)
+- **Load Design Reference**: Read `.propel/context/docs/DesignReference.md` and extract design context for task's user stories (UI tasks only)
 - **Extract Visual Specifications**: Load Figma URLs OR design images from DesignReference.md sections
 - **Parse Design Tokens**: Extract colors, typography, spacing from DesignReference.md for implementation
 - **Load Component Mappings**: Use design-to-code mappings from DesignReference.md
@@ -136,7 +136,7 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 
 ### Phase 3: Systematic Implementation
 **Code Implementation**
-- **Reference Design Document**: Use Context/Docs/DesignReference.md as source of truth for visual specifications (UI tasks only)
+- **Reference Design Document**: Use .propel/context/docs/DesignReference.md as source of truth for visual specifications (UI tasks only)
 - Use Playwright MCP to implement pixel-perfect UI from DesignReference.md visual assets
 - Navigate to Figma URLs OR view design images loaded from DesignReference.md during implementation
 - Apply design tokens (colors, typography, spacing) extracted from DesignReference.md
@@ -157,7 +157,7 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 - Run validation commands after each significant implementation step
 - Fix any failures immediately before proceeding
 - Re-run validations until all pass successfully
-- **Design Reference Validation**: Use Context/Docs/DesignReference.md as validation criteria source (UI tasks only)
+- **Design Reference Validation**: Use .propel/context/docs/DesignReference.md as validation criteria source (UI tasks only)
 - Use Playwright MCP to capture screenshots of implemented UI against DesignReference.md specifications
 - Compare implementation against visual assets referenced in DesignReference.md (Figma OR images)
 - Validate design tokens match specifications defined in DesignReference.md
@@ -202,7 +202,7 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 ### Completion Criteria
 - [ ] **MCP Critique Resolved**: All critical Gaps from `mcp__sequential_thinking__critique`/`reflect` are fixed or explicitly waived with rationale
 - [ ] **Context7 Alignment**: At least one validation pass confirms implemented patterns align with versioned guidance fetched via Context7
-- [ ] **Design Reference Compliance**: Implementation matches specifications in Context/Docs/DesignReference.md (UI tasks only)
+- [ ] **Design Reference Compliance**: Implementation matches specifications in .propel/context/docs/DesignReference.md (UI tasks only)
 - [ ] **Visual Fidelity**: UI matches visual assets (Figma/images) referenced in DesignReference.md (UI tasks only)
 - [ ] **Design Token Accuracy**: All colors, typography, spacing applied per DesignReference.md specifications (UI tasks only)
 - [ ] **Component Mapping**: Implementation follows component mappings defined in DesignReference.md (UI tasks only)

@@ -22,7 +22,7 @@ As a Senior Software Engineer specializing in debugging and system reliability, 
 ### Bug ID Extraction Algorithm
 **File Input**: Extract bug ID from file path or content
 - Patterns: `BUG[_-]?(\d{3,4})`, `ISSUE[_-]?(\d{3,4})`, `#(\d{3,5})`
-- Example: `Context/Tasks/BUG_042/bug_report.md` → Extract `BUG_042`
+- Example: `.propel/context/tasks/BUG_042/bug_report.md` → Extract `BUG_042`
 
 **URL Input**:
 - GitHub Issues: `github.com/.*/issues/(\d+)` → `ISSUE_XXX`
@@ -35,7 +35,7 @@ As a Senior Software Engineer specializing in debugging and system reliability, 
 - Common formats: "BUG-123", "Issue #456", "Bug 789"
 
 **Fallback Behavior**:
-- If no bug ID found → Create tasks in `/Context/Tasks/`
+- If no bug ID found → Create tasks in `/.propel/context/tasks/`
 - Use standard naming: `task_XXX_fix_<descriptive_name>.md`
 - Log decision clearly for transparency
 
@@ -102,14 +102,14 @@ Execute comprehensive triage before creating any bug fixing tasks:
 **Directory Organization**:
 
 **Bug with ID Found**:
-- **Directory**: `/Context/Tasks/BUG_<ID>/` or `/Context/Tasks/ISSUE_<ID>/`
+- **Directory**: `/.propel/context/tasks/BUG_<ID>/` or `/.propel/context/tasks/ISSUE_<ID>/`
 - **File Pattern**: `task_<seqnum>_fix_<descriptive_name>.md`
-- **Example**: `/Context/Tasks/BUG_042/task_001_fix_login_error.md`
+- **Example**: `/.propel/context/tasks/BUG_042/task_001_fix_login_error.md`
 
 **No Bug ID (Fallback)**:
-- **Directory**: `/Context/Tasks/`
+- **Directory**: `/.propel/context/tasks/`
 - **File Pattern**: `task_<seqnum>_fix_<descriptive_name>.md`
-- **Example**: `/Context/Tasks/task_001_fix_validation_error.md`
+- **Example**: `/.propel/context/tasks/task_001_fix_validation_error.md`
 
 **Sequence Number Logic**:
 - Auto-increment within target directory (bug folder or root)
@@ -124,8 +124,8 @@ Execute comprehensive triage before creating any bug fixing tasks:
 **Bug ID Extraction Priority**:
 1. **Parse Input**: Extract bug ID using patterns above
 2. **Validate Format**: Ensure valid bug ID format
-3. **Create Directory**: `/Context/Tasks/BUG_<ID>/` if ID found
-4. **Fallback**: Use `/Context/Tasks/` if no ID extracted
+3. **Create Directory**: `/.propel/context/tasks/BUG_<ID>/` if ID found
+4. **Fallback**: Use `/.propel/context/tasks/` if no ID extracted
 
 **Supported Bug ID Formats**:
 - `BUG_XXX` or `BUG-XXX` (3-4 digits)
@@ -136,7 +136,7 @@ Execute comprehensive triage before creating any bug fixing tasks:
 
 **Directory Examples**:
 ```
-Context/Tasks/
+.propel/context/tasks/
 ├── BUG_042/ (bug ID extracted)
 │   ├── bug_report.md
 │   ├── task_001_fix_login_error.md
@@ -164,7 +164,7 @@ Context/Tasks/
 
 ### Pre-Delivery Checklist
 - [ ] **Bug ID Extraction**: Attempted to extract bug ID from input
-- [ ] **Folder Structure**: Created appropriate BUG_XXX folder or used fallback to /Context/Tasks/
+- [ ] **Folder Structure**: Created appropriate BUG_XXX folder or used fallback to /.propel/context/tasks/
 - [ ] **Deep Thinking Applied**: Spent adequate time thinking through all aspects of the bug
 - [ ] **Extended Analysis**: Kept thinking about edge cases and related issues
 - [ ] **Issue Reproduction**: Bug successfully reproduced and documented
@@ -195,50 +195,50 @@ Context/Tasks/
 ```bash
 # GitHub Issue URL
 /generate-bugfix-task https://github.com/org/repo/issues/123
-# → Creates: /Context/Tasks/ISSUE_123/task_001_fix_*.md
+# → Creates: /.propel/context/tasks/ISSUE_123/task_001_fix_*.md
 
 # JIRA Bug URL
 /generate-bugfix-task https://jira.company.com/browse/PROJ-456
-# → Creates: /Context/Tasks/PROJ_456/task_001_fix_*.md
+# → Creates: /.propel/context/tasks/PROJ_456/task_001_fix_*.md
 
 # Bug report file with ID
-/generate-bugfix-task Context/Tasks/BUG_042/bug_report.md
-# → Creates: /Context/Tasks/BUG_042/task_001_fix_*.md
+/generate-bugfix-task .propel/context/tasks/BUG_042/bug_report.md
+# → Creates: /.propel/context/tasks/BUG_042/task_001_fix_*.md
 
 # Text with bug ID
 /generate-bugfix-task "Bug #789: Login fails with special characters"
-# → Creates: /Context/Tasks/ISSUE_789/task_001_fix_*.md
+# → Creates: /.propel/context/tasks/ISSUE_789/task_001_fix_*.md
 ```
 
 ### Bug Reports without ID (Fallback)
 ```bash
 # Error description only
 /generate-bugfix-task "Users cannot reset password"
-# → Creates: /Context/Tasks/task_001_fix_password_reset.md
+# → Creates: /.propel/context/tasks/task_001_fix_password_reset.md
 
 # Generic error log
 /generate-bugfix-task error.log
-# → Creates: /Context/Tasks/task_001_fix_error.md
+# → Creates: /.propel/context/tasks/task_001_fix_error.md
 
 # URL without bug ID
 /generate-bugfix-task https://support.company.com/ticket/12345
 # → Fetches content, no standard bug ID found
-# → Creates: /Context/Tasks/task_001_fix_support_issue.md
+# → Creates: /.propel/context/tasks/task_001_fix_support_issue.md
 ```
 
 **Task Output Decision Matrix:**
 | Input Type | Bug ID Found | Output Location | Example |
 |------------|-------------|-----------------|---------|
-| File path | Yes | `/Context/Tasks/BUG_XXX/` | `BUG_042/task_001_*.md` |
-| File path | No | `/Context/Tasks/` | `task_001_*.md` |
-| URL | Yes | `/Context/Tasks/ISSUE_XXX/` | `ISSUE_123/task_001_*.md` |
-| URL | No | `/Context/Tasks/` | `task_001_*.md` |
-| Text | Yes | `/Context/Tasks/BUG_XXX/` | `BUG_789/task_001_*.md` |
-| Text | No | `/Context/Tasks/` | `task_001_*.md` |
+| File path | Yes | `/.propel/context/tasks/BUG_XXX/` | `BUG_042/task_001_*.md` |
+| File path | No | `/.propel/context/tasks/` | `task_001_*.md` |
+| URL | Yes | `/.propel/context/tasks/ISSUE_XXX/` | `ISSUE_123/task_001_*.md` |
+| URL | No | `/.propel/context/tasks/` | `task_001_*.md` |
+| Text | Yes | `/.propel/context/tasks/BUG_XXX/` | `BUG_789/task_001_*.md` |
+| Text | No | `/.propel/context/tasks/` | `task_001_*.md` |
 
 ## Expected Output
 
-The command generates a structured bug fix task file in `Context/Tasks/` that includes:
+The command generates a structured bug fix task file in `.propel/context/tasks/` that includes:
 
 - **Comprehensive triage summary** with reproduction steps and root cause
 - **Clear implementation plan** with sequential steps and code references

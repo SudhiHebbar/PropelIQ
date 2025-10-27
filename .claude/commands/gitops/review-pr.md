@@ -446,13 +446,13 @@ console.log("✅ PR-code-reviewer agent analysis completed");
 async function outputReviewResults(results) {
   // Ensure output directory exists
   await Bash({
-    command: "mkdir -p Context/pr-reviews",
+    command: "mkdir -p .propel/context/pr-reviews",
     description: "Create PR reviews output directory"
   });
   
   // Generate timestamp-based filename
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
-  const reportPath = `Context/pr-reviews/pr-review-${timestamp}.md`;
+  const reportPath = `.propel/context/pr-reviews/pr-review-${timestamp}.md`;
   
   console.log(`\n🔍 ${reviewContext.mode === "pr" ? "GitHub PR" : "Local"} Code Review Completed`);
   console.log(`📊 Analysis Summary:`);
@@ -639,13 +639,13 @@ async function performQuickAnalysis() {
 async function outputErrorSummary(error) {
   // Ensure output directory exists
   await Bash({
-    command: "mkdir -p Context/pr-reviews",
+    command: "mkdir -p .propel/context/pr-reviews",
     description: "Create PR reviews output directory"
   });
   
   // Generate timestamp-based error report filename
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
-  const errorReportPath = `Context/pr-reviews/pr-review-error-${timestamp}.md`;
+  const errorReportPath = `.propel/context/pr-reviews/pr-review-error-${timestamp}.md`;
   
   const errorReport = `# Review Error Report
 

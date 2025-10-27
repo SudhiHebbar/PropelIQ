@@ -542,13 +542,13 @@ async function postToAzureDevOpsPR(threads, results) {
 async function outputLocalReview(results) {
   // Ensure output directory exists
   await Bash({
-    command: "mkdir -p Context/pr-reviews",
+    command: "mkdir -p .propel/context/pr-reviews",
     description: "Create PR reviews output directory"
   });
   
   // Generate timestamp-based filename
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
-  const reportPath = `Context/pr-reviews/pr-review-${timestamp}.md`;
+  const reportPath = `.propel/context/pr-reviews/pr-review-${timestamp}.md`;
   
   console.log(`\n🔍 Local Code Review Completed`);
   console.log(`📊 Analysis Summary:`);
@@ -769,13 +769,13 @@ async function retryWithBackoff() {
 async function postErrorSummary(error) {
   // Ensure output directory exists
   await Bash({
-    command: "mkdir -p Context/pr-reviews",
+    command: "mkdir -p .propel/context/pr-reviews",
     description: "Create PR reviews output directory"
   });
   
   // Generate timestamp-based error report filename
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
-  const errorReportPath = `Context/pr-reviews/pr-review-error-${timestamp}.md`;
+  const errorReportPath = `.propel/context/pr-reviews/pr-review-error-${timestamp}.md`;
   
   const errorReport = `# Azure DevOps Review Error Report
 

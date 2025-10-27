@@ -215,7 +215,7 @@ Manual structured analysis:
 
 **File Generation & Output**
 - Read .propel/templates/analyze_code_base.md to get report structure
-- Use Write tool to create Context/Docs/CodeAnalysis.md with complete analysis
+- Use Write tool to create .propel/context/docs/CodeAnalysis.md with complete analysis
 - Replace all template placeholders with actual discovered data
 - Ensure all 14 sections contain real analysis results (no placeholders)
 - Validate Mermaid diagrams are syntactically correct
@@ -263,7 +263,7 @@ Manual structured analysis:
 
 **Report Structure:**
 - Follow `.propel/templates/analyze_code_base.md` template structure
-- Save comprehensive report to `Context/Docs/CodeAnalysis.md`
+- Save comprehensive report to `.propel/context/docs/CodeAnalysis.md`
 - Include both executive summary and technical deep-dive sections
 
 **Content Requirements:**
@@ -352,7 +352,7 @@ The agent automatically detects invocation method and adjusts behavior:
 6. **Sequential Analysis**: Execute reasoning-heavy tasks using sequential-thinking MCP
 7. **Multi-Stream Integration**: Merge subagent results, Context7 research, and sequential analysis
 7. **Synthesis**: Generate comprehensive quality assessment and recommendations
-8. **Report Generation**: Use Write tool to create `Context/Docs/CodeAnalysis.md` with complete template population
+8. **Report Generation**: Use Write tool to create `.propel/context/docs/CodeAnalysis.md` with complete template population
 9. **Output**: Return appropriate response based on invocation method with file location reference
 
 ## Report Generation Workflow
@@ -364,7 +364,7 @@ The agent automatically detects invocation method and adjusts behavior:
 4. **Diagram Generation**: Create required Mermaid diagrams for architecture visualization
 5. **Table Population**: Fill all template tables with actual discovered data
 6. **Business Translation**: Convert technical findings to business impact language
-7. **Report Writing**: Use Write tool to create Context/Docs/CodeAnalysis.md with populated content
+7. **Report Writing**: Use Write tool to create .propel/context/docs/CodeAnalysis.md with populated content
 8. **Completeness Check**: Ensure no template placeholders remain unfilled
 
 ### Quality Gates
@@ -373,7 +373,7 @@ The agent automatically detects invocation method and adjusts behavior:
 - Business logic documentation must be in plain English
 - Risk register must include impact assessment and mitigation strategies
 - Recommendations must have effort estimates and priority levels
-- Final file Context/Docs/CodeAnalysis.md must be successfully created with Write tool\n\n## Specialized Subagent Task Definitions\n\n### Security Analysis Subagent\n**Prompt Template:**\n```\nPerform comprehensive security assessment focusing on:\n1. OWASP Top 10 compliance analysis with specific findings\n2. Vulnerability scanning using available tools (npm audit, safety, etc.)\n3. Secret detection and credential exposure analysis\n4. Authentication and authorization pattern review\n5. Input validation and injection vulnerability assessment\n6. Generate security recommendations with severity levels\n```\n\n### Performance Analysis Subagent\n**Prompt Template:**\n```\nAnalyze performance characteristics focusing on:\n1. Database query optimization and N+1 detection\n2. Bundle size analysis and optimization opportunities\n3. API response time bottleneck identification\n4. Memory usage patterns and potential leaks\n5. Caching strategy evaluation\n6. Generate performance optimization roadmap with impact estimates\n```\n\n### Architecture Discovery Subagent\n**Prompt Template:**\n```\nDiscover and document system architecture focusing on:\n1. Architectural pattern identification (MVC, microservices, etc.)\n2. Design pattern usage and anti-pattern detection\n3. System topology and component interaction mapping\n4. C4 architecture diagram generation requirements\n5. Integration point and communication protocol analysis\n6. Generate architecture improvement recommendations\n```\n\n### Business Logic Extraction Subagent\n**Prompt Template:**\n```\nExtract and document business logic focusing on:\n1. Core business logic class identification and purpose documentation\n2. Business rule extraction with validation logic\n3. Process flow mapping in plain English\n4. Decision point and branching logic documentation\n5. Business-critical dependency mapping\n6. Generate business impact assessment for technical changes\n```
+- Final file .propel/context/docs/CodeAnalysis.md must be successfully created with Write tool\n\n## Specialized Subagent Task Definitions\n\n### Security Analysis Subagent\n**Prompt Template:**\n```\nPerform comprehensive security assessment focusing on:\n1. OWASP Top 10 compliance analysis with specific findings\n2. Vulnerability scanning using available tools (npm audit, safety, etc.)\n3. Secret detection and credential exposure analysis\n4. Authentication and authorization pattern review\n5. Input validation and injection vulnerability assessment\n6. Generate security recommendations with severity levels\n```\n\n### Performance Analysis Subagent\n**Prompt Template:**\n```\nAnalyze performance characteristics focusing on:\n1. Database query optimization and N+1 detection\n2. Bundle size analysis and optimization opportunities\n3. API response time bottleneck identification\n4. Memory usage patterns and potential leaks\n5. Caching strategy evaluation\n6. Generate performance optimization roadmap with impact estimates\n```\n\n### Architecture Discovery Subagent\n**Prompt Template:**\n```\nDiscover and document system architecture focusing on:\n1. Architectural pattern identification (MVC, microservices, etc.)\n2. Design pattern usage and anti-pattern detection\n3. System topology and component interaction mapping\n4. C4 architecture diagram generation requirements\n5. Integration point and communication protocol analysis\n6. Generate architecture improvement recommendations\n```\n\n### Business Logic Extraction Subagent\n**Prompt Template:**\n```\nExtract and document business logic focusing on:\n1. Core business logic class identification and purpose documentation\n2. Business rule extraction with validation logic\n3. Process flow mapping in plain English\n4. Decision point and branching logic documentation\n5. Business-critical dependency mapping\n6. Generate business impact assessment for technical changes\n```
 
 ---
 
