@@ -78,7 +78,7 @@ This PropelIQ uses Claude Code security hooks to restrict access to sensitive fi
 
 ## 🏗️ Architecture
 
-![Alt text](./media/Architecture.png "PropelIQ Architecture")
+![Alt text](./.propel/media/architecture.png "PropelIQ Architecture")
 
 
 ### 📁 PropelIQ Structure
@@ -101,7 +101,6 @@ PropelIQ/
 │   │   ├── test/               # Test generation commands
 │   │   └── ux/                 # UI/UX review commands
 │   └── CLAUDE.md               # Development guidelines
-├── Media/                      # Images and diagrams
 ├── .propel/context/            # Generated project artifacts
 │   ├── tasks/                  # Generated task plans and user stories
 │   │   ├── US_001/            # User story folder
@@ -241,7 +240,7 @@ PropelIQ/
 
 **The power of AI-driven development automation in 4 simple steps:**
 
-![Alt text](./media/SystemOverview.png "PropelIQ Workflow")
+![Alt text](./.propel/media/systemoverview.png "PropelIQ Workflow")
 
 ### 🔄 Core Workflow Components
 
@@ -417,7 +416,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 
 **🤔 Which workflow should you use?**
 
-![Alt text](./media/FlowDiagram.png "PropelIQ Flow Diagram")
+![Alt text](./.propel/media/flowdiagram.png "PropelIQ Flow Diagram")
 
 <details>
 <summary><strong>🌱 Green-field Development</strong> - Building from scratch</summary>
