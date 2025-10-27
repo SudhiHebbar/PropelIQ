@@ -57,7 +57,7 @@ As a Senior Software Engineer expert in Full Stack development, generate compreh
 - **LOG**: Clearly indicate task placement decision ("Creating tasks in US_XXX folder" or "No US ID found, using root /.propel/context/tasks/")
 - Understanding the input, design documents, and existing codebase is required before task creation
 - If source code is missing, prioritize project creation tasks first
-- Continue execution if Design.md is unavailable (optional for user stories)
+- Continue execution if design.md is unavailable (optional for user stories)
 - Think deeply and keep thinking about the implementation — think longer to analyze approach comprehensively before proceeding
 - Request explicit user confirmation (YES/NO) before writing/updating task files
 - **NEVER mark todo items as completed [X] during generation** - all checkboxes must be unchecked `[ ]`
@@ -353,7 +353,7 @@ This command processes feature-oriented development tasks:
 
 ### 🎯 Feature Requirements
 - **Source**: `.propel/context/docs/spec.md` (mandatory)
-- **Design**: `.propel/context/docs/Design.md` (mandatory)
+- **Design**: `.propel/context/docs/design.md` (mandatory)
 - **Focus**: New feature implementation with comprehensive planning
 
 ### 📝 User Stories (Primary Input Type)

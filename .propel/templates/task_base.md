@@ -58,7 +58,7 @@ Template optimized for AI agents to implement features with sufficient context a
 
 ## Project Conext References
 - [Refer to spec.md file in the '/.propel/context/Docs' folder]
-- [Refer to Design.md file in the '/.propel/context/Docs' folder]
+- [Refer to design.md file in the '/.propel/context/Docs' folder]
 
 ## External References
 - [External URL links based on the research]

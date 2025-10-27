@@ -10,7 +10,7 @@ This file provides structured context about the project to help understand the c
 - Defines the scope, goals, user stories and constraints
 
 ### Design
-- **Location**: `.propel/context/docs/Design.md`
+- **Location**: `.propel/context/docs/design.md`
 - Outlines the system architecture and design decisions
 - Includes component structure, data flow, and integration patterns
 
@@ -41,6 +41,6 @@ When working on this project:
 ## Key Conventions
 
 - Follow existing code patterns found in codeanalysis.md
-- Ensure all changes align with the design principles in Design.md
+- Ensure all changes align with the design principles in design.md
 - Verify implementation meets requirements specified in Docs/spec.md
 - Create or update tests as defined in the Test folder structure

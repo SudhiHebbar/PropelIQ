@@ -164,7 +164,7 @@ Template optimized for AI agents to implement bug fixes with comprehensive triag
 
 ### Project Context References
 - [spec.md file in '/.propel/context/Docs' folder]
-- [Design.md file in '/.propel/context/Docs' folder]
+- [design.md file in '/.propel/context/Docs' folder]
 
 ### External References
 - [Framework documentation links for bug fix patterns]
