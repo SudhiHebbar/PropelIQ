@@ -25,7 +25,7 @@ This file provides structured context about the project to help understand the c
 - Organized by feature areas or development phases
 
 ### Test Cases
-- **Location**: `.propel/context/test/*`
+- **Location**: `.propel/context/tests/*`
 - Defines test scenarios, test data, and expected outcomes
 - Includes unit tests, integration tests, and acceptance criteria
 
