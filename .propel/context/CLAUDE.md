@@ -15,7 +15,7 @@ This file provides structured context about the project to help understand the c
 - Includes component structure, data flow, and integration patterns
 
 ### Code Analysis
-- **Location**: `.propel/context/docs/CodeAnalysis.md`
+- **Location**: `.propel/context/docs/codeanalysis.md`
 - Provides insights into the existing codebase structure
 - Documents code patterns, conventions, and technical debt
 
@@ -40,7 +40,7 @@ When working on this project:
 
 ## Key Conventions
 
-- Follow existing code patterns found in CodeAnalysis.md
+- Follow existing code patterns found in codeanalysis.md
 - Ensure all changes align with the design principles in Design.md
 - Verify implementation meets requirements specified in Docs/Spec.md
 - Create or update tests as defined in the Test folder structure

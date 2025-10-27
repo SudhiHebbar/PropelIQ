@@ -106,7 +106,7 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 - Update task understanding based on current codebase state
 
 **Context Gathering**
-- Review Docs/Spec.md, Docs/CodeAnalysis.md and Docs/Design.md for comprehensive understanding
+- Review docs/Spec.md, docs/codeanalysis.md and docs/Design.md for comprehensive understanding
 - **Load Design Reference**: Read `.propel/context/docs/DesignReference.md` and extract design context for task's user stories (UI tasks only)
 - **Extract Visual Specifications**: Load Figma URLs OR design images from DesignReference.md sections
 - **Parse Design Tokens**: Extract colors, typography, spacing from DesignReference.md for implementation

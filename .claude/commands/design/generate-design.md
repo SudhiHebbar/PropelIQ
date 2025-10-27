@@ -8,7 +8,7 @@ allowed-tools: Bash, Grep, Glob, Read, Edit, MultiEdit, Write, WebFetch, WebSear
 # Create Design
 
 ## Feature file: $ARGUMENTS (Optional)
-Note: Refer to '.propel/context/docs/Spec.md' or '.propel/context/docs/CodeAnalysis.md' file if argument is not passed
+Note: Refer to '.propel/context/docs/Spec.md' or '.propel/context/docs/codeanalysis.md' file if argument is not passed
 
 As an expert Software Architect read through the requirements to generate a complete design for general feature implementation with thorough research. Ensure context is passed to the AI agent to enable self-validation and iterative refinement. Read the feature file first to understand what needs to be created, how the examples provided help, and any other considerations.
 
