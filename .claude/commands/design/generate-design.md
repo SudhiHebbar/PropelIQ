@@ -8,7 +8,7 @@ allowed-tools: Bash, Grep, Glob, Read, Edit, MultiEdit, Write, WebFetch, WebSear
 # Create Design
 
 ## Feature file: $ARGUMENTS (Optional)
-Note: Refer to 'Context/Docs/Spec.md' or 'Context/Docs/CodeAnalysis.md' file if argument is not passed
+Note: Refer to '.propel/context/docs/spec.md' or '.propel/context/docs/codeanalysis.md' file if argument is not passed
 
 As an expert Software Architect read through the requirements to generate a complete design for general feature implementation with thorough research. Ensure context is passed to the AI agent to enable self-validation and iterative refinement. Read the feature file first to understand what needs to be created, how the examples provided help, and any other considerations.
 
@@ -19,7 +19,7 @@ The AI agent only gets the context you are appending to the design and training 
 *** Use sequential thinking MCP (mcp__sequential-thinking__sequentialthinking) for systematic design planning and deep analysis. If unavailable, use structured written analysis with clear reasoning steps ***
 *** ASK FOR USER CONFIRMATION (YES/NO) BEFORE START WRITING / UPDATING THE DESIGN ***
 *** If the output file is already available make the necessary changes to applicable sections. Do not overwrite the whole file ***
-*** Generate a single unified design document at Context/Docs/Design.md only ***
+*** Generate a single unified design document at .propel/context/docs/design.md only ***
 
 ## Research Process
 
@@ -91,7 +91,7 @@ Using .propel/templates/design_base.md as template:
 - [List all context needed to implement the feature]
 
 ## Output
-Save as: `Context/Docs/Design.md`
+Save as: `.propel/context/docs/design.md`
 
 **IMPORTANT**: Generate ONLY this single file. Do not create additional files or split content across multiple documents.
 

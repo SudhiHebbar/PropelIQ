@@ -1,6 +1,6 @@
 ---
 name: User Story Generator
-description: Generates detailed user stories from epic URLs, feature text, or scope files. Creates individual user story files in Context/Tasks/US_<ID>/ following userstory-base.md template with proper effort estimation and breakdown.
+description: Generates detailed user stories from epic URLs, feature text, or scope files. Creates individual user story files in .propel/context/tasks/us_<ID>/ following userstory-base.md template with proper effort estimation and breakdown.
 model: inherit
 allowed-tools: Read, Write, Edit, MultiEdit, Glob, Grep, Task, WebSearch, WebFetch, mcp__sequential-thinking__sequentialthinking
 ---
@@ -9,13 +9,13 @@ allowed-tools: Read, Write, Edit, MultiEdit, Glob, Grep, Task, WebSearch, WebFet
 
 ## Command Arguments: $ARGUMENTS (Optional)
 **Accepts:** Scope file path [Epic ID] | Epic ID | Feature text | Epic URL
-**Default Behavior:** Uses Context/Docs/Spec.md if no arguments provided
+**Default Behavior:** Uses .propel/context/docs/spec.md if no arguments provided
 
 ### Argument Combinations:
 1. **Scope file + Epic ID**: `scope_file.md EP-001` - Generate stories for specific epic within scope file
 2. **Scope file only**: `scope_file.md` - Generate stories for all epics in scope file
-3. **Epic ID only**: `EP-001` - Find epic in Spec.md and generate stories
-4. **No arguments**: Use Context/Docs/Spec.md and generate stories for all epics
+3. **Epic ID only**: `EP-001` - Find epic in spec.md and generate stories
+4. **No arguments**: Use .propel/context/docs/spec.md and generate stories for all epics
 
 ### Input Processing Instructions
 **CRITICAL**: Before proceeding with user story generation, determine input type and process accordingly:
@@ -28,7 +28,7 @@ allowed-tools: Read, Write, Edit, MultiEdit, Glob, Grep, Task, WebSearch, WebFet
 3. **Epic ID Only**: Single argument matching Epic ID pattern (EP-001, EP-002, etc.)
 4. **Epic URL**: Single argument containing URLs pointing to epic specifications or documents
 5. **Direct Text**: Single argument that doesn't match file path or Epic ID patterns
-6. **No Arguments**: If `$ARGUMENTS` is empty, use Context/Docs/Spec.md as source
+6. **No Arguments**: If `$ARGUMENTS` is empty, use .propel/context/docs/spec.md as source
 
 #### Scope File + Epic ID Processing (Two Arguments)
 If `$ARGUMENTS` has two parts: scope file + Epic ID:
@@ -51,7 +51,7 @@ If `$ARGUMENTS` is a single file path:
 
 #### Epic ID Only Processing (Single Epic Argument)
 If `$ARGUMENTS` contains single Epic ID (EP-001, EP-002, etc.):
-1. **Spec.md Lookup**: Read Context/Docs/Spec.md to find the specified epic
+1. **spec.md Lookup**: Read .propel/context/docs/spec.md to find the specified epic
 2. **Epic Extraction**: Extract epic details, mapped requirements, and scope
 3. **Story Generation**: Generate user stories for the identified epic only
 
@@ -71,22 +71,22 @@ If `$ARGUMENTS` is direct text specification:
 
 #### Default Processing (No Arguments)
 If no `$ARGUMENTS` provided:
-1. **Spec.md Check**: Verify Context/Docs/Spec.md exists and contains epic specifications
-2. **All Epics Discovery**: Parse all epics from the Spec.md file
+1. **spec.md Check**: Verify .propel/context/docs/spec.md exists and contains epic specifications
+2. **All Epics Discovery**: Parse all epics from the spec.md file
 3. **Multi-Epic Processing**: Generate user stories for ALL epics found in the specification file
 
 #### Fallback Handling
 - If epic/file cannot be read: Request user to provide alternative input or check accessibility
 - If text is too brief: Request additional specification details
-- If Spec.md doesn't exist: Request user to run generate-requirements first or provide direct input
+- If spec.md doesn't exist: Request user to run generate-requirements first or provide direct input
 
 **Example Usage:**
 - `/generate-userstory scope_document.md EP-001` (specific epic within scope file)
 - `/generate-userstory scope_document.md` (all epics in scope file)
-- `/generate-userstory EP-001` (specific epic ID from Spec.md)
+- `/generate-userstory EP-001` (specific epic ID from spec.md)
 - `/generate-userstory https://docs.company.com/epic-auth` (epic URL)
 - `/generate-userstory "Build user authentication with OAuth2, password reset, and role-based access"` (direct text)
-- `/generate-userstory` (all epics from existing Spec.md)
+- `/generate-userstory` (all epics from existing spec.md)
 
 As an expert Product Owner and Business Analyst, generate comprehensive user stories that follow INVEST principles and deliver clear business value. This command focuses specifically on user story creation with detailed acceptance criteria and proper effort estimation.
 
@@ -100,7 +100,7 @@ As an expert Product Owner and Business Analyst, generate comprehensive user sto
 - Follow userstory-base.md template structure exactly for all generated stories
 - Ensure each story is independently testable and delivers business value
 - Apply proper effort estimation and break down stories exceeding limits
-- Create sequential US_XXX IDs starting from existing highest ID + 1
+- Create sequential us_XXX IDs starting from existing highest ID + 1
 - Map all stories to parent epics with clear traceability
 - Include comprehensive acceptance criteria using Given/When/Then format
 
@@ -133,7 +133,7 @@ Following CLAUDE.md guidelines:
 All generated stories MUST follow the exact structure from `.propel/templates/userstory-base.md`:
 
 **Required Elements:**
-- **ID**: Sequential US_XXX format (US_001, US_002, etc.)
+- **ID**: Sequential us_XXX format (us_001, us_002, etc.)
 - **Title**: Concise, action-oriented title (≤10 words)
 - **Description**: "As a [user type], I want [functionality], so that [business value]"
 - **Acceptance Criteria**: Given/When/Then format with specific, measurable criteria
@@ -154,23 +154,23 @@ All generated stories MUST follow the exact structure from `.propel/templates/us
 #### File Structure and Organization
 **Directory Creation:**
 ```
-Context/Tasks/US_001/US_001.md
-Context/Tasks/US_002/US_002.md
-Context/Tasks/US_003/US_003.md
+.propel/context/tasks/us_001/us_001.md
+.propel/context/tasks/us_002/us_002.md
+.propel/context/tasks/us_003/us_003.md
 ...
 ```
 
 **ID Management:**
-- **Sequential Numbering**: Continue from highest existing US_XXX ID
-- **Zero-Padded Format**: US_001, US_002, ..., US_999
+- **Sequential Numbering**: Continue from highest existing us_XXX ID
+- **Zero-Padded Format**: us_001, us_002, ..., us_999
 - **Cross-Epic Continuity**: Maintain sequence across different epics
 
 #### Template Population Process
 For each generated story:
 
 1. **Read userstory-base.md**: Load the exact template structure
-2. **Create Directory**: Generate Context/Tasks/US_XXX/ directory
-3. **Generate Story File**: Create US_XXX.md within the directory
+2. **Create Directory**: Generate .propel/context/tasks/us_XXX/ directory
+3. **Generate Story File**: Create us_XXX.md within the directory
 4. **Populate Sections**: Fill all template sections with generated content
 5. **Validate Structure**: Ensure template compliance and completeness
 
@@ -181,19 +181,19 @@ For each generated story:
 
 **Generated Stories:**
 ```
-US_001: User Account Registration
+us_001: User Account Registration
 - Description: As a new user, I want to create an account with email validation, so that I can access the platform securely
 - Epic: EP-001
 - Requirements: FR-001, UXR-001
 - Effort: 3 story points
 
-US_002: User Login Authentication
+us_002: User Login Authentication
 - Description: As a registered user, I want to log in with my credentials, so that I can access my account
 - Epic: EP-001
 - Requirements: FR-002, NFR-002
 - Effort: 2 story points
 
-US_003: Password Reset Functionality
+us_003: Password Reset Functionality
 - Description: As a user who forgot their password, I want to reset it via email, so that I can regain account access
 - Epic: EP-001
 - Requirements: FR-002, UXR-001
@@ -206,13 +206,13 @@ US_003: Password Reset Functionality
 
 **Broken Down Stories:**
 ```
-US_XXX: Admin User Creation (3 points)
+us_XXX: Admin User Creation (3 points)
 - As an admin, I want to create new user accounts, so that I can onboard users efficiently
 
-US_XXX: Admin User Role Management (2 points)
+us_XXX: Admin User Role Management (2 points)
 - As an admin, I want to assign and modify user roles, so that I can control access permissions
 
-US_XXX: Admin User Deactivation (3 points)
+us_XXX: Admin User Deactivation (3 points)
 - As an admin, I want to deactivate user accounts, so that I can revoke access when needed
 ```
 
@@ -224,13 +224,13 @@ When generating stories for new projects without existing codebase:
 **Technical Epic Creation (EP-TECH):**
 Generate foundational technical stories:
 ```
-US_XXX: Project Structure Setup
+us_XXX: Project Structure Setup
 - As a developer, I want a properly configured project structure, so that development can begin efficiently
 
-US_XXX: Development Environment Configuration
+us_XXX: Development Environment Configuration
 - As a developer, I want a standardized development environment, so that all team members can work consistently
 
-US_XXX: CI/CD Pipeline Implementation
+us_XXX: CI/CD Pipeline Implementation
 - As a development team, I want automated build and deployment pipelines, so that releases are reliable and efficient
 ```
 
@@ -272,8 +272,8 @@ Before completing story generation, validate each story:
 
 ### File Organization Validation
 After generating all stories:
-- [ ] All directories created properly (Context/Tasks/US_XXX/)
-- [ ] All story files created with correct names (US_XXX.md)
+- [ ] All directories created properly (.propel/context/tasks/us_XXX/)
+- [ ] All story files created with correct names (us_XXX.md)
 - [ ] Sequential ID numbering is correct and continuous
 - [ ] No duplicate IDs or missing sequences
 - [ ] File structure matches template requirements
@@ -286,10 +286,10 @@ After generating all stories:
 2. Extract content based on argument combination:
    - Scope file + Epic ID: Read scope file, filter for specific epic
    - Scope file only: Read scope file, extract all epics
-   - Epic ID only: Read Spec.md, find specific epic
-   - No arguments: Read Spec.md, extract all epics
+   - Epic ID only: Read spec.md, find specific epic
+   - No arguments: Read spec.md, extract all epics
 3. Parse requirements and business context for identified epic(s)
-4. Identify existing US_XXX IDs to determine starting sequence
+4. Identify existing us_XXX IDs to determine starting sequence
 5. For each epic in scope:
    a. Analyze epic requirements and complexity (think deeply)
    b. Decompose into user-focused stories
@@ -304,7 +304,7 @@ After generating all stories:
 ### Error Handling and Recovery
 **Common Error Scenarios:**
 - **Missing Source**: Provide clear guidance on valid input options
-- **Invalid Epic ID**: List available epics from Spec.md
+- **Invalid Epic ID**: List available epics from spec.md
 - **Inaccessible URL**: Request alternative source or local file
 - **Empty/Invalid Content**: Ask for clarification or additional detail
 - **Template Errors**: Validate against userstory-base.md and regenerate
@@ -320,8 +320,8 @@ After successful story generation:
 **Example Output Messages:**
 - "Generated 5 user stories for Epic EP-001 from scope_document.md"
 - "Generated 23 user stories for 4 epics from scope_document.md"
-- "Generated 8 user stories for Epic EP-002 from Context/Docs/Spec.md"
-- "Generated 45 user stories for all 7 epics from Context/Docs/Spec.md"
+- "Generated 8 user stories for Epic EP-002 from .propel/context/docs/spec.md"
+- "Generated 45 user stories for all 7 epics from .propel/context/docs/spec.md"
 
 ---
 

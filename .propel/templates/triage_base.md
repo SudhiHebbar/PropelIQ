@@ -163,8 +163,8 @@ Template optimized for AI agents to implement bug fixes with comprehensive triag
 - [general_coding_standards.md](../gotchas/general_coding_standards.md) - [Code quality standards]
 
 ### Project Context References
-- [Spec.md file in '/Context/Docs' folder]
-- [Design.md file in '/Context/Docs' folder]
+- [spec.md file in '/.propel/context/docs' folder]
+- [design.md file in '/.propel/context/docs' folder]
 
 ### External References
 - [Framework documentation links for bug fix patterns]

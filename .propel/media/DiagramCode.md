@@ -90,21 +90,21 @@ flowchart TD
 ```bash
 # 1. Create user stories from business needs
 /generate-requirements brd.md
-# → Context/requirements.md
+# → .propel/context/requirements.md
 
 # 2. Generate system design (optional)  
-/generate-design Context/requirements.md
-# → Context/design.md
+/generate-design .propel/context/requirements.md
+# → .propel/context/design.md
 
 # 3. Break down into tasks
-/generate-task Context/requirements.md
-# → Context/Tasks/feature-name.md (list of tasks)
+/generate-task .propel/context/requirements.md
+# → .propel/context/tasks/feature-name.md (list of tasks)
 
 # 4. Execute tasks systematically for code generation
-/execute-task Context/Tasks/feature-name.md
+/execute-task .propel/context/tasks/feature-name.md
 # → Logic Implementation with TodoWrite tracking
 
 # 5. Quality review (optional)
-/analyze-task Context/Tasks/feature-name.md
+/analyze-task .propel/context/tasks/feature-name.md
 # → Quality assessment and recommendations for the implemented logic
 ```

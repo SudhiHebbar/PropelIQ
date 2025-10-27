@@ -29,8 +29,8 @@
 **Option B: Design Image References**
 | Screen/Feature | Image File | Image Path | Description | Implementation Priority |
 |---------------|------------|------------|-------------|----------------------|
-| [Login Screen] | login_design.png | Context/Design/images/login_design.png | Login interface design | High/Medium/Low |
-| [Dashboard] | dashboard_layout.jpg | Context/Design/images/dashboard_layout.jpg | Dashboard layout | High/Medium/Low |
+| [Login Screen] | login_design.png | .propel/context/Design/images/login_design.png | Login interface design | High/Medium/Low |
+| [Dashboard] | dashboard_layout.jpg | .propel/context/Design/images/dashboard_layout.jpg | Dashboard layout | High/Medium/Low |
 
 ### Design Tokens (Only for UI Components)
 ```yaml
@@ -70,7 +70,7 @@ spacing:
 ### Visual Assets (When New UI Elements Added)
 ```yaml
 screenshots:
-  location: "Context/Design/US-[XXX]/"
+  location: ".propel/context/Design/US-[XXX]/"
   files:
     - name: "before_after.png"
       description: "Comparison of current vs new UI"
@@ -96,7 +96,7 @@ TASK-001:
   visual_references:
     # Use EITHER Figma OR image references
     figma_frames: ["node-id=2:45"]  # Login form
-    # OR design_images: ["Context/Design/login_screen.png"]
+    # OR design_images: [".propel/context/Design/login_screen.png"]
   components_affected:
     - Button (new 'primary' variant)
     - Input Field (add focus states)
@@ -113,7 +113,7 @@ TASK-003:
   visual_references:
     # Use EITHER Figma OR image references
     figma_frames: ["node-id=3:120"]  # Updated dashboard
-    # OR design_images: ["Context/Design/dashboard_update.png", "Context/Design/metrics_layout.jpg"]
+    # OR design_images: [".propel/context/Design/dashboard_update.png", ".propel/context/Design/metrics_layout.jpg"]
   components_affected:
     - MetricCard (new layout)
   visual_validation_required: true

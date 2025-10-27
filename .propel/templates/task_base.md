@@ -16,8 +16,8 @@ Template optimized for AI agents to implement features with sufficient context a
 ---
 
 ## Requirement Reference
-- User Story: [US_XXX] (extracted from input)
-- Story Location: [Context/Tasks/US_XXX/US_XXX.md]
+- User Story: [us_XXX] (extracted from input)
+- Story Location: [.propel/context/tasks/us_XXX/us_XXX.md]
 - Acceptance Criteria: [Reference from user story]
 
 ## Task Overview
@@ -57,8 +57,8 @@ Template optimized for AI agents to implement features with sufficient context a
 - [general_coding_standards.md](../gotchas/general_coding_standards.md) - - [Concise purpose in less than 50 words]
 
 ## Project Conext References
-- [Refer to Spec.md file in the '/Context/Docs' folder]
-- [Refer to Design.md file in the '/Context/Docs' folder]
+- [Refer to spec.md file in the '/.propel/context/docs' folder]
+- [Refer to design.md file in the '/.propel/context/docs' folder]
 
 ## External References
 - [External URL links based on the research]

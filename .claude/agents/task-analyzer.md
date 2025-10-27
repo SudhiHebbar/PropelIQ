@@ -62,13 +62,13 @@ This agent supports two invocation methods:
 **Usage Examples:**
 ```bash
 # Direct agent invocation with advanced parameters
-@task-analyzer Context/Tasks/task_001_signin.md --depth=comprehensive --focus="security,testing,performance" --parallel-research=6
+@task-analyzer .propel/context/tasks/task_001_signin.md --depth=comprehensive --focus="security,testing,performance" --parallel-research=6
 
 # Direct invocation with minimal parameters (uses smart defaults)
-@task-analyzer Context/Tasks/task_002_api.md --depth=quick
+@task-analyzer .propel/context/tasks/task_002_api.md --depth=quick
 
 # Guided experience (via slash command)
-/analyze-task Context/Tasks/task_001_signin.md --depth=standard
+/analyze-task .propel/context/tasks/task_001_signin.md --depth=standard
 ```
 
 ## Hybrid Execution Strategy
@@ -281,7 +281,7 @@ npm audit --audit-level=moderate
 
 **Report Structure:**
 - Follow `.propel/templates/analyze_task_base.md` template structure
-- Save comprehensive report to `Context/Analysis/<task_file_name>_analysis.md`
+- Save comprehensive report to `.propel/context/Analysis/<task_file_name>_analysis.md`
 - Include executive summary and detailed technical findings
 
 **Content Requirements:**
@@ -305,7 +305,7 @@ npm audit --audit-level=moderate
 @task-analyzer <task_file_path> [options]
 
 Required:
-  task_file_path            Path to task file (e.g., Context/Tasks/task_001_signin.md)
+  task_file_path            Path to task file (e.g., .propel/context/tasks/task_001_signin.md)
 
 Optional:
   --depth=LEVEL            Analysis depth: quick|standard|comprehensive (default: standard)

@@ -1,40 +1,40 @@
-# PropelIQ 🚀
+# PropelIQ
 
 > **AI-driven velocity from idea to deploy**
 
 An enterprise-grade framework that combines **Claude Code**, **specialized AI agents**, and **proven templates** to accelerate high-quality software development across multiple technology stacks.
 
-## 📋 Table of Contents
+##  Table of Contents
 
-### 🚀 **Getting Started**
+###  **Getting Started**
 [Quick Start](#-quick-start) • [How It Works](#️-how-propeliq-works) • [Architecture](#️-architecture) • [Technology Stacks](#️-supported-technology-stacks)
 
-### 🛠️ **Development**  
+###  **Development**  
 [Commands & Workflows](#-commands--workflows) • [Specialized Agents](#-specialized-agents) • [Examples](#-examples--use-cases) • [Quality Standards](#-quality-standards)
 
-### 📚 **Resources**
+###  **Resources**
 [Documentation](#-documentation--resources) • [FAQ](#-frequently-asked-questions) • [Contributing](#-contributing) • [Support](#-support--community)
 
-## 🎯 Why Choose PropelIQ?
+## Why Choose PropelIQ?
 
 **From idea to production in minutes, not hours:**
 
 | Traditional Development | PropelIQ | Time Saved |
 |------------------------|-------------------|------------|
-| Manual project setup | `/generate-task` + `/execute-task` | **70%** |
-| Writing test plans | `/generate-automation-test` | **60%** |
-| Code reviews | `/review-pr` with AI analysis | **70%** |
-| Requirements analysis | `/analyze-codebase` + `/generate-requirements` | **75%** |
+| Manual project setup | `/generate-task` + `/execute-task` | **60%** |
+| Writing test plans | `/generate-automation-test` | **50%** |
+| Code reviews | `/review-pr` with AI analysis | **60%** |
+| Requirements analysis | `/analyze-codebase` + `/generate-requirements` | **50%** |
 
-### 🚀 Core Value Propositions
+### Core Value Propositions
 
-**🎯 Rapid Prototyping** - Go from user story to working prototype in few hours  
-**🔍 Intelligent Analysis** - Deep codebase understanding with C4 architecture diagrams  
-**🧪 Test-First Development** - Automated Playwright test generation from requirements  
-**⚡ Production Ready** - Enterprise patterns with SOLID principles and security best practices  
-**🤖 AI-Enhanced Workflows** - 5 specialized agents for targeted development assistance
+**Rapid Prototyping** - Go from user story to working prototype in few hours  
+**Intelligent Analysis** - Deep codebase understanding with C4 architecture diagrams  
+**Test-First Development** - Automated Playwright test generation from requirements  
+**Production Ready** - Enterprise patterns with SOLID principles and security best practices  
+**AI-Enhanced Workflows** - 5 specialized agents for targeted development assistance
 
-## 📋 Prerequisites
+## Prerequisites
 
 ### Required Tools
 - **Claude Code**: Latest version (https://www.anthropic.com/claude-code)
@@ -48,7 +48,7 @@ An enterprise-grade framework that combines **Claude Code**, **specialized AI ag
 - **GitHub CLI**: For GitHub integration (if using gitops commands)
 - **VS Code or Cursor**: Optional IDEs for integration with Claude Code
 
-## 🔒 Claude Code Security Configuration
+## Claude Code Security Configuration
 
 This PropelIQ uses Claude Code security hooks to restrict access to sensitive files and prevent accidental exposure of production data.
 
@@ -76,12 +76,12 @@ This PropelIQ uses Claude Code security hooks to restrict access to sensitive fi
 
 **Note**: `.claude/settings.local.json` is gitignored and will not be committed to the repository. This ensures your personal security configurations remain private while allowing team collaboration.
 
-## 🏗️ Architecture
+## Architecture
 
-![Alt text](./media/Architecture.png "PropelIQ Architecture")
+![Alt text](./.propel/media/architecture.png "PropelIQ Architecture")
 
 
-### 📁 PropelIQ Structure
+### PropelIQ Structure
 
 ```
 PropelIQ/
@@ -101,21 +101,20 @@ PropelIQ/
 │   │   ├── test/               # Test generation commands
 │   │   └── ux/                 # UI/UX review commands
 │   └── CLAUDE.md               # Development guidelines
-├── Media/                      # Images and diagrams
-├── Context/                    # Generated project artifacts
-│   ├── Tasks/                  # Generated task plans and user stories
-│   │   ├── US_001/            # User story folder
-│   │   │   ├── US_001.md      # User story document
+├── .propel/context/            # Generated project artifacts
+│   ├── tasks/                  # Generated task plans and user stories
+│   │   ├── us_001/            # User story folder
+│   │   │   ├── us_001.md      # User story document
 │   │   │   ├── task_001_*.md  # Implementation tasks
 │   │   │   └── task_002_*.md  # More tasks for this story
-│   │   ├── US_002/            # Additional user story folder
+│   │   ├── us_002/            # Additional user story folder
 │   │   └── task_001_*.md      # General tasks (non-story)
-│   ├── Test/                   # Generated test workflows
-│   ├── Figma/                  # Design references
-│   ├── Docs/                   # Documentation files
-│   │   ├── Spec.md             # Generated requirements with epics
-│   │   ├── Design.md           # System design documents
-│   │   └── CodeAnalysis.md     # Codebase analysis results
+│   ├── tests/                   # Generated test workflows
+│   ├── figma/                  # Design references
+│   ├── docs/                   # Documentation files
+│   │   ├── spec.md             # Generated requirements with epics
+│   │   ├── design.md           # System design documents
+│   │   └── codeanalysis.md     # Codebase analysis results
 ├── .propel/                    # Best practices library
 │   ├── build/                  # Technology configurations
 │   ├── gotchas/                # Best practices (15+ docs)
@@ -136,7 +135,7 @@ PropelIQ/
 └── README.md                   # This file
 ```
 
-### 📂 Key Directories
+### Key Directories
 
 <details>
 <summary><strong>.claude/</strong> - Claude Code configuration and AI agents</summary>
@@ -150,16 +149,16 @@ PropelIQ/
 </details>
 
 <details>
-<summary><strong>Context/</strong> - Generated analysis and specifications</summary>
+<summary><strong>.propel/context/</strong> - Generated analysis and specifications</summary>
 
 | File/Folder | Generated By | Contains |
 |-------------|--------------|----------|
-| `Docs/CodeAnalysis.md` | `/analyze-codebase` | Architecture diagrams, security analysis, technical debt |
-| `Docs/Spec.md` | `/generate-requirements` | Epics with mapped requirements, business context |
-| `Tasks/US_XXX/US_XXX.md` | `/generate-requirements` or `/generate-userstory` | Individual user stories with acceptance criteria |
-| `Tasks/US_XXX/task_*.md` | `/generate-task` | Implementation tasks organized by user story |
-| `Tasks/task_*.md` | `/generate-task` | General tasks (non-user story) |
-| `Test/` | `/generate-automation-test` | Test workflow specifications |
+| `docs/codeanalysis.md` | `/analyze-codebase` | Architecture diagrams, security analysis, technical debt |
+| `docs/spec.md` | `/generate-requirements` | Epics with mapped requirements, business context |
+| `tasks/us_XXX/us_XXX.md` | `/generate-userstory` | Individual user stories with acceptance criteria |
+| `tasks/us_XXX/task_*.md` | `/generate-task` | Implementation tasks organized by user story |
+| `tasks/task_*.md` | `/generate-task` | General tasks (non-user story) |
+| `test/` | `/generate-automation-test` | Test workflow specifications |
 
 </details>
 
@@ -186,20 +185,20 @@ PropelIQ/
 
 </details>
 
-## 🚀 Enhanced Workflow Benefits
+## Enhanced Workflow Benefits
 
-### 📊 Epic → User Story → Task Hierarchy
+### Epic → User Story → Task Hierarchy
 
 **PropelIQ's structured approach delivers measurable improvements:**
 
 | **Traditional Approach** | **PropelIQ Approach** | **Improvement** |
 |---------------------------|------------------------|-----------------|
-| Manual requirement analysis | Auto-generated epics with mapped requirements | **75% faster** requirement processing |
-| Ad-hoc user story creation | Structured US_XXX stories with acceptance criteria | **60% better** story quality and consistency |
-| Scattered task management | Organized US_XXX/task_*.md hierarchy | **80% better** traceability and organization |
-| Reactive quality assurance | Built-in INVEST principles and story validation | **70% fewer** requirement changes during development |
+| Manual requirement analysis | Auto-generated epics with mapped requirements | **50% faster** requirement processing |
+| Ad-hoc user story creation | Structured us_XXX stories with acceptance criteria | **60% better** story quality and consistency |
+| Scattered task management | Organized us_XXX/task_*.md hierarchy | **60% better** traceability and organization |
+| Reactive quality assurance | Built-in INVEST principles and story validation | **30% fewer** requirement changes during development |
 
-### 🎯 Key Workflow Advantages
+### Key Workflow Advantages
 
 **1. **Automatic Story Generation****
 - **Epic-driven**: Stories generated from epics with proper requirement mapping
@@ -208,8 +207,8 @@ PropelIQ/
 
 **2. **Hierarchical Organization****
 - **Clear Traceability**: Epic → User Story → Task → Implementation
-- **Folder Structure**: `Context/Tasks/US_XXX/` organization for easy navigation
-- **Sequential IDs**: Consistent US_001, US_002, task_001, task_002 numbering
+- **Folder Structure**: `.propel/context/tasks/us_XXX/` organization for easy navigation
+- **Sequential IDs**: Consistent us_001, us_002, task_001, task_002 numbering
 
 **3. **Quality Assurance Integration****
 - **Template Compliance**: All outputs follow userstory-base.md and task_base.md templates
@@ -221,7 +220,7 @@ PropelIQ/
 - **Manual Override**: Use `/generate-userstory` for additional story creation
 - **Multi-input Support**: Accept scope files, epic IDs, URLs, or direct text
 
-## ⚙️ Supported Technology Stacks
+## Supported Technology Stacks
 
 | Stack | Framework/Version | Features | Best Practices Doc |
 |-------|------------------|----------|--------------------|
@@ -235,80 +234,83 @@ PropelIQ/
 | **Cloud** | GoLang + Gin/Echo | High performance, Microservices | [General Coding Standards](.propel/gotchas/general_coding_standards.md) |
 | **Enterprise** | Java Spring Boot | Enterprise patterns, JPA | [General Coding Standards](.propel/gotchas/general_coding_standards.md) |
 
-> **📚 Comprehensive Coverage**: Each stack is supported by extensive documentation in `.propel/gotchas/` covering architecture patterns, security, performance, and testing strategies.
+> **Comprehensive Coverage**: Each stack is supported by extensive documentation in `.propel/gotchas/` covering architecture patterns, security, performance, and testing strategies.
 
-## 🛠️ How PropelIQ Works
+## How PropelIQ Works
 
 **The power of AI-driven development automation in 4 simple steps:**
 
-![Alt text](./media/SystemOverview.png "PropelIQ Workflow")
+![Alt text](./.propel/media/systemoverview.png "PropelIQ Workflow")
 
 ### 🔄 Core Workflow Components
 
 | Component | Role | Example |
 |-----------|------|---------|
-| **🎯 Commands** | Entry points for all operations | `/analyze-codebase`, `/generate-task`, `/execute-task` |
-| **🤖 Specialized Agents** | Domain-specific AI processing | Code analysis, task planning, code review, quick prototype |
-| **📋 Templates** | Consistent output structure | Requirements, designs, test plans, analysis reports |
-| **📚 Best Practices** | Quality assurance & standards | SOLID principles, security patterns, anti-patterns |
-| **🔌 MCP Servers** | External integrations | Context7, Playwright, GitHub, Azure DevOps |
+| **Commands** | Entry points for all operations | `/analyze-codebase`, `/generate-task`, `/execute-task` |
+| **Specialized Agents** | Domain-specific AI processing | Code analysis, task planning, code review, quick prototype |
+| **Templates** | Consistent output structure | Requirements, designs, test plans, analysis reports |
+| **Best Practices** | Quality assurance & standards | SOLID principles, security patterns, anti-patterns |
+| **MCP Servers** | External integrations | Context7, Playwright, GitHub, Azure DevOps |
 
-### 💡 Real-World Example: From User Story to Running Tests
+### Real-World Example: From User Story to Running Tests
 
 ```bash
 # 1. Start with a user story
 echo "Develop a web based onboarding digital platform that supports registration, renewal, and lifecycle management of institutional and
 individual memberships. The goal is to simplify the user experience, streamline internal workflows, and enable process automation across membership types and levels." > scope.md
 
-# 2. Generate structured requirements with epics and user stories
+# 2. Generate structured requirements with epics
 /generate-requirements scope.md
-# → Creates Context/Docs/Spec.md with epics and acceptance criteria
-# → Auto-generates Context/Tasks/US_XXX/US_XXX.md for each epic
+# → Creates .propel/context/docs/spec.md with epics and acceptance criteria
 
-# 3. (Optional) Generate user stories for specific epic
-/generate-userstory Context/Docs/Spec.md EP-001
-# → Creates Context/Tasks/US_XXX/US_XXX.md for EP-001
+# 3. Generate user stories from epics
+/generate-userstory
+# → Creates .propel/context/tasks/us_XXX/us_XXX.md for all epics
+
+# 3a. (Optional) Generate user stories for specific epic
+/generate-userstory EP-001
+# → Creates .propel/context/tasks/us_XXX/us_XXX.md for EP-001
 
 # 4. Break down user stories into executable tasks
-/generate-task Context/Tasks/US_001/US_001.md
-# → Creates Context/Tasks/US_001/task_001_*.md
+/generate-task .propel/context/tasks/us_001/us_001.md
+# → Creates .propel/context/tasks/us_001/task_001_*.md
 
 # 5. Generate comprehensive tests
-/generate-automation-test Context/Tasks/US_001/US_001.md
-# → Creates Context/Test/US_001_test_workflow.md
+/generate-automation-test .propel/context/tasks/us_001/us_001.md
+# → Creates .propel/context/test/us_001_test_workflow.md
 
 # 6. Convert to executable Playwright scripts
 /generate-playwright-scripts
-# → Creates test-automation/tests/US_001_*.spec.ts with Page Objects
+# → Creates test-automation/tests/us_001_*.spec.ts with Page Objects
 
 # 7. Execute the task
-/execute-task Context/Tasks/US_001/task_001_*.md
+/execute-task .propel/context/tasks/us_001/task_001_*.md
 # → Implements the task with TodoWrite tracking
 
 # Total time: 5-10 minutes vs 2-4 hours manually
 ```
 
-### 🎯 Quality Assurance Built-In
+### Quality Assurance Built-In
 
 Every generated artifact automatically includes:
 
-- **🔒 Security Best Practices** - OWASP Top 10 compliance, input validation
-- **⚡ Performance Patterns** - Caching strategies, optimization techniques  
-- **🧪 Test Coverage** - Unit, integration, and E2E test generation
-- **📖 Documentation** - Code comments, API docs, architecture diagrams
-- **🔍 Code Review** - Automated quality checks and validation
+- **Security Best Practices** - OWASP Top 10 compliance, input validation
+- **Performance Patterns** - Caching strategies, optimization techniques  
+- **Test Coverage** - Unit, integration, and E2E test generation
+- **Documentation** - Code comments, API docs, architecture diagrams
+- **Code Review** - Automated quality checks and validation
 
-## 🤖 Specialized Agents
+## Specialized Agents
 
 PropelIQ includes **5 AI agents** that provide targeted expertise for different aspects of software development:
 
 | Agent | Purpose | When to Use | Key Capabilities |
 |-------|---------|-------------|------------------|
-| **🔍 Code Analyzer** | Deep codebase analysis | Legacy code, technical debt, architecture review | C4 diagrams, security analysis, dependency mapping |
-| **👀 PR Code Reviewer** | Comprehensive code review | Pull requests, quality assurance | SOLID principles, vulnerability detection, compliance |
-| **🎨 Design Analyzer** | Architecture & design patterns | System design, modernization | Pattern recommendations, scalability assessment |
-| **🚀 MVP Builder** ⭐ | General rapid prototyping | Proof of concepts, standard prototyping | Quick prototyping, shadcn UI, lean validation |
-| **⚙️ Task Analyzer** | Post-implementation quality review | Quality assurance | Detec task implementation, gate review |
+| **Code Analyzer** | Deep codebase analysis | Legacy code, technical debt, architecture review | C4 diagrams, security analysis, dependency mapping |
+| **PR Code Reviewer** | Comprehensive code review | Pull requests, quality assurance | SOLID principles, vulnerability detection, compliance |
+| **Design Analyzer** | Architecture & design patterns | System design, modernization | Pattern recommendations, scalability assessment |
+| **MVP Builder**  | General rapid prototyping | Proof of concepts, standard prototyping | Quick prototyping, shadcn UI, lean validation |
+| **Task Analyzer** | Post-implementation quality review | Quality assurance | Detec task implementation, gate review |
 
 ### Agent Integration Patterns
 
@@ -324,7 +326,7 @@ PropelIQ includes **5 AI agents** that provide targeted expertise for different 
 @mvp-builder scope-document.md
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Get PropelIQ Framework
 
@@ -346,7 +348,7 @@ cd "PropelIQ"
 
 ### 2. Install MCP Servers
 
-**🔧 Environment Variables Setup (Required):**
+**Environment Variables Setup (Required):**
 
 Set these environment variables before installing MCP servers:
 
@@ -361,7 +363,7 @@ export GITHUB_PAT="your-github-personal-access-token"
 export AZ_DEVOPS_ORG="your-azure-devops-organization"
 ```
 
-**📦 Complete MCP Server Setup:**
+**Complete MCP Server Setup:**
 
 ```bash
 # Core MCP servers (Required)
@@ -379,7 +381,7 @@ claude mcp add azure-devops stdio npx -y @azure-devops/mcp ${AZ_DEVOPS_ORG} --sc
 claude mcp add shadcn stdio npx shadcn@latest mcp --scope project
 ```
 
-**🎯 MCP Server Requirements by Use Case:**
+**MCP Server Requirements by Use Case:**
 
 | Use Case | Required MCP Servers | Purpose |
 |----------|---------------------|---------|
@@ -394,127 +396,133 @@ After installation, restart Claude Code or reload the configuration to activate 
 
 ### 3. Try Your First Command
 
-**🎯 Get started in under 2 minutes:**
+**Get started in under 2 minutes:**
 
 ```bash
 # Analyze an existing project by running the command from the root folder of the existing source code
 /analyze-codebase
-# → Generates comprehensive analysis in Context/Docs/CodeAnalysis.md
+# → Generates comprehensive analysis in .propel/context/docs/codeanalysis.md
 
 # Create user story for business needs
 /generate-requirements [BRD file | Plain text]
-# → Generates comprehensive user stories in Context/Docs/Spec.md
+# → Generates comprehensive user stories in .propel/context/docs/spec.md
 ```
 
-**✅ Success indicators:**
-- New files appear in `Context/` folder
-- Commands complete without errors  
+**Success indicators:**
+- New files appear in `.propel/context/` folder
+- Commands complete without errors
 - Generated content follows framework templates
 
 ## 📋 Commands & Workflows
 
 ### 🔄 Common Development Workflows
 
-**🤔 Which workflow should you use?**
+**Which workflow should you use?**
 
-![Alt text](./media/FlowDiagram.png "PropelIQ Flow Diagram")
+![Alt text](./.propel/media/flowdiagram.png "PropelIQ Flow Diagram")
 
 <details>
-<summary><strong>🌱 Green-field Development</strong> - Building from scratch</summary>
+<summary><strong>Green-field Development</strong> - Building from scratch</summary>
 
 ```bash
-# 1. Create requirements with epics and auto-generated user stories
+# 1. Create requirements with epics
 /generate-requirements brd.md
-# → Context/Docs/Spec.md (with epics)
-# → Context/Tasks/US_XXX/US_XXX.md (auto-generated stories)
+# → .propel/context/docs/spec.md (with epics)
 
-# 2. Generate additional user stories manually (optional)
+# 2. Generate user stories from epics
+/generate-userstory
+# → .propel/context/tasks/us_XXX/us_XXX.md (all epics)
+
+# 2a. Or generate stories for specific epic (optional)
 /generate-userstory EP-001
-# → Context/Tasks/US_XXX/US_XXX.md (stories for specific epic)
+# → .propel/context/tasks/us_XXX/us_XXX.md (specific epic)
 
 # 3. Generate system design (optional)
-/generate-design Context/Docs/Spec.md
-# → Context/Docs/Design.md
+/generate-design .propel/context/docs/spec.md
+# → .propel/context/docs/design.md
 
 # 4. Break down user stories into implementation tasks
-/generate-task Context/Tasks/US_001/US_001.md
-# → Context/Tasks/US_001/task_001_implement_feature.md
+/generate-task .propel/context/tasks/us_001/us_001.md
+# → .propel/context/tasks/us_001/task_001_implement_feature.md
 
 # 5. Execute tasks systematically for code generation
-/execute-task Context/Tasks/US_001/task_001_implement_feature.md
+/execute-task .propel/context/tasks/us_001/task_001_implement_feature.md
 # → Logic Implementation with TodoWrite tracking
 
 # 6. Quality review (optional)
-/analyze-task Context/Tasks/US_001/task_001_implement_feature.md
+/analyze-task .propel/context/tasks/us_001/task_001_implement_feature.md
 # → Quality assessment and recommendations for the implemented logic
 ```
 
 </details>
 
 <details>
-<summary><strong>🏗️ Brown-field Development</strong> - Working with existing code</summary>
+<summary><strong>Brown-field Development</strong> - Working with existing code</summary>
 
 ```bash
 # 1. Understand the codebase
 /analyze-codebase <repo url path | code-base directory | root-path>
-# → Context/Docs/CodeAnalysis.md
+# → .propel/context/docs/codeanalysis.md
 
-# 2. Generate requirements with epics and auto-generated user stories
+# 2. Generate requirements with epics
 /generate-requirements new-feature-spec.md
-# → Context/Docs/Spec.md (with epics)
-# → Context/Tasks/US_XXX/US_XXX.md (auto-generated stories)
+# → .propel/context/docs/spec.md (with epics)
 
-# 3. Generate additional user stories for specific epics (optional)
-/generate-userstory Context/Docs/Spec.md EP-002
-# → Context/Tasks/US_XXX/US_XXX.md (stories for specific epic)
+# 3. Generate user stories from epics
+/generate-userstory
+# → .propel/context/tasks/us_XXX/us_XXX.md (all epics)
+
+# 3a. Or generate stories for specific epic (optional)
+/generate-userstory EP-002
+# → .propel/context/tasks/us_XXX/us_XXX.md (specific epic)
 
 # 4. Break down user stories into implementation tasks
-/generate-task Context/Tasks/US_005/US_005.md
-# → Context/Tasks/US_005/task_001_integrate_feature.md
+/generate-task .propel/context/tasks/us_005/us_005.md
+# → .propel/context/tasks/us_005/task_001_integrate_feature.md
 
 # 5. Execute with existing code integration
-/execute-task Context/Tasks/US_005/task_001_integrate_feature.md
+/execute-task .propel/context/tasks/us_005/task_001_integrate_feature.md
 # → Updated codebase with new functionality
 ```
 
 </details>
 
 <details>
-<summary><strong>🧪 Test-Driven Development</strong> - Tests first approach</summary>
+<summary><strong>Test-Driven Development</strong> - Tests first approach</summary>
 
 ```bash
 # 1. Generate comprehensive test workflows
-/generate-automation-test Context/Docs/Spec.md
-# → Context/Test/test_workflow_*.md
+/generate-automation-test .propel/context/docs/spec.md
+# → .propel/context/test/test_workflow_*.md
 
 # 2. Create executable Playwright scripts
 /generate-playwright-scripts
 # → test-automation/tests/, pages/, data/, utils/
 
 # 3. Implement features to pass tests
-/execute-task Context/Tasks/feature.md
+/execute-task .propel/context/tasks/feature.md
 # → Implementation guided by tests
 ```
 
 </details>
 
 <details>
-<summary><strong>🐛 Bug-fixing Workflow</strong> - Systematic issue resolution</summary>
+<summary><strong>Bug-fixing Workflow</strong> - Systematic issue resolution</summary>
 
 ```bash
 # 1. Triage bug and create fix task with root cause analysis
 /generate-bugfix-task "Bug: Login fails with 500 error on special characters | bug url"
 # → Performs comprehensive triage protocol
 # → Identifies root cause and impact
-# → Context/Tasks/task_001_fix_login_special_chars.md
+# → .propel/context/tasks/task_001_fix_login_special_chars.md
 
 # 2. Execute the generated fix task
-/execute-task Context/Tasks/task_001_fix_login_special_chars.md
+/execute-task .propel/context/tasks/task_001_fix_login_special_chars.md
 # → Implements fix with regression prevention
 # → Guided debugging with TodoWrite tracking
 
 # 3. Verify fix completeness and quality
-/analyze-task Context/Tasks/task_001_fix_login_special_chars.md
+/analyze-task .propel/context/tasks/task_001_fix_login_special_chars.md
 # → Validates bug resolution and test coverage
 # → Ensures no regression introduced
 ```
@@ -522,7 +530,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 </details>
 
 <details>
-<summary><strong>🚀 MVP Validation</strong> - Validate business hypotheses rapidly </summary>
+<summary><strong>MVP Validation</strong> - Validate business hypotheses rapidly </summary>
 
 ```bash
 # Direct agent invocation for MVP development (requires @mvp-builder)
@@ -536,14 +544,14 @@ After installation, restart Claude Code or reload the configuration to activate 
 </details>
 
 <details>
-<summary><strong>🔍 Code Review & Quality</strong> - Maintain high quality standards</summary>
+<summary><strong>Code Review & Quality</strong> - Maintain high quality standards</summary>
 
 ```bash
 # Review pull requests
 /review-pr [pr-url-or-number | local changes]
-# → Context/Reviews/review-pr.md with comprehensive analysis
+# → .propel/context/reviews/review-pr.md with comprehensive analysis
 
-# Resolve specific review comments  
+# Resolve specific review comments
 /resolve-review-comment [comment-reference]
 # → Implements the corrections to resolve the comment.
 
@@ -554,26 +562,26 @@ After installation, restart Claude Code or reload the configuration to activate 
 
 </details>
 
-### 📖 Command Reference
+### Command Reference
 
 | Command | Purpose | Input | Output |
 |---------|---------|-------|--------|
-| `/analyze-codebase` | Deep codebase analysis | Repository path/URL | `Context/Docs/CodeAnalysis.md` |
-| `/generate-requirements` | Create structured requirements | Specifications, user stories | `Context/Docs/Spec.md` + auto-generated user stories |
-| `/generate-userstory` | Generate user stories from epics | Epic ID, scope file, or text | `Context/Tasks/US_XXX/US_XXX.md` |
-| `/generate-design` | System design & architecture | Requirements, specifications | `Context/Docs/Design.md` |
-| `/generate-task` | Break down into executable tasks | User stories, requirements | `Context/Tasks/US_XXX/task_*.md` or `Context/Tasks/task_*.md` |
+| `/analyze-codebase` | Deep codebase analysis | Repository path/URL | `.propel/context/docs/codeanalysis.md` |
+| `/generate-requirements` | Create structured requirements | Specifications, user stories | `.propel/context/docs/spec.md` with epics |
+| `/generate-userstory` | Generate user stories from epics | Epic ID, scope file, or text | `.propel/context/tasks/us_XXX/us_XXX.md` |
+| `/generate-design` | System design & architecture | Requirements, specifications | `.propel/context/docs/design.md` |
+| `/generate-task` | Break down into executable tasks | User stories, requirements | `.propel/context/tasks/us_XXX/task_*.md` or `.propel/context/tasks/task_*.md` |
 | `/execute-task` | Implement tasks systematically | Task file path | Technology-specific code |
 | `/analyze-task` | Post-implementation quality review | Task file path | Quality assessment report |
-| `/generate-automation-test` | Create test workflows | Requirements, use cases | `Context/Test/workflow_*.md` |
+| `/generate-automation-test` | Create test workflows | Requirements, use cases | `.propel/context/test/workflow_*.md` |
 | `/generate-playwright-scripts` | Convert to executable tests | Workflow files | `test-automation/` structure |
-| `/review-pr` | Comprehensive PR analysis | PR URL/number | `Context/review-pr.md` |
+| `/review-pr` | Comprehensive PR analysis | PR URL/number | `.propel/context/reviews/review-pr.md` |
 | `/resolve-review-comment` | Address review feedback | Comment reference | Resolution documentation |
-| `/review-user-interface` | UI/UX analysis | UI specs, screenshots | `Context/ui-review.md` |
+| `/review-user-interface` | UI/UX analysis | UI specs, screenshots | `.propel/context/reviews/ui-review.md` |
 | `@agent-mvp-builder` | Rapid MVP for hypothesis testing | Business hypothesis or scope doc | `mvp/` folder with working code |
 
 
-## ⚡ MCP Server Configuration
+## MCP Server Configuration
 
 MCP servers are configured project-wide in the root `.mcp.json` file. This configuration enables seamless integration with external tools and services.
 
@@ -658,18 +666,18 @@ The `.env` file is listed in `.gitignore` and should never be committed to the r
 4. Run `/agent` to verify the available agents.
 5. Use `@` (e.g. @agent-mvp-builder) to run the agents directly
 
-## 🏆 Quality Standards
+## Quality Standards
 
 **Built-in enterprise-grade quality assurance:**
 
-### 📊 Metrics & Standards
+### Metrics & Standards
 - **Maximum 500 lines** per source file for maintainability
 - **80% minimum test coverage** across all application layers  
 - **SOLID principles compliance** with automated validation
 - **Comprehensive documentation** for all public APIs and components
 - **Security-first approach** with OWASP Top 10 compliance
 
-### ✅ Validation Commands
+### Validation Commands
 ```bash
 # Universal quality checks built into all generated code
 npm run lint && npm test && npm build        # React/Node.js
@@ -677,17 +685,17 @@ dotnet format && dotnet test && dotnet build # .NET
 pytest --cov=src tests/ --cov-report=term   # Python
 ```
 
-### 🛡️ Built-in Protections
+### Built-in Protections
 - **Anti-pattern detection** and prevention across all technology stacks
 - **Performance optimization** patterns applied automatically  
 - **Security vulnerability** scanning and remediation suggestions
 - **Database optimization** with query analysis and indexing recommendations
 - **DevOps best practices** integration for CI/CD pipelines
 
-## ❓ Frequently Asked Questions
+## Frequently Asked Questions
 
 <details>
-<summary><strong>🚀 Getting Started</strong></summary>
+<summary><strong>Getting Started</strong></summary>
 
 **Q: Do I need Claude Code to use PropelIQ?**
 A: Yes, PropelIQ is specifically designed for Claude Code and requires it to function.
@@ -701,7 +709,7 @@ A: Absolutely! Use the brown-field workflow starting with `/analyze-codebase`.
 </details>
 
 <details>
-<summary><strong>🛠️ Development</strong></summary>
+<summary><strong>Development</strong></summary>
 
 **Q: Which technology stacks are fully supported?**  
 A: It support most of the technology stack.
@@ -712,7 +720,7 @@ A: Yes! Follow patterns in `.claude/commands/`.
 </details>
 
 <details>
-<summary><strong>⚡ Performance</strong></summary>
+<summary><strong>Performance</strong></summary>
 
 **Q: How much time does this save?**  
 A: **70-80% reduction** in setup time, **60% faster** code reviews, **75% faster** requirements analysis.
@@ -723,14 +731,14 @@ A: **2 minutes** to first command, **30 minutes** to productive workflows, **1 h
 </details>
 
 <details>
-<summary><strong>📋 Epics, User Stories & Tasks</strong></summary>
+<summary><strong>Epics, User Stories & Tasks</strong></summary>
 
 **Q: What's the difference between epics, user stories, and tasks?**
-A: **Epics** are high-level features mapped to requirements. **User Stories** (US_XXX) break epics into user-focused deliverables. **Tasks** break stories into 4-hour implementation units.
+A: **Epics** are high-level features mapped to requirements. **User Stories** (us_XXX) break epics into user-focused deliverables. **Tasks** break stories into 4-hour implementation units.
 
 </details>
 
-## 🤝 Contributing
+## Contributing
 
 ### Development Workflow
 1. Follow existing patterns in the codebase
@@ -759,12 +767,12 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (U
 6. Agents are defined as Markdown files with specific structure in `.claude/agents/`
 7. Ensure quality validation integration
 
-## 📚 Documentation & Resources
+## Documentation & Resources
 
-### 🎯 By User Journey
+### By User Journey
 
 <details>
-<summary><strong>🚀 Getting Started</strong> [New Users]</summary>
+<summary><strong>Getting Started</strong> [New Users]</summary>
 
 | Document | Purpose |
 |----------|---------|
@@ -775,18 +783,18 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (U
 </details>
 
 <details>
-<summary><strong>🛠️ Development Reference</strong> [Active Development]</summary>
+<summary><strong>Development Reference</strong> [Active Development]</summary>
 
 | Category | Document | Purpose |
 |----------|----------|---------|
 | **Commands** | `.claude/commands/*/` | All command implementations |
 | **Templates** | `.propel/templates/*.md` | Output structure templates |
-| **Generated** | `Context/*.md` | Your project analysis and specs |
+| **Generated** | `.propel/context/*.md` | Your project analysis and specs |
 
 </details>
 
 <details>
-<summary><strong>📖 Best Practices</strong> [Quality Assurance]</summary>
+<summary><strong>Best Practices</strong> [Quality Assurance]</summary>
 
 | Focus Area | Document |
 |------------|----------|
@@ -802,7 +810,7 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (U
 </details>
 
 <details>
-<summary><strong>⚙️ Advanced Configuration</strong> [Power Users]</summary>
+<summary><strong>Advanced Configuration</strong> [Power Users]</summary>
 
 | Component | Configuration |
 |-----------|---------------|
@@ -811,116 +819,112 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (U
 
 </details>
 
-## 💡 Examples & Use Cases
+## Examples & Use Cases
 
-### 🏪 E-commerce Platform (Brown-field)
+### E-commerce Platform (Brown-field)
 ```bash
 # 1. Analyze codebase for insights
 /analyze-codebase https://github.com/competitor/shop
 
-# 2. Generate epics and auto-generated user stories
+# 2. Generate epics from requirements
 /generate-requirements "Multi-vendor shopping cart with payment integration"
-# → Context/Docs/Spec.md (with epics)
-# → Context/Tasks/US_XXX/US_XXX.md (auto-generated stories)
+# → .propel/context/docs/spec.md (with epics)
 
-# 3. Generate additional user stories for specific features (optional)
+# 3. Generate user stories from epics
+/generate-userstory
+# → .propel/context/tasks/us_XXX/us_XXX.md (all epics)
+
+# 3a. Or generate stories for specific features (optional)
 /generate-userstory EP-001
-# → Context/Tasks/US_XXX/US_XXX.md (targeted story generation)
+# → .propel/context/tasks/us_XXX/us_XXX.md (specific epic)
 
 # 4. Create comprehensive test suite
-/generate-automation-test Context/Docs/Spec.md
+/generate-automation-test .propel/context/docs/spec.md
 /generate-playwright-scripts
 
 # 5. Break down user stories into implementation tasks
-/generate-task Context/Tasks/US_003/US_003.md
-# → Context/Tasks/US_003/task_001_implement_cart.md
+/generate-task .propel/context/tasks/us_003/us_003.md
+# → .propel/context/tasks/us_003/task_001_implement_cart.md
 
 # 6. Implement with best practices
-/execute-task Context/Tasks/US_003/task_001_implement_cart.md
+/execute-task .propel/context/tasks/us_003/task_001_implement_cart.md
 ```
 
-### 🏢 Enterprise Dashboard (Green-field)
+### Enterprise Dashboard (Green-field)
 ```bash
 # 1. Quick prototype for client validation
 @mvp-builder "Real-time analytics dashboard with role-based access for client validation" or <scope document>
 # → mvp/ folder with working prototype for stakeholder feedback
 
-# 2. Generate epics and auto-generated user stories
+# 2. Generate epics from requirements
 /generate-requirements "Real-time analytics dashboard with role-based access"
-# → Context/Docs/Spec.md (with epics)
-# → Context/Tasks/US_XXX/US_XXX.md (auto-generated stories)
+# → .propel/context/docs/spec.md (with epics)
+
+# 2a. Generate user stories from epics
+/generate-userstory
+# → .propel/context/tasks/us_XXX/us_XXX.md (all epics)
 
 # 3. Design system architecture
-/generate-design Context/Docs/Spec.md
+/generate-design .propel/context/docs/spec.md
 
 # 4. Break down user stories into implementation tasks
-/generate-task Context/Tasks/US_001/US_001.md
-# → Context/Tasks/US_001/task_001_implement_dashboard.md
+/generate-task .propel/context/tasks/us_001/us_001.md
+# → .propel/context/tasks/us_001/task_001_implement_dashboard.md
 
 # 5. Generate secure, scalable implementation
-/execute-task Context/Tasks/US_001/task_001_implement_dashboard.md
+/execute-task .propel/context/tasks/us_001/task_001_implement_dashboard.md
 ```
 
-### 🔄 App Modernization (Legacy to Modern)
+### App Modernization (Legacy to Modern)
 ```bash
 # 1. Analyze existing codebase for insights (reverse-engineering)
 /analyze-codebase https://github.com/legacy-app/monolith
-# → Context/Docs/CodeAnalysis.md with C4 diagrams, technical debt, security analysis
+# → .propel/context/docs/codeanalysis.md with C4 diagrams, technical debt, security analysis
 
-# 2. Generate epics and auto-generated user stories for modernization
+# 2. Generate epics for modernization
 /generate-requirements "Modernize legacy monolith to microservices with API-first architecture"
-# → Context/Docs/Spec.md with modernization epics
-# → Context/Tasks/US_XXX/US_XXX.md (auto-generated modernization stories)
+# → .propel/context/docs/spec.md with modernization epics
 
-# 3. Generate additional user stories for specific modernization phases
-/generate-userstory Context/Docs/Spec.md EP-002
-# → Context/Tasks/US_XXX/US_XXX.md (targeted modernization stories)
+# 3. Generate user stories from modernization epics
+/generate-userstory
+# → .propel/context/tasks/us_XXX/us_XXX.md (all modernization epics)
+
+# 3a. Or generate stories for specific modernization phases (optional)
+/generate-userstory EP-002
+# → .propel/context/tasks/us_XXX/us_XXX.md (specific epic)
 
 # 4. Generate system architecture
-/generate-design Context/Docs/Spec.md
-# → Context/Docs/Design.md with modernized system architecture and migration strategy
+/generate-design .propel/context/docs/spec.md
+# → .propel/context/docs/design.md with modernized system architecture and migration strategy
 
 # 5. Create comprehensive test suite
-/generate-automation-test Context/Docs/Spec.md
+/generate-automation-test .propel/context/docs/spec.md
 /generate-playwright-scripts
-# → Context/Test/workflow_*.md and test-automation/ with migration validation tests
+# → .propel/context/test/workflow_*.md and test-automation/ with migration validation tests
 
 # 6. Break down modernization stories into implementation tasks
-/generate-task Context/Tasks/US_005/US_005.md
-# → Context/Tasks/US_005/task_001_modernize_auth.md (phased implementation tasks)
+/generate-task .propel/context/tasks/us_005/us_005.md
+# → .propel/context/tasks/us_005/task_001_modernize_auth.md (phased implementation tasks)
 
 # 7. Generate secure, scalable implementation
-/execute-task Context/Tasks/US_005/task_001_modernize_auth.md
+/execute-task .propel/context/tasks/us_005/task_001_modernize_auth.md
 # → Modern microservices implementation with security best practices
 ```
 
-## 🤝 Contributing
+## Contributing
 
-**📝 How to Contribute**
+**How to Contribute**
 1. **Fork the repository** and create a feature branch
 2. **Follow existing patterns** in `.claude/commands/` and `.propel/`
 3. **Test your changes** with the validation commands
 4. **Update documentation** and add examples
 5. **Submit a pull request** with clear description
 
-**🔧 Development Guidelines**
+**Development Guidelines**
 - Commands or agents are Markdown files with specific structure. Refer to Claude code documentation for further details.
 - Templates ensure consistent output format
 - Best practices prevent common pitfalls
 - All contributions must include comprehensive documentation
-
-## 📞 Support & Community
-
-- **🐛 Report Issues**: [GitHub Issues](https://github.com/anthropics/claude-code/issues)
-- **💬 Discussions**: PropelIQ patterns and use cases
-- **📖 Documentation**: Comprehensive guides in `.propel/`
-- **🛠️ Troubleshooting**: [troubleshooting_guide.md](.propel/gotchas/troubleshooting_guide.md)
-
----
-
-**🚀 Ready to transform your development workflow?**  
-
-**[⬆️ Back to top](#propeliq-)** • **[📖 View Documentation](.propel/)** • **[🐛 Report Issues](https://github.com/anthropics/claude-code/issues)**
 
 ---
 

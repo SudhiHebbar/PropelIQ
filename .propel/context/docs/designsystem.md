@@ -1,3 +1,3 @@
 # Placeholder: designsystem
 
-This file will contain the output from /generate-requirements.
+This file will contain the design system output from /generate-requirements when UI impact is identified.

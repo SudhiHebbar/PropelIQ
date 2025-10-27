@@ -17,7 +17,7 @@ Implement features, fix bugs, or complete development tasks using comprehensive 
 
 *** MANDATORY VALIDATIONS ***
 - Load and comprehend the complete task file before starting implementation
-- Understand all context by reviewing Docs/Spec.md, Docs/Design.md, and existing codebase
+- Understand all context by reviewing docs/spec.md, docs/design.md, and existing codebase
 - Verify task completion status - terminate if already completed with "All tasks were implemented"
 - Follow all task instructions and extend research when additional context is needed
 - Update task file sections based on current codebase state and implementation progress
@@ -106,12 +106,12 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 - Update task understanding based on current codebase state
 
 **Context Gathering**
-- Review Docs/Spec.md, Docs/CodeAnalysis.md and Docs/Design.md for comprehensive understanding
-- **Load Design Reference**: Read `Context/Docs/DesignReference.md` and extract design context for task's user stories (UI tasks only)
-- **Extract Visual Specifications**: Load Figma URLs OR design images from DesignReference.md sections
-- **Parse Design Tokens**: Extract colors, typography, spacing from DesignReference.md for implementation
-- **Load Component Mappings**: Use design-to-code mappings from DesignReference.md
-- **Validation Criteria**: Extract pixel-perfect requirements from DesignReference.md validation sections
+- Review docs/spec.md, docs/codeanalysis.md and docs/design.md for comprehensive understanding
+- **Load Design Reference**: Read `.propel/context/docs/designsystem.md` and extract design context for task's user stories (UI tasks only)
+- **Extract Visual Specifications**: Load Figma URLs OR design images from designsystem.md sections
+- **Parse Design Tokens**: Extract colors, typography, spacing from designsystem.md for implementation
+- **Load Component Mappings**: Use design-to-code mappings from designsystem.md
+- **Validation Criteria**: Extract pixel-perfect requirements from designsystem.md validation sections
 - Map visual components to existing code patterns (UI tasks only)
 - Identify design system tokens for consistent styling (UI tasks only)
 - Analyze existing codebase for patterns and integration points
@@ -136,11 +136,11 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 
 ### Phase 3: Systematic Implementation
 **Code Implementation**
-- **Reference Design Document**: Use Context/Docs/DesignReference.md as source of truth for visual specifications (UI tasks only)
-- Use Playwright MCP to implement pixel-perfect UI from DesignReference.md visual assets
-- Navigate to Figma URLs OR view design images loaded from DesignReference.md during implementation
-- Apply design tokens (colors, typography, spacing) extracted from DesignReference.md
-- Follow component mappings defined in DesignReference.md sections
+- **Reference Design Document**: Use .propel/context/docs/designsystem.md as source of truth for visual specifications (UI tasks only)
+- Use Playwright MCP to implement pixel-perfect UI from designsystem.md visual assets
+- Navigate to Figma URLs OR view design images loaded from designsystem.md during implementation
+- Apply design tokens (colors, typography, spacing) extracted from designsystem.md
+- Follow component mappings defined in designsystem.md sections
 - Execute implementation following TodoWrite plan systematically
 - Implement all required code following existing project patterns
 - Mark each completed todo task as [X] in the task file progressively
@@ -157,12 +157,12 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 - Run validation commands after each significant implementation step
 - Fix any failures immediately before proceeding
 - Re-run validations until all pass successfully
-- **Design Reference Validation**: Use Context/Docs/DesignReference.md as validation criteria source (UI tasks only)
-- Use Playwright MCP to capture screenshots of implemented UI against DesignReference.md specifications
-- Compare implementation against visual assets referenced in DesignReference.md (Figma OR images)
-- Validate design tokens match specifications defined in DesignReference.md
-- Check responsive behavior against breakpoints specified in DesignReference.md
-- Verify component implementations match mappings in DesignReference.md
+- **Design Reference Validation**: Use .propel/context/docs/designsystem.md as validation criteria source (UI tasks only)
+- Use Playwright MCP to capture screenshots of implemented UI against designsystem.md specifications
+- Compare implementation against visual assets referenced in designsystem.md (Figma OR images)
+- Validate design tokens match specifications defined in designsystem.md
+- Check responsive behavior against breakpoints specified in designsystem.md
+- Verify component implementations match mappings in designsystem.md
 - Use Context7 MCP for the review of implemented code against the design principles and coding guidelines
 - Update todo progress in real-time
 
@@ -202,12 +202,12 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 ### Completion Criteria
 - [ ] **MCP Critique Resolved**: All critical Gaps from `mcp__sequential_thinking__critique`/`reflect` are fixed or explicitly waived with rationale
 - [ ] **Context7 Alignment**: At least one validation pass confirms implemented patterns align with versioned guidance fetched via Context7
-- [ ] **Design Reference Compliance**: Implementation matches specifications in Context/Docs/DesignReference.md (UI tasks only)
-- [ ] **Visual Fidelity**: UI matches visual assets (Figma/images) referenced in DesignReference.md (UI tasks only)
-- [ ] **Design Token Accuracy**: All colors, typography, spacing applied per DesignReference.md specifications (UI tasks only)
-- [ ] **Component Mapping**: Implementation follows component mappings defined in DesignReference.md (UI tasks only)
-- [ ] **Responsive Validation**: All breakpoints behave per DesignReference.md specifications (UI tasks only)
-- [ ] **Pixel-Perfect Screenshots**: Playwright validation confirms implementation matches DesignReference.md criteria (UI tasks only)
+- [ ] **Design Reference Compliance**: Implementation matches specifications in .propel/context/docs/designsystem.md (UI tasks only)
+- [ ] **Visual Fidelity**: UI matches visual assets (Figma/images) referenced in designsystem.md (UI tasks only)
+- [ ] **Design Token Accuracy**: All colors, typography, spacing applied per designsystem.md specifications (UI tasks only)
+- [ ] **Component Mapping**: Implementation follows component mappings defined in designsystem.md (UI tasks only)
+- [ ] **Responsive Validation**: All breakpoints behave per designsystem.md specifications (UI tasks only)
+- [ ] **Pixel-Perfect Screenshots**: Playwright validation confirms implementation matches designsystem.md criteria (UI tasks only)
 - [ ] **Task Implementation**: All todo items in task file marked as completed [X]
 - [ ] **Code Quality**: Implementation follows existing project patterns and standards
 - [ ] **Testing**: Unit tests created/updated and all tests passing
@@ -241,7 +241,7 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 
 🚫 **MANDATORY**: AI must generate this table with measured values before task completion.
 
-**Task Type**: [FE/BE/DB/Integration/Docs/Infrastructure]
+**Task Type**: [FE/BE/DB/Integration/docs/Infrastructure]
 
 | # | Metric | Value | Production Gate | Notes |
 |---|--------|-------|-----------------|-------|

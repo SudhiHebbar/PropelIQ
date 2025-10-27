@@ -87,7 +87,7 @@ Create separate tasks for each development stream:
 
 ### Existing Task Analysis
 **Before creating new tasks:**
-1. Review `./Context/Tasks` folder for existing task patterns
+1. Review `./.propel/context/Tasks` folder for existing task patterns
 2. Understand current task structure and naming conventions
 3. Build dependency mapping with existing tasks
 4. Identify reusable components or patterns
@@ -100,7 +100,7 @@ Create separate tasks for each development stream:
 
 ### Test Script Development
 **Before creating test scripts:**
-1. Review `./Context/Tests` folder for existing test patterns
+1. Review `./.propel/context/tests` folder for existing test patterns
 2. Understand current testing framework and conventions
 3. Consider updating existing scripts for new enhancements
 4. Follow established test naming and organization patterns

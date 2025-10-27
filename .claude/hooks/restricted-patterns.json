@@ -22,7 +22,8 @@
     ".*\\.log$",
     ".*backup.*\\.sql$",
     ".*dump.*\\.sql$",
-    ".*\\.bak$"
+    ".*\\.bak$",
+    ".env"
   ],
   "blocked_directories": [
     "/etc",
@@ -39,11 +40,10 @@
     "~/.aws",
     "~/.azure",
     "~/.gcp"
+    
   ],
   "allowed_directories": [
-    "./Context",
-    "./References",
-    "./Templates",
+    "./.propel",
     "./.claude",
     "./src",
     "./lib",

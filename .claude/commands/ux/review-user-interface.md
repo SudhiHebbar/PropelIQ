@@ -79,7 +79,7 @@ Task(
     {% endif %}
     
     Screenshot Storage Requirements:
-    - Save ALL screenshots to Context/playwright/ directory
+    - Save ALL screenshots to .propel/context/playwright/ directory
     - Use descriptive naming convention: <feature>_<viewport>_<issue-type>_<timestamp>.png
     - Examples: checkout_mobile_alignment_20250912_143022.png, header_desktop_spacing_20250912_143022.png
     - Return full file paths for all screenshots in your report
@@ -126,12 +126,12 @@ Save the agent's comprehensive design review report to a timestamped file:
 
 ```bash
 # Create the report file with timestamp
-!`echo "$AGENT_REPORT" > "Context/ui-review/ui-review-${timestamp}.md"`
+!`echo "$AGENT_REPORT" > ".propel/context/ui-review/ui-review-${timestamp}.md"`
 ```
 
 ```bash
 # Confirm file was created
-!`ls -la Context/ui-review/ui-review-${timestamp}.md`
+!`ls -la .propel/context/ui-review/ui-review-${timestamp}.md`
 ```
 
 Return the report location and summary to the user:
@@ -139,8 +139,8 @@ Return the report location and summary to the user:
 ```
 UI Design Review Complete!
 
-Report saved to: Context/ui-review/ui-review-${timestamp}.md
-Screenshots saved to: Context/playwright/
+Report saved to: .propel/context/ui-review/ui-review-${timestamp}.md
+Screenshots saved to: .propel/context/playwright/
 
 The agent has provided a comprehensive design review report with categorized findings and screenshot references.
 ```

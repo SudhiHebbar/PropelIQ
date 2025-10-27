@@ -41,10 +41,8 @@ def load_restricted_patterns():
                 "/var/log"
             ],
             "allowed_directories": [
-                "./Context",
-                "./References",
-                "./Templates",
-                "./.claude"
+                "./.claude",
+                "./.propel"
             ]
         }
 
