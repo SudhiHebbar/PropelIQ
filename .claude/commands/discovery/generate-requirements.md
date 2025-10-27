@@ -247,9 +247,9 @@ Base all spec on `.propel/templates/requirement_base.md` for consistency and com
 
 **Primary File**: `.propel/context/docs/spec.md`
 
-**Design Reference File**: `.propel/context/docs/DesignReference.md` (only when UI impact exists)
+**Design Reference File**: `.propel/context/docs/designsystem.md` (only when UI impact exists)
 
-**IMPORTANT**: Generate spec.md as primary output. Generate DesignReference.md ONLY when requirements include UI changes.
+**IMPORTANT**: Generate spec.md as primary output. Generate designsystem.md ONLY when requirements include UI changes.
 
 **spec.md Document Structure**:
 - Executive summary with business context
@@ -261,18 +261,18 @@ Base all spec on `.propel/templates/requirement_base.md` for consistency and com
 - Implementation roadmap and priorities
 - Success metrics and validation criteria
 
-**DesignReference.md Generation (UI Impact Only)**:
+**designsystem.md Generation (UI Impact Only)**:
 1. **Assess UI Impact**: Determine if any user stories require UI changes
 2. **Generate Design Document**: Use `.propel/templates/design_reference_base.md` as foundation
 3. **Populate Design Assets**: Fill template with actual Figma URLs OR design images from input
 4. **Create User Story Mappings**: Map each UI-impacting user story to design assets
-5. **Link from spec.md**: Reference DesignReference.md sections in user stories
+5. **Link from spec.md**: Reference designsystem.md sections in user stories
 6. **Organize Assets**: Create folder structure in `.propel/context/Design/US-XXX/` for each story
 
 **Example User Story Linking in spec.md**:
 ```yaml
 ## User Story: US-001 - User Login Interface
-**Design Reference**: [.propel/context/docs/DesignReference.md#US-001](.propel/context/docs/DesignReference.md#US-001)
+**Design Reference**: [.propel/context/docs/designsystem.md#US-001](.propel/context/docs/designsystem.md#US-001)
 **Visual Assets**:
   - Figma: https://figma.com/file/xyz?node-id=2:45
   - OR Images: .propel/context/Design/US-001/login_mockup.png
@@ -286,7 +286,7 @@ Base all spec on `.propel/templates/requirement_base.md` for consistency and com
 - [ ] **Stakeholder Coverage**: All stakeholder needs identified and addressed
 - [ ] **Technical Feasibility**: Requirements validated against technical constraints
 - [ ] **Story Sizing**: User stories exceeding 20 hours decomposed into smaller, manageable units
-- [ ] **Design Reference Generated**: DesignReference.md created and populated (when UI impact exists)
+- [ ] **Design Reference Generated**: designsystem.md created and populated (when UI impact exists)
 - [ ] **User Story Design Links**: All UI-impacting stories linked to design references
 - [ ] **Visual Asset Organization**: Design assets organized in .propel/context/Design/US-XXX/ structure
 - [ ] **Design-to-Story Mapping**: Clear mapping between user stories and design assets

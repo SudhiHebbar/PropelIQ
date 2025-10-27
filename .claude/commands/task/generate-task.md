@@ -76,9 +76,9 @@ The AI agent receives only your research findings and training data. Since agent
 Optimize for success probability over execution speed. Spawn multiple agents and subagents using batch tools for comprehensive analysis.
 
 ### 1. Codebase Intelligence Gathering (Sequential Thinking)
-- **Design Reference Analysis**: Read `.propel/context/docs/DesignReference.md` to extract design context for relevant user stories (UI tasks only)
+- **Design Reference Analysis**: Read `.propel/context/docs/designsystem.md` to extract design context for relevant user stories (UI tasks only)
 - **User Story Design Mapping**: Identify which user stories this task relates to and extract their design references
-- **Visual Asset Loading**: Load Figma URLs OR design images referenced in DesignReference.md for this task's user stories
+- **Visual Asset Loading**: Load Figma URLs OR design images referenced in designsystem.md for this task's user stories
 - **Pattern Discovery**: Search for similar features/implementations in existing codebase
 - **Impact Analysis**: Identify existing features requiring modification to maintain functionality
 - **Reference Mapping**: Document files and patterns to reference in task design
@@ -142,23 +142,23 @@ Package comprehensive context for AI agent success:
 - Error handling patterns used in the project
 
 **🎨 Design Context (UI Impact Only)**
-- **Design Reference Source**: .propel/context/docs/DesignReference.md#US-XXX (extracted for this task's user stories)
-- **Visual References**: Figma URLs OR design images loaded from DesignReference.md
+- **Design Reference Source**: .propel/context/docs/designsystem.md#US-XXX (extracted for this task's user stories)
+- **Visual References**: Figma URLs OR design images loaded from designsystem.md
 - **Design System Tokens**: Colors, typography, spacing extracted from design reference document
-- **Component Specifications**: Visual asset references from DesignReference.md sections
+- **Component Specifications**: Visual asset references from designsystem.md sections
 - **Interaction Patterns**: Animation requirements from design reference document
-- **Responsive Design**: Breakpoints and behaviors from DesignReference.md
+- **Responsive Design**: Breakpoints and behaviors from designsystem.md
 
-**📸 Visual Assets (Loaded from DesignReference.md)**
+**📸 Visual Assets (Loaded from designsystem.md)**
 - **Screenshot References**: UI validation assets from .propel/context/Design/US-XXX/ folders
-- **Component Documentation**: Visual specs from DesignReference.md component mappings
+- **Component Documentation**: Visual specs from designsystem.md component mappings
 - **Design-to-Code Mapping**: Guidelines extracted from design reference document
-- **Pixel-Perfect Requirements**: Implementation criteria from DesignReference.md validation sections
+- **Pixel-Perfect Requirements**: Implementation criteria from designsystem.md validation sections
 
 **Example Task Design Reference**:
 ```yaml
 Design Context:
-  source_document: .propel/context/docs/DesignReference.md#US-001
+  source_document: .propel/context/docs/designsystem.md#US-001
   user_story: US-001 - User Login Interface
   visual_references:
     figma_url: https://figma.com/file/xyz?node-id=2:45
@@ -293,12 +293,12 @@ Design Context:
 - [ ] **Story Traceability**: Each task references parent US_XXX appropriately
 - [ ] **Context7 References**: Version-pinned docs (IDs + links) are included for all critical patterns the task requires.
 - [ ] **Sequential Plan Checklist**: A traceability-friendly checklist derived via `mcp__sequential_thinking__plan` is embedded for execution/analysis.
-- [ ] **Design Reference Loaded**: .propel/context/docs/DesignReference.md read and design context extracted (UI tasks only)
-- [ ] **User Story Design Mapping**: Task linked to specific user story design sections from DesignReference.md
-- [ ] **Visual Assets Referenced**: Figma URLs OR design images loaded from DesignReference.md (UI tasks only)
-- [ ] **Design Tokens Extracted**: Colors, typography, spacing from DesignReference.md included in task
-- [ ] **Component Mapping**: Design components from DesignReference.md mapped to code implementations
-- [ ] **Validation Criteria Defined**: Pixel-perfect requirements from DesignReference.md included
+- [ ] **Design Reference Loaded**: .propel/context/docs/designsystem.md read and design context extracted (UI tasks only)
+- [ ] **User Story Design Mapping**: Task linked to specific user story design sections from designsystem.md
+- [ ] **Visual Assets Referenced**: Figma URLs OR design images loaded from designsystem.md (UI tasks only)
+- [ ] **Design Tokens Extracted**: Colors, typography, spacing from designsystem.md included in task
+- [ ] **Component Mapping**: Design components from designsystem.md mapped to code implementations
+- [ ] **Validation Criteria Defined**: Pixel-perfect requirements from designsystem.md included
 - [ ] **Context Completeness**: All necessary implementation context included and accessible
 - [ ] **Task Scope Validation**: Tasks are under 6 hours and properly split by technology stack when applicable
 - [ ] **Technology Stack Separation**: Frontend, backend, database, and infrastructure tasks are independently manageable
