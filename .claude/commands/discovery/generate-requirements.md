@@ -251,14 +251,6 @@ Base all spec on `.propel/templates/requirement_base.md` for consistency and com
 
 **IMPORTANT**: Generate spec.md as primary output. Generate designsystem.md ONLY when requirements include UI changes.
 
-**User Story Generation:**
-After generating spec.md, use the `/generate-userstory` command to create detailed user stories from the epics defined in the specification.
-
-**Command Usage:**
-- `/generate-userstory` - Generate stories for all epics in spec.md
-- `/generate-userstory EP-001` - Generate stories for a specific epic
-- `/generate-userstory scope_file.md` - Generate stories from scope file
-
 **spec.md Document Structure**:
 - Executive summary with business context
 - Comprehensive stakeholder analysis
