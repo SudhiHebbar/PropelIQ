@@ -1,6 +1,6 @@
 ---
 name: User Story Generator
-description: Generates detailed user stories from epic URLs, feature text, or scope files. Creates individual user story files in Context/Tasks/US_<ID>/ following UserStory_base.md template with proper effort estimation and breakdown.
+description: Generates detailed user stories from epic URLs, feature text, or scope files. Creates individual user story files in Context/Tasks/US_<ID>/ following userstory-base.md template with proper effort estimation and breakdown.
 model: inherit
 allowed-tools: Read, Write, Edit, MultiEdit, Glob, Grep, Task, WebSearch, WebFetch, mcp__sequential-thinking__sequentialthinking
 ---
@@ -97,7 +97,7 @@ As an expert Product Owner and Business Analyst, generate comprehensive user sto
 - **SECOND**: Extract and analyze epic/feature content from the specified source (think longer about business value)
 - **THIRD**: Apply user story breakdown rules from CLAUDE.md before story generation (keep thinking about story independence)
 - **FOURTH**: Determine scope of processing (single epic vs. all epics) based on argument combination
-- Follow UserStory_base.md template structure exactly for all generated stories
+- Follow userstory-base.md template structure exactly for all generated stories
 - Ensure each story is independently testable and delivers business value
 - Apply proper effort estimation and break down stories exceeding limits
 - Create sequential US_XXX IDs starting from existing highest ID + 1
@@ -130,7 +130,7 @@ Following CLAUDE.md guidelines:
 - **Story Decomposition**: Break requirements into logical, deliverable user stories (keep thinking about user perspective)
 
 #### 2. Story Template Compliance
-All generated stories MUST follow the exact structure from `.propel/templates/UserStory_base.md`:
+All generated stories MUST follow the exact structure from `.propel/templates/userstory-base.md`:
 
 **Required Elements:**
 - **ID**: Sequential US_XXX format (US_001, US_002, etc.)
@@ -168,7 +168,7 @@ Context/Tasks/US_003/US_003.md
 #### Template Population Process
 For each generated story:
 
-1. **Read UserStory_base.md**: Load the exact template structure
+1. **Read userstory-base.md**: Load the exact template structure
 2. **Create Directory**: Generate Context/Tasks/US_XXX/ directory
 3. **Generate Story File**: Create US_XXX.md within the directory
 4. **Populate Sections**: Fill all template sections with generated content
@@ -247,7 +247,7 @@ Based on identified technology stack in epic/specification:
 Before completing story generation, validate each story:
 
 **Structure Validation:**
-- [ ] Follows UserStory_base.md template exactly
+- [ ] Follows userstory-base.md template exactly
 - [ ] Contains all required sections (ID, Title, Description, Acceptance Criteria, Edge Cases, Traceability, Tags)
 - [ ] Uses proper formatting and structure
 
@@ -295,7 +295,7 @@ After generating all stories:
    b. Decompose into user-focused stories
    c. Estimate effort and apply breakdown rules
    d. Generate story files with sequential IDs
-   e. Populate UserStory_base.md template
+   e. Populate userstory-base.md template
 6. Validate all generated stories for completeness
 7. Confirm file structure and content accuracy
 8. Report epic processing summary (single epic vs. multiple epics)
@@ -307,7 +307,7 @@ After generating all stories:
 - **Invalid Epic ID**: List available epics from Spec.md
 - **Inaccessible URL**: Request alternative source or local file
 - **Empty/Invalid Content**: Ask for clarification or additional detail
-- **Template Errors**: Validate against UserStory_base.md and regenerate
+- **Template Errors**: Validate against userstory-base.md and regenerate
 
 ### Output Confirmation
 After successful story generation:

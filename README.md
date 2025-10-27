@@ -212,7 +212,7 @@ PropelIQ/
 - **Sequential IDs**: Consistent US_001, US_002, task_001, task_002 numbering
 
 **3. **Quality Assurance Integration****
-- **Template Compliance**: All outputs follow UserStory_base.md and task_base.md templates
+- **Template Compliance**: All outputs follow userstory-base.md and task_base.md templates
 - **Validation Gates**: Built-in quality checks at each level
 - **Acceptance Criteria**: Given/When/Then format for all user stories
 

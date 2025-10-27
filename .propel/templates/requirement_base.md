@@ -288,7 +288,7 @@ Notes:
 ## User Story Generation for Epics
 
 ### Story Generation Requirements
-After completing the Epics table, automatically generate detailed user stories for each epic following the guidelines in CLAUDE.md and using the UserStory_base.md template.
+After completing the Epics table, automatically generate detailed user stories for each epic following the guidelines in CLAUDE.md and using the userstory-base.md template.
 
 **Story Generation Rules:**
 - **Story Size Limit**: Maximum 5 story points per story (1 story point = 6 hours of effort)
@@ -307,7 +307,7 @@ For each Epic in the table:
 3. **Effort Estimation**: Estimate story points and break down stories exceeding 5 points
 4. **Technical Considerations**: Include data requirements and core entities in story creation
 5. **File Creation**: Generate individual story files at `Context/Tasks/US_<ID>/US_<ID>.md`
-6. **Template Compliance**: Use the `.propel/templates/UserStory_base.md` template structure
+6. **Template Compliance**: Use the `.propel/templates/userstory-base.md` template structure
 
 ### Story File Generation Instructions
 **CRITICAL**: After generating the Epics table, automatically create user story files:
@@ -322,7 +322,7 @@ Context/Tasks/US_003/US_003.md
 
 **Story ID Format:** US_001, US_002, US_003 (sequential numbering across all epics)
 
-**Template Usage:** Each story file MUST follow the exact structure in `.propel/templates/UserStory_base.md`
+**Template Usage:** Each story file MUST follow the exact structure in `.propel/templates/userstory-base.md`
 
 **Required Story Elements:**
 - **ID**: Unique sequential ID (US_001, US_002, etc.)
@@ -360,7 +360,7 @@ When no codebase URL is provided, create EP-TECH with stories for:
 
 ### Quality Assurance for User Stories
 Before completing story generation, validate:
-- [ ] All stories follow UserStory_base.md template exactly
+- [ ] All stories follow userstory-base.md template exactly
 - [ ] Each story has clear, testable acceptance criteria
 - [ ] Story effort does not exceed 5 story points (30 hours)
 - [ ] All functional and non-functional requirements are covered
