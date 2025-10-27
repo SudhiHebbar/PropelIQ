@@ -153,8 +153,8 @@ Think deeply about business context - keep thinking about stakeholder needs:
 ## Spec Generation Framework
 
 ### Template Foundation
-Base all spec on `References/Templates/requirement_base.md` for consistency and completeness.
-**Design specifications** use `References/Templates/design_reference_base.md` only when UI impact is identified.
+Base all spec on `.propel/templates/requirement_base.md` for consistency and completeness.
+**Design specifications** use `.propel/templates/design_reference_base.md` only when UI impact is identified.
 
 ### Critical Context Integration
 
@@ -263,7 +263,7 @@ Base all spec on `References/Templates/requirement_base.md` for consistency and 
 
 **DesignReference.md Generation (UI Impact Only)**:
 1. **Assess UI Impact**: Determine if any user stories require UI changes
-2. **Generate Design Document**: Use `References/Templates/design_reference_base.md` as foundation
+2. **Generate Design Document**: Use `.propel/templates/design_reference_base.md` as foundation
 3. **Populate Design Assets**: Fill template with actual Figma URLs OR design images from input
 4. **Create User Story Mappings**: Map each UI-impacting user story to design assets
 5. **Link from Spec.md**: Reference DesignReference.md sections in user stories
@@ -353,7 +353,7 @@ Score generated using detailed metrics (1-100% scale):
   section: [Architecture constraints and capabilities]
   critical: [Key limitations affecting requirements]
 
-- reference: [References/Gotchas/specific_file.md]
+- reference: [.propel/gotchas/specific_file.md]
   why: [Technology-specific constraints and guidelines]
 
 - stakeholder: [Stakeholder interview notes/feedback]

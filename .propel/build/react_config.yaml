@@ -14,7 +14,7 @@ Type Checker: TypeScript
 ### Development Features
 - **Path Aliases**: Clean imports with @ prefixes
 - **CSS Modules**: Scoped styling with automatic class name generation
-- **SCSS Support**: Advanced styling features and mixins  
+- **SCSS Support**: Advanced styling features and mixins
 - **Component Variants**: Systematic component styling with CSS classes
 - **Type Safety**: Full TypeScript configuration
 - **Modern Patterns**: React 19 best practices
@@ -39,7 +39,7 @@ $project-directory/                          # Project root folder
     │   ├── features/                # Feature slices (VSA)
     │   │   └── user-profile/
     │   │       ├── components/      # Feature components
-    │   │       ├── hooks/          # Feature hooks  
+    │   │       ├── hooks/          # Feature hooks
     │   │       ├── services/       # Feature services
     │   │       ├── types/          # Feature types
     │   │       ├── styles/         # Feature-specific styles
@@ -129,7 +129,7 @@ TESTING:
 ```
 
 ## Reference Files
-- Gotchas: `./Gotchas/react_gotchas.md`
-- Patterns: `./Gotchas/frontend_best_practices.md`
-- Anti-patterns: `./Gotchas/anti_patterns.md`
-- Validation: `./Gotchas/validation_commands.md`
+- Gotchas: `.propel/gotchas/react_gotchas.md`
+- Patterns: `.propel/gotchas/frontend_best_practices.md`
+- Anti-patterns: `.propel/gotchas/anti_patterns.md`
+- Validation: `.propel/gotchas/validation_commands.md`

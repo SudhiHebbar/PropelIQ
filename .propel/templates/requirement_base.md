@@ -307,7 +307,7 @@ For each Epic in the table:
 3. **Effort Estimation**: Estimate story points and break down stories exceeding 5 points
 4. **Technical Considerations**: Include data requirements and core entities in story creation
 5. **File Creation**: Generate individual story files at `Context/Tasks/US_<ID>/US_<ID>.md`
-6. **Template Compliance**: Use the `References/Templates/UserStory_base.md` template structure
+6. **Template Compliance**: Use the `.propel/templates/UserStory_base.md` template structure
 
 ### Story File Generation Instructions
 **CRITICAL**: After generating the Epics table, automatically create user story files:
@@ -322,7 +322,7 @@ Context/Tasks/US_003/US_003.md
 
 **Story ID Format:** US_001, US_002, US_003 (sequential numbering across all epics)
 
-**Template Usage:** Each story file MUST follow the exact structure in `References/Templates/UserStory_base.md`
+**Template Usage:** Each story file MUST follow the exact structure in `.propel/templates/UserStory_base.md`
 
 **Required Story Elements:**
 - **ID**: Unique sequential ID (US_001, US_002, etc.)

@@ -158,9 +158,9 @@ Template optimized for AI agents to implement bug fixes with comprehensive triag
 ## References
 
 ### Universal Standards & Principle References
-- [anti_pattern.md](../References/Gotchas/anti_patterns.md) - [Specific anti-patterns to avoid]
-- [anti_redundancy_rules.md](../References/Gotchas/anti_redundancy_rules.md) - [Code efficiency guidelines]
-- [general_coding_standards.md](../References/Gotchas/general_coding_standards.md) - [Code quality standards]
+- [anti_pattern.md](../gotchas/anti_patterns.md) - [Specific anti-patterns to avoid]
+- [anti_redundancy_rules.md](../gotchas/anti_redundancy_rules.md) - [Code efficiency guidelines]
+- [general_coding_standards.md](../gotchas/general_coding_standards.md) - [Code quality standards]
 
 ### Project Context References
 - [Spec.md file in '/Context/Docs' folder]

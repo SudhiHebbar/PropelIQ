@@ -208,8 +208,8 @@ TESTING:
 ```
 
 ## Reference Files
-- Gotchas: `./Gotchas/dotnet_gotchas.md`
-- Patterns: `./Gotchas/dotnet_patterns.md`
-- Anti-patterns: `./Gotchas/anti_patterns.md`
-- Validation: `./Gotchas/validation_commands.md`
-- Database: `./Gotchas/database_best_practices.md`
+- Gotchas: `.propel/gotchas/dotnet_gotchas.md`
+- Patterns: `.propel/gotchas/dotnet_patterns.md`
+- Anti-patterns: `.propel/gotchas/anti_patterns.md`
+- Validation: `.propel/gotchas/validation_commands.md`
+- Database: `.propel/gotchas/database_best_practices.md`

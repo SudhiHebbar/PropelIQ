@@ -130,7 +130,7 @@ Following CLAUDE.md guidelines:
 - **Story Decomposition**: Break requirements into logical, deliverable user stories (keep thinking about user perspective)
 
 #### 2. Story Template Compliance
-All generated stories MUST follow the exact structure from `References/Templates/UserStory_base.md`:
+All generated stories MUST follow the exact structure from `.propel/templates/UserStory_base.md`:
 
 **Required Elements:**
 - **ID**: Sequential US_XXX format (US_001, US_002, etc.)

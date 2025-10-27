@@ -68,7 +68,7 @@ Optimize for implementation success and code quality over execution speed. Use s
 
 ### Reference Materials Analysis
 - **Gotcha Loading**: Follow Conditional Gotcha Loading Strategy defined in `.claude/CLAUDE.md` for optimized, context-aware guidance
-- **Design References**: Load `References/Templates/design_reference_base.md` for visual validation criteria (UI tasks only)
+- **Design References**: Load `.propel/templates/design_reference_base.md` for visual validation criteria (UI tasks only)
 - **Codebase Patterns**: Follow existing code organization, naming conventions, and architectural decisions
 - **Documentation Standards**: Maintain consistency with existing documentation and inline comments
 - **Testing Patterns**: Follow established testing strategies and validation approaches

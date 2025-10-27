@@ -91,7 +91,7 @@ Execute comprehensive triage before creating any bug fixing tasks:
 ### Phase 2: Fix Task Generation
 
 #### Task Structure Requirements
-- Base task structure on `References/Templates/triage_base.md`
+- Base task structure on `.propel/templates/triage_base.md`
 - Include complete triage summary in task description
 - Define clear, sequential fix implementation steps
 - Specify regression test requirements
