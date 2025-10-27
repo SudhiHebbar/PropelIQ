@@ -100,7 +100,7 @@ Create separate tasks for each development stream:
 
 ### Test Script Development
 **Before creating test scripts:**
-1. Review `./.propel/context/Tests` folder for existing test patterns
+1. Review `./.propel/context/tests` folder for existing test patterns
 2. Understand current testing framework and conventions
 3. Consider updating existing scripts for new enhancements
 4. Follow established test naming and organization patterns

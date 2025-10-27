@@ -1,40 +1,40 @@
-# PropelIQ 🚀
+# PropelIQ
 
 > **AI-driven velocity from idea to deploy**
 
 An enterprise-grade framework that combines **Claude Code**, **specialized AI agents**, and **proven templates** to accelerate high-quality software development across multiple technology stacks.
 
-## 📋 Table of Contents
+##  Table of Contents
 
-### 🚀 **Getting Started**
+###  **Getting Started**
 [Quick Start](#-quick-start) • [How It Works](#️-how-propeliq-works) • [Architecture](#️-architecture) • [Technology Stacks](#️-supported-technology-stacks)
 
-### 🛠️ **Development**  
+###  **Development**  
 [Commands & Workflows](#-commands--workflows) • [Specialized Agents](#-specialized-agents) • [Examples](#-examples--use-cases) • [Quality Standards](#-quality-standards)
 
-### 📚 **Resources**
+###  **Resources**
 [Documentation](#-documentation--resources) • [FAQ](#-frequently-asked-questions) • [Contributing](#-contributing) • [Support](#-support--community)
 
-## 🎯 Why Choose PropelIQ?
+## Why Choose PropelIQ?
 
 **From idea to production in minutes, not hours:**
 
 | Traditional Development | PropelIQ | Time Saved |
 |------------------------|-------------------|------------|
-| Manual project setup | `/generate-task` + `/execute-task` | **70%** |
-| Writing test plans | `/generate-automation-test` | **60%** |
-| Code reviews | `/review-pr` with AI analysis | **70%** |
-| Requirements analysis | `/analyze-codebase` + `/generate-requirements` | **75%** |
+| Manual project setup | `/generate-task` + `/execute-task` | **60%** |
+| Writing test plans | `/generate-automation-test` | **50%** |
+| Code reviews | `/review-pr` with AI analysis | **60%** |
+| Requirements analysis | `/analyze-codebase` + `/generate-requirements` | **50%** |
 
-### 🚀 Core Value Propositions
+### Core Value Propositions
 
-**🎯 Rapid Prototyping** - Go from user story to working prototype in few hours  
-**🔍 Intelligent Analysis** - Deep codebase understanding with C4 architecture diagrams  
-**🧪 Test-First Development** - Automated Playwright test generation from requirements  
-**⚡ Production Ready** - Enterprise patterns with SOLID principles and security best practices  
-**🤖 AI-Enhanced Workflows** - 5 specialized agents for targeted development assistance
+**Rapid Prototyping** - Go from user story to working prototype in few hours  
+**Intelligent Analysis** - Deep codebase understanding with C4 architecture diagrams  
+**Test-First Development** - Automated Playwright test generation from requirements  
+**Production Ready** - Enterprise patterns with SOLID principles and security best practices  
+**AI-Enhanced Workflows** - 5 specialized agents for targeted development assistance
 
-## 📋 Prerequisites
+## Prerequisites
 
 ### Required Tools
 - **Claude Code**: Latest version (https://www.anthropic.com/claude-code)
@@ -48,7 +48,7 @@ An enterprise-grade framework that combines **Claude Code**, **specialized AI ag
 - **GitHub CLI**: For GitHub integration (if using gitops commands)
 - **VS Code or Cursor**: Optional IDEs for integration with Claude Code
 
-## 🔒 Claude Code Security Configuration
+## Claude Code Security Configuration
 
 This PropelIQ uses Claude Code security hooks to restrict access to sensitive files and prevent accidental exposure of production data.
 
@@ -76,12 +76,12 @@ This PropelIQ uses Claude Code security hooks to restrict access to sensitive fi
 
 **Note**: `.claude/settings.local.json` is gitignored and will not be committed to the repository. This ensures your personal security configurations remain private while allowing team collaboration.
 
-## 🏗️ Architecture
+## Architecture
 
 ![Alt text](./.propel/media/architecture.png "PropelIQ Architecture")
 
 
-### 📁 PropelIQ Structure
+### PropelIQ Structure
 
 ```
 PropelIQ/
@@ -109,7 +109,7 @@ PropelIQ/
 │   │   │   └── task_002_*.md  # More tasks for this story
 │   │   ├── us_002/            # Additional user story folder
 │   │   └── task_001_*.md      # General tasks (non-story)
-│   ├── test/                   # Generated test workflows
+│   ├── tests/                   # Generated test workflows
 │   ├── figma/                  # Design references
 │   ├── docs/                   # Documentation files
 │   │   ├── spec.md             # Generated requirements with epics
@@ -135,7 +135,7 @@ PropelIQ/
 └── README.md                   # This file
 ```
 
-### 📂 Key Directories
+### Key Directories
 
 <details>
 <summary><strong>.claude/</strong> - Claude Code configuration and AI agents</summary>
@@ -185,20 +185,20 @@ PropelIQ/
 
 </details>
 
-## 🚀 Enhanced Workflow Benefits
+## Enhanced Workflow Benefits
 
-### 📊 Epic → User Story → Task Hierarchy
+### Epic → User Story → Task Hierarchy
 
 **PropelIQ's structured approach delivers measurable improvements:**
 
 | **Traditional Approach** | **PropelIQ Approach** | **Improvement** |
 |---------------------------|------------------------|-----------------|
-| Manual requirement analysis | Auto-generated epics with mapped requirements | **75% faster** requirement processing |
+| Manual requirement analysis | Auto-generated epics with mapped requirements | **50% faster** requirement processing |
 | Ad-hoc user story creation | Structured us_XXX stories with acceptance criteria | **60% better** story quality and consistency |
-| Scattered task management | Organized us_XXX/task_*.md hierarchy | **80% better** traceability and organization |
-| Reactive quality assurance | Built-in INVEST principles and story validation | **70% fewer** requirement changes during development |
+| Scattered task management | Organized us_XXX/task_*.md hierarchy | **60% better** traceability and organization |
+| Reactive quality assurance | Built-in INVEST principles and story validation | **30% fewer** requirement changes during development |
 
-### 🎯 Key Workflow Advantages
+### Key Workflow Advantages
 
 **1. **Automatic Story Generation****
 - **Epic-driven**: Stories generated from epics with proper requirement mapping
@@ -220,7 +220,7 @@ PropelIQ/
 - **Manual Override**: Use `/generate-userstory` for additional story creation
 - **Multi-input Support**: Accept scope files, epic IDs, URLs, or direct text
 
-## ⚙️ Supported Technology Stacks
+## Supported Technology Stacks
 
 | Stack | Framework/Version | Features | Best Practices Doc |
 |-------|------------------|----------|--------------------|
@@ -234,9 +234,9 @@ PropelIQ/
 | **Cloud** | GoLang + Gin/Echo | High performance, Microservices | [General Coding Standards](.propel/gotchas/general_coding_standards.md) |
 | **Enterprise** | Java Spring Boot | Enterprise patterns, JPA | [General Coding Standards](.propel/gotchas/general_coding_standards.md) |
 
-> **📚 Comprehensive Coverage**: Each stack is supported by extensive documentation in `.propel/gotchas/` covering architecture patterns, security, performance, and testing strategies.
+> **Comprehensive Coverage**: Each stack is supported by extensive documentation in `.propel/gotchas/` covering architecture patterns, security, performance, and testing strategies.
 
-## 🛠️ How PropelIQ Works
+## How PropelIQ Works
 
 **The power of AI-driven development automation in 4 simple steps:**
 
@@ -246,13 +246,13 @@ PropelIQ/
 
 | Component | Role | Example |
 |-----------|------|---------|
-| **🎯 Commands** | Entry points for all operations | `/analyze-codebase`, `/generate-task`, `/execute-task` |
-| **🤖 Specialized Agents** | Domain-specific AI processing | Code analysis, task planning, code review, quick prototype |
-| **📋 Templates** | Consistent output structure | Requirements, designs, test plans, analysis reports |
-| **📚 Best Practices** | Quality assurance & standards | SOLID principles, security patterns, anti-patterns |
-| **🔌 MCP Servers** | External integrations | Context7, Playwright, GitHub, Azure DevOps |
+| **Commands** | Entry points for all operations | `/analyze-codebase`, `/generate-task`, `/execute-task` |
+| **Specialized Agents** | Domain-specific AI processing | Code analysis, task planning, code review, quick prototype |
+| **Templates** | Consistent output structure | Requirements, designs, test plans, analysis reports |
+| **Best Practices** | Quality assurance & standards | SOLID principles, security patterns, anti-patterns |
+| **MCP Servers** | External integrations | Context7, Playwright, GitHub, Azure DevOps |
 
-### 💡 Real-World Example: From User Story to Running Tests
+### Real-World Example: From User Story to Running Tests
 
 ```bash
 # 1. Start with a user story
@@ -290,27 +290,27 @@ individual memberships. The goal is to simplify the user experience, streamline 
 # Total time: 5-10 minutes vs 2-4 hours manually
 ```
 
-### 🎯 Quality Assurance Built-In
+### Quality Assurance Built-In
 
 Every generated artifact automatically includes:
 
-- **🔒 Security Best Practices** - OWASP Top 10 compliance, input validation
-- **⚡ Performance Patterns** - Caching strategies, optimization techniques  
-- **🧪 Test Coverage** - Unit, integration, and E2E test generation
-- **📖 Documentation** - Code comments, API docs, architecture diagrams
-- **🔍 Code Review** - Automated quality checks and validation
+- **Security Best Practices** - OWASP Top 10 compliance, input validation
+- **Performance Patterns** - Caching strategies, optimization techniques  
+- **Test Coverage** - Unit, integration, and E2E test generation
+- **Documentation** - Code comments, API docs, architecture diagrams
+- **Code Review** - Automated quality checks and validation
 
-## 🤖 Specialized Agents
+## Specialized Agents
 
 PropelIQ includes **5 AI agents** that provide targeted expertise for different aspects of software development:
 
 | Agent | Purpose | When to Use | Key Capabilities |
 |-------|---------|-------------|------------------|
-| **🔍 Code Analyzer** | Deep codebase analysis | Legacy code, technical debt, architecture review | C4 diagrams, security analysis, dependency mapping |
-| **👀 PR Code Reviewer** | Comprehensive code review | Pull requests, quality assurance | SOLID principles, vulnerability detection, compliance |
-| **🎨 Design Analyzer** | Architecture & design patterns | System design, modernization | Pattern recommendations, scalability assessment |
-| **🚀 MVP Builder** ⭐ | General rapid prototyping | Proof of concepts, standard prototyping | Quick prototyping, shadcn UI, lean validation |
-| **⚙️ Task Analyzer** | Post-implementation quality review | Quality assurance | Detec task implementation, gate review |
+| **Code Analyzer** | Deep codebase analysis | Legacy code, technical debt, architecture review | C4 diagrams, security analysis, dependency mapping |
+| **PR Code Reviewer** | Comprehensive code review | Pull requests, quality assurance | SOLID principles, vulnerability detection, compliance |
+| **Design Analyzer** | Architecture & design patterns | System design, modernization | Pattern recommendations, scalability assessment |
+| **MVP Builder**  | General rapid prototyping | Proof of concepts, standard prototyping | Quick prototyping, shadcn UI, lean validation |
+| **Task Analyzer** | Post-implementation quality review | Quality assurance | Detec task implementation, gate review |
 
 ### Agent Integration Patterns
 
@@ -326,7 +326,7 @@ PropelIQ includes **5 AI agents** that provide targeted expertise for different 
 @mvp-builder scope-document.md
 ```
 
-## 🚀 Quick Start
+## Quick Start
 
 ### 1. Get PropelIQ Framework
 
@@ -348,7 +348,7 @@ cd "PropelIQ"
 
 ### 2. Install MCP Servers
 
-**🔧 Environment Variables Setup (Required):**
+**Environment Variables Setup (Required):**
 
 Set these environment variables before installing MCP servers:
 
@@ -363,7 +363,7 @@ export GITHUB_PAT="your-github-personal-access-token"
 export AZ_DEVOPS_ORG="your-azure-devops-organization"
 ```
 
-**📦 Complete MCP Server Setup:**
+**Complete MCP Server Setup:**
 
 ```bash
 # Core MCP servers (Required)
@@ -381,7 +381,7 @@ claude mcp add azure-devops stdio npx -y @azure-devops/mcp ${AZ_DEVOPS_ORG} --sc
 claude mcp add shadcn stdio npx shadcn@latest mcp --scope project
 ```
 
-**🎯 MCP Server Requirements by Use Case:**
+**MCP Server Requirements by Use Case:**
 
 | Use Case | Required MCP Servers | Purpose |
 |----------|---------------------|---------|
@@ -396,7 +396,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 
 ### 3. Try Your First Command
 
-**🎯 Get started in under 2 minutes:**
+**Get started in under 2 minutes:**
 
 ```bash
 # Analyze an existing project by running the command from the root folder of the existing source code
@@ -408,7 +408,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 # → Generates comprehensive user stories in .propel/context/docs/spec.md
 ```
 
-**✅ Success indicators:**
+**Success indicators:**
 - New files appear in `.propel/context/` folder
 - Commands complete without errors
 - Generated content follows framework templates
@@ -417,12 +417,12 @@ After installation, restart Claude Code or reload the configuration to activate 
 
 ### 🔄 Common Development Workflows
 
-**🤔 Which workflow should you use?**
+**Which workflow should you use?**
 
 ![Alt text](./.propel/media/flowdiagram.png "PropelIQ Flow Diagram")
 
 <details>
-<summary><strong>🌱 Green-field Development</strong> - Building from scratch</summary>
+<summary><strong>Green-field Development</strong> - Building from scratch</summary>
 
 ```bash
 # 1. Create requirements with epics
@@ -457,7 +457,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 </details>
 
 <details>
-<summary><strong>🏗️ Brown-field Development</strong> - Working with existing code</summary>
+<summary><strong>Brown-field Development</strong> - Working with existing code</summary>
 
 ```bash
 # 1. Understand the codebase
@@ -488,7 +488,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 </details>
 
 <details>
-<summary><strong>🧪 Test-Driven Development</strong> - Tests first approach</summary>
+<summary><strong>Test-Driven Development</strong> - Tests first approach</summary>
 
 ```bash
 # 1. Generate comprehensive test workflows
@@ -507,7 +507,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 </details>
 
 <details>
-<summary><strong>🐛 Bug-fixing Workflow</strong> - Systematic issue resolution</summary>
+<summary><strong>Bug-fixing Workflow</strong> - Systematic issue resolution</summary>
 
 ```bash
 # 1. Triage bug and create fix task with root cause analysis
@@ -530,7 +530,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 </details>
 
 <details>
-<summary><strong>🚀 MVP Validation</strong> - Validate business hypotheses rapidly </summary>
+<summary><strong>MVP Validation</strong> - Validate business hypotheses rapidly </summary>
 
 ```bash
 # Direct agent invocation for MVP development (requires @mvp-builder)
@@ -544,7 +544,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 </details>
 
 <details>
-<summary><strong>🔍 Code Review & Quality</strong> - Maintain high quality standards</summary>
+<summary><strong>Code Review & Quality</strong> - Maintain high quality standards</summary>
 
 ```bash
 # Review pull requests
@@ -562,7 +562,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 
 </details>
 
-### 📖 Command Reference
+### Command Reference
 
 | Command | Purpose | Input | Output |
 |---------|---------|-------|--------|
@@ -581,7 +581,7 @@ After installation, restart Claude Code or reload the configuration to activate 
 | `@agent-mvp-builder` | Rapid MVP for hypothesis testing | Business hypothesis or scope doc | `mvp/` folder with working code |
 
 
-## ⚡ MCP Server Configuration
+## MCP Server Configuration
 
 MCP servers are configured project-wide in the root `.mcp.json` file. This configuration enables seamless integration with external tools and services.
 
@@ -666,18 +666,18 @@ The `.env` file is listed in `.gitignore` and should never be committed to the r
 4. Run `/agent` to verify the available agents.
 5. Use `@` (e.g. @agent-mvp-builder) to run the agents directly
 
-## 🏆 Quality Standards
+## Quality Standards
 
 **Built-in enterprise-grade quality assurance:**
 
-### 📊 Metrics & Standards
+### Metrics & Standards
 - **Maximum 500 lines** per source file for maintainability
 - **80% minimum test coverage** across all application layers  
 - **SOLID principles compliance** with automated validation
 - **Comprehensive documentation** for all public APIs and components
 - **Security-first approach** with OWASP Top 10 compliance
 
-### ✅ Validation Commands
+### Validation Commands
 ```bash
 # Universal quality checks built into all generated code
 npm run lint && npm test && npm build        # React/Node.js
@@ -685,17 +685,17 @@ dotnet format && dotnet test && dotnet build # .NET
 pytest --cov=src tests/ --cov-report=term   # Python
 ```
 
-### 🛡️ Built-in Protections
+### Built-in Protections
 - **Anti-pattern detection** and prevention across all technology stacks
 - **Performance optimization** patterns applied automatically  
 - **Security vulnerability** scanning and remediation suggestions
 - **Database optimization** with query analysis and indexing recommendations
 - **DevOps best practices** integration for CI/CD pipelines
 
-## ❓ Frequently Asked Questions
+## Frequently Asked Questions
 
 <details>
-<summary><strong>🚀 Getting Started</strong></summary>
+<summary><strong>Getting Started</strong></summary>
 
 **Q: Do I need Claude Code to use PropelIQ?**
 A: Yes, PropelIQ is specifically designed for Claude Code and requires it to function.
@@ -709,7 +709,7 @@ A: Absolutely! Use the brown-field workflow starting with `/analyze-codebase`.
 </details>
 
 <details>
-<summary><strong>🛠️ Development</strong></summary>
+<summary><strong>Development</strong></summary>
 
 **Q: Which technology stacks are fully supported?**  
 A: It support most of the technology stack.
@@ -720,7 +720,7 @@ A: Yes! Follow patterns in `.claude/commands/`.
 </details>
 
 <details>
-<summary><strong>⚡ Performance</strong></summary>
+<summary><strong>Performance</strong></summary>
 
 **Q: How much time does this save?**  
 A: **70-80% reduction** in setup time, **60% faster** code reviews, **75% faster** requirements analysis.
@@ -731,14 +731,14 @@ A: **2 minutes** to first command, **30 minutes** to productive workflows, **1 h
 </details>
 
 <details>
-<summary><strong>📋 Epics, User Stories & Tasks</strong></summary>
+<summary><strong>Epics, User Stories & Tasks</strong></summary>
 
 **Q: What's the difference between epics, user stories, and tasks?**
 A: **Epics** are high-level features mapped to requirements. **User Stories** (us_XXX) break epics into user-focused deliverables. **Tasks** break stories into 4-hour implementation units.
 
 </details>
 
-## 🤝 Contributing
+## Contributing
 
 ### Development Workflow
 1. Follow existing patterns in the codebase
@@ -767,12 +767,12 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (u
 6. Agents are defined as Markdown files with specific structure in `.claude/agents/`
 7. Ensure quality validation integration
 
-## 📚 Documentation & Resources
+## Documentation & Resources
 
-### 🎯 By User Journey
+### By User Journey
 
 <details>
-<summary><strong>🚀 Getting Started</strong> [New Users]</summary>
+<summary><strong>Getting Started</strong> [New Users]</summary>
 
 | Document | Purpose |
 |----------|---------|
@@ -783,7 +783,7 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (u
 </details>
 
 <details>
-<summary><strong>🛠️ Development Reference</strong> [Active Development]</summary>
+<summary><strong>Development Reference</strong> [Active Development]</summary>
 
 | Category | Document | Purpose |
 |----------|----------|---------|
@@ -794,7 +794,7 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (u
 </details>
 
 <details>
-<summary><strong>📖 Best Practices</strong> [Quality Assurance]</summary>
+<summary><strong>Best Practices</strong> [Quality Assurance]</summary>
 
 | Focus Area | Document |
 |------------|----------|
@@ -810,7 +810,7 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (u
 </details>
 
 <details>
-<summary><strong>⚙️ Advanced Configuration</strong> [Power Users]</summary>
+<summary><strong>Advanced Configuration</strong> [Power Users]</summary>
 
 | Component | Configuration |
 |-----------|---------------|
@@ -819,9 +819,9 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (u
 
 </details>
 
-## 💡 Examples & Use Cases
+## Examples & Use Cases
 
-### 🏪 E-commerce Platform (Brown-field)
+### E-commerce Platform (Brown-field)
 ```bash
 # 1. Analyze codebase for insights
 /analyze-codebase https://github.com/competitor/shop
@@ -850,7 +850,7 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (u
 /execute-task .propel/context/tasks/us_003/task_001_implement_cart.md
 ```
 
-### 🏢 Enterprise Dashboard (Green-field)
+### Enterprise Dashboard (Green-field)
 ```bash
 # 1. Quick prototype for client validation
 @mvp-builder "Real-time analytics dashboard with role-based access for client validation" or <scope document>
@@ -875,7 +875,7 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (u
 /execute-task .propel/context/tasks/us_001/task_001_implement_dashboard.md
 ```
 
-### 🔄 App Modernization (Legacy to Modern)
+### App Modernization (Legacy to Modern)
 ```bash
 # 1. Analyze existing codebase for insights (reverse-engineering)
 /analyze-codebase https://github.com/legacy-app/monolith
@@ -911,33 +911,20 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (u
 # → Modern microservices implementation with security best practices
 ```
 
-## 🤝 Contributing
+## Contributing
 
-**📝 How to Contribute**
+**How to Contribute**
 1. **Fork the repository** and create a feature branch
 2. **Follow existing patterns** in `.claude/commands/` and `.propel/`
 3. **Test your changes** with the validation commands
 4. **Update documentation** and add examples
 5. **Submit a pull request** with clear description
 
-**🔧 Development Guidelines**
+**Development Guidelines**
 - Commands or agents are Markdown files with specific structure. Refer to Claude code documentation for further details.
 - Templates ensure consistent output format
 - Best practices prevent common pitfalls
 - All contributions must include comprehensive documentation
-
-## 📞 Support & Community
-
-- **🐛 Report Issues**: [GitHub Issues](https://github.com/anthropics/claude-code/issues)
-- **💬 Discussions**: PropelIQ patterns and use cases
-- **📖 Documentation**: Comprehensive guides in `.propel/`
-- **🛠️ Troubleshooting**: [troubleshooting_guide.md](.propel/gotchas/troubleshooting_guide.md)
-
----
-
-**🚀 Ready to transform your development workflow?**  
-
-**[⬆️ Back to top](#propeliq-)** • **[📖 View Documentation](.propel/)** • **[🐛 Report Issues](https://github.com/anthropics/claude-code/issues)**
 
 ---
 
