@@ -208,13 +208,13 @@ Manual structured analysis:
 
 **Quality Scoring & Recommendations**
 - Generate comprehensive quality assessment using template section 8 metrics
-- Create 14-section structured report following References/Templates/analyze_code_base.md exactly
+- Create 14-section structured report following .propel/templates/analyze_code_base.md exactly
 - Populate all required tables, diagrams, and documentation sections
 - Validate report completeness against template requirements
 - Ensure business stakeholder and technical audience alignment
 
 **File Generation & Output**
-- Read References/Templates/analyze_code_base.md to get report structure
+- Read .propel/templates/analyze_code_base.md to get report structure
 - Use Write tool to create Context/Docs/CodeAnalysis.md with complete analysis
 - Replace all template placeholders with actual discovered data
 - Ensure all 14 sections contain real analysis results (no placeholders)
@@ -262,7 +262,7 @@ Manual structured analysis:
 ## Output Requirements
 
 **Report Structure:**
-- Follow `References/Templates/analyze_code_base.md` template structure
+- Follow `.propel/templates/analyze_code_base.md` template structure
 - Save comprehensive report to `Context/Docs/CodeAnalysis.md`
 - Include both executive summary and technical deep-dive sections
 
@@ -358,7 +358,7 @@ The agent automatically detects invocation method and adjusts behavior:
 ## Report Generation Workflow
 
 ### Template Population Process
-1. **Template Reading**: Use Read tool to load References/Templates/analyze_code_base.md structure
+1. **Template Reading**: Use Read tool to load .propel/templates/analyze_code_base.md structure
 2. **Structure Validation**: Verify all 14 sections are addressed in analysis
 3. **Content Mapping**: Map analysis findings to appropriate template sections
 4. **Diagram Generation**: Create required Mermaid diagrams for architecture visualization

@@ -65,7 +65,7 @@ During the research process, create clear tasks and spawn as many agents and sub
 
 ## Design Generation
 
-Using References/Templates/design_base.md as template:
+Using .propel/templates/design_base.md as template:
 
 **Design Validation (use sequential thinking MCP if available):**
 - Validate research completeness before design generation

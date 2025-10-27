@@ -116,12 +116,11 @@ PropelIQ/
 │   │   ├── Spec.md             # Generated requirements with epics
 │   │   ├── Design.md           # System design documents
 │   │   └── CodeAnalysis.md     # Codebase analysis results
-├── References/                 # Best practices library
-│   ├── Build/                  # Technology configurations
-│   ├── Gotchas/                # Best practices (15+ docs)
-│   ├── Templates/              # Output templates
-│   └── CLAUDE.md               # Additional context
-│   ├── analyze_code_base.md
+├── .propel/                    # Best practices library
+│   ├── build/                  # Technology configurations
+│   ├── gotchas/                # Best practices (15+ docs)
+│   ├── templates/              # Output templates
+│   └── analyze_code_base.md
 │   ├── analyze_task_base.md
 │   ├── automation_test_base.md
 │   ├── design_base.md
@@ -165,20 +164,13 @@ PropelIQ/
 </details>
 
 <details>
-<summary><strong>References/</strong> - Best practices and configuration library</summary>
+<summary><strong>.propel/</strong> - Best practices and configuration library</summary>
 
 | Directory | Purpose | Coverage |
 |-----------|---------|----------|
-| `Build/` | Technology configurations | React, .NET, Python, Node.js setups |
-| `Gotchas/` | Comprehensive best practices | 15+ documentation files covering all aspects |
-
-</details>
-
-<details>
-<summary><strong>References/Templates/</strong> - Structured output templates</summary>
-
-Ensures consistent, professional output across all generated artifacts:
-- Analysis reports • Requirements documents • Design specifications • Task plans • Test workflows
+| `build/` | Technology configurations | React, .NET, Python, Node.js setups |
+| `gotchas/` | Comprehensive best practices | 15+ documentation files covering all aspects |
+| `templates/` | Structured output templates | Analysis reports • Requirements • Design • Tasks • Tests |
 
 </details>
 
@@ -220,7 +212,7 @@ Ensures consistent, professional output across all generated artifacts:
 - **Sequential IDs**: Consistent US_001, US_002, task_001, task_002 numbering
 
 **3. **Quality Assurance Integration****
-- **Template Compliance**: All outputs follow UserStory_base.md and task_base.md templates
+- **Template Compliance**: All outputs follow userstory-base.md and task_base.md templates
 - **Validation Gates**: Built-in quality checks at each level
 - **Acceptance Criteria**: Given/When/Then format for all user stories
 
@@ -232,18 +224,18 @@ Ensures consistent, professional output across all generated artifacts:
 ## ⚙️ Supported Technology Stacks
 
 | Stack | Framework/Version | Features | Best Practices Doc |
-|-------|------------------|----------|--------------------| 
-| **Frontend** | React 19 + TypeScript + Vite | CSS Modules, Jest, ESLint | [React Gotchas](References/Gotchas/react_gotchas.md) |
-| **Backend** | .NET 8 + ASP.NET Core | Clean Architecture, EF Core, xUnit | [.NET Gotchas](References/Gotchas/dotnet_gotchas.md) |
-| **API** | Python FastAPI | Async patterns, Pydantic, pytest | [Backend Best Practices](References/Gotchas/backend_best_practices.md) |
-| **Web** | Python Django | ORM, Admin, Testing | [Backend Best Practices](References/Gotchas/backend_best_practices.md) |
-| **Server** | Node.js Express + TypeScript | RESTful APIs, Middleware | [Backend Best Practices](References/Gotchas/backend_best_practices.md) |
-| **SPA** | Angular + CLI | Components, Services, Guards | [Frontend Best Practices](References/Gotchas/frontend_best_practices.md) |
-| **Progressive** | Vue 3 + Composition API | Reactive, Composables | [Frontend Best Practices](References/Gotchas/frontend_best_practices.md) |
-| **Cloud** | GoLang + Gin/Echo | High performance, Microservices | [General Coding Standards](References/Gotchas/general_coding_standards.md) |
-| **Enterprise** | Java Spring Boot | Enterprise patterns, JPA | [General Coding Standards](References/Gotchas/general_coding_standards.md) |
+|-------|------------------|----------|--------------------|
+| **Frontend** | React 19 + TypeScript + Vite | CSS Modules, Jest, ESLint | [React Gotchas](.propel/gotchas/react_gotchas.md) |
+| **Backend** | .NET 8 + ASP.NET Core | Clean Architecture, EF Core, xUnit | [.NET Gotchas](.propel/gotchas/dotnet_gotchas.md) |
+| **API** | Python FastAPI | Async patterns, Pydantic, pytest | [Backend Best Practices](.propel/gotchas/backend_best_practices.md) |
+| **Web** | Python Django | ORM, Admin, Testing | [Backend Best Practices](.propel/gotchas/backend_best_practices.md) |
+| **Server** | Node.js Express + TypeScript | RESTful APIs, Middleware | [Backend Best Practices](.propel/gotchas/backend_best_practices.md) |
+| **SPA** | Angular + CLI | Components, Services, Guards | [Frontend Best Practices](.propel/gotchas/frontend_best_practices.md) |
+| **Progressive** | Vue 3 + Composition API | Reactive, Composables | [Frontend Best Practices](.propel/gotchas/frontend_best_practices.md) |
+| **Cloud** | GoLang + Gin/Echo | High performance, Microservices | [General Coding Standards](.propel/gotchas/general_coding_standards.md) |
+| **Enterprise** | Java Spring Boot | Enterprise patterns, JPA | [General Coding Standards](.propel/gotchas/general_coding_standards.md) |
 
-> **📚 Comprehensive Coverage**: Each stack is supported by extensive documentation in `References/Gotchas/` covering architecture patterns, security, performance, and testing strategies.
+> **📚 Comprehensive Coverage**: Each stack is supported by extensive documentation in `.propel/gotchas/` covering architecture patterns, security, performance, and testing strategies.
 
 ## 🛠️ How PropelIQ Works
 
@@ -742,13 +734,13 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (U
 
 ### Development Workflow
 1. Follow existing patterns in the codebase
-2. Reference `References/Gotchas/` for technology-specific guidance
+2. Reference `.propel/gotchas/` for technology-specific guidance
 3. Use validation commands before committing
 4. Ensure comprehensive test coverage
 
 ### Adding New Technology Stacks
-1. Create configuration in `References/Build/`
-2. Add best practices to `References/Gotchas/`
+1. Create configuration in `.propel/build/`
+2. Add best practices to `.propel/gotchas/`
 3. Update validation commands
 4. Include example implementations
 
@@ -777,8 +769,8 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (U
 | Document | Purpose |
 |----------|---------|
 | [README.md](README.md) | Complete PropelIQ overview |
-| [References/Gotchas/framework_methodology.md](References/Gotchas/framework_methodology.md) | Usage patterns and workflows |
-| [References/Gotchas/troubleshooting_guide.md](References/Gotchas/troubleshooting_guide.md) | Common setup issues and solutions |
+| [.propel/gotchas/framework_methodology.md](.propel/gotchas/framework_methodology.md) | Usage patterns and workflows |
+| [.propel/gotchas/troubleshooting_guide.md](.propel/gotchas/troubleshooting_guide.md) | Common setup issues and solutions |
 
 </details>
 
@@ -788,7 +780,7 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (U
 | Category | Document | Purpose |
 |----------|----------|---------|
 | **Commands** | `.claude/commands/*/` | All command implementations |
-| **Templates** | `References/Templates/*.md` | Output structure templates |
+| **Templates** | `.propel/templates/*.md` | Output structure templates |
 | **Generated** | `Context/*.md` | Your project analysis and specs |
 
 </details>
@@ -798,14 +790,14 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (U
 
 | Focus Area | Document |
 |------------|----------|
-| **Architecture** | [architecture_patterns.md](References/Gotchas/architecture_patterns.md) • [design-principles.md](References/Gotchas/design-principles.md) |
-| **Quality** | [anti_patterns.md](References/Gotchas/anti_patterns.md) • [validation_commands.md](References/Gotchas/validation_commands.md) |
-| **Frontend** | [frontend_best_practices.md](References/Gotchas/frontend_best_practices.md) • [react_gotchas.md](References/Gotchas/react_gotchas.md) |
-| **Backend** | [backend_best_practices.md](References/Gotchas/backend_best_practices.md) • [dotnet_gotchas.md](References/Gotchas/dotnet_gotchas.md) |
-| **Database** | [database_best_practices.md](References/Gotchas/database_best_practices.md) |
-| **DevOps** | [devops_best_practices.md](References/Gotchas/devops_best_practices.md) |
-| **Testing** | [automation_testing_gotchas.md](References/Gotchas/automation_testing_gotchas.md) • [testing_workflow_patterns.md](References/Gotchas/testing_workflow_patterns.md) |
-| **Standards** | [general_coding_standards.md](References/Gotchas/general_coding_standards.md) • [anti_redundancy_rules.md](References/Gotchas/anti_redundancy_rules.md) |
+| **Architecture** | [architecture_patterns.md](.propel/gotchas/architecture_patterns.md) • [design-principles.md](.propel/gotchas/design-principles.md) |
+| **Quality** | [anti_patterns.md](.propel/gotchas/anti_patterns.md) • [validation_commands.md](.propel/gotchas/validation_commands.md) |
+| **Frontend** | [frontend_best_practices.md](.propel/gotchas/frontend_best_practices.md) • [react_gotchas.md](.propel/gotchas/react_gotchas.md) |
+| **Backend** | [backend_best_practices.md](.propel/gotchas/backend_best_practices.md) • [dotnet_gotchas.md](.propel/gotchas/dotnet_gotchas.md) |
+| **Database** | [database_best_practices.md](.propel/gotchas/database_best_practices.md) |
+| **DevOps** | [devops_best_practices.md](.propel/gotchas/devops_best_practices.md) |
+| **Testing** | [automation_testing_gotchas.md](.propel/gotchas/automation_testing_gotchas.md) • [testing_workflow_patterns.md](.propel/gotchas/testing_workflow_patterns.md) |
+| **Standards** | [general_coding_standards.md](.propel/gotchas/general_coding_standards.md) • [anti_redundancy_rules.md](.propel/gotchas/anti_redundancy_rules.md) |
 
 </details>
 
@@ -906,7 +898,7 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (U
 
 **📝 How to Contribute**
 1. **Fork the repository** and create a feature branch
-2. **Follow existing patterns** in `.claude/commands/` and `References/`  
+2. **Follow existing patterns** in `.claude/commands/` and `.propel/`
 3. **Test your changes** with the validation commands
 4. **Update documentation** and add examples
 5. **Submit a pull request** with clear description
@@ -919,16 +911,16 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (U
 
 ## 📞 Support & Community
 
-- **🐛 Report Issues**: [GitHub Issues](https://github.com/anthropics/claude-code/issues)  
+- **🐛 Report Issues**: [GitHub Issues](https://github.com/anthropics/claude-code/issues)
 - **💬 Discussions**: PropelIQ patterns and use cases
-- **📖 Documentation**: Comprehensive guides in `References/`
-- **🛠️ Troubleshooting**: [troubleshooting_guide.md](References/Gotchas/troubleshooting_guide.md)
+- **📖 Documentation**: Comprehensive guides in `.propel/`
+- **🛠️ Troubleshooting**: [troubleshooting_guide.md](.propel/gotchas/troubleshooting_guide.md)
 
 ---
 
 **🚀 Ready to transform your development workflow?**  
 
-**[⬆️ Back to top](#propeliq-)** • **[📖 View Documentation](References/)** • **[🐛 Report Issues](https://github.com/anthropics/claude-code/issues)**
+**[⬆️ Back to top](#propeliq-)** • **[📖 View Documentation](.propel/)** • **[🐛 Report Issues](https://github.com/anthropics/claude-code/issues)**
 
 ---
 

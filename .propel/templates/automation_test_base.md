@@ -13,7 +13,7 @@ Template optimized for AI agents to create automation test workflows based on us
 6. **Best Practice Compliance**: Follow automation testing gotchas and anti-patterns guidelines
 
 ## Critical Testing Guidelines
-**⚠️ MANDATORY**: Review `References/Gotchas/automation_testing_gotchas.md` before creating workflows
+**⚠️ MANDATORY**: Review `.propel/gotchas/automation_testing_gotchas.md` before creating workflows
 - **Avoid Hard-Coded Waits**: Use proper wait conditions instead of arbitrary timeouts
 - **Use Stable Selectors**: Prefer data-testid, role-based, and semantic locators
 - **Ensure Test Isolation**: Each test should be completely independent
@@ -226,7 +226,7 @@ execution:
 ## Maintenance & Sustainability
 
 ### Selector Strategy
-**⚠️ CRITICAL**: Follow selector hierarchy from `References/Gotchas/automation_testing_gotchas.md`
+**⚠️ CRITICAL**: Follow selector hierarchy from `.propel/gotchas/automation_testing_gotchas.md`
 
 **Preferred Selectors** (in order of preference):
 1. **Role-based locators** (BEST): `page.getByRole('button', { name: 'Submit' })`

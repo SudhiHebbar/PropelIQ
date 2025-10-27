@@ -143,7 +143,7 @@ Create separate tasks for each development stream:
 
 ### Template Adherence
 - **Template Structure Compliance**: Commands and agents must produce outcomes that follow the referenced template structure available in the Templates folder
-- **Template Reading**: Always read the appropriate template from References/Templates/ directory before generating outputs
+- **Template Reading**: Always read the appropriate template from .propel/templates/ directory before generating outputs
 - **Structure Validation**: Validate that generated content matches the expected template sections and format
 - **Placeholder Replacement**: Ensure all template placeholders are replaced with actual content, not left empty
 
@@ -162,49 +162,49 @@ Commands should apply this conditional loading logic based on their context:
 
 #### **Step 1: ALWAYS Load Core Gotchas**
 These apply to ALL tasks regardless of technology or context:
-- Read `References/Gotchas/anti_redundancy_rules.md` - Framework rules and scope discipline
-- Read `References/Gotchas/general_coding_standards.md` - Universal coding standards
-- Read `References/Gotchas/anti_patterns.md` - Common pitfalls across all technologies
-- Read `References/Gotchas/architecture_patterns.md` - Architectural guidance and patterns
-- Read `References/Gotchas/framework_methodology.md` - Process methodology and workflow
+- Read `.propel/gotchas/anti_redundancy_rules.md` - Framework rules and scope discipline
+- Read `.propel/gotchas/general_coding_standards.md` - Universal coding standards
+- Read `.propel/gotchas/anti_patterns.md` - Common pitfalls across all technologies
+- Read `.propel/gotchas/architecture_patterns.md` - Architectural guidance and patterns
+- Read `.propel/gotchas/framework_methodology.md` - Process methodology and workflow
 
 #### **Step 2: Conditional Layer-Based Best Practices**
 Load based on which application layer is involved:
 
 **IF Frontend Layer Detected** (UI, components, client-side code):
-- Read `References/Gotchas/frontend_best_practices.md` - Universal frontend guidance (ANY framework)
-- Read `References/Gotchas/design-principles.md` - Design principles (if UI design is involved)
+- Read `.propel/gotchas/frontend_best_practices.md` - Universal frontend guidance (ANY framework)
+- Read `.propel/gotchas/design-principles.md` - Design principles (if UI design is involved)
 
 **IF Backend Layer Detected** (APIs, services, server-side logic):
-- Read `References/Gotchas/backend_best_practices.md` - Universal backend guidance (ANY framework)
+- Read `.propel/gotchas/backend_best_practices.md` - Universal backend guidance (ANY framework)
 
 **IF Database Layer Detected** (SQL, migrations, data access):
-- Read `References/Gotchas/database_best_practices.md` - Database patterns and practices
+- Read `.propel/gotchas/database_best_practices.md` - Database patterns and practices
 
 #### **Step 3: Conditional Technology-Specific Gotchas**
 Load ONLY if the specific technology is explicitly detected:
 
 **IF React Explicitly Detected**:
-- Read `References/Gotchas/react_gotchas.md` - React-specific patterns and issues
+- Read `.propel/gotchas/react_gotchas.md` - React-specific patterns and issues
 - **Detection criteria**: Import statements with 'react', JSX/TSX syntax, package.json includes react dependency
 
 **IF .NET/C# Explicitly Detected**:
-- Read `References/Gotchas/dotnet_gotchas.md` - .NET-specific patterns and issues
+- Read `.propel/gotchas/dotnet_gotchas.md` - .NET-specific patterns and issues
 - **Detection criteria**: .csproj/.sln files, using statements, C# syntax, ASP.NET mentions
 
 #### **Step 4: Conditional Context-Specific Guidance**
 Load based on specific work context:
 
 **IF Testing Context** (test creation, automation, Playwright):
-- Read `References/Gotchas/automation_testing_gotchas.md` - Testing best practices
-- Read `References/Gotchas/testing_workflow_patterns.md` - Test organization patterns
+- Read `.propel/gotchas/automation_testing_gotchas.md` - Testing best practices
+- Read `.propel/gotchas/testing_workflow_patterns.md` - Test organization patterns
 
 **IF DevOps Context** (deployment, CI/CD, infrastructure):
-- Read `References/Gotchas/devops_best_practices.md` - DevOps practices
-- Read `References/Gotchas/validation_commands.md` - Validation strategies
+- Read `.propel/gotchas/devops_best_practices.md` - DevOps practices
+- Read `.propel/gotchas/validation_commands.md` - Validation strategies
 
 **IF Troubleshooting Context** (debugging, error resolution):
-- Read `References/Gotchas/troubleshooting_guide.md` - Debugging guidance
+- Read `.propel/gotchas/troubleshooting_guide.md` - Debugging guidance
 
 ### Detection Heuristics
 

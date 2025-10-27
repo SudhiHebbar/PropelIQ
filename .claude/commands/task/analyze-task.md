@@ -60,7 +60,7 @@ Entry point for post-implementation task analysis. Reviews completed code change
 - Non-destructive: reads repository without making changes
 - Complements task generator and executor for complete development lifecycle
 - All complex analysis, MCP integration, and report generation handled by **task-analyzer** agent
-- Results follow `References/Templates/analyze_task_base.md` structure for consistency
+- Results follow `.propel/templates/analyze_task_base.md` structure for consistency
 
 ## Alternative: Direct Agent Access
 

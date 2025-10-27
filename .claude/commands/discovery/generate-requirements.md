@@ -153,8 +153,8 @@ Think deeply about business context - keep thinking about stakeholder needs:
 ## Spec Generation Framework
 
 ### Template Foundation
-Base all spec on `References/Templates/requirement_base.md` for consistency and completeness.
-**Design specifications** use `References/Templates/design_reference_base.md` only when UI impact is identified.
+Base all spec on `.propel/templates/requirement_base.md` for consistency and completeness.
+**Design specifications** use `.propel/templates/design_reference_base.md` only when UI impact is identified.
 
 ### Critical Context Integration
 
@@ -263,7 +263,7 @@ Base all spec on `References/Templates/requirement_base.md` for consistency and 
 
 **DesignReference.md Generation (UI Impact Only)**:
 1. **Assess UI Impact**: Determine if any user stories require UI changes
-2. **Generate Design Document**: Use `References/Templates/design_reference_base.md` as foundation
+2. **Generate Design Document**: Use `.propel/templates/design_reference_base.md` as foundation
 3. **Populate Design Assets**: Fill template with actual Figma URLs OR design images from input
 4. **Create User Story Mappings**: Map each UI-impacting user story to design assets
 5. **Link from Spec.md**: Reference DesignReference.md sections in user stories
@@ -353,7 +353,7 @@ Score generated using detailed metrics (1-100% scale):
   section: [Architecture constraints and capabilities]
   critical: [Key limitations affecting requirements]
 
-- reference: [References/Gotchas/specific_file.md]
+- reference: [.propel/gotchas/specific_file.md]
   why: [Technology-specific constraints and guidelines]
 
 - stakeholder: [Stakeholder interview notes/feedback]
@@ -397,7 +397,7 @@ For each Epic defined in the Epics table within Spec.md:
 2. **Requirement Analysis**: Analyze each mapped requirement (think more about FR-, NFR-, TR-, DR-, UXR-) to understand functionality scope
 3. **Story Decomposition**: Break down epic requirements into 3-8 user stories following INVEST principles
 4. **Effort Estimation**: Ensure each story is ≤ 5 story points (30 hours), break down larger stories
-5. **Story File Creation**: Generate individual `.md` files using UserStory_base.md template
+5. **Story File Creation**: Generate individual `.md` files using userstory-base.md template
 
 #### 2. Story File Generation Process
 **Directory Structure Creation:**
@@ -415,7 +415,7 @@ Context/Tasks/US_003/US_003.md
 - Use zero-padded 3-digit format (US_001, US_002, ..., US_999)
 
 #### 3. Template Population Requirements
-For each generated story file, populate the UserStory_base.md template with:
+For each generated story file, populate the userstory-base.md template with:
 
 **ID Section:**
 - Format: US_001, US_002, US_003 (sequential across all epics)
@@ -487,7 +487,7 @@ US_XXX: Documentation Foundation
 #### 6. Quality Validation Checklist
 Before completing story generation, validate:
 - [ ] All epic requirements mapped to at least one user story
-- [ ] Each story follows UserStory_base.md template exactly
+- [ ] Each story follows userstory-base.md template exactly
 - [ ] Story effort estimates are realistic (≤ 5 story points)
 - [ ] Acceptance criteria are specific and testable
 - [ ] Edge cases are comprehensively covered
@@ -498,7 +498,7 @@ Before completing story generation, validate:
 
 #### 7. Implementation Instructions for AI Agents
 **File Creation Process:**
-1. **Read UserStory_base.md template**: Load the exact template structure
+1. **Read userstory-base.md template**: Load the exact template structure
 2. **Create directory**: For each story, create `Context/Tasks/US_XXX/` directory
 3. **Generate story file**: Create `US_XXX.md` file within the directory
 4. **Populate template**: Fill all template sections with generated content
@@ -511,7 +511,7 @@ Before completing story generation, validate:
    a. Extract mapped requirements
    b. Generate 3-8 user stories
    c. Create story files with sequential IDs
-   d. Populate UserStory_base.md template
+   d. Populate userstory-base.md template
 3. Validate all generated stories
 4. Confirm file structure and content
 ```
