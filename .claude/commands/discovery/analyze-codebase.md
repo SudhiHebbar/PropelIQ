@@ -2,7 +2,7 @@
 name: Codebase Analysis Command
 description: Entry point for comprehensive codebase analysis. Validates input and delegates complex analysis to the specialized code-analyzer agent for architectural insights and strategic recommendations
 model: inherit
-allowed-tools: Bash, Read, Glob, Task
+allowed-tools: Bash, Read, Write, Glob, Task
 ---
 
 # Codebase Analysis Command
@@ -36,11 +36,19 @@ Entry point for comprehensive codebase analysis. Validates input and delegates c
   - User-specified preferences and constraints
   - Analysis scope and time budget
   - Repository path and access permissions
+- Agent performs comprehensive analysis and returns structured findings
 
-### 3. Summary Presentation
-- Present executive summary from agent analysis
+### 3. Report Generation
+- Read template from `.propel/templates/analyze_code_base.md`
+- Receive structured analysis data from code-analyzer agent
+- Populate template with agent's findings
+- Use Write tool to create `.propel/context/docs/codeanalysis.md`
+- Ensure all 14 template sections are populated with real data
+
+### 4. Summary Presentation
+- Present executive summary to user
 - Highlight critical findings and recommendations
-- Provide link to full detailed report in `.propel/context/docs/codeanalysis.md`
+- Provide link to detailed report in `.propel/context/docs/codeanalysis.md`
 
 ## Usage Examples
 
