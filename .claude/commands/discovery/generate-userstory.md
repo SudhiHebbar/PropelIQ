@@ -1,6 +1,6 @@
 ---
 name: User Story Generator
-description: Generates detailed user stories from epic URLs, feature text, or scope files. Creates individual user story files in .propel/context/tasks/US_<ID>/ following userstory-base.md template with proper effort estimation and breakdown.
+description: Generates detailed user stories from epic URLs, feature text, or scope files. Creates individual user story files in .propel/context/tasks/us_<ID>/ following userstory-base.md template with proper effort estimation and breakdown.
 model: inherit
 allowed-tools: Read, Write, Edit, MultiEdit, Glob, Grep, Task, WebSearch, WebFetch, mcp__sequential-thinking__sequentialthinking
 ---
@@ -100,7 +100,7 @@ As an expert Product Owner and Business Analyst, generate comprehensive user sto
 - Follow userstory-base.md template structure exactly for all generated stories
 - Ensure each story is independently testable and delivers business value
 - Apply proper effort estimation and break down stories exceeding limits
-- Create sequential US_XXX IDs starting from existing highest ID + 1
+- Create sequential us_XXX IDs starting from existing highest ID + 1
 - Map all stories to parent epics with clear traceability
 - Include comprehensive acceptance criteria using Given/When/Then format
 
@@ -133,7 +133,7 @@ Following CLAUDE.md guidelines:
 All generated stories MUST follow the exact structure from `.propel/templates/userstory-base.md`:
 
 **Required Elements:**
-- **ID**: Sequential US_XXX format (US_001, US_002, etc.)
+- **ID**: Sequential us_XXX format (us_001, us_002, etc.)
 - **Title**: Concise, action-oriented title (≤10 words)
 - **Description**: "As a [user type], I want [functionality], so that [business value]"
 - **Acceptance Criteria**: Given/When/Then format with specific, measurable criteria
@@ -154,23 +154,23 @@ All generated stories MUST follow the exact structure from `.propel/templates/us
 #### File Structure and Organization
 **Directory Creation:**
 ```
-.propel/context/tasks/US_001/US_001.md
-.propel/context/tasks/US_002/US_002.md
-.propel/context/tasks/US_003/US_003.md
+.propel/context/tasks/us_001/us_001.md
+.propel/context/tasks/us_002/us_002.md
+.propel/context/tasks/us_003/us_003.md
 ...
 ```
 
 **ID Management:**
-- **Sequential Numbering**: Continue from highest existing US_XXX ID
-- **Zero-Padded Format**: US_001, US_002, ..., US_999
+- **Sequential Numbering**: Continue from highest existing us_XXX ID
+- **Zero-Padded Format**: us_001, us_002, ..., us_999
 - **Cross-Epic Continuity**: Maintain sequence across different epics
 
 #### Template Population Process
 For each generated story:
 
 1. **Read userstory-base.md**: Load the exact template structure
-2. **Create Directory**: Generate .propel/context/tasks/US_XXX/ directory
-3. **Generate Story File**: Create US_XXX.md within the directory
+2. **Create Directory**: Generate .propel/context/tasks/us_XXX/ directory
+3. **Generate Story File**: Create us_XXX.md within the directory
 4. **Populate Sections**: Fill all template sections with generated content
 5. **Validate Structure**: Ensure template compliance and completeness
 
@@ -181,19 +181,19 @@ For each generated story:
 
 **Generated Stories:**
 ```
-US_001: User Account Registration
+us_001: User Account Registration
 - Description: As a new user, I want to create an account with email validation, so that I can access the platform securely
 - Epic: EP-001
 - Requirements: FR-001, UXR-001
 - Effort: 3 story points
 
-US_002: User Login Authentication
+us_002: User Login Authentication
 - Description: As a registered user, I want to log in with my credentials, so that I can access my account
 - Epic: EP-001
 - Requirements: FR-002, NFR-002
 - Effort: 2 story points
 
-US_003: Password Reset Functionality
+us_003: Password Reset Functionality
 - Description: As a user who forgot their password, I want to reset it via email, so that I can regain account access
 - Epic: EP-001
 - Requirements: FR-002, UXR-001
@@ -206,13 +206,13 @@ US_003: Password Reset Functionality
 
 **Broken Down Stories:**
 ```
-US_XXX: Admin User Creation (3 points)
+us_XXX: Admin User Creation (3 points)
 - As an admin, I want to create new user accounts, so that I can onboard users efficiently
 
-US_XXX: Admin User Role Management (2 points)
+us_XXX: Admin User Role Management (2 points)
 - As an admin, I want to assign and modify user roles, so that I can control access permissions
 
-US_XXX: Admin User Deactivation (3 points)
+us_XXX: Admin User Deactivation (3 points)
 - As an admin, I want to deactivate user accounts, so that I can revoke access when needed
 ```
 
@@ -224,13 +224,13 @@ When generating stories for new projects without existing codebase:
 **Technical Epic Creation (EP-TECH):**
 Generate foundational technical stories:
 ```
-US_XXX: Project Structure Setup
+us_XXX: Project Structure Setup
 - As a developer, I want a properly configured project structure, so that development can begin efficiently
 
-US_XXX: Development Environment Configuration
+us_XXX: Development Environment Configuration
 - As a developer, I want a standardized development environment, so that all team members can work consistently
 
-US_XXX: CI/CD Pipeline Implementation
+us_XXX: CI/CD Pipeline Implementation
 - As a development team, I want automated build and deployment pipelines, so that releases are reliable and efficient
 ```
 
@@ -272,8 +272,8 @@ Before completing story generation, validate each story:
 
 ### File Organization Validation
 After generating all stories:
-- [ ] All directories created properly (.propel/context/tasks/US_XXX/)
-- [ ] All story files created with correct names (US_XXX.md)
+- [ ] All directories created properly (.propel/context/tasks/us_XXX/)
+- [ ] All story files created with correct names (us_XXX.md)
 - [ ] Sequential ID numbering is correct and continuous
 - [ ] No duplicate IDs or missing sequences
 - [ ] File structure matches template requirements
@@ -289,7 +289,7 @@ After generating all stories:
    - Epic ID only: Read spec.md, find specific epic
    - No arguments: Read spec.md, extract all epics
 3. Parse requirements and business context for identified epic(s)
-4. Identify existing US_XXX IDs to determine starting sequence
+4. Identify existing us_XXX IDs to determine starting sequence
 5. For each epic in scope:
    a. Analyze epic requirements and complexity (think deeply)
    b. Decompose into user-focused stories

@@ -103,11 +103,11 @@ PropelIQ/
 │   └── CLAUDE.md               # Development guidelines
 ├── .propel/context/            # Generated project artifacts
 │   ├── tasks/                  # Generated task plans and user stories
-│   │   ├── US_001/            # User story folder
-│   │   │   ├── US_001.md      # User story document
+│   │   ├── us_001/            # User story folder
+│   │   │   ├── us_001.md      # User story document
 │   │   │   ├── task_001_*.md  # Implementation tasks
 │   │   │   └── task_002_*.md  # More tasks for this story
-│   │   ├── US_002/            # Additional user story folder
+│   │   ├── us_002/            # Additional user story folder
 │   │   └── task_001_*.md      # General tasks (non-story)
 │   ├── test/                   # Generated test workflows
 │   ├── figma/                  # Design references
@@ -155,8 +155,8 @@ PropelIQ/
 |-------------|--------------|----------|
 | `docs/codeanalysis.md` | `/analyze-codebase` | Architecture diagrams, security analysis, technical debt |
 | `docs/spec.md` | `/generate-requirements` | Epics with mapped requirements, business context |
-| `tasks/US_XXX/US_XXX.md` | `/generate-requirements` or `/generate-userstory` | Individual user stories with acceptance criteria |
-| `tasks/US_XXX/task_*.md` | `/generate-task` | Implementation tasks organized by user story |
+| `tasks/us_XXX/us_XXX.md` | `/generate-requirements` or `/generate-userstory` | Individual user stories with acceptance criteria |
+| `tasks/us_XXX/task_*.md` | `/generate-task` | Implementation tasks organized by user story |
 | `tasks/task_*.md` | `/generate-task` | General tasks (non-user story) |
 | `test/` | `/generate-automation-test` | Test workflow specifications |
 
@@ -194,8 +194,8 @@ PropelIQ/
 | **Traditional Approach** | **PropelIQ Approach** | **Improvement** |
 |---------------------------|------------------------|-----------------|
 | Manual requirement analysis | Auto-generated epics with mapped requirements | **75% faster** requirement processing |
-| Ad-hoc user story creation | Structured US_XXX stories with acceptance criteria | **60% better** story quality and consistency |
-| Scattered task management | Organized US_XXX/task_*.md hierarchy | **80% better** traceability and organization |
+| Ad-hoc user story creation | Structured us_XXX stories with acceptance criteria | **60% better** story quality and consistency |
+| Scattered task management | Organized us_XXX/task_*.md hierarchy | **80% better** traceability and organization |
 | Reactive quality assurance | Built-in INVEST principles and story validation | **70% fewer** requirement changes during development |
 
 ### 🎯 Key Workflow Advantages
@@ -207,8 +207,8 @@ PropelIQ/
 
 **2. **Hierarchical Organization****
 - **Clear Traceability**: Epic → User Story → Task → Implementation
-- **Folder Structure**: `.propel/context/tasks/US_XXX/` organization for easy navigation
-- **Sequential IDs**: Consistent US_001, US_002, task_001, task_002 numbering
+- **Folder Structure**: `.propel/context/tasks/us_XXX/` organization for easy navigation
+- **Sequential IDs**: Consistent us_001, us_002, task_001, task_002 numbering
 
 **3. **Quality Assurance Integration****
 - **Template Compliance**: All outputs follow userstory-base.md and task_base.md templates
@@ -262,26 +262,26 @@ individual memberships. The goal is to simplify the user experience, streamline 
 # 2. Generate structured requirements with epics and user stories
 /generate-requirements scope.md
 # → Creates .propel/context/docs/spec.md with epics and acceptance criteria
-# → Auto-generates .propel/context/tasks/US_XXX/US_XXX.md for each epic
+# → Auto-generates .propel/context/tasks/us_XXX/us_XXX.md for each epic
 
 # 3. (Optional) Generate user stories for specific epic
 /generate-userstory .propel/context/docs/spec.md EP-001
-# → Creates .propel/context/tasks/US_XXX/US_XXX.md for EP-001
+# → Creates .propel/context/tasks/us_XXX/us_XXX.md for EP-001
 
 # 4. Break down user stories into executable tasks
-/generate-task .propel/context/tasks/US_001/US_001.md
-# → Creates .propel/context/tasks/US_001/task_001_*.md
+/generate-task .propel/context/tasks/us_001/us_001.md
+# → Creates .propel/context/tasks/us_001/task_001_*.md
 
 # 5. Generate comprehensive tests
-/generate-automation-test .propel/context/tasks/US_001/US_001.md
-# → Creates .propel/context/test/US_001_test_workflow.md
+/generate-automation-test .propel/context/tasks/us_001/us_001.md
+# → Creates .propel/context/test/us_001_test_workflow.md
 
 # 6. Convert to executable Playwright scripts
 /generate-playwright-scripts
-# → Creates test-automation/tests/US_001_*.spec.ts with Page Objects
+# → Creates test-automation/tests/us_001_*.spec.ts with Page Objects
 
 # 7. Execute the task
-/execute-task .propel/context/tasks/US_001/task_001_*.md
+/execute-task .propel/context/tasks/us_001/task_001_*.md
 # → Implements the task with TodoWrite tracking
 
 # Total time: 5-10 minutes vs 2-4 hours manually
@@ -425,26 +425,26 @@ After installation, restart Claude Code or reload the configuration to activate 
 # 1. Create requirements with epics and auto-generated user stories
 /generate-requirements brd.md
 # → .propel/context/docs/spec.md (with epics)
-# → .propel/context/tasks/US_XXX/US_XXX.md (auto-generated stories)
+# → .propel/context/tasks/us_XXX/us_XXX.md (auto-generated stories)
 
 # 2. Generate additional user stories manually (optional)
 /generate-userstory EP-001
-# → .propel/context/tasks/US_XXX/US_XXX.md (stories for specific epic)
+# → .propel/context/tasks/us_XXX/us_XXX.md (stories for specific epic)
 
 # 3. Generate system design (optional)
 /generate-design .propel/context/docs/spec.md
 # → .propel/context/docs/design.md
 
 # 4. Break down user stories into implementation tasks
-/generate-task .propel/context/tasks/US_001/US_001.md
-# → .propel/context/tasks/US_001/task_001_implement_feature.md
+/generate-task .propel/context/tasks/us_001/us_001.md
+# → .propel/context/tasks/us_001/task_001_implement_feature.md
 
 # 5. Execute tasks systematically for code generation
-/execute-task .propel/context/tasks/US_001/task_001_implement_feature.md
+/execute-task .propel/context/tasks/us_001/task_001_implement_feature.md
 # → Logic Implementation with TodoWrite tracking
 
 # 6. Quality review (optional)
-/analyze-task .propel/context/tasks/US_001/task_001_implement_feature.md
+/analyze-task .propel/context/tasks/us_001/task_001_implement_feature.md
 # → Quality assessment and recommendations for the implemented logic
 ```
 
@@ -461,18 +461,18 @@ After installation, restart Claude Code or reload the configuration to activate 
 # 2. Generate requirements with epics and auto-generated user stories
 /generate-requirements new-feature-spec.md
 # → .propel/context/docs/spec.md (with epics)
-# → .propel/context/tasks/US_XXX/US_XXX.md (auto-generated stories)
+# → .propel/context/tasks/us_XXX/us_XXX.md (auto-generated stories)
 
 # 3. Generate additional user stories for specific epics (optional)
 /generate-userstory .propel/context/docs/spec.md EP-002
-# → .propel/context/tasks/US_XXX/US_XXX.md (stories for specific epic)
+# → .propel/context/tasks/us_XXX/us_XXX.md (stories for specific epic)
 
 # 4. Break down user stories into implementation tasks
-/generate-task .propel/context/tasks/US_005/US_005.md
-# → .propel/context/tasks/US_005/task_001_integrate_feature.md
+/generate-task .propel/context/tasks/us_005/us_005.md
+# → .propel/context/tasks/us_005/task_001_integrate_feature.md
 
 # 5. Execute with existing code integration
-/execute-task .propel/context/tasks/US_005/task_001_integrate_feature.md
+/execute-task .propel/context/tasks/us_005/task_001_integrate_feature.md
 # → Updated codebase with new functionality
 ```
 
@@ -559,9 +559,9 @@ After installation, restart Claude Code or reload the configuration to activate 
 |---------|---------|-------|--------|
 | `/analyze-codebase` | Deep codebase analysis | Repository path/URL | `.propel/context/docs/codeanalysis.md` |
 | `/generate-requirements` | Create structured requirements | Specifications, user stories | `.propel/context/docs/spec.md` + auto-generated user stories |
-| `/generate-userstory` | Generate user stories from epics | Epic ID, scope file, or text | `.propel/context/tasks/US_XXX/US_XXX.md` |
+| `/generate-userstory` | Generate user stories from epics | Epic ID, scope file, or text | `.propel/context/tasks/us_XXX/us_XXX.md` |
 | `/generate-design` | System design & architecture | Requirements, specifications | `.propel/context/docs/design.md` |
-| `/generate-task` | Break down into executable tasks | User stories, requirements | `.propel/context/tasks/US_XXX/task_*.md` or `.propel/context/tasks/task_*.md` |
+| `/generate-task` | Break down into executable tasks | User stories, requirements | `.propel/context/tasks/us_XXX/task_*.md` or `.propel/context/tasks/task_*.md` |
 | `/execute-task` | Implement tasks systematically | Task file path | Technology-specific code |
 | `/analyze-task` | Post-implementation quality review | Task file path | Quality assessment report |
 | `/generate-automation-test` | Create test workflows | Requirements, use cases | `.propel/context/test/workflow_*.md` |
@@ -725,7 +725,7 @@ A: **2 minutes** to first command, **30 minutes** to productive workflows, **1 h
 <summary><strong>📋 Epics, User Stories & Tasks</strong></summary>
 
 **Q: What's the difference between epics, user stories, and tasks?**
-A: **Epics** are high-level features mapped to requirements. **User Stories** (US_XXX) break epics into user-focused deliverables. **Tasks** break stories into 4-hour implementation units.
+A: **Epics** are high-level features mapped to requirements. **User Stories** (us_XXX) break epics into user-focused deliverables. **Tasks** break stories into 4-hour implementation units.
 
 </details>
 
@@ -820,22 +820,22 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (U
 # 2. Generate epics and auto-generated user stories
 /generate-requirements "Multi-vendor shopping cart with payment integration"
 # → .propel/context/docs/spec.md (with epics)
-# → .propel/context/tasks/US_XXX/US_XXX.md (auto-generated stories)
+# → .propel/context/tasks/us_XXX/us_XXX.md (auto-generated stories)
 
 # 3. Generate additional user stories for specific features (optional)
 /generate-userstory EP-001
-# → .propel/context/tasks/US_XXX/US_XXX.md (targeted story generation)
+# → .propel/context/tasks/us_XXX/us_XXX.md (targeted story generation)
 
 # 4. Create comprehensive test suite
 /generate-automation-test .propel/context/docs/spec.md
 /generate-playwright-scripts
 
 # 5. Break down user stories into implementation tasks
-/generate-task .propel/context/tasks/US_003/US_003.md
-# → .propel/context/tasks/US_003/task_001_implement_cart.md
+/generate-task .propel/context/tasks/us_003/us_003.md
+# → .propel/context/tasks/us_003/task_001_implement_cart.md
 
 # 6. Implement with best practices
-/execute-task .propel/context/tasks/US_003/task_001_implement_cart.md
+/execute-task .propel/context/tasks/us_003/task_001_implement_cart.md
 ```
 
 ### 🏢 Enterprise Dashboard (Green-field)
@@ -847,17 +847,17 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (U
 # 2. Generate epics and auto-generated user stories
 /generate-requirements "Real-time analytics dashboard with role-based access"
 # → .propel/context/docs/spec.md (with epics)
-# → .propel/context/tasks/US_XXX/US_XXX.md (auto-generated stories)
+# → .propel/context/tasks/us_XXX/us_XXX.md (auto-generated stories)
 
 # 3. Design system architecture
 /generate-design .propel/context/docs/spec.md
 
 # 4. Break down user stories into implementation tasks
-/generate-task .propel/context/tasks/US_001/US_001.md
-# → .propel/context/tasks/US_001/task_001_implement_dashboard.md
+/generate-task .propel/context/tasks/us_001/us_001.md
+# → .propel/context/tasks/us_001/task_001_implement_dashboard.md
 
 # 5. Generate secure, scalable implementation
-/execute-task .propel/context/tasks/US_001/task_001_implement_dashboard.md
+/execute-task .propel/context/tasks/us_001/task_001_implement_dashboard.md
 ```
 
 ### 🔄 App Modernization (Legacy to Modern)
@@ -869,11 +869,11 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (U
 # 2. Generate epics and auto-generated user stories for modernization
 /generate-requirements "Modernize legacy monolith to microservices with API-first architecture"
 # → .propel/context/docs/spec.md with modernization epics
-# → .propel/context/tasks/US_XXX/US_XXX.md (auto-generated modernization stories)
+# → .propel/context/tasks/us_XXX/us_XXX.md (auto-generated modernization stories)
 
 # 3. Generate additional user stories for specific modernization phases
 /generate-userstory .propel/context/docs/spec.md EP-002
-# → .propel/context/tasks/US_XXX/US_XXX.md (targeted modernization stories)
+# → .propel/context/tasks/us_XXX/us_XXX.md (targeted modernization stories)
 
 # 4. Generate system architecture
 /generate-design .propel/context/docs/spec.md
@@ -885,11 +885,11 @@ A: **Epics** are high-level features mapped to requirements. **User Stories** (U
 # → .propel/context/test/workflow_*.md and test-automation/ with migration validation tests
 
 # 6. Break down modernization stories into implementation tasks
-/generate-task .propel/context/tasks/US_005/US_005.md
-# → .propel/context/tasks/US_005/task_001_modernize_auth.md (phased implementation tasks)
+/generate-task .propel/context/tasks/us_005/us_005.md
+# → .propel/context/tasks/us_005/task_001_modernize_auth.md (phased implementation tasks)
 
 # 7. Generate secure, scalable implementation
-/execute-task .propel/context/tasks/US_005/task_001_modernize_auth.md
+/execute-task .propel/context/tasks/us_005/task_001_modernize_auth.md
 # → Modern microservices implementation with security best practices
 ```
 

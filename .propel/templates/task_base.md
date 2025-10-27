@@ -16,8 +16,8 @@ Template optimized for AI agents to implement features with sufficient context a
 ---
 
 ## Requirement Reference
-- User Story: [US_XXX] (extracted from input)
-- Story Location: [.propel/context/tasks/US_XXX/US_XXX.md]
+- User Story: [us_XXX] (extracted from input)
+- Story Location: [.propel/context/tasks/us_XXX/us_XXX.md]
 - Acceptance Criteria: [Reference from user story]
 
 ## Task Overview

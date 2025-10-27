@@ -306,7 +306,7 @@ For each Epic in the table:
 2. **Story Decomposition**: Break requirements into user-focused stories following the "As a... I want... so that..." format
 3. **Effort Estimation**: Estimate story points and break down stories exceeding 5 points
 4. **Technical Considerations**: Include data requirements and core entities in story creation
-5. **File Creation**: Generate individual story files at `.propel/context/tasks/US_<ID>/US_<ID>.md`
+5. **File Creation**: Generate individual story files at `.propel/context/tasks/us_<ID>/us_<ID>.md`
 6. **Template Compliance**: Use the `.propel/templates/userstory-base.md` template structure
 
 ### Story File Generation Instructions
@@ -314,18 +314,18 @@ For each Epic in the table:
 
 **File Structure:**
 ```
-.propel/context/tasks/US_001/US_001.md
-.propel/context/tasks/US_002/US_002.md
-.propel/context/tasks/US_003/US_003.md
+.propel/context/tasks/us_001/us_001.md
+.propel/context/tasks/us_002/us_002.md
+.propel/context/tasks/us_003/us_003.md
 ...
 ```
 
-**Story ID Format:** US_001, US_002, US_003 (sequential numbering across all epics)
+**Story ID Format:** us_001, us_002, us_003 (sequential numbering across all epics)
 
 **Template Usage:** Each story file MUST follow the exact structure in `.propel/templates/userstory-base.md`
 
 **Required Story Elements:**
-- **ID**: Unique sequential ID (US_001, US_002, etc.)
+- **ID**: Unique sequential ID (us_001, us_002, etc.)
 - **Title**: Concise title in less than 10 words
 - **Description**: "As a [user type], I want [functionality], so that [business value]"
 - **Acceptance Criteria**: Given/When/Then format with specific, measurable criteria
@@ -343,20 +343,20 @@ For each Epic in the table:
 
 **Example Story Generation:**
 For EP-001 (User Account Access & Authentication) with requirements FR-001, FR-002, FR-003, NFR-002, TR-004, UXR-001:
-- US_001: User Registration with Email Validation
-- US_002: User Login Authentication
-- US_003: Password Reset Functionality
-- US_004: Secure Password Storage Implementation
-- US_005: User Interface for Authentication Flow
+- us_001: User Registration with Email Validation
+- us_002: User Login Authentication
+- us_003: Password Reset Functionality
+- us_004: Secure Password Storage Implementation
+- us_005: User Interface for Authentication Flow
 
 **Project Scaffolding Stories (No Existing Codebase):**
 When no codebase URL is provided, create EP-TECH with stories for:
-- US_XXX: Project Structure and Build Configuration
-- US_XXX: Development Environment Setup
-- US_XXX: Framework Selection and Integration
-- US_XXX: CI/CD Pipeline Configuration
-- US_XXX: Testing Infrastructure Setup
-- US_XXX: Documentation Foundation
+- us_XXX: Project Structure and Build Configuration
+- us_XXX: Development Environment Setup
+- us_XXX: Framework Selection and Integration
+- us_XXX: CI/CD Pipeline Configuration
+- us_XXX: Testing Infrastructure Setup
+- us_XXX: Documentation Foundation
 
 ### Quality Assurance for User Stories
 Before completing story generation, validate:

@@ -14,7 +14,7 @@ allowed-tools: Bash, Grep, Glob, Read, Edit, MultiEdit, Write, WebFetch, WebSear
 **Accepts:** User story file path | User story URL | User story text | Feature requirements | Functional specification
 
 ### Argument Types:
-1. **User Story File**: Path to US_XXX.md file (e.g., .propel/context/tasks/US_001/US_001.md)
+1. **User Story File**: Path to us_XXX.md file (e.g., .propel/context/tasks/us_001/us_001.md)
 2. **User Story URL**: URL pointing to user story specification
 3. **User Story Text**: Direct user story content in "As a... I want... so that..." format
 4. **Feature Requirements**: Path to requirements specification
@@ -22,19 +22,19 @@ allowed-tools: Bash, Grep, Glob, Read, Edit, MultiEdit, Write, WebFetch, WebSear
 
 ### User Story Input Processing
 **When $ARGUMENTS contains user story (file, URL, or text):**
-1. **Extract US ID**: Parse US_XXX identifier from file path, content, or generate if text input
-2. **Create Task Folder**: Ensure `/.propel/context/tasks/US_<ID>/` directory exists
+1. **Extract US ID**: Parse us_XXX identifier from file path, content, or generate if text input
+2. **Create Task Folder**: Ensure `/.propel/context/tasks/us_<ID>/` directory exists
 3. **Task File Naming**: Generate tasks as `task_<seqnum>_<descriptive_name>.md` within US folder
 4. **Parent Story Reference**: Maintain traceability to parent user story in all tasks
 5. **Acceptance Mapping**: Map implementation tasks to user story acceptance criteria
 
 ### US ID Extraction Algorithm
-**File Input**: Extract US_XXX from file path using pattern matching
-- Pattern: `/US_(\d{3})/` or `US_(\d{3})\.md`
-- Example: `.propel/context/tasks/US_001/US_001.md` → Extract `US_001`
+**File Input**: Extract us_XXX from file path using pattern matching
+- Pattern: `/us_(\d{3})/` or `us_(\d{3})\.md`
+- Example: `.propel/context/tasks/us_001/us_001.md` → Extract `us_001`
 
 **URL Input**:
-- First attempt: Parse URL path for US_XXX pattern
+- First attempt: Parse URL path for us_XXX pattern
 - If not found: Fetch URL content and search for US ID in content
 - Pattern: `US[_-]?(\d{3,4})`
 
@@ -52,9 +52,9 @@ As a Senior Software Engineer expert in Full Stack development, generate compreh
 
 *** MANDATORY VALIDATIONS ***
 - **FIRST**: Detect input type and attempt US ID extraction using patterns defined above
-- **VALIDATE**: Check if extracted ID is valid (US_XXX format with 3-digit numeric)
-- **DECIDE**: If valid US ID → create `/.propel/context/tasks/US_<ID>/` folder; else → use `/.propel/context/tasks/`
-- **LOG**: Clearly indicate task placement decision ("Creating tasks in US_XXX folder" or "No US ID found, using root /.propel/context/tasks/")
+- **VALIDATE**: Check if extracted ID is valid (us_XXX format with 3-digit numeric)
+- **DECIDE**: If valid US ID → create `/.propel/context/tasks/us_<ID>/` folder; else → use `/.propel/context/tasks/`
+- **LOG**: Clearly indicate task placement decision ("Creating tasks in us_XXX folder" or "No US ID found, using root /.propel/context/tasks/")
 - Understanding the input, design documents, and existing codebase is required before task creation
 - If source code is missing, prioritize project creation tasks first
 - Continue execution if design.md is unavailable (optional for user stories)
@@ -219,10 +219,10 @@ Design Context:
 
 ### File Organization Strategy:
 **For User Story Tasks (US ID found in input):**
-- **Directory**: `/.propel/context/tasks/US_<ID>/`
+- **Directory**: `/.propel/context/tasks/us_<ID>/`
 - **File Pattern**: `task_<seqnum>_<descriptive_name>.md`
-- **Example**: `/.propel/context/tasks/US_001/task_001_implement_login_ui.md`
-- **Trigger**: Valid US_XXX pattern extracted from file path, URL, or text content
+- **Example**: `/.propel/context/tasks/us_001/task_001_implement_login_ui.md`
+- **Trigger**: Valid us_XXX pattern extracted from file path, URL, or text content
 
 **For General Tasks (no US ID found - fallback):**
 - **Directory**: `/.propel/context/tasks/`
@@ -239,22 +239,22 @@ Design Context:
 **Sequence Number Logic**:
 - Auto-increment based on existing task files in the target directory
 - Use zero-padded 3-digit format (001, 002, 003...)
-- Separate sequence per US_<ID> folder
+- Separate sequence per us_<ID> folder
 - Descriptive name should reflect primary functionality being implemented
 
 ## Directory Management
 
 ### US ID Extraction Priority
-1. **Parse Input**: Attempt to extract US_XXX from input using patterns defined above
-2. **Validate Format**: Check if extracted ID matches US_XXX pattern (3-digit numeric)
+1. **Parse Input**: Attempt to extract us_XXX from input using patterns defined above
+2. **Validate Format**: Check if extracted ID matches us_XXX pattern (3-digit numeric)
 3. **Fallback to Root**: If no valid US ID found → use `/.propel/context/tasks/` directly
 
 ### Directory Creation Logic
 **With Valid US ID Found**:
-- **Directory**: `/.propel/context/tasks/US_<ID>/`
+- **Directory**: `/.propel/context/tasks/us_<ID>/`
 - **File Pattern**: `task_<seqnum>_<descriptive_name>.md`
 - **Sequence**: Continue from highest existing task number in US folder
-- **Example**: `/.propel/context/tasks/US_001/task_001_implement_login_form.md`
+- **Example**: `/.propel/context/tasks/us_001/task_001_implement_login_form.md`
 
 **Without Valid US ID (Fallback)**:
 - **Directory**: `/.propel/context/tasks/`
@@ -265,13 +265,13 @@ Design Context:
 ### Task Organization Examples
 ```
 .propel/context/tasks/
-├── US_001/ (US ID extracted from input)
-│   ├── US_001.md (user story)
+├── us_001/ (US ID extracted from input)
+│   ├── us_001.md (user story)
 │   ├── task_001_implement_login_form.md
 │   ├── task_002_add_validation_logic.md
 │   └── task_003_create_unit_tests.md
-├── US_002/ (US ID found in URL content)
-│   ├── US_002.md
+├── us_002/ (US ID found in URL content)
+│   ├── us_002.md
 │   └── task_001_setup_password_reset.md
 ├── task_001_general_setup.md (no US ID - fallback)
 ├── task_002_oauth_integration.md (no US ID - fallback)
@@ -279,7 +279,7 @@ Design Context:
 ```
 
 ### Logging and Transparency
-- **Always log** the decision: "Creating tasks in US_XXX folder" or "No US ID found, creating tasks in root /.propel/context/tasks/"
+- **Always log** the decision: "Creating tasks in us_XXX folder" or "No US ID found, creating tasks in root /.propel/context/tasks/"
 - **Document reasoning** for task placement in task files
 - **Maintain clear traceability** between input type and output location
 
@@ -287,10 +287,10 @@ Design Context:
 
 ### Pre-Delivery Checklist
 - [ ] **User Story Validation**: Parent user story identified and referenced correctly
-- [ ] **Folder Structure**: Tasks created in correct US_XXX folder when applicable
+- [ ] **Folder Structure**: Tasks created in correct us_XXX folder when applicable
 - [ ] **Task Numbering**: Sequential numbering within US folder maintained
 - [ ] **Acceptance Mapping**: Tasks map to user story acceptance criteria
-- [ ] **Story Traceability**: Each task references parent US_XXX appropriately
+- [ ] **Story Traceability**: Each task references parent us_XXX appropriately
 - [ ] **Context7 References**: Version-pinned docs (IDs + links) are included for all critical patterns the task requires.
 - [ ] **Sequential Plan Checklist**: A traceability-friendly checklist derived via `mcp__sequential_thinking__plan` is embedded for execution/analysis.
 - [ ] **Design Reference Loaded**: .propel/context/docs/designsystem.md read and design context extracted (UI tasks only)
@@ -357,13 +357,13 @@ This command processes feature-oriented development tasks:
 - **Focus**: New feature implementation with comprehensive planning
 
 ### 📝 User Stories (Primary Input Type)
-- **Source**: User story file path (.propel/context/tasks/US_XXX/US_XXX.md)
+- **Source**: User story file path (.propel/context/tasks/us_XXX/us_XXX.md)
 - **URL Source**: Remote user story specification
 - **Text Source**: Direct user story in standard format
-- **Output**: Tasks generated in /.propel/context/tasks/US_XXX/ folder
+- **Output**: Tasks generated in /.propel/context/tasks/us_XXX/ folder
 - **Focus**: Story-driven task decomposition with acceptance criteria mapping
 - **Task Scope**: Each task ≤ 6 hours, split by tech stack
-- **Traceability**: All tasks reference parent US_XXX
+- **Traceability**: All tasks reference parent us_XXX
 
 
 ### 📋 Functional Specifications
@@ -376,21 +376,21 @@ This command processes feature-oriented development tasks:
 ### User Story Task Generation (US ID Found)
 ```bash
 # User story file input (US ID extracted from path)
-/generate-task .propel/context/tasks/US_001/US_001.md
-# → Creates: /.propel/context/tasks/US_001/task_001_implement_login_form.md
+/generate-task .propel/context/tasks/us_001/us_001.md
+# → Creates: /.propel/context/tasks/us_001/task_001_implement_login_form.md
 
 # User story URL with US ID in path
-/generate-task https://docs.company.com/stories/US_042/requirements
-# → Extracts US_042, Creates: /.propel/context/tasks/US_042/task_001_*.md
+/generate-task https://docs.company.com/stories/us_042/requirements
+# → Extracts us_042, Creates: /.propel/context/tasks/us_042/task_001_*.md
 
 # URL with US ID in content (fetches and parses)
 /generate-task https://jira.company.com/browse/STORY-15
-# → Fetches content, finds "US_015" in body
-# → Creates: /.propel/context/tasks/US_015/task_001_*.md
+# → Fetches content, finds "us_015" in body
+# → Creates: /.propel/context/tasks/us_015/task_001_*.md
 
 # Direct user story text with US ID
-/generate-task "US_003: As a user, I want to log in with email and password"
-# → Extracts US_003, Creates: /.propel/context/tasks/US_003/task_001_*.md
+/generate-task "us_003: As a user, I want to log in with email and password"
+# → Extracts us_003, Creates: /.propel/context/tasks/us_003/task_001_*.md
 ```
 
 ### General Task Generation (No US ID - Fallback)
@@ -412,11 +412,11 @@ This command processes feature-oriented development tasks:
 **Task Output Decision Matrix:**
 | Input Type | US ID Found | Output Location | Example |
 |------------|-------------|-----------------|---------|
-| File path | Yes | `/.propel/context/tasks/US_XXX/` | `US_001/task_001_*.md` |
+| File path | Yes | `/.propel/context/tasks/us_XXX/` | `us_001/task_001_*.md` |
 | File path | No | `/.propel/context/tasks/` | `task_001_*.md` |
-| URL | Yes | `/.propel/context/tasks/US_XXX/` | `US_042/task_001_*.md` |
+| URL | Yes | `/.propel/context/tasks/us_XXX/` | `us_042/task_001_*.md` |
 | URL | No | `/.propel/context/tasks/` | `task_001_*.md` |
-| Text | Yes | `/.propel/context/tasks/US_XXX/` | `US_003/task_001_*.md` |
+| Text | Yes | `/.propel/context/tasks/us_XXX/` | `us_003/task_001_*.md` |
 | Text | No | `/.propel/context/tasks/` | `task_001_*.md` |
 
 ---

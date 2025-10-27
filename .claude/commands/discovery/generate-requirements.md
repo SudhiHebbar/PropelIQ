@@ -403,22 +403,22 @@ For each Epic defined in the Epics table within spec.md:
 **Directory Structure Creation:**
 ```bash
 # Create directory structure for each story
-.propel/context/tasks/US_001/US_001.md
-.propel/context/tasks/US_002/US_002.md
-.propel/context/tasks/US_003/US_003.md
+.propel/context/tasks/us_001/us_001.md
+.propel/context/tasks/us_002/us_002.md
+.propel/context/tasks/us_003/us_003.md
 ...
 ```
 
 **Sequential ID Assignment:**
-- Start with US_001 and increment for each story across all epics
+- Start with us_001 and increment for each story across all epics
 - Maintain sequential numbering regardless of epic boundaries
-- Use zero-padded 3-digit format (US_001, US_002, ..., US_999)
+- Use zero-padded 3-digit format (us_001, us_002, ..., us_999)
 
 #### 3. Template Population Requirements
 For each generated story file, populate the userstory-base.md template with:
 
 **ID Section:**
-- Format: US_001, US_002, US_003 (sequential across all epics)
+- Format: us_001, us_002, us_003 (sequential across all epics)
 
 **Title Section:**
 - Concise, action-oriented title (≤ 10 words)
@@ -451,17 +451,17 @@ For each generated story file, populate the userstory-base.md template with:
 
 **Example for EP-001 (User Account Access & Authentication):**
 ```
-US_001: User Registration with Email Validation
+us_001: User Registration with Email Validation
 - Parent: EP-001
 - Requirements: FR-001, UXR-001
 - Tags: FR, Web, Authentication
 
-US_002: User Login Authentication
+us_002: User Login Authentication
 - Parent: EP-001
 - Requirements: FR-002, NFR-002
 - Tags: FR, NFR, Web, Authentication
 
-US_003: Password Reset Functionality
+us_003: Password Reset Functionality
 - Parent: EP-001
 - Requirements: FR-002, UXR-001
 - Tags: FR, UXR, Web, Authentication
@@ -476,12 +476,12 @@ Create EP-TECH epic as FIRST epic with scaffolding stories (≤ 5 SP each), incl
 
 **Technical Story Examples:**
 ```
-US_XXX: Project Structure and Build Configuration
-US_XXX: Development Environment Setup
-US_XXX: Framework Selection and Integration
-US_XXX: CI/CD Pipeline Configuration
-US_XXX: Testing Infrastructure Setup
-US_XXX: Documentation Foundation
+us_XXX: Project Structure and Build Configuration
+us_XXX: Development Environment Setup
+us_XXX: Framework Selection and Integration
+us_XXX: CI/CD Pipeline Configuration
+us_XXX: Testing Infrastructure Setup
+us_XXX: Documentation Foundation
 ```
 
 #### 6. Quality Validation Checklist
@@ -499,8 +499,8 @@ Before completing story generation, validate:
 #### 7. Implementation Instructions for AI Agents
 **File Creation Process:**
 1. **Read userstory-base.md template**: Load the exact template structure
-2. **Create directory**: For each story, create `.propel/context/tasks/US_XXX/` directory
-3. **Generate story file**: Create `US_XXX.md` file within the directory
+2. **Create directory**: For each story, create `.propel/context/tasks/us_XXX/` directory
+3. **Generate story file**: Create `us_XXX.md` file within the directory
 4. **Populate template**: Fill all template sections with generated content
 5. **Validate structure**: Ensure template compliance and completeness
 
