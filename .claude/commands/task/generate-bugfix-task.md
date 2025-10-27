@@ -22,12 +22,12 @@ As a Senior Software Engineer specializing in debugging and system reliability, 
 ### Bug ID Extraction Algorithm
 **File Input**: Extract bug ID from file path or content
 - Patterns: `BUG[_-]?(\d{3,4})`, `ISSUE[_-]?(\d{3,4})`, `#(\d{3,5})`
-- Example: `.propel/context/tasks/BUG_042/bug_report.md` → Extract `BUG_042`
+- Example: `.propel/context/tasks/bug_042/bug_report.md` → Extract `bug_042`
 
 **URL Input**:
 - GitHub Issues: `github.com/.*/issues/(\d+)` → `ISSUE_XXX`
 - JIRA: `jira.*/browse/([A-Z]+-\d+)` → Use ticket ID
-- Azure DevOps: `dev.azure.com/.*/workitems/(\d+)` → `BUG_XXX`
+- Azure DevOps: `dev.azure.com/.*/workitems/(\d+)` → `bug_XXX`
 - Generic: Parse URL and content for bug ID patterns
 
 **Text Input**:
@@ -102,9 +102,9 @@ Execute comprehensive triage before creating any bug fixing tasks:
 **Directory Organization**:
 
 **Bug with ID Found**:
-- **Directory**: `/.propel/context/tasks/BUG_<ID>/` or `/.propel/context/tasks/ISSUE_<ID>/`
+- **Directory**: `/.propel/context/tasks/bug_<ID>/` or `/.propel/context/tasks/ISSUE_<ID>/`
 - **File Pattern**: `task_<seqnum>_fix_<descriptive_name>.md`
-- **Example**: `/.propel/context/tasks/BUG_042/task_001_fix_login_error.md`
+- **Example**: `/.propel/context/tasks/bug_042/task_001_fix_login_error.md`
 
 **No Bug ID (Fallback)**:
 - **Directory**: `/.propel/context/tasks/`
@@ -124,12 +124,12 @@ Execute comprehensive triage before creating any bug fixing tasks:
 **Bug ID Extraction Priority**:
 1. **Parse Input**: Extract bug ID using patterns above
 2. **Validate Format**: Ensure valid bug ID format
-3. **Create Directory**: `/.propel/context/tasks/BUG_<ID>/` if ID found
+3. **Create Directory**: `/.propel/context/tasks/bug_<ID>/` if ID found
 4. **Fallback**: Use `/.propel/context/tasks/` if no ID extracted
 
 **Supported Bug ID Formats**:
-- `BUG_XXX` or `BUG-XXX` (3-4 digits)
-- `ISSUE_XXX` or `ISSUE-XXX` (3-5 digits)
+- `bug_XXX` or `BUG-XXX` (3-4 digits)
+- `issue_XXX` or `ISSUE-XXX` (3-5 digits)
 - `#XXX` (GitHub/GitLab style)
 - JIRA format: `PROJECT-XXX`
 - Custom patterns from bug tracking systems
@@ -137,7 +137,7 @@ Execute comprehensive triage before creating any bug fixing tasks:
 **Directory Examples**:
 ```
 .propel/context/tasks/
-├── BUG_042/ (bug ID extracted)
+├── bug_042/ (bug ID extracted)
 │   ├── bug_report.md
 │   ├── task_001_fix_login_error.md
 │   └── task_002_add_regression_tests.md
@@ -164,7 +164,7 @@ Execute comprehensive triage before creating any bug fixing tasks:
 
 ### Pre-Delivery Checklist
 - [ ] **Bug ID Extraction**: Attempted to extract bug ID from input
-- [ ] **Folder Structure**: Created appropriate BUG_XXX folder or used fallback to /.propel/context/tasks/
+- [ ] **Folder Structure**: Created appropriate bug_XXX folder or used fallback to /.propel/context/tasks/
 - [ ] **Deep Thinking Applied**: Spent adequate time thinking through all aspects of the bug
 - [ ] **Extended Analysis**: Kept thinking about edge cases and related issues
 - [ ] **Issue Reproduction**: Bug successfully reproduced and documented
@@ -202,8 +202,8 @@ Execute comprehensive triage before creating any bug fixing tasks:
 # → Creates: /.propel/context/tasks/PROJ_456/task_001_fix_*.md
 
 # Bug report file with ID
-/generate-bugfix-task .propel/context/tasks/BUG_042/bug_report.md
-# → Creates: /.propel/context/tasks/BUG_042/task_001_fix_*.md
+/generate-bugfix-task .propel/context/tasks/bug_042/bug_report.md
+# → Creates: /.propel/context/tasks/bug_042/task_001_fix_*.md
 
 # Text with bug ID
 /generate-bugfix-task "Bug #789: Login fails with special characters"
@@ -229,11 +229,11 @@ Execute comprehensive triage before creating any bug fixing tasks:
 **Task Output Decision Matrix:**
 | Input Type | Bug ID Found | Output Location | Example |
 |------------|-------------|-----------------|---------|
-| File path | Yes | `/.propel/context/tasks/BUG_XXX/` | `BUG_042/task_001_*.md` |
+| File path | Yes | `/.propel/context/tasks/bug_XXX/` | `bug_042/task_001_*.md` |
 | File path | No | `/.propel/context/tasks/` | `task_001_*.md` |
 | URL | Yes | `/.propel/context/tasks/ISSUE_XXX/` | `ISSUE_123/task_001_*.md` |
 | URL | No | `/.propel/context/tasks/` | `task_001_*.md` |
-| Text | Yes | `/.propel/context/tasks/BUG_XXX/` | `BUG_789/task_001_*.md` |
+| Text | Yes | `/.propel/context/tasks/bug_XXX/` | `bug_789/task_001_*.md` |
 | Text | No | `/.propel/context/tasks/` | `task_001_*.md` |
 
 ## Expected Output
