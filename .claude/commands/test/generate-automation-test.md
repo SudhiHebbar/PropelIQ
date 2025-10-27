@@ -35,7 +35,7 @@ The generated automation test workflows will be consumed by the `generate` comma
 - **Fallback**: If MCP unavailable, use structured written analysis with explicit reasoning sections for each phase
 
 ### 1. Requirements Analysis (Sequential Thinking Recommended)
-- **Use Case Extraction**: Extract specific use cases from Docs/Spec.md in Context folder
+- **Use Case Extraction**: Extract specific use cases from Docs/spec.md in Context folder
 - **User Story Mapping**: Map test scenarios to user stories and acceptance criteria
 - **Business Process Understanding**: Identify the complete user workflow and business process
 - **Actor Analysis**: Understand different user roles and their interaction patterns
@@ -60,7 +60,7 @@ The generated automation test workflows will be consumed by the `generate` comma
 ## Essential Project Intelligence
 
 ### Reference Materials Analysis
-- **Requirements Document**: Read .propel/context/docs/Spec.md for use case analysis and user stories
+- **Requirements Document**: Read .propel/context/docs/spec.md for use case analysis and user stories
 - **Gotcha Loading**: Apply Conditional Gotcha Loading Strategy from `.claude/CLAUDE.md` with testing focus:
   - Load core gotchas (always)
   - **MANDATORY**: Load automation_testing_gotchas.md (testing context)
@@ -217,7 +217,7 @@ Score generated test workflows using the following metrics (1-100% scale):
 This command automatically detects and processes:
 
 ### 📋 Requirements File Analysis
-- **Source**: `.propel/context/docs/Spec.md` (primary source)
+- **Source**: `.propel/context/docs/spec.md` (primary source)
 - **Focus**: Extract use cases and user stories for test workflow creation
 - **Output**: Comprehensive test workflows covering all identified scenarios
 

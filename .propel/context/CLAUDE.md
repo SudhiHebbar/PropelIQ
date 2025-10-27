@@ -5,7 +5,7 @@ This file provides structured context about the project to help understand the c
 ## Additional Context
 
 ### Requirements
-- **Location**: `.propel/context/docs/Spec.md`
+- **Location**: `.propel/context/docs/spec.md`
 - Contains functional and non-functional requirements for the project
 - Defines the scope, goals, user stories and constraints
 
@@ -42,5 +42,5 @@ When working on this project:
 
 - Follow existing code patterns found in codeanalysis.md
 - Ensure all changes align with the design principles in Design.md
-- Verify implementation meets requirements specified in Docs/Spec.md
+- Verify implementation meets requirements specified in Docs/spec.md
 - Create or update tests as defined in the Test folder structure

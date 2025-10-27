@@ -352,7 +352,7 @@ Score generated tasks using the following metrics (1-100% scale):
 This command processes feature-oriented development tasks:
 
 ### 🎯 Feature Requirements
-- **Source**: `.propel/context/docs/Spec.md` (mandatory)
+- **Source**: `.propel/context/docs/spec.md` (mandatory)
 - **Design**: `.propel/context/docs/Design.md` (mandatory)
 - **Focus**: New feature implementation with comprehensive planning
 
@@ -396,7 +396,7 @@ This command processes feature-oriented development tasks:
 ### General Task Generation (No US ID - Fallback)
 ```bash
 # Feature requirements without US ID
-/generate-task .propel/context/docs/Spec.md
+/generate-task .propel/context/docs/spec.md
 # → No US ID found, Creates: /.propel/context/tasks/task_001_setup_authentication.md
 
 # Direct text without US reference

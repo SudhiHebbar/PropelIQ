@@ -75,7 +75,7 @@ As an expert Business Analyst and Product Manager with deep technical understand
 - Split complex requirements by functional areas and technology stacks when applicable
 - Ensure requirements are testable, measurable, and aligned with business objectives
 - Include both functional and non-functional requirements comprehensively
-- Generate a single unified document at .propel/context/docs/Spec.md only
+- Generate a single unified document at .propel/context/docs/spec.md only
 
 ### Content Processing Workflow
 1. **Input Analysis**: Determine if `$ARGUMENTS` is file path or direct text
@@ -245,13 +245,13 @@ Base all spec on `.propel/templates/requirement_base.md` for consistency and com
 
 ## Output Specifications
 
-**Primary File**: `.propel/context/docs/Spec.md`
+**Primary File**: `.propel/context/docs/spec.md`
 
 **Design Reference File**: `.propel/context/docs/DesignReference.md` (only when UI impact exists)
 
-**IMPORTANT**: Generate Spec.md as primary output. Generate DesignReference.md ONLY when requirements include UI changes.
+**IMPORTANT**: Generate spec.md as primary output. Generate DesignReference.md ONLY when requirements include UI changes.
 
-**Spec.md Document Structure**:
+**spec.md Document Structure**:
 - Executive summary with business context
 - Comprehensive stakeholder analysis
 - User stories with design reference links (when UI impact exists)
@@ -266,10 +266,10 @@ Base all spec on `.propel/templates/requirement_base.md` for consistency and com
 2. **Generate Design Document**: Use `.propel/templates/design_reference_base.md` as foundation
 3. **Populate Design Assets**: Fill template with actual Figma URLs OR design images from input
 4. **Create User Story Mappings**: Map each UI-impacting user story to design assets
-5. **Link from Spec.md**: Reference DesignReference.md sections in user stories
+5. **Link from spec.md**: Reference DesignReference.md sections in user stories
 6. **Organize Assets**: Create folder structure in `.propel/context/Design/US-XXX/` for each story
 
-**Example User Story Linking in Spec.md**:
+**Example User Story Linking in spec.md**:
 ```yaml
 ## User Story: US-001 - User Login Interface
 **Design Reference**: [.propel/context/docs/DesignReference.md#US-001](.propel/context/docs/DesignReference.md#US-001)
@@ -387,10 +387,10 @@ This unified command automatically processes various requirement sources:
 ## User Story Generation Implementation
 
 ### Post-Spec Generation Process
-**CRITICAL**: After generating the main Spec.md file, automatically generate user story files following these steps:
+**CRITICAL**: After generating the main spec.md file, automatically generate user story files following these steps:
 
 #### 1. Epic Analysis and Story Generation
-For each Epic defined in the Epics table within Spec.md:
+For each Epic defined in the Epics table within spec.md:
 
 **Epic Processing Algorithm:**
 1. **Extract Epic Data**: Parse Epic ID, title, and mapped requirement IDs from the generated Epics table
@@ -506,7 +506,7 @@ Before completing story generation, validate:
 
 **Automated Generation Flow:**
 ```
-1. Parse Epics table from generated Spec.md
+1. Parse Epics table from generated spec.md
 2. For each Epic (process EP-TECH FIRST if green-field project):
    a. Extract mapped requirements
    b. Generate 3-8 user stories

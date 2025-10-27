@@ -17,7 +17,7 @@ Implement features, fix bugs, or complete development tasks using comprehensive 
 
 *** MANDATORY VALIDATIONS ***
 - Load and comprehend the complete task file before starting implementation
-- Understand all context by reviewing Docs/Spec.md, Docs/Design.md, and existing codebase
+- Understand all context by reviewing Docs/spec.md, Docs/Design.md, and existing codebase
 - Verify task completion status - terminate if already completed with "All tasks were implemented"
 - Follow all task instructions and extend research when additional context is needed
 - Update task file sections based on current codebase state and implementation progress
@@ -106,7 +106,7 @@ When referencing external code (Stack Overflow, GitHub, documentation examples):
 - Update task understanding based on current codebase state
 
 **Context Gathering**
-- Review docs/Spec.md, docs/codeanalysis.md and docs/Design.md for comprehensive understanding
+- Review docs/spec.md, docs/codeanalysis.md and docs/Design.md for comprehensive understanding
 - **Load Design Reference**: Read `.propel/context/docs/DesignReference.md` and extract design context for task's user stories (UI tasks only)
 - **Extract Visual Specifications**: Load Figma URLs OR design images from DesignReference.md sections
 - **Parse Design Tokens**: Extract colors, typography, spacing from DesignReference.md for implementation
