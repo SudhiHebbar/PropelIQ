@@ -198,10 +198,10 @@ Base all spec on `.propel/templates/requirement_base.md` for consistency and com
 ### Requirements Structure Architecture
 
 **Functional Requirements**
-- User stories with clear acceptance criteria
 - Feature specifications with detailed behaviors
 - Business rules and logic documentation
 - Data flow and process diagrams
+- Epic decomposition with clear acceptance criteria
 
 **Non-Functional Requirements**
 - Performance benchmarks and SLAs
@@ -251,31 +251,55 @@ Base all spec on `.propel/templates/requirement_base.md` for consistency and com
 
 **IMPORTANT**: Generate spec.md as primary output. Generate designsystem.md ONLY when requirements include UI changes.
 
+### Workflow Separation
+
+**This Command Generates**: Requirements → Use Cases → Epics
+- Functional Requirements (FR-XXX)
+- Non-Functional Requirements (NFR-XXX)
+- Technical Requirements (TR-XXX)
+- Data Requirements (DR-XXX)
+- UX Requirements (UXR-XXX)
+- Use Case Analysis
+- **Epic Decomposition Table** (EP-XXX) mapping requirements to high-level implementation groupings
+
+**Next Step**: Use `/generate-userstory` command to decompose epics into user stories
+- Takes epics (EP-XXX) as input
+- Creates detailed user stories (US-XXX)
+- Breaks down user stories into implementation tasks
+- Generates individual user story files in `.propel/context/tasks/us_<ID>/`
+
+**DO NOT** generate user stories in this command. Epics are the final decomposition level for requirements generation.
+
 **spec.md Document Structure**:
 - Executive summary with business context
 - Comprehensive stakeholder analysis
-- User stories with design reference links (when UI impact exists)
-- Detailed functional requirements
-- Non-functional requirements specification
+- Detailed functional requirements (FR-XXX)
+- Non-functional requirements specification (NFR-XXX)
+- Technical requirements (TR-XXX)
+- Data requirements (DR-XXX)
+- UX requirements (UXR-XXX, when UI impact exists)
+- Use case analysis with diagrams
+- Epic decomposition table (EP-XXX) mapping requirements
 - Technical architecture considerations
 - Implementation roadmap and priorities
 - Success metrics and validation criteria
 
 **designsystem.md Generation (UI Impact Only)**:
-1. **Assess UI Impact**: Determine if any user stories require UI changes
+1. **Assess UI Impact**: Determine if any requirements involve user interface changes
 2. **Generate Design Document**: Use `.propel/templates/design_reference_base.md` as foundation
 3. **Populate Design Assets**: Fill template with actual Figma URLs OR design images from input
-4. **Create User Story Mappings**: Map each UI-impacting user story to design assets
-5. **Link from spec.md**: Reference designsystem.md sections in user stories
-6. **Organize Assets**: Create folder structure in `.propel/context/Design/US-XXX/` for each story
+4. **Create Epic-to-Design Mappings**: Map each UI-impacting epic to design assets
+5. **Link from spec.md**: Reference designsystem.md sections in UX requirements
+6. **Organize Assets**: Create folder structure in `.propel/context/Design/EP-XXX/` for each epic
 
-**Example User Story Linking in spec.md**:
+**Example Epic-Design Linking in spec.md**:
 ```yaml
-## User Story: US-001 - User Login Interface
-**Design Reference**: [.propel/context/docs/designsystem.md#US-001](.propel/context/docs/designsystem.md#US-001)
+## Epic: EP-003 - User Authentication UI
+**Requirements**: FR-001, FR-002, UXR-001, UXR-002
+**Design Reference**: [.propel/context/docs/designsystem.md#EP-003](.propel/context/docs/designsystem.md#EP-003)
 **Visual Assets**:
   - Figma: https://figma.com/file/xyz?node-id=2:45
-  - OR Images: .propel/context/Design/US-001/login_mockup.png
+  - OR Images: .propel/context/Design/EP-003/login_mockup.png
 **UI Impact**: Yes - New login screen implementation required
 ```
 
